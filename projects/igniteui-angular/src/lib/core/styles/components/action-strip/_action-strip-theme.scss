@@ -177,8 +177,30 @@
         position: relative;
         color: --var($theme, 'color');
         border-radius: --var($theme, 'actions-border-radius');
-        background: --var($theme, 'actions-background');
         max-height: 36px;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: --var($theme, 'actions-border-radius');
+            pointer-events: none;
+        }
+
+        &::before {
+            background: map-get($theme, surface);
+            opacity: .9;
+            z-index: -2;
+        }
+
+        &::after {
+            background: --var($theme, 'actions-background');
+            z-index: -1;
+        }
 
         &:last-child {
             margin-#{$right}: 0;
@@ -212,6 +234,12 @@
     %igx-action-strip__delete {
         igx-icon {
             color: --var($theme, 'delete-action');
+        }
+
+        [igxButton='icon'] {
+            igx-icon {
+                color: --var($theme, 'delete-action') !important;
+            }
         }
     }
 }

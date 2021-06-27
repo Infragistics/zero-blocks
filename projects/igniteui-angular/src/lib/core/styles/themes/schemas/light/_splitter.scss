@@ -10,11 +10,11 @@
 /// Generates a light splitter schema.
 /// @type {Map}
 /// @property {Map} icon-background [igx-color: ('grays', 400)]- The background color used for splitters of type icon.
-/// @property {Map} bar-color [igx-color: 'surface', darken: 5%] - The background color of the bar.
-/// @property {Map} handle-color [igx-color: 'surface', darken: 20%] - The color for the bar drag handle.
-/// @property {Map} expander-color [igx-color: 'surface', darken: 20%] - The color for the arrow expander's.
+/// @property {Map} bar-color [ igx-color: ('grays', 100)] - The background color of the bar.
+/// @property {Map} handle-color [igx-color: ('grays', 400)] - The color for the bar drag handle.
+/// @property {Map} expander-color [igx-color: ('grays', 400)] - The color for the arrow expander's.
 /// @property {Number} border-radius [1] - The border radius used for splitter. Can be a fraction between 0 and 1, pixels, or percent.
-/// @property {Map} focus-color [igx-color: ('secondary', 500)] - The color used for focused splitter bar.
+/// @property {Map} focus-color [igx-color: ('secondary', 100)] - The color used for focused splitter bar.
 /// @property {Number} size [4px] - The size of the splitter, it's width for vertical and height for horizontal splitter.
 /// @requires {function} extend
 /// @requires {Map} $_round-shape-splitter
@@ -23,22 +23,19 @@ $_light-splitter: extend(
     $_round-shape-splitter,
     (
         bar-color: (
-            igx-color: 'surface',
-            darken: 5%
+            igx-color: ('grays', 100)
         ),
 
         focus-color: (
-            igx-color: ('secondary', 500)
+            igx-color: ('secondary', 100)
         ),
 
         handle-color: (
-            igx-color: 'surface',
-            darken: 20%
+            igx-color: ('grays', 400)
         ),
 
         expander-color: (
-            igx-color: 'surface',
-            darken: 20%
+            igx-color: ('grays', 400)
         ),
 
         size: 4px
@@ -65,8 +62,8 @@ $_bootstrap-splitter: extend(
 /// Generates an indigo splitter schema.
 /// @type {Map}
 /// @property {Map} bar-color [igx-color: ('grays', 300)] - The background color of the bar.
-/// @property {Color} handle-color [#fff] - The color for the bar drag handle.
-/// @property {Color} expander-color [#fff] - The color for the bar drag handle.
+/// @property {Mao} handle-color [igx-contrast-color: ('grays', 900)] - The color for the bar drag handle.
+/// @property {Map} expander-color [igx-contrast-color: ('grays', 900)] - The color for the bar drag handle.
 /// @property {Map} focus-color [igx-color: ('primary', 500)] - The color used for focused splitter bar.
 /// @requires {function} extend
 /// @requires {Map} $_light-splitter
@@ -83,8 +80,12 @@ $_indigo-splitter: extend(
             igx-color: ('primary', 500)
         ),
 
-        handle-color: #fff,
+        handle-color: (
+            igx-contrast-color: ('grays', 900)
+        ),
 
-        expander-color: #fff
+        expander-color: (
+            igx-contrast-color: ('grays', 900)
+        )
     )
 );

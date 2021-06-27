@@ -7,10 +7,23 @@
 
 /// Generates a dark tooltip schema.
 /// @type {Map}
+/// @prop {Map} background [igx-color: ('grays', 900)] - The background color of the tooltip.
+/// @prop {Map} text-color [igx-contrast-color: ('grays', 900)] - The text color of the tooltip.
 /// @requires {function} extend
 /// @requires $_light-tooltip
 /// @see $default-palette
-$_dark-tooltip: extend($_light-tooltip);
+$_dark-tooltip: extend(
+    $_light-tooltip,
+    (
+        background: (
+            igx-color: ('grays', 900)
+        ),
+
+        text-color: (
+            igx-contrast-color: ('grays', 900)
+        ),
+    )
+);
 
 /// Generates a dark fluent tooltip schema.
 /// @type {Map}
@@ -27,15 +40,17 @@ $_dark-bootstrap-tooltip: extend($_bootstrap-tooltip);
 /// Generates a dark indigo tooltip schema.
 /// @type {Map}
 ///
-/// @property {Map} background [#fff] - The background color of the tooltip.
-/// @property {Map} text-color [text-color: (igx-color: 'surface')] - The text color of the tooltip.
+/// @property {Map} background [igx-contrast-color: 'surface'] - The background color of the tooltip.
+/// @property {Map} text-color [igx-color: 'surface'] - The text color of the tooltip.
 ///
 /// @requires {function} extend
 /// @requires $_indigo-tooltip
 $_dark-indigo-tooltip: extend(
     $_indigo-tooltip,
     (
-        background: #fff,
+        background: (
+            igx-contrast-color: 'surface'
+        ),
 
         text-color: (
             igx-color: 'surface'

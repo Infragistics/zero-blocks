@@ -203,6 +203,9 @@
 @mixin igx-drop-down($theme) {
     @include igx-css-vars($theme);
 
+    $variant: map-get($theme, variant);
+    $indigo-theme: $variant == 'indigo-design';
+
     $item-height: (
         comfortable: rem(40px),
         cosy: rem(32px),
@@ -247,6 +250,19 @@
 
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
+
+    %_igx-item-indigo-bg {
+        &::after {
+            content: '';
+            z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: .2;
+        }
+    }
 
     %igx-drop-down {
         position: absolute;
@@ -306,16 +322,19 @@
         padding: map-get($item-padding, 'comfortable');
         border-radius: --var($theme, 'item-border-radius');
 
-        &:focus {
-            outline: 0;
-            outline-color: transparent;
-            background: --var($theme, 'focused-item-background');
-            color: --var($theme, 'focused-item-text-color');
-        }
-
         &:hover {
-            background: --var($theme, 'hover-item-background');
+            @if not $indigo-theme {
+                background: --var($theme, 'hover-item-background');
+            }
             color: --var($theme, 'hover-item-text-color');
+
+            @if $indigo-theme {
+                @extend %_igx-item-indigo-bg;
+
+                &::after {
+                    background: --var($theme, 'hover-item-background');
+                }
+            }
         }
     }
 
@@ -323,6 +342,10 @@
         display: flex;
         width: 100%;
         align-items: center;
+
+        @if $indigo-theme {
+            z-index: 1;
+        }
     }
 
     %igx-drop-down__inner {
@@ -443,12 +466,32 @@
     }
 
     %igx-drop-down__item--focused {
-        background: --var($theme, 'focused-item-background');
+        outline: transparent 0;
+
+        @if  $indigo-theme {
+            @extend %_igx-item-indigo-bg;
+        }
+
+        @if not $indigo-theme {
+            background: --var($theme, 'focused-item-background');
+        } @else {
+            &::after {
+                background: --var($theme, 'focused-item-background');
+            }
+        }
+
         color: --var($theme, 'focused-item-text-color');
 
         &:hover {
             color: --var($theme, 'focused-item-text-color');
-            background: --var($theme, 'focused-item-background');
+
+            @if not $indigo-theme {
+                background: --var($theme, 'focused-item-background');
+            } @else {
+                &::after {
+                    background: --var($theme, 'focused-item-background');
+                }
+            }
         }
     }
 
@@ -463,7 +506,14 @@
     }
 
     %igx-drop-down__item--selected--focused {
-        background: --var($theme, 'selected-focus-item-background');
+        @if not $indigo-theme {
+            background: --var($theme, 'selected-focus-item-background');
+        } @else {
+            &::after {
+                background: --var($theme, 'selected-focus-item-background');
+            }
+        }
+
         color: --var($theme, 'selected-focus-item-text-color');
     }
 

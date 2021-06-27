@@ -10,7 +10,7 @@
 /// @type {Map}
 ///
 /// @property {Map} item-text-color [igx-color: ('grays', 700)] - The color used for the tab text color.
-/// @property {Color} item-background [#fff] - The background color used for the tabs header.
+/// @property {Map} item-background [igx-color: 'surface'] - The background color used for the tabs header.
 /// @property {Map} item-hover-background [igx-color: ('grays', 200)] - The background used for the tabs on hover.
 /// @property {Map} item-hover-color [igx-color: ('grays', 700)] - The text color used for the tabs on hover.
 ///
@@ -21,7 +21,7 @@
 /// @property {Map} indicator-color [igx-color: ('primary', 500)] - The color used for the active tab indicator.
 /// @property {Map} button-color [igx-color: ('grays', 500)] - The color used for the button icon/text color.
 /// @property {Map} button-hover-color [igx-color: ('grays', 600)] - The color used for the button icon/text color on hover.
-/// @property {Color} button-background [#fff] - The color used for the button background.
+/// @property {Map} button-background [igx-color: 'surface'] - The color used for the button background.
 /// @property {Map} button-hover-background [igx-color: ('grays', 100)] - The color used for the button background on hover.
 ///
 /// @property {Map} tab-ripple-color [igx-color: ('grays', 100)] - The color used for the button background.
@@ -38,7 +38,9 @@ $_light-tabs: extend(
             igx-color: ('grays', 700)
         ),
 
-        item-background: #fff,
+        item-background: (
+            igx-color: 'surface'
+        ),
 
         item-hover-background: (
             igx-color: ('grays', 200)
@@ -68,7 +70,9 @@ $_light-tabs: extend(
             igx-color: ('grays', 500)
         ),
 
-        button-background: #fff,
+        button-background: (
+            igx-color: 'surface'
+        ),
 
         button-hover-background: (
             igx-color: ('grays', 100)
@@ -93,17 +97,6 @@ $_light-tabs: extend(
 
 /// Generates a fluent tabs schema.
 /// @type {Map}
-///
-/// @property {Map} item-text-color [igx-color: ('primary', 500)] - The color used for the tab text color.
-/// @property {Color} item-hover-background [#fff] - The background used for the tabs on hover.
-/// @property {Map} item-hover-color [igx-color: ('primary', 700)] - The text color used for the tabs on hover.
-///
-/// @property {Color} item-active-color [#fff] - The color used for the active tabs text.
-/// @property {Map} item-active-icon-color [igx-color: ('grays', 800)] - The color used for the active tabs icon.
-/// @property {Color} item-active-background [#fff] - The color used for the active/focused tab background.
-/// @property {Number} border-radius [0] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
-/// @property {Map} indicator-color [igx-color: ('grays', 400)] - The color used for the tabs borders.
-///
 /// @requires {function} extend
 /// @requires {Map} $_light-tabs
 /// @requires {Map} $_fluent-shape-tabs
@@ -188,8 +181,8 @@ $_bootstrap-tabs: extend(
 /// @property {Map} item-active-color [igx-color: ('grays', 900)] - The color used for the active tabs text.
 /// @property {Map} item-active-icon-color [igx-color: ('primary', 400)] - The color used for the active tabs icon.
 /// @property {Map} indicator-color [igx-color: ('primary', 400)] - The color used for the tabs borders.
-/// @property {Map} border-color [igx-color: ('grays', 300), to-opaque: (igx-color: 'surface')] - The color used for the tab items bottom border.
-/// @property {Map} border-color--hover [igx-color: ('grays', 300), to-opaque: (igx-color: 'surface')] - The color used for the tab items bottom border on hover.
+/// @property {Map} border-color [igx-color: ('grays', 300)] - The color used for the tab items bottom border.
+/// @property {Map} border-color--hover [igx-color: ('grays', 300)] - The color used for the tab items bottom border on hover.
 /// @property {Map} button-color [igx-color: ('grays', 700)] - The color used for the button icon/text color.
 /// @property {Map} button-hover-color [igx-color: ('grays', 900)] - The color used for the button icon/text color on hover.
 /// @property {Color} button-background [transparent] - The color used for the button background.
@@ -230,16 +223,10 @@ $_indigo-tabs: extend(
 
         border-color:  (
             igx-color: ('grays', 300),
-            to-opaque: (
-                igx-color: 'surface'
-            )
         ),
 
         border-color--hover:  (
             igx-color: ('grays', 300),
-            to-opaque: (
-                igx-color: 'surface'
-            )
         ),
 
         button-color: (

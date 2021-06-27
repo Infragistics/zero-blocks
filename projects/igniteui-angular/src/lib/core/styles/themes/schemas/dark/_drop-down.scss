@@ -14,36 +14,18 @@ $_dark-drop-down: extend($_light-drop-down);
 
 /// Generates a dark fluent drop-down schema.
 /// @type {Map}
-/// @prop {Color} selected-item-text-color [#fff)] - The drop-down selected item text color.
-/// @prop {Color} selected-hover-item-text-color [#fff] - The drop-down selected item hover text color.
-/// @prop {Color} selected-focus-item-text-color [#fff] - The drop-down selected item focus text color.
 /// @requires {function} extend
 /// @requires $_fluent-drop-down
 $_dark-fluent-drop-down: extend(
     $_fluent-drop-down,
-    (
-        selected-item-text-color: #fff,
-
-        selected-hover-item-text-color:  #fff,
-
-        selected-focus-item-text-color: #fff,
-    )
 );
 
 /// Generates a dark bootstrap drop-down schema.
 /// @type {Map}
-/// @prop {Map} background-color [#222] - The drop-down background color.
-/// @prop {Map} item-text-color [#fff] - The drop-down text color.
-/// @prop {Map} hover-item-text-color [#fff] - The drop-down hover text color.
 /// @requires {function} extend
 /// @requires $_bootstrap-drop-down
 $_dark-bootstrap-drop-down: extend(
     $_bootstrap-drop-down,
-    (
-        background-color: #222,
-        item-text-color: #fff,
-        hover-item-text-color: #fff,
-    )
 );
 
 /// Generates a dark indigo drop-down schema.

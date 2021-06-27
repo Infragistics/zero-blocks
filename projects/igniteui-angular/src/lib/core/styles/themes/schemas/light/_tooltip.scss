@@ -9,8 +9,8 @@
 /// Generates a light tooltip schema.
 /// @type {Map}
 ///
-/// @property {Map} background [igx-color: ('grays', 700), to-opaque: (), rgba: .9] - The background color of the tooltip.
-/// @property {Map} text-color [igx-color: ('grays', 700), to-opaque: (), rgba: .9, text-contrast: ()] - The text color of the tooltip.
+/// @property {Map} background [igx-color: ('grays', 700)] - The background color of the tooltip.
+/// @property {Map} text-color [igx-contrast-color: ('grays', 700)] - The text color of the tooltip.
 /// @property {Number} border-radius [.25] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
@@ -20,16 +20,11 @@ $_light-tooltip: extend(
     $_default-shape-tooltip,
     (
         background: (
-            igx-color: ('grays', 700),
-            to-opaque: (),
-            rgba: .9
+            igx-color: ('grays', 700)
         ),
 
         text-color: (
-            igx-color: ('grays', 700),
-            to-opaque: (),
-            rgba: .9,
-            text-contrast: ()
+            igx-contrast-color: ('grays', 700)
         ),
 
         roundness: rem(4px)
@@ -83,7 +78,7 @@ $_bootstrap-tooltip: extend(
 /// @type {Map}
 ///
 /// @prop {Map} background [igx-color: ('grays', 600)] - The background color of the tooltip.
-/// @prop {Map} text-color [#fff] - The text color of the tooltip.
+/// @prop {Map} text-color [igx-contrast-color: ('grays', 900)] - The text color of the tooltip.
 /// @prop {Number} border-radius [3px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
@@ -97,6 +92,8 @@ $_indigo-tooltip: extend(
             igx-color: ('grays', 600)
         ),
 
-        text-color: #fff
+        text-color: (
+            igx-contrast-color: ('grays', 900)
+        ),
     )
 );

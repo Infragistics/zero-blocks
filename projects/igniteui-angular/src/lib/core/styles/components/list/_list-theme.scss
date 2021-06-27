@@ -257,6 +257,7 @@
 
     $variant: map-get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
+    $indigo-theme: $variant == 'indigo-design';
 
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
@@ -348,36 +349,46 @@
         border-radius: --var($theme, 'item-border-radius');
         color: --var($theme, 'item-text-color');
         background: --var($theme, 'item-background');
+    }
 
-        &:hover {
-            color: --var($theme, 'item-text-color-hover');
-            background: --var($theme, 'item-background-hover');
+    %igx-list-item-base-hover {
+        color: --var($theme, 'item-text-color-hover');
+        background: --var($theme, 'item-background-hover');
 
-            %igx-list__item-lines {
-                color: currentColor;
+        %igx-list__item-lines {
+            color: currentColor;
+        }
+
+        %igx-list__item-line-title {
+            color: --var($theme, 'item-title-color-hover');
+        }
+
+        %igx-list__item-line-subtitle {
+            color: --var($theme, 'item-subtitle-color-hover');
+        }
+
+        %igx-list__item-actions {
+            color: --var($theme, 'item-action-color-hover');
+
+            igx-icon {
+                color: --var($theme, 'item-action-color-hover')
             }
+        }
 
-            %igx-list__item-line-title {
-                color: --var($theme, 'item-title-color-hover');
+        %igx-list__item-thumbnail {
+            color: --var($theme, 'item-thumbnail-color-hover');
+
+            igx-icon {
+                color: --var($theme, 'item-thumbnail-color-hover')
             }
+        }
 
-            %igx-list__item-line-subtitle {
-                color: --var($theme, 'item-subtitle-color-hover');
-            }
+        %igx-list-item-content {
+            &::after {
+                background: --var($theme, 'item-background-hover');
 
-            %igx-list__item-actions {
-                color: --var($theme, 'item-action-color-hover');
-
-                igx-icon {
-                    color: --var($theme, 'item-action-color-hover')
-                }
-            }
-
-            %igx-list__item-thumbnail {
-                color: --var($theme, 'item-thumbnail-color-hover');
-
-                igx-icon {
-                    color: --var($theme, 'item-thumbnail-color-hover')
+                @if $indigo-theme  {
+                    opacity: .5
                 }
             }
         }
@@ -435,8 +446,27 @@
         position: relative;
         padding: map-get($list-item-padding, 'comfortable');
         border-radius: --var($theme, 'item-border-radius');
-        background: inherit;
         z-index: 2;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        &::before {
+            background: --var($theme, 'item-background');
+        }
+
+        &::after {
+            background: inherit;
+        }
     }
 
     %igx-list-item-content--compact {
@@ -576,8 +606,20 @@
         }
 
         color: --var($theme, 'item-text-color-active');
-        background: --var($theme, 'item-background-active');
-        z-index: 3;
+
+        &::before {
+            background: --var($theme, 'item-background');
+            z-index: -2;
+        }
+
+        &::after {
+            background: --var($theme, 'item-background-active');
+            z-index: -1;
+
+            @if $indigo-theme {
+                opacity: .5
+            }
+        }
     }
 
     %igx-list-item-content--inactive {

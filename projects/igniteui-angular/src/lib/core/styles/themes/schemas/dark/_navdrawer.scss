@@ -17,7 +17,7 @@ $_dark-navdrawer: extend($_light-navdrawer);
 /// @type {Map}
 /// @prop {Map} item-active-text-color [igx-color: ('primary', 200)] - The item's active text color.
 /// @prop {Map} item-active-icon-color [igx-color: ('primary', 100)] - The item's icon active color.
-/// @prop {Map} item-active-background [igx-color: ('primary', 400), rgba: .12] - The item's active background color.
+/// @prop {Map} item-active-background [igx-color: ('primary', 400)] - The item's active background color.
 /// @requires {function} extend
 /// @requires $_fluent-navdrawer
 $_dark-fluent-navdrawer: extend(
@@ -32,8 +32,7 @@ $_dark-fluent-navdrawer: extend(
         ),
 
         item-active-background: (
-            igx-color: ('primary', 400),
-            rgba: .12
+            igx-color: ('primary', 400)
         ),
     )
 );

@@ -10,19 +10,19 @@
 /// Generates a light button group schema.
 /// @type {Map}
 /// @prop {Map} item-text-color [igx-color: ('grays', 700)]- The text color for button group items.
-/// @prop {Color} item-background [#fff] - The background color for button group items .
-/// @prop {Map} item-border-color [igx-color: ('grays', 50), to-opaque: #ccc] - The border color between button group items.
+/// @prop {Color} item-background [igx-color: 'surface'] - The background color for button group items .
+/// @prop {Map} item-border-color [igx-color: ('grays', 300), to-opaque: (#fff)] - The border color between button group items.
 ///
 /// @prop {Map} item-hover-text-color [igx-color: ('grays', 800)] - The hover text color for button group items.
 /// @prop {Map} item-hover-background [igx-color: ('grays', 300)] - The hover background color for button group items.
 ///
 /// @prop {Map} disabled-text-color [igx-color: ('grays', 400)]- The text/icon color for a disabled item in the button group.
 /// @prop {Map} disabled-background-color [igx-color: ('grays', 50)] - The background color for a disabled item in the button group.
-/// @prop {Map} item-disabled-border [igx-color: ('grays', 50), to-opaque: #ccc] - The border color for a disabled item in the button group.
+/// @prop {Map} item-disabled-border [igx-color: ('grays', 300), to-opaque: (#fff)] - The border color for a disabled item in the button group.
 ///
 /// @prop {Map} item-selected-text-color [igx-color: ('grays', 800)]- The text color for a selected item in the button group.
 /// @prop {Map} item-selected-background [igx-color: ('grays', 400)] - The background color for a selected item in the button group.
-/// @prop {Map} item-selected-border-color [igx-color: ('grays', 400), to-opaque: #ccc] - The border color for a selected item from the button group.
+/// @prop {Map} item-selected-border-color [igx-color: ('grays', 400), to-opaque: (#fff)] - The border color for a selected item from the button group.
 /// @prop {Map} item-selected-hover-background [igx-color: ('grays', 500)] - The background color for a selected item in hover or focus state in the button group.
 /// @prop {Number} elevation [2] - The elevation level, between 0-24, to be used for the button group shadow.
 /// @prop {Number} border-radius [.2] - The border radius used for button-group component. Can be a fraction between 0 and 1, pixels, or percent.
@@ -36,11 +36,13 @@ $_light-button-group: extend(
     (
         variant: 'material',
 
-        item-background: #fff,
+        item-background: (
+            igx-color: 'surface'
+        ),
 
         item-border-color: (
-            igx-color: ('grays', 50),
-            to-opaque: (#ccc)
+            igx-color: ('grays', 300),
+            to-opaque: (#fff)
         ),
 
         item-text-color: (
@@ -69,7 +71,7 @@ $_light-button-group: extend(
 
         item-selected-border-color: (
             igx-color: ('grays', 400),
-            to-opaque: (#ccc)
+            to-opaque: (#fff)
         ),
 
         disabled-text-color: (
@@ -81,8 +83,8 @@ $_light-button-group: extend(
         ),
 
         item-disabled-border: (
-            igx-color: ('grays', 50),
-            to-opaque: (#ccc)
+            igx-color: ('grays', 300),
+            to-opaque: (#fff)
         ),
     )
 );
@@ -140,17 +142,17 @@ $_fluent-button-group: extend(
 /// Generates a bootstrap button group schema.
 /// @type {Map}
 /// @prop {Map} item-background [igx-color: ('primary', 500)] - The background color for button group items.
-/// @prop {Color} item-text-color [#fff]- The text color for button group items.
+/// @prop {Color} item-text-color [igx-color: 'surface']- The text color for button group items.
 /// @prop {Map} item-border-color [igx-color: ('primary', 500)] - The border color between button group items.
 /// @prop {Map} item-hover-background [igx-color: ('primary', 600)] - The hover background color for button group items.
-/// @prop {Color} item-hover-text-color [#fff] - The hover text color for button group items.
-/// @prop {Map} item-selected-background [igx-color: ('primary', 500), darken: 10%] - The background color for a selected item in the button group.
-/// @prop {Color} item-selected-text-color [#fff]- The text color for a selected item in the button group.
-/// @prop {Map} item-selected-border-color [igx-color: ('primary', 500), darken: 10%] - The border color for a selected item from the button group.
-/// @prop {Map} item-selected-hover-background [igx-color: ('primary', 500), darken: 15%] - The background color for a selected item in hover or focus state in the button group.
-/// @prop {Map} disabled-background-color [igx-color: ('primary', 500), lighten: 35%] - The background color for a disabled item in the button group.
-/// @prop {Map} disabled-text-color [igx-color: ('primary', 500), lighten: 20%]- The text/icon color for a disabled item in the button group.
-/// @prop {Map} item-disabled-border [igx-color: ('primary', 500), lighten: 35%] - The border color for a disabled item in the button group.
+/// @prop {Color} item-hover-text-color [igx-color: 'surface'] - The hover text color for button group items.
+/// @prop {Map} item-selected-background [igx-color: ('primary', 700)] - The background color for a selected item in the button group.
+/// @prop {Color} item-selected-text-color [igx-color: 'surface']- The text color for a selected item in the button group.
+/// @prop {Map} item-selected-border-color [igx-color: ('primary', 700)] - The border color for a selected item from the button group.
+/// @prop {Map} item-selected-hover-background [igx-color: ('primary', 800)] - The background color for a selected item in hover or focus state in the button group.
+/// @prop {Map} disabled-background-color [igx-color: ('primary', 100)] - The background color for a disabled item in the button group.
+/// @prop {Map} disabled-text-color [igx-color: ('primary', 200)]- The text/icon color for a disabled item in the button group.
+/// @prop {Map} item-disabled-border [igx-color: ('primary', 100)] - The border color for a disabled item in the button group.
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the button group shadow.
 /// @prop {Number} border-radius [4px] - The border radius used for button-group component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
@@ -168,7 +170,9 @@ $_bootstrap-button-group: extend(
             igx-color: ('primary', 500),
         ),
 
-        item-text-color: #fff,
+        item-text-color: (
+            igx-color: 'surface'
+        ),
 
         item-border-color: (
             igx-color: ('primary', 500),
@@ -178,52 +182,51 @@ $_bootstrap-button-group: extend(
             igx-color: ('primary', 600),
         ),
 
-        item-hover-text-color: #fff,
-
-        item-selected-background: (
-            igx-color: ('primary', 500),
-            darken: 10%
+        item-hover-text-color: (
+            igx-color: 'surface'
         ),
 
-        item-selected-text-color: #fff,
+        item-selected-background: (
+            igx-color: ('primary', 700)
+        ),
+
+        item-selected-text-color: (
+            igx-color: 'surface'
+        ),
 
         item-selected-border-color: (
-            igx-color: ('primary', 500),
-            darken: 10%
+            igx-color: ('primary', 700)
         ),
 
         item-selected-hover-background: (
-            igx-color: ('primary', 500),
-            darken: 15%
+            igx-color: ('primary', 800)
         ),
 
         disabled-background-color: (
-            igx-color: ('primary', 500),
-            lighten: 35%
+            igx-color: ('primary', 100)
         ),
 
         disabled-text-color: (
-            igx-color: ('primary', 500),
-            lighten: 20%
+            igx-color: ('primary', 200)
         ),
 
         item-disabled-border: (
-            igx-color: ('primary', 500), lighten: 35%
+            igx-color: ('primary', 100)
         ),
     )
 );
 
 /// Generates an indigo light button-group schema.
 /// @type {Map}
-/// @prop {Color} item-background [#fff] - The background color for button group items.
-/// @prop {Color} item-text-color [text-contrast: #fff]- The text color for button group items.
+/// @prop {Color} item-background [igx-color: 'surface'] - The background color for button group items.
+/// @prop {Color} item-text-color [igx-contrast-color: 'surface']- The text color for button group items.
 /// @prop {Map} shadow-color [igx-color: ('grays', 300)] - The outline color of button group items.
 /// @prop {Map} selected-shadow-color [igx-color: ('primary', 200)] - The outline color of selected button group items.
-/// @prop {Map} item-border-color [igx-color: ('primary', 400)] - The border color between button group items.
+/// @prop {Map} item-border-color [igx-color: ('grays', 300)] - The border color between button group items.
 /// @prop {Map} item-hover-background [igx-color: ('grays', 100)] - The hover background color for button group items.
 /// @prop {Map} item-hover-text-color [igx-contrast-color: ('grays', 100)] - The hover text color for button group items.
-/// @prop {Map} item-selected-background [igx-color: ('primary', 400)] - The background color for a selected item in the button group.
-/// @prop {Color} item-selected-text-color [igx-contrast-color: ('primary', 400)]- The text color for a selected item in the button group.
+/// @prop {Map} item-selected-background [igx-color: ('primary', 500)] - The background color for a selected item in the button group.
+/// @prop {Color} item-selected-text-color [igx-contrast-color: ('primary', 500)]- The text color for a selected item in the button group.
 /// @prop {Map} item-selected-border-color [igx-color: ('primary', 400)] - The border color for a selected item from the button group.
 /// @prop {Map} item-selected-hover-background [igx-color: ('primary', 400)] - The background color for a selected item in hover or focus state in the button group.
 /// @prop {Map} disabled-background-color [igx-color: ('grays', 100)] - The background color for a disabled item in the button group.
@@ -242,7 +245,9 @@ $_indigo-button-group: extend(
     (
         variant: 'indigo-design',
 
-        item-background: #fff,
+        item-background: (
+            igx-color: 'surface'
+        ),
 
         shadow-color: (
             igx-color: ('grays', 300),
@@ -253,7 +258,7 @@ $_indigo-button-group: extend(
         ),
 
         item-text-color: (
-            text-contrast: #fff
+            igx-contrast-color: 'surface'
         ),
 
         item-border-color: (

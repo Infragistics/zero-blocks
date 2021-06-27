@@ -21,10 +21,12 @@ $_light-action-strip: extend(
     (
         variant: 'material',
 
+        surface: (
+            igx-color: 'surface'
+        ),
+
         actions-background: (
             igx-color: ('grays', 200),
-            to-opaque: #fff,
-            rgba: .9
         ),
 
         background: (
@@ -86,7 +88,7 @@ $_indigo-action-strip: extend(
         ),
 
         color: (
-            igx-contrast-color: 'primary'
+            igx-contrast-color: ('primary'),
         ),
     )
 );

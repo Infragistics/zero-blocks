@@ -100,6 +100,9 @@
 @mixin igx-expansion-panel($theme) {
     @include igx-css-vars($theme);
 
+    $variant: map-get($theme, variant);
+    $indigo-theme: $variant == 'indigo-design';
+
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
 
@@ -130,18 +133,40 @@
         white-space: nowrap;
     }
 
+    %igx-expansion-surface {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
     %igx-expansion-panel__header-inner {
         display: flex;
         align-items: center;
         padding: $panel-padding;
         cursor: pointer;
-        background: --var($theme, 'header-background');
+        position: relative;
+
+        &::before {
+            @extend %igx-expansion-surface;
+            background: --var($theme, 'header-background');
+        }
 
         &:focus,
         &:active
         {
-            background: --var($theme, 'header-focus-background');
             outline: transparent;
+
+            &::before {
+                background: --var($theme, 'header-focus-background');
+
+                @if($indigo-theme)  {
+                    opacity: .2;
+                }
+            }
         }
     }
 
@@ -182,9 +207,14 @@
     }
 
     %igx-expansion-panel__body {
+        position: relative;
         color: --var($theme, 'body-color');
-        background: --var($theme, 'body-background');
         overflow: hidden;
+
+        &::before {
+            @extend %igx-expansion-surface;
+            background: --var($theme, 'body-background');
+        }
     }
 
     %igx-expansion-panel--disabled {

@@ -13,9 +13,7 @@
 /// @see $default-palette
 $_dark-calendar: extend($_light-calendar, (
     date-disabled-text-color: (
-        igx-color: ('grays', 500),
-        to-opaque: (),
-        rgba: .38
+        igx-color: ('grays', 500)
     ),
 ));
 
@@ -27,15 +25,19 @@ $_dark-fluent-calendar: extend($_fluent-calendar);
 
 /// Generates a dark bootstrap calendar schema.
 /// @type {Map}
-/// @prop {Map} content-background [#222] - The main content background color.
-/// @prop {Map} picker-text-color [#fff]- The idle picker month/year color.
+/// @prop {Map} content-background [(igx-color: 'surface')] - The main content background color.
+/// @prop {Map} picker-text-color [(igx-contrast-color: 'surface')]- The idle picker month/year color.
 /// @requires {function} extend
 /// @requires $_bootstrap-calendar
 $_dark-bootstrap-calendar: extend(
     $_bootstrap-calendar,
     (
-        content-background: #222,
-        picker-text-color: #fff,
+        content-background: (
+            igx-color: 'surface'
+        ),
+        picker-text-color: (
+            igx-contrast-color: 'surface'
+        ),
     )
 );
 

@@ -301,9 +301,30 @@
         height: $switch-thumb-height;
         min-width: rem($switch-thumb-width);
         border-radius: --var($theme, 'border-radius-thumb');
-        background: --var($theme, 'thumb-off-color');
         box-shadow: $thumb-resting-shadow;
         transition: $input-transition;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            border-radius: --var($theme, 'border-radius-thumb');
+        }
+
+        &::before {
+            z-index: -2;
+            background: map-get($theme, surface);
+        }
+
+        &::after {
+            z-index: -1;
+            background: --var($theme, 'thumb-off-color');
+        }
 
         @include if-ltr() {
             transform: translateX(#{rem($switch-off-offset)});
@@ -319,7 +340,9 @@
     }
 
     %switch-composite-thumb--x {
-        background: --var($theme, 'thumb-on-color');
+        &::after {
+            background: --var($theme, 'thumb-on-color');
+        }
 
         @include if-ltr() {
             transform: translateX(#{rem($switch-width) - rem($switch-thumb-width) - rem($switch-on-offset)});
@@ -331,8 +354,11 @@
     }
 
     %switch-composite-thumb--disabled {
-        background: --var($theme, 'thumb-disabled-color');
         box-shadow: $thumb-disabled-shadow;
+
+        &::after {
+            background: --var($theme, 'thumb-disabled-color');
+        }
     }
 
     %switch-ripple {

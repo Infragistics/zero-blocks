@@ -8,25 +8,31 @@
 
 /// Generates the base dark button-group schema.
 /// @type {Map}
-/// @prop {Color} item-background [#222] - The background color for button group items.
-/// @prop {Map} item-border-color [igx-color: ('grays', 400), to-opaque: #222] - The border color for button group items.
-/// @prop {Map} item-selected-border-color [igx-color: ('grays', 500), to-opaque: #222] - The border color for button group selected items.
-/// @prop {Map} item-disabled-border: [igx-color: ('grays', 400), to-opaque: #222] - The border color for button group disabled items.
+/// @prop {Map} item-border-color [igx-color: ('grays', 300), to-opaque: (#222)] - The border color for button group items.
+/// @prop {Map} item-selected-border-color [igx-color: ('grays', 400), to-opaque: (#222)] - The border color for button group selected items.
+/// @prop {Map} item-disabled-border: [igx-color: ('grays', 300), to-opaque: (#222)] - The border color for button group disabled items.
+/// @prop {Map} disabled-background-color [igx-color: ('grays', 100)] - The background color for a disabled item in the button group.
 $_base-dark-button-group: (
-    item-background: #222,
+    item-background: (
+        igx-color: 'surface',
+    ),
 
     item-border-color: (
-        igx-color: ('grays', 400),
+        igx-color: ('grays', 300),
         to-opaque: (#222)
     ),
 
     item-selected-border-color: (
-        igx-color: ('grays', 500),
+        igx-color: ('grays', 400),
         to-opaque: (#222)
     ),
 
+    disabled-background-color: (
+        igx-color: ('grays', 100)
+    ),
+
     item-disabled-border: (
-        igx-color: ('grays', 400),
+        igx-color: ('grays', 300),
         to-opaque: (#222)
     ),
 );
@@ -42,16 +48,16 @@ $_dark-button-group: extend($_light-button-group, $_base-dark-button-group);
 /// Generates a dark fluent button-group schema based on a mix of $_fluent-button-group and $_base-dark-button-group
 /// @type {Map}
 ///
-/// @prop {Map} item-border-color [igx-color: ('grays', 100), to-opaque: #000] - The border color for button group items.
-/// @prop {Map} item-selected-border-color [igx-color: ('grays', 100), to-opaque: #000] - The border color for button group selected items.
-/// @prop {Map} item-disabled-border: [igx-color: ('grays', 100), to-opaque: #000] - The border color for button group disabled items.
+/// @prop {Map} item-border-color [#000] - The border color for button group items.
+/// @prop {Map} item-selected-border-color [#000] - The border color for button group selected items.
+/// @prop {Map} item-disabled-border: [#000] - The border color for button group disabled items.
 /// @prop {Map} item-text-color [igx-color: ('grays', 900)] - The text color for button group items.
 /// @prop {Map} item-hover-text-color [igx-color: ('primary', 200)] - The text color for button group items on hover.
-/// @prop {Color} item-hover-background [#222] - The background color for button group items on hover.
+/// @prop {Color} item-hover-background [igx-color: 'surface'] - The background color for button group items on hover.
 /// @prop {Map} item-selected-background [igx-color: ('grays', 100)] - The background color for button group selected items.
 /// @prop {Map} item-selected-hover-background [igx-color: ('grays', 100)] - The background color for button group selected items on hover.
 /// @prop {Map} item-selected-text-color [igx-color: ('primary', 200)] - The text color for button group selected items.
-/// @prop {Color} disabled-background-color [#222] - The background color for button group disabled items.
+/// @prop {Color} disabled-background-color [igx-color: 'surface'] - The background color for button group disabled items.
 ///
 /// @requires {function} extend
 /// @requires $_fluent-button-group
@@ -60,20 +66,11 @@ $_dark-fluent-button-group: extend(
     $_fluent-button-group,
     $_base-dark-button-group,
     (
-        item-border-color: (
-            igx-color: ('grays', 100),
-            to-opaque: #000
-        ),
+        item-border-color: #000,
 
-        item-selected-border-color: (
-            igx-color: ('grays', 100),
-            to-opaque: #000
-        ),
+        item-selected-border-color: #000,
 
-        item-disabled-border: (
-            igx-color: ('grays', 100),
-            to-opaque: #000
-        ),
+        item-disabled-border: #000,
 
         item-text-color: (
             igx-color: ('grays', 900)
@@ -83,7 +80,9 @@ $_dark-fluent-button-group: extend(
             igx-color: ('primary', 200)
         ),
 
-        item-hover-background: #222,
+        item-hover-background: (
+            igx-color: 'surface'
+        ),
 
         item-selected-background: (
             igx-color: ('grays', 100)
@@ -97,7 +96,9 @@ $_dark-fluent-button-group: extend(
             igx-color: ('primary', 200)
         ),
 
-        disabled-background-color: #222,
+        disabled-background-color: (
+            igx-color: 'surface'
+        ),
     )
 );
 
@@ -110,9 +111,9 @@ $_dark-bootstrap-button-group: extend($_bootstrap-button-group);
 
 /// Generates a dark indigo button-group schema
 /// @type {Map}
-/// @prop {Map} item-background [igx-color: ('surface')] - The background color for button group items.
+/// @prop {Map} item-background [igx-color: 'surface'] - The background color for button group items.
 /// @prop {Color} item-text-color [igx-contrast-color: 'surface']- The text color for button group items.
-/// @prop {Color} item-hover-text-color [#fff] - The hover text color for button group items.
+/// @prop {Color} item-hover-text-color [igx-contrast-color: 'surface'] - The hover text color for button group items.
 ///
 /// @requires {function} extend
 /// @requires $_indigo-button-group
@@ -120,14 +121,16 @@ $_dark-indigo-button-group: extend(
     $_indigo-button-group,
     (
         item-background: (
-            igx-color: ('surface')
+            igx-color: 'surface'
         ),
 
         item-text-color: (
             igx-contrast-color: 'surface'
         ),
 
-        item-hover-text-color: #fff,
+        item-hover-text-color:(
+            igx-contrast-color: 'surface'
+        ),
     )
 );
 

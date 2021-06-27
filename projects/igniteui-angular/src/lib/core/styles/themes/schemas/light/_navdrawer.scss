@@ -13,10 +13,10 @@
 /// @prop {Map} background [igx-color: 'surface'] - The navigation drawer background color.
 /// @prop {Color} border-color [rgba(0, 0, 0, .14)] - The navigation drawer right border color.
 /// @prop {Map} item-header-text-color [igx-color: 'surface', text-contrast: (), rgba: .87] - The header's idle text color.
-/// @prop {Map} item-text-color [igx-color: 'surface', text-contrast: (), rgba: .54] - The item's idle text color.
-/// @prop {Map} item-icon-color [igx-color: 'surface', text-contrast: (), rgba: .54] - The item's icon color.
+/// @prop {Map} item-text-color [igx-color: ('grays', 700)] - The item's idle text color.
+/// @prop {Map} item-icon-color [igx-color: ('grays', 600)] - The item's icon color.
 /// @prop {Map} item-active-text-color [igx-color: ('primary', 500)] - The item's active text color.
-/// @prop {Map} item-active-background [igx-color: ('primary', 500), rgba: .12] - The item's active background color.
+/// @prop {Map} item-active-background [igx-color: ('primary', 500)] - The item's active background color.
 /// @prop {Map} item-active-icon-color [igx-color: ('primary', 500)] - The item's icon active color.
 /// @prop {Map} item-hover-background [ igx-color: 'surface', text-contrast: (), rgba: .08] - The item's hover background color.
 /// @prop {Map} item-hover-text-color [igx-color: 'surface', text-contrast: (), rgba: .87] - The item's hover text color.
@@ -42,21 +42,15 @@ $_light-navdrawer: extend(
         border-color: rgba(0, 0, 0, .14),
 
         item-header-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .87
+            igx-color: ('grays', 900)
         ),
 
         item-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .54
+            igx-color: ('grays', 700)
         ),
 
         item-icon-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .54
+            igx-color: ('grays', 600)
         ),
 
         item-active-text-color: (
@@ -64,20 +58,15 @@ $_light-navdrawer: extend(
         ),
 
         item-active-background: (
-            igx-color: ('primary', 500),
-            rgba: .12
+            igx-color: ('primary', 500)
         ),
 
         item-hover-background: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .08
+            igx-color: ('grays', 100)
         ),
 
         item-hover-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .87
+            igx-color: ('grays', 900)
         ),
 
         item-active-icon-color: (
@@ -85,9 +74,7 @@ $_light-navdrawer: extend(
         ),
 
         item-hover-icon-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .87
+            igx-color: ('grays', 900)
         ),
     )
 );

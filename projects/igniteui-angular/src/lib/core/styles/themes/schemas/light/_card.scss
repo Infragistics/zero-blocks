@@ -10,10 +10,10 @@
 /// Generates a light card schema.
 /// @type {Map}
 /// @prop {Map} background [igx-color: 'surface']- The card background color.
-/// @prop {Map} header-text-color [igx-color: 'surface', text-contrast: (), rgba: .87] - The text color of the card title.
-/// @prop {Map} subtitle-text-color [igx-color: 'surface', text-contrast: (), rgba: .6] - The text color of the card subtitle.
-/// @prop {Map} content-text-color [igx-color: 'surface', text-contrast: (), rgba: .6] - The text color of the card content.
-/// @prop {Map} actions-text-color [igx-color: 'surface', text-contrast: (), rgba: .6] - The text color of the card buttons.
+/// @prop {Map} header-text-color [igx-color: ('grays', 900)] - The text color of the card title.
+/// @prop {Map} subtitle-text-color [igx-color: ('grays', 700)] - The text color of the card subtitle.
+/// @prop {Map} content-text-color [igx-color: ('grays', 700)] - The text color of the card content.
+/// @prop {Map} actions-text-color [igx-color: ('grays', 700)] - The text color of the card buttons.
 /// @prop {Number} resting-elevation [2] - The elevation level, between 0-24, to be used for the resting state.
 /// @prop {Number} hover-elevation [8] - The elevation level, between 0-24, to be used for the hover state.
 /// @prop {Number} border-radius [.17] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
@@ -34,27 +34,19 @@ $_light-card: extend(
         ),
 
         header-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .87
+            igx-color: ('grays', 900)
         ),
 
         subtitle-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .6
+            igx-color: ('grays', 700)
         ),
 
         content-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .6
+            igx-color: ('grays', 700)
         ),
 
         actions-text-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .6
+            igx-color: ('grays', 700)
         ),
 
         outline-color: (
@@ -91,7 +83,6 @@ $_fluent-card: extend(
 /// @type {Map}
 /// @prop {Color} background [#fff]- The card background color.
 /// @prop {Map} outline-color [igx-color: ('grays', 300)] - The outline color of an outlined type card.
-/// @prop {Map} header-text-color [igx-color: ('grays', 900)] - The text color of the card title.
 /// @prop {Map} subtitle-text-color [igx-color: ('grays', 800)] - The text color of the card subtitle.
 /// @prop {Map} content-text-color [igx-color: ('grays', 800)] - The text color of the card content.
 /// @prop {Map} actions-text-color [igx-color: ('grays', 900)] - The text color of the card buttons.
@@ -115,10 +106,6 @@ $_bootstrap-card: extend(
             igx-color: ('grays', 300)
         ),
 
-        header-text-color: (
-            igx-color: ('grays', 900)
-        ),
-
         subtitle-text-color: (
             igx-color: ('grays', 800)
         ),
@@ -136,9 +123,7 @@ $_bootstrap-card: extend(
 /// Generates an indigo card schema.
 /// @type {Map}
 /// @prop {Map} outline-color [igx-color: ('grays', 400)] - The outline color of an outlined type card.
-/// @prop {Map} header-text-color [igx-color: ('grays', 900)] - The text color of the card title.
 /// @prop {Map} subtitle-text-color [igx-color: ('grays', 500)] - The text color of the card subtitle.
-/// @prop {Map} content-text-color [igx-color: ('grays', 700)] - The text color of the card content.
 /// @prop {Map} actions-text-color [igx-color: ('grays', 600)] - The text color of the card buttons.
 /// @prop {Number} resting-elevation [4] - The elevation level, between 0-24, to be used for the resting state.
 /// @prop {Number} hover-elevation [6] - The elevation level, between 0-24, to be used for the hover state.
@@ -158,16 +143,8 @@ $_indigo-card: extend(
             igx-color: ('grays', 400)
         ),
 
-        header-text-color: (
-            igx-color: ('grays', 900)
-        ),
-
         subtitle-text-color: (
             igx-color: ('grays', 500)
-        ),
-
-        content-text-color: (
-            igx-color: ('grays', 700)
         ),
 
         actions-text-color: (

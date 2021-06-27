@@ -8,24 +8,9 @@
 
 /// Generates a dark splitter schema.
 /// @type {Map}
-/// @property {Map} handle-color [igx-color: 'surface', lighten: 20%] - The color for the bar drag handle.
-/// @property {Map} expander-color [igx-color: 'surface', lighten: 20%] - The color for the arrow expander's.
 /// @requires {function} extend
 /// @requires $_light-splitter
-$_dark-splitter: extend(
-    $_light-splitter,
-    (
-        handle-color: (
-            igx-color: 'surface',
-            lighten: 20%
-        ),
-
-        expander-color: (
-            igx-color: 'surface',
-            lighten: 20%
-        ),
-    )
-);
+$_dark-splitter: extend($_light-splitter);
 
 /// Generates a dark fluent splitter schema.
 /// @type {Map}

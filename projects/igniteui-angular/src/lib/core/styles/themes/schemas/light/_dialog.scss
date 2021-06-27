@@ -10,8 +10,8 @@
 /// Generates a light dialog schema.
 /// @type {Map}
 /// @prop {Map} background [igx-color: 'surface'] - The dialog background color.
-/// @prop {Map} title-color [igx-color: 'surface', text-contrast: (), rgba: .87] - The dialog title text color.
-/// @prop {Map} message-color [igx-color: 'surface', text-contrast: (), rgba: .6] - The dialog message text color.
+/// @prop {Map} title-color [igx-color: ('grays', 900)] - The dialog title text color.
+/// @prop {Map} message-color [igx-color: ('grays', 700)] - The dialog message text color.
 /// @prop {map} border-color [igx-color: ('grays', 300)] - The border color for dialog component.
 ///
 /// @prop {Number} elevation [24] - The elevation level, between 0-24, to be used for the dialog.
@@ -31,15 +31,11 @@ $_light-dialog: extend(
         ),
 
         title-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .87
+            igx-color: ('grays', 900),
         ),
 
         message-color: (
-            igx-color: 'surface',
-            text-contrast: (),
-            rgba: .6
+            igx-color: ('grays', 700),
         ),
 
         border-color: transparent,

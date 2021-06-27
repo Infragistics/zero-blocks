@@ -8,12 +8,7 @@
 
 /// Generates a base dark tabs schema.
 /// @type {Map}
-/// @prop {Color} item-background [#222] - The background color used for the tabs header.
-/// @prop {Color} button-background [#222] - The color used for the button background.
-$_base-dark-tabs: (
-    item-background: #222,
-    button-background: #222
-);
+$_base-dark-tabs: ();
 
 /// Generates a dark tabs schema based on a mix of $_light-tabs and $_base-dark-tabs.
 /// @type {Map}
@@ -21,14 +16,14 @@ $_base-dark-tabs: (
 /// @requires $_light-tabs
 /// @requires $_base-dark-tabs
 /// @see $default-palette
-$_dark-tabs: extend($_light-tabs, $_base-dark-tabs);
+$_dark-tabs: extend($_light-tabs);
 
 /// Generates a dark fluent tabs schema based on a mix of $_fluent-tabs and $_base-dark-tabs.
 /// @type {Map}
 /// @requires {function} extend
 /// @requires $_fluent-tabs
 /// @requires $_base-dark-tabs
-$_dark-fluent-tabs: extend($_fluent-tabs, $_base-dark-tabs);
+$_dark-fluent-tabs: extend($_fluent-tabs);
 
 /// Generates a dark bootstrap tabs schema based on a mix of $_bootstrap-tabs and $_base-dark-tabs.
 /// @type {Map}

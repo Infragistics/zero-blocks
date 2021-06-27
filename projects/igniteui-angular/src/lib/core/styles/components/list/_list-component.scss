@@ -19,6 +19,10 @@
     // css class 'igx-list__item-base'
     @include e(item-base) {
         @extend %igx-list-item-base !optional;
+
+        &:hover {
+            @extend %igx-list-item-base-hover !optional;
+        }
     }
 
     // css class 'igx-list__item-right' applied to the panning container shown when the list item is panned left

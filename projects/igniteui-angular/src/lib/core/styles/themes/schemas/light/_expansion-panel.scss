@@ -8,8 +8,8 @@
 
 /// Generates a light expansion panel schema.
 /// @type {Map}
-/// @prop {Color} header-background [#fff] - The panel header background color.
-/// @prop {Color} body-background [#fff] - The panel body background color.
+/// @prop {Map} header-background [igx-color: ('surface')] - The panel header background color.
+/// @prop {Map} body-background [igx-color: ('surface')] - The panel body background color.
 /// @prop {Map} header-focus-background [igx-color: ('grays', 100)] - The panel header focus background color.
 /// @prop {Map} header-title-color [igx-color: ('grays', 800)] - The panel header title text color.
 /// @prop {Map} header-description-color [igx-color: ('grays', 600)] - The panel header description text color.
@@ -24,8 +24,15 @@
 $_light-expansion-panel: extend(
     $_default-shape-expansion-panel,
     (
-        header-background: #fff,
-        body-background: #fff,
+        variant: 'material',
+
+        header-background: (
+            igx-color: ('surface')
+        ),
+
+        body-background: (
+            igx-color: ('surface')
+        ),
 
         header-focus-background: (
             igx-color: ('grays', 100)
@@ -57,7 +64,12 @@ $_light-expansion-panel: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-expansion-panel
-$_fluent-expansion-panel: extend($_light-expansion-panel);
+$_fluent-expansion-panel: extend(
+    $_light-expansion-panel,
+    (
+        variant: 'fluent',
+    )
+);
 
 /// Generates a bootstrap expansion panel schema.
 /// @type {Map}
@@ -65,11 +77,17 @@ $_fluent-expansion-panel: extend($_light-expansion-panel);
 /// @requires {function} extend
 /// @requires {Map} $_light-expansion-panel
 /// @requires {Map} $_bootstrap-shape-expansion-panel
-$_bootstrap-expansion-panel: extend($_light-expansion-panel, $_bootstrap-shape-expansion-panel);
+$_bootstrap-expansion-panel: extend(
+    $_light-expansion-panel,
+    $_bootstrap-shape-expansion-panel,
+    (
+        variant: 'bootstrap',
+    )
+);
 
 // Generates an indigo expansion panel schema.
 /// @type {Map}
-/// @prop {Map} header-focus-background [igx-color: ('primary', 500), rgba: .15] - The panel header focus background color.
+/// @prop {Map} header-focus-background [igx-color: ('primary', 500)] - The panel header focus background color.
 /// @prop {Map} header-title-color [igx-color: ('grays', 900)] - The panel header title text color.
 /// @prop {Map} header-description-color [igx-color: ('grays', 700)] - The panel header description text color.
 /// @prop {Map} header-icon-color [igx-color: ('grays', 600)] - The panel header icon color.
@@ -83,6 +101,8 @@ $_indigo-expansion-panel: extend(
     $_light-expansion-panel,
     $_indigo-shape-expansion-panel,
     (
+        variant: 'indigo-design',
+
         header-title-color: (
             igx-color: ('grays', 900)
         ),
@@ -97,7 +117,6 @@ $_indigo-expansion-panel: extend(
 
         header-focus-background: (
             igx-color: ('primary', 500),
-            rgba: .15
         ),
 
         disabled-color: (

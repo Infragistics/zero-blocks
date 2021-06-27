@@ -6,8 +6,8 @@
 
 /// Generates a light scrollbar schema.
 /// @type {Map}
-/// @property {Color} thumb-background [igx-color: surface, darken: 20%] - The background color used for the thumb.
-/// @property {Color} track-background [igx-color: 'surface', darken: 5%] - The background color used for the track.
+/// @property {Map} thumb-background [igx-color: ('grays', 300)] - The background color used for the thumb.
+/// @property {Map} track-background [igx-color: ('grays', 100)] - The background color used for the track.
 /// @property {String | Number} size [16px] - The size of the track.
 /// @see $default-palette
 $_light-scrollbar: extend(
@@ -15,13 +15,11 @@ $_light-scrollbar: extend(
         size: 16px,
 
         thumb-background: (
-            igx-color: 'surface',
-            darken: 20%
+            igx-color: ('grays', 300),
         ),
 
         track-background: (
-            igx-color: 'surface',
-            darken: 5%
+            igx-color: ('grays', 100),
         ),
     )
 );
@@ -30,37 +28,17 @@ $_light-scrollbar: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-scrollbar
-$_fluent-scrollbar: extend(
-    $_light-scrollbar,
-    (
-        variant: 'fluent',
-    )
-);
+$_fluent-scrollbar: extend($_light-scrollbar);
 
 /// Generates a bootstrap scrollbar schema.
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-scrollbar
-$_bootstrap-scrollbar: extend(
-    $_light-scrollbar,
-    (
-        variant: 'bootstrap',
-    )
-);
+$_bootstrap-scrollbar: extend($_light-scrollbar);
 
 /// Generates an indigo scrollbar schema.
 /// @type {Map}
-/// @property {Map} thumb-background [igx-color: ('grays', 300)] - The background color used for the thumb.
 /// @requires {function} extend
 /// @requires {Map} $_light-scrollbar
-$_indigo-scrollbar: extend(
-    $_light-scrollbar,
-    (
-        variant: 'indigo-design',
-
-        thumb-background: (
-            igx-color: ('grays', 300)
-        )
-    )
-);
+$_indigo-scrollbar: extend($_light-scrollbar);
 

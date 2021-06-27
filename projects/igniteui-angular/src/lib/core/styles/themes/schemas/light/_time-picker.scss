@@ -10,15 +10,15 @@
 /// Generates a light time-picker schema.
 /// @type {Map}
 ///
-/// @prop {Map} text-color [igx-color: 'surface', to-opaque: (), text-contrast: (), rgba: .38] - The text color of an open time picker.
+/// @prop {Map} text-color [igx-color: 'surface'] - The text color of an open time picker.
 /// @prop {Map} hover-text-color [igx-color: ('secondary', 500)] - The hover text color of an open time picker.
 /// @prop {Map} selected-text-color [igx-color: ('secondary', 500)] -  The text color of a selected item in time picker.
 /// @prop {Map} active-item-background [igx-color: ('grays', 100)] - The background color for current item in focused column inside the time picker.
-/// @prop {Map} disabled-text-color [igx-color: ('grays', 500), to-opaque: (), rgba: .5] - The text color for disabled values.
+/// @prop {Map} disabled-text-color [igx-color: ('grays', 500)] - The text color for disabled values.
 /// @prop {Color} disabled-item-background [transparent] - The background color for disabled values .
 /// @prop {Map} header-background [igx-color: ('secondary', 500)] - The header background color of a time picker.
 /// @prop {Map} header-hour-text-color [igx-contrast-color: ('secondary', 500)] - The header hour text color of a time picker.
-/// @prop {Map} header-time-period-color [igx-contrast-color: ('secondary', 500), rgba: .8] - The header AM/PM text color of a time picker.
+/// @prop {Map} header-time-period-color [igx-color: ('grays', 800)] - The header AM/PM text color of a time picker.
 /// @prop {Map} background-color [igx-color: 'surface'] - The time-picker panel background color.
 /// @prop {Number} modal-elevation [24] - The elevation level, between 0-24, to be used for the time picker in modal mode.
 /// @prop {Number} dropdown-elevation [8] - The elevation level, between 0-24, to be used for the time picker in dropdown mode.
@@ -36,10 +36,7 @@ $_light-time-picker: extend(
         variant: 'material',
 
         text-color: (
-            igx-color: 'surface',
-            to-opaque: (),
-            text-contrast: (),
-            rgba: .38
+            igx-color: ('grays', 500)
         ),
 
         hover-text-color: (
@@ -55,9 +52,7 @@ $_light-time-picker: extend(
         ),
 
         disabled-text-color: (
-            igx-color: ('grays', 500),
-            to-opaque: (),
-            rgba: .5
+            igx-color: ('grays', 300)
         ),
 
         disabled-item-background: transparent,
@@ -71,8 +66,7 @@ $_light-time-picker: extend(
         ),
 
         header-time-period-color: (
-            igx-contrast-color: ('secondary', 500),
-            rgba: .8
+            igx-color: ('grays', 800)
         ),
 
         background-color: (

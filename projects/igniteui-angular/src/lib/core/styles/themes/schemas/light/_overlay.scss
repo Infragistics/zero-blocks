@@ -9,6 +9,7 @@
 /// @property {Map} background-color [igx-color: ('grays', 500)] - The background color used for modal overlays.
 /// @see $default-palette
 $_light-overlay: (
+    variant: 'material',
     background-color: (
         igx-color: ('grays', 500)
     )
@@ -16,13 +17,16 @@ $_light-overlay: (
 
 /// Generates a fluent overlay schema.
 /// @type {Map}
-/// @property {Color} background-color [rgba(255, 255, 255, .4)] - The background color used for modal overlays.
+/// @property {Map} background-color [igx-color: surface] - The background color used for modal overlays.
 /// @requires {function} extend
 /// @requires {Map} $_light-overlay
 $_fluent-overlay: extend(
     $_light-overlay,
     (
-        background-color: rgba(255, 255, 255, .4)
+        variant: 'fluent',
+        background-color: (
+            igx-color: surface
+        )
     )
 );
 
@@ -30,11 +34,21 @@ $_fluent-overlay: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-overlay
-$_bootstrap-overlay: extend($_light-overlay);
+$_bootstrap-overlay: extend(
+    $_light-overlay,
+    (
+        variant: 'bootstrap',
+    )
+);
 
 /// Generates an indigo overlay schema.
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-overlay
-$_indigo-overlay: extend($_light-overlay);
+$_indigo-overlay: extend(
+    $_light-overlay,
+    (
+        variant: 'indigo-design',
+    )
+);
 

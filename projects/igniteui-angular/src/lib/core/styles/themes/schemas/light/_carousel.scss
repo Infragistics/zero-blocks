@@ -9,17 +9,17 @@
 
 /// Generates a light carousel schema.
 /// @type {Map}
-/// @prop {Color} slide-background [#fff] - The slide background color.
-/// @prop {Color} button-background [#fff] - The previous/next buttons idle background color.
-/// @prop {Color} button-hover-background [#fff] - The previous/next buttons hover background color.
+/// @prop {Color} slide-background [igx-color: ('surface')] - The slide background color.
+/// @prop {Color} button-background [igx-color: ('surface')] - The previous/next buttons idle background color.
+/// @prop {Color} button-hover-background [igx-color: ('surface')] - The previous/next buttons hover background color.
 /// @prop {Map} button-disabled-background [igx-color: ('grays', 100), to-opaque: ()] - The previous/next buttons disabled background color.
 /// @prop {Map} button-arrow-color [igx-color: ('grays', 700)] - The previous/next buttons idle arrow color.
 /// @prop {Map} button-hover-arrow-color [igx-color: ('grays', 900)] - The previous/next buttons hover arrow color.
 /// @prop {Map} button-disabled-arrow-color [igx-color: ('grays' 400)] - The previous/next buttons disabled color.
 /// @prop {Color} indicator-dot-color [transparent] - The idle indicator dot color.
-/// @prop {Color} indicator-border-color [#fff] - The idle indicator border color.
-/// @prop {Color} indicator-active-dot-color [#fff] - The active indicator dot color.
-/// @prop {Color} indicator-active-border-color [#fff] - The active indicator border color.
+/// @prop {Color} indicator-border-color [igx-color: ('surface')] - The idle indicator border color.
+/// @prop {Color} indicator-active-dot-color [igx-color: ('surface')] - The active indicator dot color.
+/// @prop {Color} indicator-active-border-color [igx-color: ('surface')] - The active indicator border color.
 /// @prop {Number} button-elevation [1] - The elevation level, between 0-24, to be used for the carousel buttons.
 /// @prop {Number} border-radius [0] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
@@ -30,10 +30,17 @@ $_light-carousel: extend(
     $_default-shape-carousel,
     $_default-elevation-carousel,
     (
-        slide-background: #fff,
+        slide-background: (
+            igx-color: ('surface')
+        ),
 
-        button-background: #fff,
-        button-hover-background: #fff,
+        button-background: (
+            igx-color: ('surface')
+        ),
+
+        button-hover-background: (
+            igx-color: ('surface')
+        ),
 
         button-arrow-color: (
             igx-color: ('grays', 700)
@@ -53,9 +60,18 @@ $_light-carousel: extend(
         ),
 
         indicator-dot-color: transparent,
-        indicator-border-color: #fff,
-        indicator-active-dot-color: #fff,
-        indicator-active-border-color: #fff,
+
+        indicator-border-color: (
+            igx-color: ('surface')
+        ),
+
+        indicator-active-dot-color: (
+            igx-color: ('surface')
+        ),
+
+        indicator-active-border-color: (
+            igx-color: ('surface')
+        ),
     )
 );
 
@@ -91,14 +107,10 @@ $_bootstrap-carousel: extend(
 
 /// Generates an indigo carousel schema.
 /// @type {Map}
-/// @prop {Map} button-background [igx-color: 'surface', rgba: .4] - The previous/next buttons idle background color.
-/// @prop {Map} button-hover-background [igx-color: 'surface', rgba: .65] - The previous/next buttons hover background color.
 /// @prop {Color} button-disabled-background [transparent] - The previous/next buttons disabled background color.
 /// @prop {Map} button-arrow-color [igx-color: ('grays', 600)] - The previous/next buttons idle arrow color.
 /// @prop {Map} button-hover-arrow-color [igx-color: ('grays', 700)] - The previous/next buttons hover arrow color.
 /// @prop {Map} button-disabled-arrow-color [igx-color: ('grays' 400)] - The previous/next buttons disabled color.
-/// @prop {Map} indicator-dot-color [igx-color: 'surface', rgba: .6] - The idle indicator dot color.
-/// @prop {Map} indicator-active-dot-color [igx-color: 'surface'] - The active indicator dot color.
 /// @prop {Number} border-radius [0] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} button-elevation [0] - The elevation level, between 0-24, to be used for the carousel buttons.
 ///
@@ -112,18 +124,9 @@ $_indigo-carousel: extend(
     $_indigo-elevation-carousel, (
         variant: 'indigo-design',
 
-        button-background: (
-            igx-color: 'surface',
-            rgba: .4
-        ),
 
         button-arrow-color: (
             igx-color: ('grays', 600)
-        ),
-
-        button-hover-background: (
-            igx-color: 'surface',
-            rgba: .65,
         ),
 
         button-hover-arrow-color: (
@@ -134,15 +137,6 @@ $_indigo-carousel: extend(
 
         button-disabled-arrow-color:  (
             igx-color: ('grays' 400),
-        ),
-
-        indicator-dot-color: (
-            igx-color: 'surface',
-            rgba: .6
-        ),
-
-        indicator-active-dot-color:(
-            igx-color: 'surface'
         ),
     )
 );

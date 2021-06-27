@@ -8,17 +8,15 @@
 
 /// Generates a base dark list schema.
 /// @type {Map}
-/// @property {Map} item-background-hover [igx-color: ('grays', 400),  to-opaque: (#000)] - The list item hover background.
-/// @property {Map} item-background-active [igx-color: ('grays', 400),  to-opaque: (#000)] - The active list item background color.
+/// @property {Map} item-background-hover [igx-color: ('grays', 400)] - The list item hover background.
+/// @property {Map} item-background-active [igx-color: ('grays', 400)] - The active list item background color.
 $_base-dark-list: (
     item-background-hover: (
-        igx-color: ('grays', 400),
-        to-opaque: (#000)
+        igx-color: ('grays', 400)
     ),
 
     item-background-active: (
-        igx-color: ('grays', 400),
-        to-opaque: (#000)
+        igx-color: ('grays', 400)
     ),
 );
 
@@ -40,26 +38,32 @@ $_dark-fluent-list: extend($_fluent-list, $_base-dark-list);
 /// Generates a base dark bootstrap list schema based on a mix of $_bootstrap-list and $_base-dark-list..
 /// @type {Map}
 /// @requires {function} extend
-/// @property {Map} background [#222] - The list background color.
-/// @property {Map} item-background [#222] - The list item background color.
-/// @property {Map} header-background [#222] - The list header background color.
+/// @property {Map} background [igx-color: 'surface'] - The list background color.
+/// @property {Map} item-background [igx-color: 'surface'] - The list item background color.
+/// @property {Map} header-background [igx-color: 'surface'] - The list header background color.
 /// @requires $_bootstrap-list
 /// @requires $_base-dark-list
 $_dark-bootstrap-list: extend(
     $_bootstrap-list,
     $_base-dark-list,
     (
-        background: #222,
-        item-background: #222,
-        header-background: #222,
+        background: (
+            igx-color: 'surface'
+        ),
+        item-background: (
+            igx-color: 'surface'
+        ),
+        header-background: (
+            igx-color: 'surface'
+        ),
     )
 );
 
 /// Generates a dark indigo list schema
 /// @type {Map}
 /// @property {Map} header-text-color [igx-contrast-color: 'surface'] - The list header text color.
-/// @property {Map} item-background-hover [igx-color: ('primary', 500), rgba: .5, to-opaque: (igx-color: 'surface')] - The list item hover background.
-/// @property {Map} item-background-active [igx-color: ('primary', 500), rgba: .5, to-opaque: (igx-color: 'surface')] - The active list item background color.
+/// @property {Map} item-background-hover [igx-color: ('primary', 500)] - The list item hover background.
+/// @property {Map} item-background-active [igx-color: ('primary', 500)] - The active list item background color.
 /// @requires {function} extend
 /// @requires $_indigo-list
 $_dark-indigo-list: extend(
@@ -71,19 +75,10 @@ $_dark-indigo-list: extend(
 
         item-background-hover: (
             igx-color: ('primary', 500),
-            rgba: .5,
-            to-opaque: (
-                igx-color: 'surface',
-            )
-
         ),
 
         item-background-active: (
             igx-color: ('primary', 500),
-            rgba: .5,
-            to-opaque: (
-                igx-color: 'surface',
-            )
         )
     )
 );

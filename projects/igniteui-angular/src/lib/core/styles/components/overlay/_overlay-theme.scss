@@ -53,6 +53,9 @@
 @mixin igx-overlay($theme) {
     @include igx-css-vars($theme);
 
+    $variant: map-get($theme, variant);
+    $fluent-theme: $variant == 'fluent';
+
     %overlay-display {
         width: 0;
         height: 0;
@@ -73,8 +76,22 @@
     }
 
     %overlay-wrapper--modal {
-        background: --var($theme, 'background-color');
         pointer-events: initial;
+
+        @if $fluent-theme {
+            &::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: --var($theme, 'background-color');
+                opacity: .4;
+            }
+        } @else  {
+            background: --var($theme, 'background-color');
+        }
     }
 
     %overlay-wrapper--flex {

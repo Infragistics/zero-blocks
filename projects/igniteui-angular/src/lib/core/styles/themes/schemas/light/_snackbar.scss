@@ -78,8 +78,7 @@ $_bootstrap-snackbar: extend(
 /// @type {Map}
 ///
 /// @property {Map} background [igx-color: ('grays', 600)] - The background color used in the snackbar.
-/// @property {Map} text-color [igx-color: ('grays', 600), text-contrast: ()] - The text color used in the snackbar.
-/// @property {Map} button-color [igx-color: ('grays', 600), text-contrast: ()] - The button color used in the snackbar.
+/// @property {Map} button-color [igx-contrast-color: ('grays', 900)] - The button color used in the snackbar.
 /// @prop {Number} border-radius [6px] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
@@ -93,14 +92,8 @@ $_indigo-snackbar: extend(
             igx-color: ('grays', 600)
         ),
 
-        text-color: (
-            igx-color: ('grays', 600),
-            text-contrast: ()
-        ),
-
         button-color: (
-            igx-color: ('grays', 600),
-            text-contrast: ()
+            igx-contrast-color: ('grays', 900),
         )
     )
 );

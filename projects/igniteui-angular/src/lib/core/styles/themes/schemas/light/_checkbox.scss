@@ -8,7 +8,7 @@
 
 /// Generates a light checkbox schema.
 /// @type {Map}
-/// @prop {Color} tick-color [#fff] - The checked mark color.
+/// @prop {Color} tick-color [igx-contrast-color: ('secondary', 600)] - The checked mark color.
 /// @prop {Map} label-color [igx-color: ('grays', 900)]- The text color used for the label text.
 /// @prop {Map} empty-color [igx-color: ('grays', 600)] - The unchecked border color.
 /// @prop {Map} fill-color [igx-color: ('secondary', 500)] - The checked border and fill colors.
@@ -24,7 +24,10 @@ $_light-checkbox: extend(
     $_default-shape-checkbox,
     (
         variant: 'material',
-        tick-color: #fff,
+
+        tick-color: (
+            igx-contrast-color: ('secondary', 600)
+        ),
 
         label-color: (
             igx-color: ('grays', 900)
@@ -52,6 +55,7 @@ $_light-checkbox: extend(
 /// @type {Map}
 /// @prop {Map} empty-color [igx-color: ('grays', 900)] - The unchecked border color.
 /// @prop {Map} fill-color [igx-color: ('primary', 500)] - The checked border and fill colors.
+/// @prop {Color} tick-color [igx-contrast-color: ('primary', 500)] - The checked mark color.
 /// @prop {Map} disabled-color [igx-color: ('grays', 300)] - The disabled border and fill colors.
 /// @prop {Number} border-radius [2px] - The border radius used for checkbox. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} border-radius-ripple [2px] - The border radius used for checkbox ripple. Can be a fraction between 0 and 1, pixels, or percent.
@@ -78,6 +82,10 @@ $_fluent-checkbox: extend(
             igx-color: ('primary', 500)
         ),
 
+        tick-color: (
+            igx-contrast-color: ('primary', 500)
+        ),
+
         disabled-color: (
             igx-color: ('grays', 300)
         ),
@@ -87,6 +95,7 @@ $_fluent-checkbox: extend(
 /// Generates a bootstrap checkbox schema.
 /// @type {Map}
 /// @prop {Map} fill-color [igx-color: ('primary', 500)] - The checked border and fill colors.
+/// @prop {Color} tick-color [igx-contrast-color: ('primary', 600)] - The checked mark color.
 /// @prop {Map} empty-color [igx-color: ('grays', 500)] - The unchecked border color.
 /// @prop {Map} disabled-color [igx-color: ('grays', 300)] - The disabled border and fill colors.
 /// @prop {Number} border-radius [4px] - The border radius used for checkbox. Can be a fraction between 0 and 1, pixels, or percent.
@@ -110,6 +119,10 @@ $_bootstrap-checkbox: extend(
             igx-color: ('primary', 500)
         ),
 
+        tick-color: (
+            igx-contrast-color: ('primary', 600)
+        ),
+
         empty-color: (
             igx-color: ('grays', 500)
         ),
@@ -123,8 +136,8 @@ $_bootstrap-checkbox: extend(
 
 /// Generates an indigo checkbox schema.
 /// @type {Map}
-/// @prop {Color} tick-color [igx-color: 'surface'] - The checked mark color.
 /// @prop {Map} fill-color [igx-color: ('primary', 500)] - The checked border and fill colors.
+/// @prop {Color} tick-color [igx-contrast-color: ('primary', 500)] - The checked mark color.
 /// @prop {Map} empty-color [igx-color: ('grays', 500)] - The unchecked border color.
 /// @prop {Map} disabled-color [igx-color: ('grays', 300)] - The disabled border and fill colors.
 /// @prop {Color} disabled-color-label [igx-color: ('grays', 300)] - The disabled label color.
@@ -142,16 +155,16 @@ $_indigo-checkbox: extend(
     (
         variant: 'indigo-design',
 
+        tick-color: (
+            igx-contrast-color: ('primary', 500)
+        ),
+
         focus-outline-color: (
             igx-color: ('grays', 300)
         ),
 
         focus-outline-color-focused: (
             igx-color: ('primary', 200)
-        ),
-
-        tick-color: (
-            igx-color: 'surface'
         ),
 
         fill-color: (

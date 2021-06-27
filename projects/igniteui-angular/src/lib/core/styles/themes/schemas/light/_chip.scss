@@ -123,7 +123,7 @@ $_light-chip: extend(
 /// Generates a fluent chip schema.
 /// @type {Map}
 /// @prop {Map} background [igx-color: ('grays', 100)] - The chip background color.
-/// @prop {Color} ghost-background [#fff] - The chip ghost background color.
+/// @prop {Color} ghost-background [igx-color: ('surface')] - The chip ghost background color.
 /// @prop {Map} hover-background [igx-color: ('grays', 200)] - The chip hover background color.
 /// @prop {Map} selected-text-color [igx-contrast-color: ('primary', 500))] - The selected chip text color.
 /// @prop {Map} selected-background [igx-color: ('primary', 500)] - The selected chip background color.
@@ -151,7 +151,9 @@ $_fluent-chip: extend(
             igx-color: ('grays', 100),
         ),
 
-        ghost-background: #fff,
+        ghost-background: (
+            igx-color: ('surface')
+        ),
 
         hover-background: (
             igx-color: ('grays', 200),
@@ -215,13 +217,13 @@ $_bootstrap-chip: extend(
 ///
 /// @prop {Number} ghost-elevation [1] - The elevation level, between 0-24, to be used for the chip's ghost (dragging mode).
 /// @prop {Number} border-radius [1] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
-/// @prop {Color} text-color [#fff] - The chip text color.
-/// @prop {Color} background [#fff)] - The chip background color.
+/// @prop {Color} text-color [igx-color: ('grays', 700)] - The chip text color.
+/// @prop {Color} background [igx-color: ('surface')] - The chip background color.
 /// @prop {Map} ghost-background [igx-color: ('grays', 200), to-opaque: (igx-color: 'surface')] - The chip ghost background color.
 /// @prop {Map} hover-text-color [igx-color: ('grays', 700)] - The chip text hover color.
 /// @prop {Map} hover-background [igx-color: ('grays', 200)] - The chip hover background color.
 /// @prop {Map} focus-text-color [igx-color: ('grays', 700)] The focused chip text color.
-/// @prop {Color} focus-background [#fff)] The focused chip background color.
+/// @prop {Color} focus-background [igx-color: ('surface')] The focused chip background color.
 /// @prop {Map} selected-text-color [igx-contrast-color: ('primary', 500)] - The selected chip text color.
 /// @prop {Map} selected-background [igx-color: ('primary', 500)] - The selected chip background color.
 /// @prop {Map} hover-selected-text-color [igx-contrast-color: ('primary', 400)] - The selected chip hover text color.
@@ -252,7 +254,9 @@ $_indigo-chip: extend(
             igx-color: ('primary', 200)
         ),
 
-        background: #fff,
+        background: (
+            igx-color: ('surface')
+        ),
 
         ghost-background: (
             igx-color: ('surface'),
@@ -266,7 +270,9 @@ $_indigo-chip: extend(
             igx-color: ('grays', 200)
         ),
 
-        focus-background: #fff,
+        focus-background: (
+            igx-color: ('surface')
+        ),
 
         hover-text-color: (
             igx-color: ('grays', 700)

@@ -91,10 +91,10 @@ $_fluent-radio: extend(
 
 /// Generates a bootstrap radio schema.
 /// @type {Map}
-/// @property {Map} fill-hover-border-color [igx-color: ('primary', 500)] - The checked dot border color on hover.
+/// @property {Map} fill-hover-border-color [igx-contrast-color: ('grays', 900)] - The checked dot border color on hover.
 /// @property {Map} empty-color [igx-color: ('grays', 500)] - The unchecked border color.
 /// @property {Map} fill-color [igx-color: ('primary', 500)] - The checked border and dot colors.
-/// @property {Color} fill-color-hover [#fff] - The checked border and dot colors on hover.
+/// @property {Color} fill-color-hover [igx-contrast-color: ('grays', 900)] - The checked border and dot colors on hover.
 /// @property {Map} focus-outline-color [igx-color: ('primary', 200)] - The focus outlined color.
 /// @requires {function} extend
 /// @requires {Map} $_light-radio
@@ -107,7 +107,9 @@ $_bootstrap-radio: extend(
             igx-color: ('primary', 200)
         ),
 
-        fill-hover-border-color: #fff,
+        fill-hover-border-color: (
+            igx-contrast-color: ('grays', 900)
+        ),
 
         empty-color: (
             igx-color: ('grays', 500)
@@ -117,7 +119,9 @@ $_bootstrap-radio: extend(
             igx-color: ('primary', 500)
         ),
 
-        fill-color-hover: #fff,
+        fill-color-hover: (
+            igx-contrast-color: ('grays', 900)
+        ),
     )
 );
 
@@ -172,4 +176,3 @@ $_indigo-radio: extend(
         )
     )
 );
-
