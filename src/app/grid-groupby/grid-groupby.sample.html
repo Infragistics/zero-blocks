@@ -1,4 +1,12 @@
 <div class="wrapper">
+    <igx-grid #grid [data]="data2" [allowFiltering]="true" [cellSelection]="'none'" [width]="'1200px'"
+    [height]="'700px'" rowSelection="multiple">
+    <igx-column field="STATUS" header="Status" width="200px" [groupable]="true" [sortable]="true">
+    </igx-column>
+    <igx-column field="FIELD" header="Field" width="200px" [groupable]="true" [sortable]="true">
+    </igx-column>
+
+</igx-grid>
     <igx-switch [(ngModel)]="hideGroupedColumns" (change)="toggleGroupedVisibility($event)">Toggle Hiding Of Grouped
         Columns</igx-switch>
     <br />
@@ -64,4 +72,5 @@
     <div>Current Display Density: {{displayDensityOptions.displayDensity}}</div>
 
     <button igxButton="raised" (click)="hideGroupableRow()">Show/Hide groupable row</button>
+    <button (click)="this.grid1.selectionService.selectRowsWithNoEvent([this.data.slice(1, 5)], false)">Click</button>
 </div>

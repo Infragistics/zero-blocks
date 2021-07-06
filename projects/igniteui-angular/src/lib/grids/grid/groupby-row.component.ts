@@ -19,7 +19,6 @@ import { GridType } from '../common/grid.interface';
 import { IgxFilteringService } from '../filtering/grid-filtering.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { IgxGridRowComponent } from './grid-row.component';
 import { IgxGridComponent } from './grid.component';
 import { GridSelectionMode } from '../common/enums';
 
@@ -205,27 +204,12 @@ export class IgxGridGroupByRowComponent implements OnDestroy {
     /**
      * @hidden @internal
      */
-    public getRowID(rowData): IgxGridRowComponent {
-        return this.grid.primaryKey ? rowData[this.grid.primaryKey] : rowData;
-    }
-
-    /**
-     * @hidden @internal
-     */
     public onGroupSelectorClick(event) {
         if (!this.grid.isMultiRowSelectionEnabled) {
             return;
         }
         event.stopPropagation();
-        if (this.areAllRowsInTheGroupSelected) {
-            this.groupRow.records.forEach(row => {
-                this.gridSelection.deselectRow(this.getRowID(row), event);
-            });
-        } else {
-            this.groupRow.records.forEach(row => {
-                this.gridSelection.selectRowById(this.getRowID(row), false, event);
-            });
-        }
+        this.gridSelection.selectGroupByRows(this.groupRow, !this.isSelected, event);
     }
 
     /**
@@ -274,32 +258,24 @@ export class IgxGridGroupByRowComponent implements OnDestroy {
     /**
      * @hidden @internal
      */
-    public get areAllRowsInTheGroupSelected(): boolean {
-        return this.groupRow.records.every(x => this.gridSelection.isRowSelected(this.getRowID(x)));
+    public get isSelected(): boolean {
+        const groupID = this.gridSelection.calculateGroupID(this.groupRow);
+        return this.gridSelection.selectedGroupByRows.has(groupID);
     }
 
     /**
      * @hidden @internal
      */
-    public get selectedRowsInTheGroup(): any[] {
-        return this.groupRow.records.filter(rowID => this.gridSelection.filteredSelectedRowIds.indexOf(this.getRowID(rowID)) > -1);
-    }
-
-    /**
-     * @hidden @internal
-     */
-    public get groupByRowCheckboxIndeterminateState(): boolean {
-        if (this.selectedRowsInTheGroup.length > 0) {
-            return !this.areAllRowsInTheGroupSelected;
-        }
-        return false;
+    public get isIndeterminate(): boolean {
+        const groupID = this.gridSelection.calculateGroupID(this.groupRow);
+        return this.gridSelection.indeterminateGroupByRows.has(groupID);
     }
 
     /**
      * @hidden @internal
      */
     public get groupByRowSelectorBaseAriaLabel(): string {
-        const ariaLabel: string = this.areAllRowsInTheGroupSelected ?
+        const ariaLabel: string = this.isSelected ?
             this.grid.resourceStrings.igx_grid_groupByArea_deselect_message : this.grid.resourceStrings.igx_grid_groupByArea_select_message;
         return ariaLabel.replace('{0}', this.groupRow.expression.fieldName).replace('{1}', this.groupRow.value);
     }

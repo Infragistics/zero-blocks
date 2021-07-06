@@ -1,35 +1,24 @@
 <div>
-    <igx-grid
-        #grid
-        [data]="data"
-        [width]="'800px'"
-        [paging]="paging"
-        [perPage]="perPage"
-        [height]="'500px'"
-        [primaryKey]="'ID'"
-        (mouseleave)="onMouseLeave(actionstrip)"
-        (mouseover)="onMouseOver($event, grid, actionstrip)"
-        [rowEditable]="true"
-        [allowFiltering]="true"
-    >
-        <igx-column
-            *ngFor="let c of columns"
-            [sortable]="true"
-            [field]="c.field"
-            [header]="c.field"
-            [width]="c.width"
-            [pinned]="c.pinned"
-            [hidden]="c.hidden"
-            [groupable]="true"
-            [hasSummary]="true"
-        >
-        </igx-column>
+    <!-- <app-grid-with-transactions> -->
+        <igx-grid #grid [data]="dataFull" [width]="'800px'" [paging]="paging" [perPage]="perPage" [height]="'500px'"
+            [primaryKey]="'ID'" (mouseleave)="onMouseLeave(actionstrip)" (rowEditDone)="rowEditDone($event)"
+            (mouseover)="onMouseOver($event, grid, actionstrip)" [rowEditable]="true" [rowSelection]="'multiple'"
+            [allowFiltering]="true" [selectedRows]="['CACTU']">
+            <igx-column *ngFor="let c of columns" [sortable]="true" [field]="c.field" [header]="c.field"
+                [width]="c.width" [pinned]="c.pinned" [hidden]="c.hidden" [groupable]="true" [hasSummary]="true">
+            </igx-column>
 
-        <igx-action-strip #actionstrip>
-            <igx-grid-pinning-actions></igx-grid-pinning-actions>
-            <igx-grid-editing-actions [addRow]="true"></igx-grid-editing-actions>
-        </igx-action-strip>
-    </igx-grid>
+            <igx-action-strip #actionstrip>
+                <igx-grid-pinning-actions></igx-grid-pinning-actions>
+                <igx-grid-editing-actions [addRow]="true"></igx-grid-editing-actions>
+            </igx-action-strip>
+        </igx-grid>
+    <!-- </app-grid-with-transactions> -->
+    <button igxButton="raised" (click)="grid.addRow({ID: 5555});">Add row</button>
+    <button igxButton="raised" (click)="selectRows()">SelectAll</button>
+    <button igxButton="raised" (click)="undo()">Undo</button>
+    <button igxButton="raised" (click)="redo()">Redo</button>
+    <button igxButton="raised" (click)="commit()">Commit</button>
 
     <igx-card style="width: 360px; margin-top: 12px">
         <igx-card-header>

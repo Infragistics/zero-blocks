@@ -328,7 +328,7 @@ export class IgxTreeGridRow extends BaseRow implements RowType {
      */
     public get hasChildren(): boolean {
         if (this.treeRow.children) {
-           return this.treeRow.children.length > 0;
+            return this.treeRow.children.length > 0;
         } else {
             return false;
         }
@@ -399,7 +399,7 @@ export class IgxHierarchicalGridRow extends BaseRow implements RowType {
      * Returns the view index calculated per the grid page.
      */
     public get viewIndex(): number {
-            return this.index + this.grid.page * this.grid.perPage;
+        return this.index + this.grid.page * this.grid.perPage;
     }
 
     /**
@@ -414,7 +414,7 @@ export class IgxHierarchicalGridRow extends BaseRow implements RowType {
      * Returns true if row islands exist.
      */
     public get hasChildren(): boolean {
-        return  !!this.grid.childLayoutKeys.length;
+        return !!this.grid.childLayoutKeys.length;
     }
 }
 
@@ -456,7 +456,7 @@ export class IgxGroupByRow implements RowType {
     /**
      * @hidden
      */
-     constructor(grid: IgxGridComponent, index: number, private _groupRow?: IGroupByRecord) {
+    constructor(grid: IgxGridComponent, index: number, private _groupRow?: IGroupByRecord) {
         this.grid = grid;
         this.index = index;
         this.isGroupByRow = true;

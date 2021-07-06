@@ -12,8 +12,8 @@
             <ng-template #groupByRowSelector *ngTemplateOutlet="
                 this.grid.groupByRowSelectorTemplate ? this.grid.groupByRowSelectorTemplate : groupByRowSelectorBaseTemplate;
                 context: { $implicit: {
-                    selectedCount: selectedRowsInTheGroup.length,
-                    totalCount: this.groupRow.records.length,
+                    selected: isSelected,
+                    indeterminate: isIndeterminate,
                     groupRow: this.groupRow }}">
             </ng-template>
         </div>
@@ -66,8 +66,8 @@
     </ng-template>
     <ng-template #groupByRowSelectorBaseTemplate let-context>
         <div class="igx-grid__cbx-padding">
-            <igx-checkbox [tabindex]="-1" [readonly]="true" [checked]="areAllRowsInTheGroupSelected"
-                [disableRipple]="true" [indeterminate]="groupByRowCheckboxIndeterminateState"
+            <igx-checkbox [tabindex]="-1" [readonly]="true" [checked]="isSelected"
+                [disableRipple]="true" [indeterminate]="isIndeterminate"
                 [disabled]="this.grid.rowSelection === 'single'" [aria-label]="groupByRowSelectorBaseAriaLabel"
                 #groupByRowCheckbox>
             </igx-checkbox>

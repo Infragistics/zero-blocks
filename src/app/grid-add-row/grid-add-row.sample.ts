@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IgxGridComponent, SortingDirection } from 'igniteui-angular';
 
 @Component({
     selector: 'app-grid-add-row',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: `grid-add-row.sample.html`
 })
 export class GridAddRowSampleComponent implements OnInit {
+    @ViewChild('grid', { read: IgxGridComponent, static: true }) public grid: IgxGridComponent;
     public data: any[];
     public dataFull: any[];
     public columns: any[];
@@ -20,6 +22,17 @@ export class GridAddRowSampleComponent implements OnInit {
             actionStrip.show(row);
         }
     }
+    rowEditDone(event){
+        console.log(event);
+
+    }
+    selectRows(){
+        if (this.grid.selectedRows.length === this.grid.data.length) {
+            this.grid.deselectAllRows();
+        } else {
+            this.grid.selectAllRows();
+        }
+    }
 
     public onMouseLeave(actionstrip, event?) {
         if (!event || event.relatedTarget.nodeName.toLowerCase() !== 'igx-drop-down-item') {
@@ -29,7 +42,7 @@ export class GridAddRowSampleComponent implements OnInit {
 
     public ngOnInit(): void {
         this.columns = [
-            { field: 'ID', width: '200px'},
+            { field: 'ID', width: '200px' },
             { field: 'CompanyName', width: '200px' },
             { field: 'ContactName', width: '200px', pinned: false },
             { field: 'ContactTitle', width: '300px', pinned: false }
@@ -37,15 +50,15 @@ export class GridAddRowSampleComponent implements OnInit {
 
         this.dataFull = [
             /* eslint-disable max-len */
-            { ID: 'ALFKI', CompanyName: 'Alfreds Futterkiste', ContactName: 'Maria Anders', ContactTitle: 'Sales Representative'},
-            { ID: 'ANATR', CompanyName: 'Ana Trujillo Emparedados y helados', ContactName: 'Ana Trujillo', ContactTitle: 'Owner'},
-            { ID: 'ANTON', CompanyName: 'Antonio Moreno Taquería', ContactName: 'Antonio Moreno', ContactTitle: 'Owner'},
-            { ID: 'AROUT', CompanyName: 'Around the Horn', ContactName: 'Thomas Hardy', ContactTitle: 'Sales Representative'},
+            { ID: 'ALFKI', CompanyName: 'Alfreds Futterkiste', ContactName: 'Maria Anders', ContactTitle: 'Sales Representative' },
+            { ID: 'ANATR', CompanyName: 'Ana Trujillo Emparedados y helados', ContactName: 'Ana Trujillo', ContactTitle: 'Owner' },
+            { ID: 'ANTON', CompanyName: 'Antonio Moreno Taquería', ContactName: 'Antonio Moreno', ContactTitle: 'Owner' },
+            { ID: 'AROUT', CompanyName: 'Around the Horn', ContactName: 'Thomas Hardy', ContactTitle: 'Sales Representative' },
             { ID: 'BERGS', CompanyName: 'Berglunds snabbköp', ContactName: 'Christina Berglund', ContactTitle: 'Order Administrator' },
-            { ID: 'BLAUS', CompanyName: 'Blauer See Delikatessen', ContactName: 'Hanna Moos', ContactTitle: 'Sales Representative'},
-            { ID: 'BLONP', CompanyName: 'Blondesddsl père et fils', ContactName: 'Frédérique Citeaux', ContactTitle: 'Marketing Manager'},
-            { ID: 'BOLID', CompanyName: 'Bólido Comidas preparadas', ContactName: 'Martín Sommer', ContactTitle: 'Owner'},
-            { ID: 'BONAP', CompanyName: 'Bon app\'', ContactName: 'Laurence Lebihan', ContactTitle: 'Owner'},
+            { ID: 'BLAUS', CompanyName: 'Blauer See Delikatessen', ContactName: 'Hanna Moos', ContactTitle: 'Sales Representative' },
+            { ID: 'BLONP', CompanyName: 'Blondesddsl père et fils', ContactName: 'Frédérique Citeaux', ContactTitle: 'Marketing Manager' },
+            { ID: 'BOLID', CompanyName: 'Bólido Comidas preparadas', ContactName: 'Martín Sommer', ContactTitle: 'Owner' },
+            { ID: 'BONAP', CompanyName: 'Bon app\'', ContactName: 'Laurence Lebihan', ContactTitle: 'Owner' },
             { ID: 'BOTTM', CompanyName: 'Bottom-Dollar Markets', ContactName: 'Elizabeth Lincoln', ContactTitle: 'Accounting Manager' },
             { ID: 'BSBEV', CompanyName: 'B\'s Beverages', ContactName: 'Victoria Ashworth', ContactTitle: 'Sales Representative', Address: 'Fauntleroy Circus', City: 'London', Region: null, PostalCode: 'EC2 5NT', Country: 'UK', Phone: '(171) 555-1212', Fax: null },
             { ID: 'CACTU', CompanyName: 'Cactus Comidas para llevar', ContactName: 'Patricio Simpson', ContactTitle: 'Sales Agent', Address: 'Cerrito 333', City: 'Buenos Aires', Region: null, PostalCode: '1010', Country: 'Argentina', Phone: '(1) 135-5555', Fax: '(1) 135-4892' },
@@ -68,5 +81,19 @@ export class GridAddRowSampleComponent implements OnInit {
 
         this.data = [];
         /* eslint-enable max-len */
+        this.grid.groupingExpressions = [
+            { fieldName: 'ContactTitle', dir: SortingDirection.Desc }
+        ];
+    }
+    public undo() {
+        this.grid.transactions.undo();
+    }
+
+    public redo() {
+        this.grid.transactions.redo();
+    }
+
+    public commit() {
+        this.grid.transactions.commit(this.dataFull);
     }
 }
