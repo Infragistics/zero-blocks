@@ -594,10 +594,10 @@ describe('IgxAutocomplete', () => {
             expect(dropDown.items[1].focused).toBeFalsy();
             expect(dropDown.items[1].value).toBe(filteredTowns[1]);
         }));
-        it('Should trigger onItemSelected event on item selection', fakeAsync(() => {
+        it('Should trigger itemSelected event on item selection', fakeAsync(() => {
             let startsWith = 'st';
             let filteredTowns = fixture.componentInstance.filterTowns(startsWith);
-            spyOn(autocomplete.onItemSelected, 'emit').and.callThrough();
+            spyOn(autocomplete.itemSelected, 'emit').and.callThrough();
             UIInteractions.setInputElementValue(input, startsWith, fixture);
             tick();
 
@@ -605,7 +605,7 @@ describe('IgxAutocomplete', () => {
             fixture.detectChanges();
             tick();
             expect(fixture.componentInstance.townSelected).toBe(filteredTowns[0]);
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledTimes(1);
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledTimes(1);
 
             startsWith = 't';
             filteredTowns = fixture.componentInstance.filterTowns(startsWith);
@@ -616,10 +616,10 @@ describe('IgxAutocomplete', () => {
             fixture.detectChanges();
             tick();
             expect(fixture.componentInstance.townSelected).toBe(filteredTowns[0]);
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledTimes(2);
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledWith({ value: 'Stara Zagora', cancel: false });
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledTimes(2);
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledWith({ value: 'Stara Zagora', cancel: false });
 
-            fixture.componentInstance.onItemSelected = (args) => {
+            fixture.componentInstance.itemSelected = (args) => {
                 args.cancel = true;
             };
             UIInteractions.setInputElementValue(input, 's', fixture);
@@ -627,10 +627,10 @@ describe('IgxAutocomplete', () => {
             UIInteractions.triggerKeyDownEvtUponElem('enter', input.nativeElement, true);
             expect(fixture.componentInstance.townSelected).toBe('s');
         }));
-        it('Should trigger onItemSelected only once when the event is cancelled (issue #7483)', fakeAsync(() => {
-            spyOn(autocomplete.onItemSelected, 'emit').and.callThrough();
+        it('Should trigger itemSelected only once when the event is cancelled (issue #7483)', fakeAsync(() => {
+            spyOn(autocomplete.itemSelected, 'emit').and.callThrough();
 
-            fixture.componentInstance.onItemSelected = (args) => {
+            fixture.componentInstance.itemSelected = (args) => {
  args.cancel = true;
 };
             UIInteractions.setInputElementValue(input, 's', fixture);
@@ -640,10 +640,10 @@ describe('IgxAutocomplete', () => {
             expect(fixture.componentInstance.townSelected).toBe('s');
             tick();
             fixture.detectChanges();
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledTimes(1);
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledWith({ value: 'Sofia', cancel: true });
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledTimes(1);
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledWith({ value: 'Sofia', cancel: true });
 
-            fixture.componentInstance.onItemSelected = (args) => {
+            fixture.componentInstance.itemSelected = (args) => {
  args.cancel = true;
 };
             UIInteractions.setInputElementValue(input, 's', fixture);
@@ -653,8 +653,8 @@ describe('IgxAutocomplete', () => {
             expect(fixture.componentInstance.townSelected).toBe('s');
             tick();
             fixture.detectChanges();
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledTimes(2);
-            expect(autocomplete.onItemSelected.emit).toHaveBeenCalledWith({ value: 'Sofia', cancel: true });
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledTimes(2);
+            expect(autocomplete.itemSelected.emit).toHaveBeenCalledWith({ value: 'Sofia', cancel: true });
         }));
         it('Should call onInput/open/close methods properly', fakeAsync(() => {
             let startsWith = 'g';
@@ -930,7 +930,7 @@ describe('IgxAutocomplete', () => {
         <igx-prefix igxRipple><igx-icon>home</igx-icon> </igx-prefix>
         <input igxInput name="towns" type="text" [(ngModel)]="townSelected" required
             [igxAutocomplete]='townsPanel'
-            [igxAutocompleteSettings]='settings' (onItemSelected)="onItemSelected($event)"/>
+            [igxAutocompleteSettings]='settings' (itemSelected)="itemSelected($event)"/>
         <label igxLabel for="towns">Towns</label>
         <igx-suffix igxRipple><igx-icon>clear</igx-icon> </igx-suffix>
     </igx-input-group>
@@ -945,10 +945,10 @@ class AutocompleteComponent {
     @ViewChild(IgxInputGroupComponent, { static: true }) public group: IgxInputGroupComponent;
     @ViewChild(IgxInputDirective, { static: true }) public input: IgxInputDirective;
     @ViewChild(IgxDropDownComponent, { static: true }) public dropDown: IgxDropDownComponent;
-    townSelected;
+    public townSelected;
     public towns;
     public ddWidth = null;
-    settings: AutocompleteOverlaySettings = null;
+    public settings: AutocompleteOverlaySettings = null;
 
     constructor() {
         this.towns = [
@@ -956,7 +956,7 @@ class AutocompleteComponent {
             'Sofia', 'Plovdiv', 'Varna', 'Burgas', 'Ruse', 'Stara Zagora', 'Pleven', 'Dobrich', 'Sliven', 'Shumen', 'Pernik', 'Haskovo', 'Yambol', 'Pazardzhik', 'Blagoevgrad', 'Veliko Tarnovo', 'Vratsa', 'Gabrovo', 'Asenovgrad', 'Vidin', 'Kazanlak', 'Kyustendil', 'Kardzhali', 'Montana', 'Dimitrovgrad', 'Targovishte', 'Lovech', 'Silistra', 'Dupnitsa', 'Svishtov', 'Razgrad', 'Gorna Oryahovitsa', 'Smolyan', 'Petrich', 'Sandanski', 'Samokov', 'Sevlievo', 'Lom', 'Karlovo', 'Velingrad', 'Nova Zagora', 'Troyan', 'Aytos', 'Botevgrad', 'Gotse Delchev', 'Peshtera', 'Harmanli', 'Karnobat', 'Svilengrad', 'Panagyurishte', 'Chirpan', 'Popovo', 'Rakovski', 'Radomir', 'Novi Iskar', 'Kozloduy', 'Parvomay', 'Berkovitsa', 'Cherven Bryag', 'Pomorie', 'Ihtiman', 'Radnevo', 'Provadiya', 'Novi Pazar', 'Razlog', 'Byala Slatina', 'Nesebar', 'Balchik', 'Kostinbrod', 'Stamboliyski', 'Kavarna', 'Knezha', 'Pavlikeni', 'Mezdra', 'Etropole', 'Levski', 'Teteven', 'Elhovo', 'Bankya', 'Tryavna', 'Lukovit', 'Tutrakan', 'Sredets', 'Sopot', 'Byala', 'Veliki Preslav', 'Isperih', 'Belene', 'Omurtag', 'Bansko', 'Krichim', 'Galabovo', 'Devnya', 'Septemvri', 'Rakitovo', 'Lyaskovets', 'Svoge', 'Aksakovo', 'Kubrat', 'Dryanovo', 'Beloslav', 'Pirdop', 'Lyubimets', 'Momchilgrad', 'Slivnitsa', 'Hisarya', 'Zlatograd', 'Kostenets', 'Devin', 'General Toshevo', 'Simeonovgrad', 'Simitli', 'Elin Pelin', 'Dolni Chiflik', 'Tervel', 'Dulovo', 'Varshets', 'Kotel', 'Madan', 'Straldzha', 'Saedinenie', 'Bobov Dol', 'Tsarevo', 'Kuklen', 'Tvarditsa', 'Yakoruda', 'Elena', 'Topolovgrad', 'Bozhurishte', 'Chepelare', 'Oryahovo', 'Sozopol', 'Belogradchik', 'Perushtitsa', 'Zlatitsa', 'Strazhitsa', 'Krumovgrad', 'Kameno', 'Dalgopol', 'Vetovo', 'Suvorovo', 'Dolni Dabnik', 'Dolna Banya', 'Pravets', 'Nedelino', 'Polski Trambesh', 'Trastenik', 'Bratsigovo', 'Koynare', 'Godech', 'Slavyanovo', 'Dve Mogili', 'Kostandovo', 'Debelets', 'Strelcha', 'Sapareva Banya', 'Ignatievo', 'Smyadovo', 'Breznik', 'Sveti Vlas', 'Nikopol', 'Shivachevo', 'Belovo', 'Tsar Kaloyan', 'Ivaylovgrad', 'Valchedram', 'Marten', 'Glodzhevo', 'Sarnitsa', 'Letnitsa', 'Varbitsa', 'Iskar', 'Ardino', 'Shabla', 'Rudozem', 'Vetren', 'Kresna', 'Banya', 'Batak', 'Maglizh', 'Valchi Dol', 'Gulyantsi', 'Dragoman', 'Zavet', 'Kran', 'Miziya', 'Primorsko', 'Sungurlare', 'Dolna Mitropoliya', 'Krivodol', 'Kula', 'Kalofer', 'Slivo Pole', 'Kaspichan', 'Apriltsi', 'Belitsa', 'Roman', 'Dzhebel', 'Dolna Oryahovitsa', 'Buhovo', 'Gurkovo', 'Pavel Banya', 'Nikolaevo', 'Yablanitsa', 'Kableshkovo', 'Opaka', 'Rila', 'Ugarchin', 'Dunavtsi', 'Dobrinishte', 'Hadzhidimovo', 'Bregovo', 'Byala Cherkva', 'Zlataritsa', 'Kocherinovo', 'Dospat', 'Tran', 'Sadovo', 'Laki', 'Koprivshtitsa', 'Malko Tarnovo', 'Loznitsa', 'Obzor', 'Kilifarevo', 'Borovo', 'Batanovtsi', 'Chernomorets', 'Aheloy', 'Byala', 'Pordim', 'Suhindol', 'Merichleri', 'Glavinitsa', 'Chiprovtsi', 'Kermen', 'Brezovo', 'Plachkovtsi', 'Zemen', 'Balgarovo', 'Alfatar', 'Boychinovtsi', 'Gramada', 'Senovo', 'Momin Prohod', 'Kaolinovo', 'Shipka', 'Antonovo', 'Ahtopol', 'Boboshevo', 'Bolyarovo', 'Brusartsi', 'Klisura', 'Dimovo', 'Kiten', 'Pliska', 'Madzharovo', 'Melnik'
         ];
     }
-    onItemSelected(args) { }
+    public itemSelected() { }
 
     public filterTowns(startsWith: string) {
         return this.towns.filter(city => city.toString().toLowerCase().startsWith(startsWith.toLowerCase()));
@@ -1009,9 +1009,9 @@ class AutocompleteFormComponent {
     @ViewChild(IgxInputDirective, { static: true }) public input: IgxInputDirective;
     @ViewChild(IgxDropDownComponent, { static: true }) public dropDown: IgxDropDownComponent;
     @ViewChild('plainInput', { static: true }) public plainInput: ElementRef<HTMLInputElement>;
-    towns;
+    public towns;
 
-    reactiveForm: FormGroup;
+    public reactiveForm: FormGroup;
 
     constructor(fb: FormBuilder) {
 
@@ -1024,7 +1024,7 @@ class AutocompleteFormComponent {
         });
 
     }
-    onSubmitReactive() { }
+    public onSubmitReactive() { }
 }
 
 @Pipe({ name: 'startsWith' })

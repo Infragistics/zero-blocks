@@ -174,7 +174,7 @@ Events
 
 | Name   |  Description | Cancelable |
 |:----------|:------|:------|
-| `onItemSelected` | list of options to choose from | true
+| `itemSelected` | list of options to choose from | true
 
 
 # Examples

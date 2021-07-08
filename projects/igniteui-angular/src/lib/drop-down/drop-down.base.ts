@@ -24,11 +24,11 @@ export abstract class IgxDropDownBaseDirective extends DisplayDensityBase implem
      * Emitted when item selection is changing, before the selection completes
      *
      * ```html
-     * <igx-drop-down (onSelection)='handleSelection()'></igx-drop-down>
+     * <igx-drop-down (selection)='handleSelection()'></igx-drop-down>
      * ```
      */
     @Output()
-    public onSelection = new EventEmitter<ISelectionEventArgs>();
+    public selection = new EventEmitter<ISelectionEventArgs>();
 
     /**
      *  Gets/Sets the width of the drop down
@@ -196,14 +196,14 @@ export abstract class IgxDropDownBaseDirective extends DisplayDensityBase implem
     }
 
     /**
-     * Emits onSelection with the target item & event
+     * Emits selection with the target item & event
      *
      * @hidden @internal
      * @param newSelection the item selected
      * @param event the event that triggered the call
      */
     public selectItem(newSelection?: IgxDropDownItemBaseDirective, event?: Event) {
-        this.onSelection.emit({
+        this.selection.emit({
             newSelection,
             oldSelection: null,
             cancel: false

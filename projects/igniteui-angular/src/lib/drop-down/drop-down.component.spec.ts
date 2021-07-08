@@ -56,23 +56,23 @@ describe('IgxDropDown ', () => {
             dropdown.ngOnInit();
             (dropdown as any).virtDir = mockForOf;
             spyOnProperty(dropdown, 'items', 'get').and.returnValue(data);
-            spyOn(dropdown.onSelection, 'emit').and.callThrough();
+            spyOn(dropdown.selection, 'emit').and.callThrough();
 
             dropdown.selectItem(data[0]);
             expect(dropdown.selectedItem).toEqual(data[0]);
-            expect(dropdown.onSelection.emit).toHaveBeenCalledTimes(1);
+            expect(dropdown.selection.emit).toHaveBeenCalledTimes(1);
 
             dropdown.selectItem(data[4]);
             expect(dropdown.selectedItem).toEqual(data[4]);
-            expect(dropdown.onSelection.emit).toHaveBeenCalledTimes(2);
+            expect(dropdown.selection.emit).toHaveBeenCalledTimes(2);
         });
-        it('should fire onSelection with correct args', () => {
+        it('should fire selection with correct args', () => {
             const selectionService = new IgxSelectionAPIService();
             dropdown = new IgxDropDownComponent({ nativeElement: null }, mockCdr, null, selectionService, null);
             dropdown.ngOnInit();
             (dropdown as any).virtDir = mockForOf;
             spyOnProperty(dropdown, 'items', 'get').and.returnValue(data);
-            spyOn(dropdown.onSelection, 'emit').and.callThrough();
+            spyOn(dropdown.selection, 'emit').and.callThrough();
 
             const selectionArgs: ISelectionEventArgs = {
                 newSelection: dropdown.items[1],
@@ -80,7 +80,7 @@ describe('IgxDropDown ', () => {
                 cancel: false
             };
             dropdown.selectItem(data[1]);
-            expect(dropdown.onSelection.emit).toHaveBeenCalledWith(selectionArgs);
+            expect(dropdown.selection.emit).toHaveBeenCalledWith(selectionArgs);
 
             const newSelectionArgs: ISelectionEventArgs = {
                 newSelection: dropdown.items[4],
@@ -88,7 +88,7 @@ describe('IgxDropDown ', () => {
                 cancel: false
             };
             dropdown.selectItem(data[4]);
-            expect(dropdown.onSelection.emit).toHaveBeenCalledWith(newSelectionArgs);
+            expect(dropdown.selection.emit).toHaveBeenCalledWith(newSelectionArgs);
         });
         it('should notify when selection is cleared', () => {
             const selectionService = new IgxSelectionAPIService();
@@ -96,29 +96,29 @@ describe('IgxDropDown ', () => {
             dropdown.ngOnInit();
             (dropdown as any).virtDir = mockForOf;
             spyOnProperty(dropdown, 'items', 'get').and.returnValue(data);
-            spyOn(dropdown.onSelection, 'emit').and.callThrough();
+            spyOn(dropdown.selection, 'emit').and.callThrough();
             spyOn(dropdown.onClosed, 'emit').and.callThrough();
 
             dropdown.selectItem(data[1]);
             const selected = dropdown.selectedItem;
             expect(dropdown.selectedItem).toEqual(data[1]);
-            expect(dropdown.onSelection.emit).toHaveBeenCalledTimes(1);
+            expect(dropdown.selection.emit).toHaveBeenCalledTimes(1);
             let args: ISelectionEventArgs = {
                 oldSelection: null,
                 newSelection: data[1],
                 cancel: false
             };
-            expect(dropdown.onSelection.emit).toHaveBeenCalledWith(args);
+            expect(dropdown.selection.emit).toHaveBeenCalledWith(args);
 
             dropdown.clearSelection();
             expect(dropdown.selectedItem).toBeNull();
-            expect(dropdown.onSelection.emit).toHaveBeenCalledTimes(2);
+            expect(dropdown.selection.emit).toHaveBeenCalledTimes(2);
             args = {
                 oldSelection: selected,
                 newSelection: null,
                 cancel: false
             };
-            expect(dropdown.onSelection.emit).toHaveBeenCalledWith(args);
+            expect(dropdown.selection.emit).toHaveBeenCalledWith(args);
         });
         it('setSelectedItem should return selected item', () => {
             const selectionService = new IgxSelectionAPIService();
@@ -317,7 +317,7 @@ describe('IgxDropDown ', () => {
                 expect(dropdown.collapsed).toEqual(false);
             }));
             it('should close the dropdown and not change selection by pressing ESC key', fakeAsync(() => {
-                spyOn(dropdown.onSelection, 'emit').and.callThrough();
+                spyOn(dropdown.selection, 'emit').and.callThrough();
                 spyOn(dropdown.onOpening, 'emit').and.callThrough();
                 spyOn(dropdown.onOpened, 'emit').and.callThrough();
                 spyOn(dropdown.onClosing, 'emit').and.callThrough();
@@ -342,7 +342,7 @@ describe('IgxDropDown ', () => {
                 expect(dropdown.collapsed).toEqual(true);
                 expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
                 expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onSelection.emit).toHaveBeenCalledTimes(0);
+                expect(dropdown.selection.emit).toHaveBeenCalledTimes(0);
                 expect(dropdown.onClosing.emit).toHaveBeenCalledTimes(1);
                 expect(dropdown.onClosed.emit).toHaveBeenCalledTimes(1);
             }));
@@ -497,7 +497,7 @@ describe('IgxDropDown ', () => {
                 expect(dropdown.selectedItem.itemIndex).toEqual(2);
             }));
             it('should return the proper eventArgs if selection has been cancelled', fakeAsync(() => {
-                spyOn(dropdown.onSelection, 'emit').and.callThrough();
+                spyOn(dropdown.selection, 'emit').and.callThrough();
 
                 dropdown.toggle();
                 tick();
@@ -511,9 +511,9 @@ describe('IgxDropDown ', () => {
                     newSelection: dropdown.items[3],
                     cancel: false
                 };
-                expect(dropdown.onSelection.emit).toHaveBeenCalledWith(selectionArgs);
+                expect(dropdown.selection.emit).toHaveBeenCalledWith(selectionArgs);
 
-                dropdown.onSelection.pipe(take(1)).subscribe((e: CancelableEventArgs) => e.cancel = true);
+                dropdown.selection.pipe(take(1)).subscribe((e: CancelableEventArgs) => e.cancel = true);
                 selectedItem = fixture.debugElement.queryAll(By.css(`.${CSS_CLASS_ITEM}`))[1];
                 selectedItem.triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 fixture.detectChanges();
@@ -522,7 +522,7 @@ describe('IgxDropDown ', () => {
                     newSelection: dropdown.items[1],
                     cancel: true
                 };
-                expect(dropdown.onSelection.emit).toHaveBeenCalledWith(canceledSelectionArgs);
+                expect(dropdown.selection.emit).toHaveBeenCalledWith(canceledSelectionArgs);
             }));
             it('should be able to change selection when manipulating ISelectionEventArgs', fakeAsync(() => {
                 expect(dropdown.selectedItem).toEqual(null);
@@ -533,7 +533,7 @@ describe('IgxDropDown ', () => {
                 // Overwrite selection args
                 let expectedSelected = dropdown.items[4];
                 const calledSelected = dropdown.items[1];
-                const subscription = dropdown.onSelection.subscribe((e: ISelectionEventArgs) => {
+                const subscription = dropdown.selection.subscribe((e: ISelectionEventArgs) => {
                     expect(e.newSelection).toEqual(calledSelected);
                     e.newSelection = expectedSelected;
                 });
@@ -844,7 +844,6 @@ describe('IgxDropDown ', () => {
     });
     describe('Virtualisation tests', () => {
         let scroll: IgxForOfDirective<any>;
-        let button; let items;
         configureTestSuite();
         beforeAll(waitForAsync(() => {
             TestBed.configureTestingModule({
@@ -863,7 +862,6 @@ describe('IgxDropDown ', () => {
             fixture = TestBed.createComponent(VirtualizedDropDownComponent);
             fixture.detectChanges();
             dropdown = fixture.componentInstance.dropdown;
-            button = fixture.componentInstance.toggleButton;
             scroll = fixture.componentInstance.virtualScroll;
             items = fixture.componentInstance.dropdownItems;
         });
@@ -1339,7 +1337,7 @@ class DoubleIgxDropDownComponent implements OnInit {
             </igx-tab-content>
         </igx-tab-item>
     </igx-tabs>
-    <igx-drop-down igxDropDownItemNavigation (onSelection)="onSelection($event)"
+    <igx-drop-down igxDropDownItemNavigation (onSelection)="selection($event)"
     (onOpening)="onToggleOpening()" (onOpened)="onToggleOpened()"
     (onClosing)="onToggleClosing()" (onClosed)="onToggleClosed()" [width]="'400px'" [height]="'400px'">
         <igx-drop-down-item *ngFor="let item of items">
@@ -1364,7 +1362,7 @@ class IgxDropDownAnchorTestComponent {
         this.dropdown.toggle();
     }
 
-    public onSelection(ev) { }
+    public onSelection() { }
 
     public onToggleOpening() { }
 

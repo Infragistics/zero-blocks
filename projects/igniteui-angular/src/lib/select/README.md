@@ -316,8 +316,8 @@ myComponent.select.toggleIconTemplate = myCustomTemplate;
 
    | Name        | Description                                                             | Cancelable | Parameters |
    |-------------|-------------------------------------------------------------------------|------------|------------|
-   | onSelection | Emitted when item selection is changing, before the selection completes | true       |{ISelectionEventArgs}|
-   | onOpening   | Emitted before the IgxSelect is opened.                                 | true       |            |
-   | onOpened    | Emitted after the IgxSelect is opened.                                  | false      |            |
-   | onClosing   | Emitted before the IgxSelect is closed.                                 | true       |            |
-   | onClosed    | Emitted after the IgxSelect is closed.                                  | false      |            |
+   | selection | Emitted when item selection is changing, before the selection completes | true       |{ISelectionEventArgs}|
+   | opening   | Emitted before the IgxSelect is opened.                                 | true       |            |
+   | opened    | Emitted after the IgxSelect is opened.                                  | false      |            |
+   | closing   | Emitted before the IgxSelect is closed.                                 | true       |            |
+   | closed    | Emitted after the IgxSelect is closed.                                  | false      |            |

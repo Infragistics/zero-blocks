@@ -1,4 +1,3 @@
-import { DOCUMENT } from '@angular/common';
 import { Directive, HostBinding } from '@angular/core';
 
 /**

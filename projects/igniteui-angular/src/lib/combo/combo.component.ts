@@ -378,81 +378,81 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
      * Emitted when item selection is changing, before the selection completes
      *
      * ```html
-     * <igx-combo (onSelectionChange)='handleSelection()'></igx-combo>
+     * <igx-combo (selectionChange)='handleSelection()'></igx-combo>
      * ```
      */
     @Output()
-    public onSelectionChange = new EventEmitter<IComboSelectionChangeEventArgs>();
+    public selectionChange = new EventEmitter<IComboSelectionChangeEventArgs>();
 
     /**
      * Emitted before the dropdown is opened
      *
      * ```html
-     * <igx-combo onOpening='handleOpening($event)'></igx-combo>
+     * <igx-combo opening='handleOpening($event)'></igx-combo>
      * ```
      */
     @Output()
-    public onOpening = new EventEmitter<IBaseCancelableBrowserEventArgs>();
+    public opening = new EventEmitter<IBaseCancelableBrowserEventArgs>();
 
     /**
      * Emitted after the dropdown is opened
      *
      * ```html
-     * <igx-combo (onOpened)='handleOpened()'></igx-combo>
+     * <igx-combo (opened)='handleOpened()'></igx-combo>
      * ```
      */
     @Output()
-    public onOpened = new EventEmitter<void>();
+    public opened = new EventEmitter<void>();
 
     /**
      * Emitted before the dropdown is closed
      *
      * ```html
-     * <igx-combo (onClosing)='handleClosing($event)'></igx-combo>
+     * <igx-combo (closing)='handleClosing($event)'></igx-combo>
      * ```
      */
     @Output()
-    public onClosing = new EventEmitter<IBaseCancelableBrowserEventArgs>();
+    public closing = new EventEmitter<IBaseCancelableBrowserEventArgs>();
 
     /**
      * Emitted after the dropdown is closed
      *
      * ```html
-     * <igx-combo (onClosed)='handleClosed()'></igx-combo>
+     * <igx-combo (closed)='handleClosed()'></igx-combo>
      * ```
      */
     @Output()
-    public onClosed = new EventEmitter<void>();
+    public closed = new EventEmitter<void>();
 
     /**
      * Emitted when an item is being added to the data collection
      *
      * ```html
-     * <igx-combo (onAddition)='handleAdditionEvent()'></igx-combo>
+     * <igx-combo (addition)='handleAdditionEvent()'></igx-combo>
      * ```
      */
     @Output()
-    public onAddition = new EventEmitter<IComboItemAdditionEvent>();
+    public addition = new EventEmitter<IComboItemAdditionEvent>();
 
     /**
      * Emitted when the value of the search input changes (e.g. typing, pasting, clear, etc.)
      *
      * ```html
-     * <igx-combo (onSearchInput)='handleSearchInputEvent()'></igx-combo>
+     * <igx-combo (searchInput)='handleSearchInputEvent()'></igx-combo>
      * ```
      */
     @Output()
-    public onSearchInput = new EventEmitter<IComboSearchInputEventArgs>();
+    public searchInput = new EventEmitter<IComboSearchInputEventArgs>();
 
     /**
      * Emitted when new chunk of data is loaded from the virtualization
      *
      * ```html
-     * <igx-combo (onDataPreLoad)='handleDataPreloadEvent()'></igx-combo>
+     * <igx-combo (dataPreLoad)='handleDataPreloadEvent()'></igx-combo>
      * ```
      */
     @Output()
-    public onDataPreLoad = new EventEmitter<IForOfState>();
+    public dataPreLoad = new EventEmitter<IForOfState>();
 
     /**
      * Gets/gets combo id.
@@ -791,7 +791,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
     }
     /**
      * An @Input property that controls whether the combo's search box
-     * should be focused after the `onOpened` event is called
+     * should be focused after the `opened` event is called
      * When `false`, the combo's list item container will be focused instead
      */
     @Input()
@@ -1029,7 +1029,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
                 owner: this,
                 cancel: false
             };
-            this.onSearchInput.emit(args);
+            this.searchInput.emit(args);
             if (args.cancel) {
                 this.filterValue = null;
             }
@@ -1113,7 +1113,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
         const args: IComboItemAdditionEvent = {
             oldCollection, addedItem, newCollection, owner: this, cancel: false
         };
-        this.onAddition.emit(args);
+        this.addition.emit(args);
         if (args.cancel) {
             return;
         }
@@ -1189,7 +1189,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
         }
         this.virtDir.chunkPreload.pipe(takeUntil(this.destroy$)).subscribe((e: IForOfState) => {
             const eventArgs: IForOfState = Object.assign({}, e, { owner: this });
-            this.onDataPreLoad.emit(eventArgs);
+            this.dataPreLoad.emit(eventArgs);
         });
     }
 
@@ -1441,7 +1441,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
      */
     public handleOpening(event: IBaseCancelableBrowserEventArgs) {
         const eventArgs: IBaseCancelableBrowserEventArgs = Object.assign({}, event, { owner: this });
-        this.onOpening.emit(eventArgs);
+        this.opening.emit(eventArgs);
         event.cancel = eventArgs.cancel;
     }
 
@@ -1459,7 +1459,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
         } else {
             this.dropdownContainer.nativeElement.focus();
         }
-        this.onOpened.emit();
+        this.opened.emit();
     }
 
     /**
@@ -1467,7 +1467,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
      */
     public handleClosing(event: IBaseCancelableBrowserEventArgs) {
         const eventArgs: IBaseCancelableBrowserEventArgs = Object.assign({}, event, { owner: this });
-        this.onClosing.emit(eventArgs);
+        this.closing.emit(eventArgs);
         event.cancel = eventArgs.cancel;
         if (event.cancel) {
             return;
@@ -1480,7 +1480,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
      * @hidden @internal
      */
     public handleClosed() {
-        this.onClosed.emit();
+        this.closed.emit();
     }
 
     /**
@@ -1506,7 +1506,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
             displayText,
             cancel: false
         };
-        this.onSelectionChange.emit(args);
+        this.selectionChange.emit(args);
         if (!args.cancel) {
             this.selection.select_items(this.id, args.newSelection, true);
             if (displayText !== args.displayText) {
