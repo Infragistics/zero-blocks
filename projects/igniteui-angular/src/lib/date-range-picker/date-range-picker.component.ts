@@ -1,5 +1,5 @@
 import {
-    AfterViewInit, Component, ContentChild, ContentChildren, ElementRef,
+    AfterViewInit, ChangeDetectorRef, Component, ContentChild, ContentChildren, ElementRef,
     EventEmitter, HostBinding, HostListener, Inject, Injector, Input, LOCALE_ID,
     NgModuleRef,
     OnChanges, OnDestroy, OnInit, Optional, Output, QueryList,
@@ -447,6 +447,7 @@ export class IgxDateRangePickerComponent extends PickerBaseDirective
         protected platform: PlatformUtil,
         private _injector: Injector,
         private _moduleRef: NgModuleRef<any>,
+        private _cdr: ChangeDetectorRef,
         @Inject(IgxOverlayService) private _overlayService: IgxOverlayService,
         @Optional() @Inject(DisplayDensityToken) protected _displayDensityOptions?: IDisplayDensityOptions,
         @Optional() @Inject(IGX_INPUT_GROUP_TYPE) protected _inputGroupType?: IgxInputGroupType) {
@@ -632,6 +633,14 @@ export class IgxDateRangePickerComponent extends PickerBaseDirective
             this.updateDisabledState();
             this.initialSetValue();
             this.updateInputs();
+            // B.P. 07 July 2021 - IgxDateRangePicker not showing initial disabled state with ChangeDetectionStrategy.OnPush #9776
+            /**
+             * if disabled is placed on the range picker element and there are projected inputs
+             * run change detection since igxInput will initially set the projected inputs' disabled to false
+             */
+            if (this.hasProjectedInputs && this.disabled) {
+                this._cdr.markForCheck();
+            }
         });
         this.updateDisplayFormat();
         this.updateInputFormat();
@@ -790,9 +799,6 @@ export class IgxDateRangePickerComponent extends PickerBaseDirective
             start.inputDirective.disabled = this.disabled;
             end.inputDirective.disabled = this.disabled;
             return;
-        }
-        if (this.inputDirective) {
-            this.inputDirective.disabled = this.disabled;
         }
     }
 

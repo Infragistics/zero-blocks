@@ -26,7 +26,7 @@
 <ng-template #defTemplate>
     <igx-input-group [type]="this.type" [displayDensity]="this.displayDensity" (click)="this.open()">
         <!-- only set mask placeholder when empty, otherwise input group might use it as label if none is set -->
-        <input #singleInput igxInput type="text" readonly [placeholder]="this.value ? '' : singleInputFormat"
+        <input #singleInput igxInput type="text" readonly [disabled]="this.disabled" [placeholder]="this.value ? '' : singleInputFormat"
             role="combobox" aria-haspopup="grid" [attr.aria-expanded]="!this.collapsed"
             [attr.aria-labelledby]="this.label?.id"
             [value]="this.value | dateRange: this.appliedFormat : this.locale : this.formatter" />
