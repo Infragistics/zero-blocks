@@ -16,15 +16,16 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 15.x]
+        node-version: [12.x, 14.x, 16.x]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
             node-version: ${{ matrix.node-version }}
+            cache: npm
       - name: Install packages
         run: npm ci
       - name: Lint
@@ -42,11 +43,10 @@ jobs:
             NODE_OPTIONS: --max_old_space_size=4096
       - name: Install coverage combiner - istanbul
         if: github.repository == 'IgniteUI/igniteui-angular' && matrix.node-version == '14.x'
-        run: sudo npm install -g istanbul
+        run: npm install -g istanbul
       - name: Combine scripts
         if: github.repository == 'IgniteUI/igniteui-angular' && matrix.node-version == '14.x'
         run: istanbul report --dir coverage --include coverage/**/coverage-final.json lcov
-        # run: istanbul-combine -d coverage -p none -r lcov -r cobertura coverage/hierarchical-grid/coverage-final.json coverage/tree-grid/coverage-final.json coverage/non-grid/coverage-final.json coverage/grid/coverage-final.json
       - name: Publish to coveralls.io
         if: github.repository == 'IgniteUI/igniteui-angular' && matrix.node-version == '14.x'
         uses: coverallsapp/github-action@v1.1.2
