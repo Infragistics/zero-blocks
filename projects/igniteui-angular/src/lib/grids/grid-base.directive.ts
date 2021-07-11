@@ -6622,7 +6622,9 @@ export abstract class IgxGridBaseDirective extends DisplayDensityBase implements
             this.columnList.reset(columnLayoutColumns);
         }
         this._maxLevelHeaderDepth = null;
-        this._columns = this.columnList.toArray();
+        this._columns.length = 0;
+        this._columns.push(...this.columnList.toArray());
+
         collection.forEach((column: IgxColumnComponent) => {
             column.defaultWidth = this.columnWidthSetByUser ? this._columnWidth : column.defaultWidth ? column.defaultWidth : '';
 
