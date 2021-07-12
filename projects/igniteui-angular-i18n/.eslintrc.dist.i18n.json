@@ -1,0 +1,16 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "no-restricted-imports": [
+            "error",
+            {
+                "paths": [
+                    {
+                    "name": "igniteui-angular",
+                    "message": "Validate produced dist doesn't rely on product imports"
+                    }
+                ]
+            }
+        ]
+    }
+}

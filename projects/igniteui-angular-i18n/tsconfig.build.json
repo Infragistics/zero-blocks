@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "rootDir": "./src",
+        "target": "es2015",
+        "module": "commonjs",
+        "declaration": true,
+        "outDir": "../../dist/igniteui-angular-i18n",
+        "stripInternal": true,
+        "paths": {
+            "igniteui-angular": [
+                "../../dist/igniteui-angular/"
+            ]
+        }
+    }
+}

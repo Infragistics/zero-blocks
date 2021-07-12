@@ -42,7 +42,10 @@
     "build:sassdoc:en:staging": "set NODE_ENV=staging && set SASSDOC_LANG=en && gulp sassdocBuildEN",
     "build:sassdoc:ja:production": "set NODE_ENV=production && set SASSDOC_LANG=jp && gulp sassdocBuildJA --render true",
     "build:sassdoc:ja:staging": "set NODE_ENV=staging && set SASSDOC_LANG=jp && gulp sassdocBuildJA --render true",
-    "postinstall": "gulp copyGitHooks"
+    "postinstall": "gulp copyGitHooks",
+    "build:i18n": "tsc --project projects/igniteui-angular-i18n/tsconfig.build.json",
+    "lint:i18n": "eslint -c projects/igniteui-angular-i18n/.eslintrc.i18n.json projects/igniteui-angular-i18n/src/**/*.ts",
+    "lint:i18n:dist": "eslint -c projects/igniteui-angular-i18n/.eslintrc.dist.i18n.json dist/igniteui-angular-i18n/**/*.d.ts --no-eslintrc"
   },
   "private": true,
   "dependencies": {

@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: 12
+          cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
       - run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       - run: echo ${VERSION}
@@ -20,23 +21,47 @@ jobs:
       - run: echo "NODE_OPTIONS='--max_old_space_size=4096'" >> $GITHUB_ENV
       - run: npm ci
 
-      - run: npm run build:lib
-      - run: npm run build:schematics
-      - run: npm run build:migration
+      - name: Build igniteui-angular
+        run: |
+            npm run build:lib
+            npm run build:schematics
+            npm run build:migration
 
-      # define npm tag
-      - run: if [[ ${VERSION} == *"alpha"* || ${VERSION} == *"beta"* || ${VERSION} == *"rc"* ]]; then echo "NPM_TAG=next"; else echo "NPM_TAG=latest"; fi >> $GITHUB_ENV
-      - run: echo ${NPM_TAG}
+      - name: Build igniteui-angular-i18n
+        run: npm run build:i18n
 
-      # copy readme
-      - run: cp ../../README.md README.md
+      - name: Define npm tag
+        run: |
+            if [[ ${VERSION} == *"alpha"* || ${VERSION} == *"beta"* || ${VERSION} == *"rc"* ]]; then echo "NPM_TAG=next"; else echo "NPM_TAG=latest"; fi >> $GITHUB_ENV
+            echo ${NPM_TAG}
+
+      - name: Copy readme for igniteui-angular
+        run: cp ../../README.md README.md
         working-directory: dist/igniteui-angular
 
-      # create version and publish it to npmjs
-      - run: npm version ${VERSION} --no-git-tag-version --save --verbose
+      - name: Copy i18n files
+        run: |
+            cp ../../projects/igniteui-angular-i18n/README.md README.md
+            cp ../../projects/igniteui-angular-i18n/package.json package.json
+            cp ../../projects/igniteui-angular-i18n/LICENSE LICENSE
+        working-directory: dist/igniteui-angular-i18n
+
+      - name: Create igniteui-angular version and publish it to npmjs
+        run: npm version ${VERSION} --no-git-tag-version --save --verbose
         working-directory: dist/igniteui-angular
 
-      - run: npm publish --tag ${NPM_TAG}
+      - name: Create igniteui-angular-i18n version and publish it to npmjs
+        run: npm version ${VERSION} --no-git-tag-version --save
+        working-directory: dist/igniteui-angular-i18n
+
+      - name: Publish igniteui-angular
+        run: npm publish --tag ${NPM_TAG}
         working-directory: dist/igniteui-angular
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Publish igniteui-angular-i18n
+        run: npm publish --tag ${NPM_TAG}
+        working-directory: dist/igniteui-angular-i18n
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
