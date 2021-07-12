@@ -30,9 +30,9 @@ You can attach to the left button select event `(onLeftButtonSelect)="alert.clos
     title="Confirmation"
     message="Are you sure you want to delete the Microsoft_Annual_Report_2015.pdf and Microsoft_Annual_Report_2015.pdf files?"
     leftButtonLabel="Cancel"
-    (onLeftButtonSelect)="dialog.close()"
+    (leftButtonSelect)="dialog.close()"
     rightButtonLabel="OK"
-    (onRightButtonSelect)="onDialogOKSelected($event)">
+    (rightButtonSelect)="onDialogOKSelected($event)">
 </igx-dialog>
 ```
 

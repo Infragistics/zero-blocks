@@ -77,11 +77,11 @@ export class IgxComboDropDownComponent extends IgxDropDownComponent implements I
         protected elementRef: ElementRef,
         protected cdr: ChangeDetectorRef,
         protected platform: PlatformUtil,
-        protected selection: IgxSelectionAPIService,
+        protected selectionService: IgxSelectionAPIService,
         @Inject(IGX_COMBO_COMPONENT) public combo: IgxComboBase,
         protected comboAPI: IgxComboAPIService,
         @Optional() @Inject(DisplayDensityToken) protected _displayDensityOptions: IDisplayDensityOptions) {
-        super(elementRef, cdr, platform, selection, _displayDensityOptions);
+        super(elementRef, cdr, platform, selectionService, _displayDensityOptions);
     }
 
     /**
@@ -102,7 +102,7 @@ export class IgxComboDropDownComponent extends IgxDropDownComponent implements I
      * @hidden @internal
      */
     public onToggleOpened() {
-        this.onOpened.emit();
+        this.opened.emit();
     }
 
     /**

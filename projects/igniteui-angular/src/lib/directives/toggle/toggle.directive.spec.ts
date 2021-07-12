@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, DebugElement, EventEmitter, Output, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DebugElement, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxToggleActionDirective, IgxToggleDirective, IgxToggleModule, IgxOverlayOutletDirective } from './toggle.directive';
 import {
     IgxOverlayService, OverlaySettings, ConnectedPositioningStrategy,
-    AbsoluteScrollStrategy, AutoPositionStrategy, IPositionStrategy, HorizontalAlignment
+    AbsoluteScrollStrategy, AutoPositionStrategy, HorizontalAlignment
 } from '../../services/public_api';
-import { CancelableEventArgs, CancelableBrowserEventArgs } from '../../core/utils';
+import { CancelableEventArgs, } from '../../core/utils';
 
 import { configureTestSuite } from '../../test-utils/configure-suite';
 import { first } from 'rxjs/operators';
@@ -63,32 +63,32 @@ describe('IgxToggle', () => {
         expect(divEl.classList.contains(TOGGLER_CLASS)).toBeTruthy();
     });
 
-    it('should emit \'onOpening\' and \'onOpened\' events', fakeAsync(() => {
+    it('should emit \'opening\' and \'opened\' events', fakeAsync(() => {
         const fixture = TestBed.createComponent(IgxToggleTestComponent);
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
-        spyOn(toggle.onOpening, 'emit');
-        spyOn(toggle.onOpened, 'emit');
+        spyOn(toggle.opening, 'emit');
+        spyOn(toggle.opened, 'emit');
         toggle.open();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onOpening.emit).toHaveBeenCalled();
-        expect(toggle.onOpened.emit).toHaveBeenCalled();
+        expect(toggle.opening.emit).toHaveBeenCalled();
+        expect(toggle.opened.emit).toHaveBeenCalled();
     }));
 
-    it('should emit \'onAppended\' event', fakeAsync(() => {
+    it('should emit \'appended\' event', fakeAsync(() => {
         const fixture = TestBed.createComponent(IgxToggleTestComponent);
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
-        spyOn(toggle.onAppended, 'emit');
+        spyOn(toggle.appended, 'emit');
         toggle.open();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onAppended.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.appended.emit).toHaveBeenCalledTimes(1);
 
         toggle.close();
         tick();
@@ -97,10 +97,10 @@ describe('IgxToggle', () => {
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onAppended.emit).toHaveBeenCalledTimes(2);
+        expect(toggle.appended.emit).toHaveBeenCalledTimes(2);
     }));
 
-    it('should emit \'onClosing\' and \'onClosed\' events', fakeAsync(() => {
+    it('should emit \'closing\' and \'closed\' events', fakeAsync(() => {
         const fixture = TestBed.createComponent(IgxToggleTestComponent);
         fixture.detectChanges();
 
@@ -109,46 +109,46 @@ describe('IgxToggle', () => {
         tick();
         fixture.detectChanges();
 
-        spyOn(toggle.onClosing, 'emit');
-        spyOn(toggle.onClosed, 'emit');
+        spyOn(toggle.closing, 'emit');
+        spyOn(toggle.closed, 'emit');
         toggle.close();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onClosing.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closing.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
     }));
 
-    it('should propagate IgxOverlay onOpened/onClosed events', fakeAsync(() => {
+    it('should propagate IgxOverlay opened/closed events', fakeAsync(() => {
         const fixture = TestBed.createComponent(IgxOverlayServiceComponent);
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
         const overlay = fixture.componentInstance.overlay;
-        spyOn(toggle.onOpened, 'emit');
-        spyOn(toggle.onClosed, 'emit');
+        spyOn(toggle.opened, 'emit');
+        spyOn(toggle.closed, 'emit');
 
         toggle.open();
         tick();
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
         expect(toggle.collapsed).toBe(false);
         toggle.close();
         tick();
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
         expect(toggle.collapsed).toBe(true);
 
         toggle.open();
         tick();
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(2);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(2);
         const otherId = overlay.attach(fixture.componentInstance.other);
         overlay.show(otherId);
         overlay.hide(otherId);
         tick();
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
         expect(toggle.collapsed).toBe(false);
         overlay.hideAll(); // as if outside click
         tick();
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(2);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(2);
         expect(toggle.collapsed).toBe(true);
     }));
 
@@ -186,32 +186,32 @@ describe('IgxToggle', () => {
         expect(divEl.classList.contains(HIDDEN_TOGGLER_CLASS)).toBeTruthy();
     }));
 
-    it('should hide content and emit \'onClosed\' event when you click outside the toggle\'s content', fakeAsync(() => {
+    it('should hide content and emit \'closed\' event when you click outside the toggle\'s content', fakeAsync(() => {
         const fixture = TestBed.createComponent(IgxToggleActionTestComponent);
         fixture.detectChanges();
 
         const divEl = fixture.debugElement.query(By.directive(IgxToggleDirective)).nativeElement;
         const toggle = fixture.componentInstance.toggle;
         const p = fixture.debugElement.query(By.css('p'));
-        spyOn(toggle.onOpening, 'emit');
-        spyOn(toggle.onOpened, 'emit');
+        spyOn(toggle.opening, 'emit');
+        spyOn(toggle.opened, 'emit');
 
         fixture.componentInstance.toggleAction.onClick();
         tick();
-        expect(toggle.onOpening.emit).toHaveBeenCalled();
-        expect(toggle.onOpened.emit).toHaveBeenCalled();
+        expect(toggle.opening.emit).toHaveBeenCalled();
+        expect(toggle.opened.emit).toHaveBeenCalled();
 
         expect(fixture.componentInstance.toggle.collapsed).toBe(false);
         expect(divEl.classList.contains(TOGGLER_CLASS)).toBe(true);
-        spyOn(toggle.onClosing, 'emit');
-        spyOn(toggle.onClosed, 'emit');
+        spyOn(toggle.closing, 'emit');
+        spyOn(toggle.closed, 'emit');
 
         p.nativeElement.click();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onClosing.emit).toHaveBeenCalled();
-        expect(toggle.onClosed.emit).toHaveBeenCalled();
+        expect(toggle.closing.emit).toHaveBeenCalled();
+        expect(toggle.closed.emit).toHaveBeenCalled();
     }));
 
     it('Toggle should be registered into navigationService if it is passed through identifier', fakeAsync(() => {
@@ -233,62 +233,62 @@ describe('IgxToggle', () => {
         const toggleElm = fix.debugElement.query(By.directive(IgxToggleDirective)).nativeElement;
         const button: DebugElement = fix.debugElement.query(By.css('button'));
 
-        spyOn(toggle.onOpened, 'emit');
-        spyOn(toggle.onClosed, 'emit');
+        spyOn(toggle.opened, 'emit');
+        spyOn(toggle.closed, 'emit');
         button.triggerEventHandler('click', null);
 
         tick();
         fix.detectChanges();
 
-        expect(toggle.onOpened.emit).toHaveBeenCalled();
+        expect(toggle.opened.emit).toHaveBeenCalled();
         expect(toggleElm.classList.contains(TOGGLER_CLASS)).toBe(true);
         button.triggerEventHandler('click', null);
 
         tick();
         fix.detectChanges();
 
-        expect(toggle.onClosed.emit).toHaveBeenCalled();
+        expect(toggle.closed.emit).toHaveBeenCalled();
         expect(toggleElm.classList.contains(HIDDEN_TOGGLER_CLASS)).toBe(true);
     }));
 
-    it('fix for #2798 - Allow canceling of open and close of IgxDropDown through onOpening and onClosing events', fakeAsync(() => {
+    it('fix for #2798 - Allow canceling of open and close of IgxDropDown through opening and closing events', fakeAsync(() => {
         const fixture = TestBed.createComponent(IgxToggleTestComponent);
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
 
-        spyOn(toggle.onOpening, 'emit').and.callThrough();
-        spyOn(toggle.onOpened, 'emit').and.callThrough();
-        spyOn(toggle.onClosing, 'emit').and.callThrough();
-        spyOn(toggle.onClosed, 'emit').and.callThrough();
+        spyOn(toggle.opening, 'emit').and.callThrough();
+        spyOn(toggle.opened, 'emit').and.callThrough();
+        spyOn(toggle.closing, 'emit').and.callThrough();
+        spyOn(toggle.closed, 'emit').and.callThrough();
 
-        toggle.onClosing.pipe(first()).subscribe((e: CancelableEventArgs) => e.cancel = true);
+        toggle.closing.pipe(first()).subscribe((e: CancelableEventArgs) => e.cancel = true);
 
         toggle.open();
         fixture.detectChanges();
         tick();
 
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
 
         toggle.close();
         fixture.detectChanges();
         tick();
 
-        expect(toggle.onClosing.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(0);
+        expect(toggle.closing.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(0);
 
         toggle.close();
         fixture.detectChanges();
         tick();
 
-        toggle.onOpening.subscribe((e: CancelableEventArgs) => e.cancel = true);
+        toggle.opening.subscribe((e: CancelableEventArgs) => e.cancel = true);
         toggle.open();
         fixture.detectChanges();
         tick();
 
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(2);
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(2);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
     }));
 
     it('fix for #3636 - ToggleAction should provide its element as target', fakeAsync(() => {
@@ -395,21 +395,21 @@ describe('IgxToggle', () => {
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
-        spyOn(toggle.onOpening, 'emit');
-        spyOn(toggle.onOpened, 'emit');
+        spyOn(toggle.opening, 'emit');
+        spyOn(toggle.opened, 'emit');
         toggle.open();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
 
         toggle.open();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
     }));
 
     it('fix for #3810 - Should not close toggle when not open', fakeAsync(() => {
@@ -417,30 +417,30 @@ describe('IgxToggle', () => {
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
-        spyOn(toggle.onOpening, 'emit');
-        spyOn(toggle.onOpened, 'emit');
+        spyOn(toggle.opening, 'emit');
+        spyOn(toggle.opened, 'emit');
         toggle.open();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
 
-        spyOn(toggle.onClosing, 'emit');
-        spyOn(toggle.onClosed, 'emit');
+        spyOn(toggle.closing, 'emit');
+        spyOn(toggle.closed, 'emit');
         toggle.close();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onClosing.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closing.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
 
         toggle.close();
         tick();
         fixture.detectChanges();
 
-        expect(toggle.onClosing.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closing.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
     }));
 
     it('fix for #4222 - Should emit closed when closed second time', fakeAsync(() => {
@@ -448,29 +448,29 @@ describe('IgxToggle', () => {
         fixture.detectChanges();
 
         const toggle = fixture.componentInstance.toggle;
-        toggle.onClosed.subscribe(() => {
+        toggle.closed.subscribe(() => {
             toggle.open();
         });
 
-        spyOn(toggle.onOpening, 'emit');
-        spyOn(toggle.onClosed, 'emit').and.callThrough();
+        spyOn(toggle.opening, 'emit');
+        spyOn(toggle.closed, 'emit').and.callThrough();
 
         toggle.open();
         tick();
         fixture.detectChanges();
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(1);
 
         toggle.close();
         tick();
         fixture.detectChanges();
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(2);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(2);
 
         toggle.close();
         tick();
         fixture.detectChanges();
-        expect(toggle.onClosed.emit).toHaveBeenCalledTimes(2);
-        expect(toggle.onOpening.emit).toHaveBeenCalledTimes(3);
+        expect(toggle.closed.emit).toHaveBeenCalledTimes(2);
+        expect(toggle.opening.emit).toHaveBeenCalledTimes(3);
     }));
 
     describe('overlay settings', () => {
@@ -557,33 +557,33 @@ describe('IgxToggle', () => {
             expect(toggleSpy).toHaveBeenCalledWith(settings);
         });
 
-        it('Should fire toggle "onClosing" event when closing through closeOnOutsideClick', fakeAsync(() => {
+        it('Should fire toggle "closing" event when closing through closeOnOutsideClick', fakeAsync(() => {
             const fixture = TestBed.createComponent(IgxToggleActionTestComponent);
             fixture.detectChanges();
 
             const toggle = fixture.componentInstance.toggle;
 
             spyOn(toggle, 'toggle').and.callThrough();
-            spyOn(toggle.onClosed, 'emit').and.callThrough();
-            spyOn(toggle.onClosing, 'emit').and.callThrough();
-            spyOn(toggle.onOpening, 'emit').and.callThrough();
-            spyOn(toggle.onOpened, 'emit').and.callThrough();
+            spyOn(toggle.closed, 'emit').and.callThrough();
+            spyOn(toggle.closing, 'emit').and.callThrough();
+            spyOn(toggle.opening, 'emit').and.callThrough();
+            spyOn(toggle.opened, 'emit').and.callThrough();
 
             const button = fixture.debugElement.query(By.css('button')).nativeElement;
             button.click();
             tick();
             fixture.detectChanges();
 
-            expect(toggle.onOpening.emit).toHaveBeenCalledTimes(1);
-            expect(toggle.onOpened.emit).toHaveBeenCalledTimes(1);
+            expect(toggle.opening.emit).toHaveBeenCalledTimes(1);
+            expect(toggle.opened.emit).toHaveBeenCalledTimes(1);
 
             document.documentElement.dispatchEvent(new Event('click'));
             tick();
             fixture.detectChanges();
 
-            expect(toggle.onClosing.emit).toHaveBeenCalledTimes(1);
-            expect(toggle.onClosing.emit).toHaveBeenCalledWith({ id: '0', owner: toggle, cancel: false, event: new Event('click') });
-            expect(toggle.onClosed.emit).toHaveBeenCalledTimes(1);
+            expect(toggle.closing.emit).toHaveBeenCalledTimes(1);
+            expect(toggle.closing.emit).toHaveBeenCalledWith({ id: '0', owner: toggle, cancel: false, event: new Event('click') });
+            expect(toggle.closed.emit).toHaveBeenCalledTimes(1);
         }));
 
         it('should pass IgxOverlayOutletDirective input from IgxToggleActionDirective', () => {
@@ -735,9 +735,9 @@ export class TestWithThreeToggleActionsComponent implements OnInit {
     @ViewChild('button2', { static: true }) public button2: ElementRef;
     @ViewChild('button3', { static: true }) public button3: ElementRef;
 
-    overlaySettings: OverlaySettings = {};
+    public overlaySettings: OverlaySettings = {};
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.overlaySettings.positionStrategy = new ConnectedPositioningStrategy({
             horizontalDirection: HorizontalAlignment.Left,
             horizontalStartPoint: HorizontalAlignment.Right

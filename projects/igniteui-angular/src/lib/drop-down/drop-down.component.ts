@@ -65,41 +65,41 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
      * Emitted before the dropdown is opened
      *
      * ```html
-     * <igx-drop-down (onOpening)='handleOpening()'></igx-drop-down>
+     * <igx-drop-down (opening)='handleOpening()'></igx-drop-down>
      * ```
      */
     @Output()
-    public onOpening = new EventEmitter<IBaseCancelableBrowserEventArgs>();
+    public opening = new EventEmitter<IBaseCancelableBrowserEventArgs>();
 
     /**
      * Emitted after the dropdown is opened
      *
      * ```html
-     * <igx-drop-down (onOpened)='handleOpened()'></igx-drop-down>
+     * <igx-drop-down (opened)='handleOpened()'></igx-drop-down>
      * ```
      */
     @Output()
-    public onOpened = new EventEmitter<void>();
+    public opened = new EventEmitter<void>();
 
     /**
      * Emitted before the dropdown is closed
      *
      * ```html
-     * <igx-drop-down (onClosing)='handleClosing()'></igx-drop-down>
+     * <igx-drop-down (closing)='handleClosing()'></igx-drop-down>
      * ```
      */
     @Output()
-    public onClosing = new EventEmitter<IBaseCancelableBrowserEventArgs>();
+    public closing = new EventEmitter<IBaseCancelableBrowserEventArgs>();
 
     /**
      * Emitted after the dropdown is closed
      *
      * ```html
-     * <igx-drop-down (onClosed)='handleClosed()'></igx-drop-down>
+     * <igx-drop-down (closed)='handleClosed()'></igx-drop-down>
      * ```
      */
     @Output()
-    public onClosed = new EventEmitter<void>();
+    public closed = new EventEmitter<void>();
 
     /**
      * Gets/sets whether items take focus. Disabled by default.
@@ -145,7 +145,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
 
     public set focusedItem(value: IgxDropDownItemBaseDirective) {
         if (!value) {
-            this.selection.clear(`${this.id}-active`);
+            this.selectionService.clear(`${this.id}-active`);
             this._focusedItem = null;
             return;
         }
@@ -156,17 +156,17 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
                 index: value.index
             } as IgxDropDownItemBaseDirective;
         }
-        this.selection.set(`${this.id}-active`, new Set([this._focusedItem]));
+        this.selectionService.set(`${this.id}-active`, new Set([this._focusedItem]));
     }
 
     public get id(): string {
         return this._id;
     }
     public set id(value: string) {
-        this.selection.set(value, this.selection.get(this.id));
-        this.selection.clear(this.id);
-        this.selection.set(value, this.selection.get(`${this.id}-active`));
-        this.selection.clear(`${this.id}-active`);
+        this.selectionService.set(value, this.selectionService.get(this.id));
+        this.selectionService.clear(this.id);
+        this.selectionService.set(value, this.selectionService.get(`${this.id}-active`));
+        this.selectionService.clear(`${this.id}-active`);
         this._id = value;
     }
 
@@ -183,7 +183,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
      * ```
      */
     public get selectedItem(): IgxDropDownItemBaseDirective {
-        const selectedItem = this.selection.first_item(this.id);
+        const selectedItem = this.selectionService.first_item(this.id);
         if (selectedItem) {
             return selectedItem;
         }
@@ -219,7 +219,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
         protected elementRef: ElementRef,
         protected cdr: ChangeDetectorRef,
         protected platform: PlatformUtil,
-        protected selection: IgxSelectionAPIService,
+        protected selectionService: IgxSelectionAPIService,
         @Optional() @Inject(DisplayDensityToken) protected _displayDensityOptions: IDisplayDensityOptions) {
         super(elementRef, cdr, platform, _displayDensityOptions);
     }
@@ -342,7 +342,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
     public onToggleOpening(e: IBaseCancelableBrowserEventArgs) {
         // do not mutate passed event args
         const eventArgs: IBaseCancelableBrowserEventArgs = Object.assign({}, e, { owner: this });
-        this.onOpening.emit(eventArgs);
+        this.opening.emit(eventArgs);
         e.cancel = eventArgs.cancel;
         if (e.cancel) {
             return;
@@ -367,7 +367,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
      */
     public onToggleOpened() {
         this.updateItemFocus();
-        this.onOpened.emit();
+        this.opened.emit();
     }
 
     /**
@@ -375,7 +375,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
      */
     public onToggleClosing(e: IBaseCancelableBrowserEventArgs) {
         const eventArgs: IBaseCancelableBrowserEventArgs = Object.assign({}, e, { owner: this });
-        this.onClosing.emit(eventArgs);
+        this.closing.emit(eventArgs);
         e.cancel = eventArgs.cancel;
         if (e.cancel) {
             return;
@@ -390,7 +390,7 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
      */
     public onToggleClosed() {
         this.focusItem(false);
-        this.onClosed.emit();
+        this.closed.emit();
     }
 
     /**
@@ -399,8 +399,8 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
     public ngOnDestroy() {
         this.destroy$.next(true);
         this.destroy$.complete();
-        this.selection.clear(this.id);
-        this.selection.clear(`${this.id}-active`);
+        this.selectionService.clear(this.id);
+        this.selectionService.clear(`${this.id}-active`);
     }
 
     /** @hidden @internal */
@@ -515,11 +515,11 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
             } as IgxDropDownItemBaseDirective;
         }
         const args: ISelectionEventArgs = { oldSelection, newSelection, cancel: false };
-        this.onSelection.emit(args);
+        this.selection.emit(args);
 
         if (!args.cancel) {
             if (this.isSelectionValid(args.newSelection)) {
-                this.selection.set(this.id, new Set([args.newSelection]));
+                this.selectionService.set(this.id, new Set([args.newSelection]));
                 if (!this.virtDir) {
                     if (oldSelection) {
                         oldSelection.selected = false;
@@ -547,10 +547,10 @@ export class IgxDropDownComponent extends IgxDropDownBaseDirective implements ID
         const oldSelection = this.selectedItem;
         const newSelection: IgxDropDownItemBaseDirective = null;
         const args: ISelectionEventArgs = { oldSelection, newSelection, cancel: false };
-        this.onSelection.emit(args);
+        this.selection.emit(args);
         if (this.selectedItem && !args.cancel) {
             this.selectedItem.selected = false;
-            this.selection.clear(this.id);
+            this.selectionService.clear(this.id);
         }
     }
 

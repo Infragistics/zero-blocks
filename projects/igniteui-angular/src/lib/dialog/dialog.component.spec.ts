@@ -84,7 +84,6 @@ describe('Dialog', () => {
     it('Should open and close dialog when set values to IsOpen', fakeAsync(() => {
         const fixture = TestBed.createComponent(AlertComponent);
         const dialog = fixture.componentInstance.dialog;
-        const expectedMessage = 'message';
 
         dialog.isOpen = true;
         tick(100);
@@ -206,27 +205,27 @@ describe('Dialog', () => {
             cancel: false
         };
 
-        spyOn(dialog.onOpen, 'emit');
-        spyOn(dialog.onOpened, 'emit');
+        spyOn(dialog.opening, 'emit');
+        spyOn(dialog.opened, 'emit');
         spyOn(dialog.isOpenChange, 'emit');
-        spyOn(dialog.onClose, 'emit');
-        spyOn(dialog.onClosed, 'emit');
+        spyOn(dialog.closing, 'emit');
+        spyOn(dialog.closed, 'emit');
 
         dialog.open();
         tick();
         fixture.detectChanges();
 
-        expect(dialog.onOpen.emit).toHaveBeenCalledWith(cancellableArgs);
+        expect(dialog.opening.emit).toHaveBeenCalledWith(cancellableArgs);
         expect(dialog.isOpenChange.emit).toHaveBeenCalledWith(true);
-        // expect(dialog.onOpened.emit).toHaveBeenCalled();
+        // expect(dialog.opened.emit).toHaveBeenCalled();
 
         dialog.close();
         tick();
         fixture.detectChanges();
 
         cancellableArgs = { dialog, event: undefined, cancel: false };
-        expect(dialog.onClose.emit).toHaveBeenCalledWith(cancellableArgs);
-        expect(dialog.onClosed.emit).toHaveBeenCalledWith(args);
+        expect(dialog.closing.emit).toHaveBeenCalledWith(cancellableArgs);
+        expect(dialog.closed.emit).toHaveBeenCalledWith(args);
         expect(dialog.isOpenChange.emit).toHaveBeenCalledWith(false);
 
         dialog.open();
@@ -236,14 +235,14 @@ describe('Dialog', () => {
         const leftButton = buttons[0];
         const rightButton = buttons[1];
 
-        spyOn(dialog.onLeftButtonSelect, 'emit');
+        spyOn(dialog.leftButtonSelect, 'emit');
         dispatchEvent(leftButton, 'click');
-        expect(dialog.onLeftButtonSelect.emit).toHaveBeenCalled();
+        expect(dialog.leftButtonSelect.emit).toHaveBeenCalled();
 
-        spyOn(dialog.onRightButtonSelect, 'emit');
+        spyOn(dialog.rightButtonSelect, 'emit');
         dispatchEvent(rightButton, 'click');
         tick();
-        expect(dialog.onRightButtonSelect.emit).toHaveBeenCalled();
+        expect(dialog.rightButtonSelect.emit).toHaveBeenCalled();
     }));
 
     it('Should set ARIA attributes.', () => {

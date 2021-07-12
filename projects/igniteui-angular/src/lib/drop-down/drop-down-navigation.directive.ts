@@ -30,7 +30,7 @@ export class IgxDropDownItemNavigationDirective implements IDropDownNavigationDi
      * }
      * ```
      */
-    get target(): IgxDropDownBaseDirective {
+    public get target(): IgxDropDownBaseDirective {
         return this._target;
     }
 
@@ -48,7 +48,7 @@ export class IgxDropDownItemNavigationDirective implements IDropDownNavigationDi
      * ```
      */
     @Input('igxDropDownItemNavigation')
-    set target(target: IgxDropDownBaseDirective) {
+    public set target(target: IgxDropDownBaseDirective) {
         this._target = target ? target : this.dropdown;
     }
 
@@ -56,7 +56,7 @@ export class IgxDropDownItemNavigationDirective implements IDropDownNavigationDi
      * Captures keydown events and calls the appropriate handlers on the target component
      */
     @HostListener('keydown', ['$event'])
-    handleKeyDown(event: KeyboardEvent) {
+    public handleKeyDown(event: KeyboardEvent) {
         if (event) {
             const key = event.key.toLowerCase();
             if (!this.target.collapsed) { // If dropdown is opened
@@ -106,28 +106,28 @@ export class IgxDropDownItemNavigationDirective implements IDropDownNavigationDi
     /**
      * Navigates to previous item
      */
-    onArrowDownKeyDown() {
+    public onArrowDownKeyDown() {
         this.target.navigateNext();
     }
 
     /**
      * Navigates to previous item
      */
-    onArrowUpKeyDown() {
+    public onArrowUpKeyDown() {
         this.target.navigatePrev();
     }
 
     /**
      * Navigates to target's last item
      */
-    onEndKeyDown() {
+    public onEndKeyDown() {
         this.target.navigateLast();
     }
 
     /**
      * Navigates to target's first item
      */
-    onHomeKeyDown() {
+    public onHomeKeyDown() {
         this.target.navigateFirst();
     }
 }

@@ -208,7 +208,7 @@ export class IgxActionStripComponent extends DisplayDensityBase implements After
      * @internal
      */
     public ngAfterViewInit() {
-        this.menu.onSelection.subscribe(($event) => {
+        this.menu.selection.subscribe(($event) => {
             const newSelection = ($event.newSelection as any).elementRef.nativeElement;
             let allButtons = [];
             this.actionButtons.forEach(actionButtons => {

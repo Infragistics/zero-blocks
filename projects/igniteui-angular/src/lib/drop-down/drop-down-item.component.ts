@@ -16,7 +16,7 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
     /**
      * @inheritdoc
      */
-    get focused(): boolean {
+    public get focused(): boolean {
         let focusedState = this._focused;
         if (this.hasIndex) {
             const focusedItem = this.selection.first_item(`${this.dropDown.id}-active`);
@@ -29,13 +29,13 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
     /**
      * @inheritdoc
      */
-    set focused(value: boolean) {
+    public set focused(value: boolean) {
         this._focused = value;
     }
     /**
      * @inheritdoc
      */
-    get selected(): boolean {
+    public get selected(): boolean {
         if (this.hasIndex) {
             const item = this.selection.first_item(`${this.dropDown.id}`);
             return item ? item.index === this._index && item.value === this.value : false;
@@ -46,7 +46,7 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
     /**
      * @inheritdoc
      */
-    set selected(value: boolean) {
+    public set selected(value: boolean) {
         if (this.isHeader) {
             return;
         }
@@ -57,7 +57,7 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
      * @hidden @internal
      */
     @HostBinding('attr.tabindex')
-    get setTabIndex() {
+    public get setTabIndex() {
         const shouldSetTabIndex = this.dropDown.allowItemsFocus && this.isSelectable;
         if (shouldSetTabIndex) {
             return 0;
@@ -69,7 +69,8 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
     /**
      * @inheritdoc
      */
-    clicked(event): void {
+
+    public clicked(event): void {
         if (!this.isSelectable) {
             this.ensureItemFocus();
             return;

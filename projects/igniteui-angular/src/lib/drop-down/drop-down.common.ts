@@ -48,7 +48,7 @@ export const IGX_DROPDOWN_BASE = new InjectionToken<IDropDownBase>('IgxDropDownB
  * @hidden
  */
 export interface IDropDownList extends DisplayDensityBase {
-    onSelection: EventEmitter<ISelectionEventArgs>;
+    selection: EventEmitter<ISelectionEventArgs>;
     width: string;
     height: string;
     id: string;
@@ -70,10 +70,10 @@ export interface IDropDownList extends DisplayDensityBase {
  */
 export interface IDropDownBase extends IDropDownList, IToggleView {
     selectedItem: any;
-    onOpening: EventEmitter<CancelableEventArgs>;
-    onOpened: EventEmitter<void>;
-    onClosing: EventEmitter<CancelableBrowserEventArgs>;
-    onClosed: EventEmitter<void>;
+    opening: EventEmitter<CancelableEventArgs>;
+    opened: EventEmitter<void>;
+    closing: EventEmitter<CancelableBrowserEventArgs>;
+    closed: EventEmitter<void>;
     allowItemsFocus?: boolean;
     setSelectedItem(index: number): void;
     selectItem(item: IgxDropDownItemBaseDirective, event?: Event): void;

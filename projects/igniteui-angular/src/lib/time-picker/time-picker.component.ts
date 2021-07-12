@@ -1247,7 +1247,7 @@ export class IgxTimePickerComponent extends PickerBaseDirective
                 owner: this
             };
 
-            this.toggleRef.onOpening.pipe(takeUntil(this._destroy$)).subscribe((event) => {
+            this.toggleRef.opening.pipe(takeUntil(this._destroy$)).subscribe((event) => {
                 this.opening.emit(event);
                 if (event.cancel) {
                     return;
@@ -1255,15 +1255,15 @@ export class IgxTimePickerComponent extends PickerBaseDirective
                 this.initializeContainer();
             });
 
-            this.toggleRef.onOpened.pipe(takeUntil(this._destroy$)).subscribe(() => {
+            this.toggleRef.opened.pipe(takeUntil(this._destroy$)).subscribe(() => {
                 this.opened.emit(args);
             });
 
-            this.toggleRef.onClosed.pipe(takeUntil(this._destroy$)).subscribe(() => {
+            this.toggleRef.closed.pipe(takeUntil(this._destroy$)).subscribe(() => {
                 this.closed.emit(args);
             });
 
-            this.toggleRef.onClosing.pipe(takeUntil(this._destroy$)).subscribe((event) => {
+            this.toggleRef.closing.pipe(takeUntil(this._destroy$)).subscribe((event) => {
                 this.closing.emit(event);
                 if (event.cancel) {
                     return;

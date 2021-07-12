@@ -121,7 +121,7 @@ export class IgxAutocompleteDirective extends IgxDropDownItemNavigationDirective
      * ```
      */
     @Input('igxAutocompleteSettings')
-    autocompleteSettings: AutocompleteOverlaySettings;
+    public autocompleteSettings: AutocompleteOverlaySettings;
 
     /** @hidden @internal */
     @HostBinding('attr.autocomplete')
@@ -154,19 +154,19 @@ export class IgxAutocompleteDirective extends IgxDropDownItemNavigationDirective
      * Emitted after item from the drop down is selected
      *
      * ```html
-     * <input igxInput [igxAutocomplete]="townsPanel" (onItemSelected)='itemSelected($event)' />
+     * <input igxInput [igxAutocomplete]="townsPanel" (itemSelected)='itemSelected($event)' />
      * ```
      */
     @Output()
-    public onItemSelected = new EventEmitter<AutocompleteItemSelectionEventArgs>();
+    public itemSelected = new EventEmitter<AutocompleteItemSelectionEventArgs>();
 
     /** @hidden @internal */
-    get nativeElement(): HTMLInputElement {
+    public get nativeElement(): HTMLInputElement {
         return this.elementRef.nativeElement;
     }
 
     /** @hidden @internal */
-    get parentElement(): HTMLElement {
+    public get parentElement(): HTMLElement {
         return this.group ? this.group.element.nativeElement : this.nativeElement;
     }
 
@@ -344,7 +344,7 @@ export class IgxAutocompleteDirective extends IgxDropDownItemNavigationDirective
                 this.target.close();
             }
         });
-        this.target.onSelection.pipe(takeUntil(this.destroy$)).subscribe(this.select.bind(this));
+        this.target.selection.pipe(takeUntil(this.destroy$)).subscribe(this.select.bind(this));
     }
 
     private get collapsed(): boolean {
@@ -358,7 +358,7 @@ export class IgxAutocompleteDirective extends IgxDropDownItemNavigationDirective
         value.cancel = true; // Disable selection in the drop down, because in autocomplete we do not save selection.
         const newValue = value.newSelection.value;
         const args: AutocompleteItemSelectionEventArgs = { value: newValue, cancel: false };
-        this.onItemSelected.emit(args);
+        this.itemSelected.emit(args);
         if (args.cancel) {
             return;
         }
