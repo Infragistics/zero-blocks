@@ -69,6 +69,7 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
     /**
      * @inheritdoc
      */
+
     public clicked(event): void {
         if (!this.isSelectable) {
             this.ensureItemFocus();

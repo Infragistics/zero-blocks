@@ -344,7 +344,7 @@ export class IgxAutocompleteDirective extends IgxDropDownItemNavigationDirective
                 this.target.close();
             }
         });
-        this.target.onSelection.pipe(takeUntil(this.destroy$)).subscribe(this.select.bind(this));
+        this.target.selection.pipe(takeUntil(this.destroy$)).subscribe(this.select.bind(this));
     }
 
     private get collapsed(): boolean {

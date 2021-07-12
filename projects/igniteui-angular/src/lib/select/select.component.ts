@@ -316,7 +316,7 @@ export class IgxSelectComponent extends IgxDropDownComponent implements IgxSelec
 
     /** @hidden @internal */
     public get selectedItem(): IgxSelectItemComponent {
-        return this.selection.first_item(this.id);
+        return this.selectionService.first_item(this.id);
     }
 
     private _onChangeCallback: (_: any) => void = noop;
@@ -326,12 +326,12 @@ export class IgxSelectComponent extends IgxDropDownComponent implements IgxSelec
         protected elementRef: ElementRef,
         protected cdr: ChangeDetectorRef,
         protected platform: PlatformUtil,
-        protected selection: IgxSelectionAPIService,
+        protected selectionService: IgxSelectionAPIService,
         @Inject(IgxOverlayService) protected overlayService: IgxOverlayService,
         @Optional() @Inject(DisplayDensityToken) protected _displayDensityOptions: IDisplayDensityOptions,
         @Optional() @Inject(IGX_INPUT_GROUP_TYPE) private _inputGroupType: IgxInputGroupType,
         private _injector: Injector) {
-        super(elementRef, cdr, platform, selection, _displayDensityOptions);
+        super(elementRef, cdr, platform, selectionService, _displayDensityOptions);
     }
 
     //#region ControlValueAccessor
@@ -376,7 +376,7 @@ export class IgxSelectComponent extends IgxDropDownComponent implements IgxSelec
         }
 
         const args: ISelectionEventArgs = { oldSelection, newSelection, cancel: false };
-        this.onSelection.emit(args);
+        this.selection.emit(args);
 
         if (args.cancel) {
             return;
@@ -527,7 +527,7 @@ export class IgxSelectComponent extends IgxDropDownComponent implements IgxSelec
     public ngOnDestroy() {
         this.destroy$.next(true);
         this.destroy$.complete();
-        this.selection.clear(this.id);
+        this.selectionService.clear(this.id);
     }
 
     /**
@@ -580,9 +580,9 @@ export class IgxSelectComponent extends IgxDropDownComponent implements IgxSelec
 
     private setSelection(item: IgxDropDownItemBaseDirective) {
         if (item && item.value !== undefined && item.value !== null) {
-            this.selection.set(this.id, new Set([item]));
+            this.selectionService.set(this.id, new Set([item]));
         } else {
-            this.selection.clear(this.id);
+            this.selectionService.clear(this.id);
         }
     }
 }

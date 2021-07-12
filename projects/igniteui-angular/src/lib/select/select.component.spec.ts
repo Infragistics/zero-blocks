@@ -216,7 +216,7 @@ describe('igxSelect', () => {
             expect(select.collapsed).toBeTruthy();
         }));
         it('should close dropdown on clicking selected item', fakeAsync(() => {
-            spyOn(select.onSelection, 'emit');
+            spyOn(select.selection, 'emit');
             select.items[1].selected = true;
             select.open();
             fixture.detectChanges();
@@ -234,7 +234,7 @@ describe('igxSelect', () => {
             tick();
             fixture.detectChanges();
             expect(select.collapsed).toBeTruthy();
-            expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+            expect(select.selection.emit).toHaveBeenCalledTimes(1);
         }));
         it('should toggle dropdown on toggle button click', fakeAsync(() => {
             const toggleBtn = fixture.debugElement.query(By.css('.' + CSS_CLASS_TOGGLE_BUTTON));
@@ -1188,10 +1188,10 @@ describe('igxSelect', () => {
                 const selectedItems = fixture.debugElement.nativeElement.querySelectorAll('.' + CSS_CLASS_SELECTED_ITEM);
                 expect(selectedItems.length).toEqual(1);
             }));
-            it('should properly emit onSelection event on item click', fakeAsync(() => {
+            it('should properly emit selection event on item click', fakeAsync(() => {
                 let selectedItemEl = selectList.children[5];
                 let selectedItem = select.items[5];
-                spyOn(select.onSelection, 'emit');
+                spyOn(select.selection, 'emit');
                 spyOn(select, 'selectItem').and.callThrough();
                 const args: ISelectionEventArgs = {
                     oldSelection: undefined,
@@ -1205,9 +1205,9 @@ describe('igxSelect', () => {
                 selectedItemEl.nativeElement.click();
                 tick();
                 fixture.detectChanges();
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 expect(select.selectItem).toHaveBeenCalledTimes(1);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
 
                 args.oldSelection = selectedItem;
                 selectedItem = select.items[10];
@@ -1219,13 +1219,13 @@ describe('igxSelect', () => {
                 selectedItemEl.nativeElement.click();
                 tick();
                 fixture.detectChanges();
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(2);
+                expect(select.selection.emit).toHaveBeenCalledTimes(2);
                 expect(select.selectItem).toHaveBeenCalledTimes(2);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
             }));
-            it('should properly emit onSelection event on item selected property setting', () => {
+            it('should properly emit selection event on item selected property setting', () => {
                 let selectedItem = select.items[3];
-                spyOn(select.onSelection, 'emit');
+                spyOn(select.selection, 'emit');
                 spyOn(select, 'selectItem').and.callThrough();
                 const args: ISelectionEventArgs = {
                     oldSelection: undefined,
@@ -1235,27 +1235,27 @@ describe('igxSelect', () => {
 
                 selectedItem.selected = true;
                 fixture.detectChanges();
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 expect(select.selectItem).toHaveBeenCalledTimes(1);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
 
                 args.oldSelection = selectedItem;
                 selectedItem = select.items[9];
                 selectedItem.selected = true;
                 args.newSelection = selectedItem;
                 fixture.detectChanges();
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(2);
+                expect(select.selection.emit).toHaveBeenCalledTimes(2);
                 expect(select.selectItem).toHaveBeenCalledTimes(2);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
             });
-            it('should properly emit onSelection/Close events on key interaction', fakeAsync(() => {
+            it('should properly emit selection/Close events on key interaction', fakeAsync(() => {
                 let selectedItem = select.items[3];
                 spyOn(select.opening, 'emit');
                 spyOn(select.opened, 'emit');
                 spyOn(select.closing, 'emit');
                 spyOn(select.closed, 'emit');
                 spyOn(select, 'close').and.callThrough();
-                spyOn(select.onSelection, 'emit');
+                spyOn(select.selection, 'emit');
                 spyOn(select, 'selectItem').and.callThrough();
                 const args: ISelectionEventArgs = {
                     oldSelection: undefined,
@@ -1278,17 +1278,17 @@ describe('igxSelect', () => {
                 navigateDropdownItems(enterKeyEvent);
                 expect(select.opening.emit).toHaveBeenCalledTimes(1);
                 expect(select.opened.emit).toHaveBeenCalledTimes(1);
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 expect(select.selectItem).toHaveBeenCalledTimes(1);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
                 expect(select.closing.emit).toHaveBeenCalledTimes(1);
                 expect(select.closed.emit).toHaveBeenCalledTimes(1);
                 expect(select.close).toHaveBeenCalledTimes(1);
 
                 // Correct event order
                 expect(select.opening.emit).toHaveBeenCalledBefore(select.opened.emit);
-                expect(select.opened.emit).toHaveBeenCalledBefore(select.onSelection.emit);
-                expect(select.onSelection.emit).toHaveBeenCalledBefore(select.closing.emit);
+                expect(select.opened.emit).toHaveBeenCalledBefore(select.selection.emit);
+                expect(select.selection.emit).toHaveBeenCalledBefore(select.closing.emit);
                 expect(select.closing.emit).toHaveBeenCalledBefore(select.closed.emit);
 
                 args.oldSelection = selectedItem;
@@ -1297,38 +1297,38 @@ describe('igxSelect', () => {
                 navigateDropdownItems(spaceKeyEvent);
                 expect(select.opening.emit).toHaveBeenCalledTimes(2);
                 expect(select.opened.emit).toHaveBeenCalledTimes(2);
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(2);
+                expect(select.selection.emit).toHaveBeenCalledTimes(2);
                 expect(select.selectItem).toHaveBeenCalledTimes(2);
                 expect(select.closing.emit).toHaveBeenCalledTimes(2);
                 expect(select.closed.emit).toHaveBeenCalledTimes(2);
                 expect(select.close).toHaveBeenCalledTimes(2);
             }));
-            it('should properly emit onSelection event on value setting', fakeAsync(() => {
-                spyOn(select.onSelection, 'emit');
+            it('should properly emit selection event on value setting', fakeAsync(() => {
+                spyOn(select.selection, 'emit');
                 spyOn(select, 'selectItem').and.callThrough();
 
                 // select.value = select.items[4].value.toString();
                 // fixture.detectChanges();
                 // tick();
-                // expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                // expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 // expect(select.selectItem).toHaveBeenCalledTimes(1);
-                // expect(select.onSelection.emit).toHaveBeenCalledWith(null);
+                // expect(select.selection.emit).toHaveBeenCalledWith(null);
 
                 // select.value = 'Padua';
                 // fixture.detectChanges();
-                // expect(select.onSelection.emit).toHaveBeenCalledTimes(2);
+                // expect(select.selection.emit).toHaveBeenCalledTimes(2);
                 // expect(select.selectItem).toHaveBeenCalledTimes(2);
-                // expect(select.onSelection.emit).toHaveBeenCalledWith(null);
+                // expect(select.selection.emit).toHaveBeenCalledWith(null);
 
-                // // onSelection should not be fired when value is set to non-existing item
+                // // selection should not be fired when value is set to non-existing item
                 // select.value = 'Ghost city';
                 // fixture.detectChanges();
-                // expect(select.onSelection.emit).toHaveBeenCalledTimes(2);
+                // expect(select.selection.emit).toHaveBeenCalledTimes(2);
                 // expect(select.selectItem).toHaveBeenCalledTimes(2);
             }));
-            it('should properly emit onSelection event using selectItem method', () => {
+            it('should properly emit selection event using selectItem method', () => {
                 let selectedItem = select.items[4];
-                spyOn(select.onSelection, 'emit');
+                spyOn(select.selection, 'emit');
                 const args: ISelectionEventArgs = {
                     oldSelection: undefined,
                     newSelection: selectedItem,
@@ -1337,39 +1337,39 @@ describe('igxSelect', () => {
 
                 select.selectItem(selectedItem);
                 fixture.detectChanges();
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
 
                 args.oldSelection = selectedItem;
                 selectedItem = select.items[14];
                 args.newSelection = selectedItem;
                 select.selectItem(selectedItem);
                 fixture.detectChanges();
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(2);
-                expect(select.onSelection.emit).toHaveBeenCalledWith(args);
+                expect(select.selection.emit).toHaveBeenCalledTimes(2);
+                expect(select.selection.emit).toHaveBeenCalledWith(args);
             });
 
-            it('should not emit onSelection when selection does not change', () => {
+            it('should not emit selection when selection does not change', () => {
                 const item = select.items[5];
-                spyOn(select.onSelection, 'emit');
+                spyOn(select.selection, 'emit');
                 select.selectItem(item);
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 select.selectItem(item);
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 select.selectItem(item);
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
                 select.selectItem(item);
-                expect(select.onSelection.emit).toHaveBeenCalledTimes(1);
+                expect(select.selection.emit).toHaveBeenCalledTimes(1);
             });
 
             it('should not select header items passed through selectItem method', () => {
                 const item = select.items[5];
-                spyOn(select.onSelection, 'emit');
+                spyOn(select.selection, 'emit');
                 expect(select.selectedItem).toBeFalsy();
                 item.isHeader = true;
                 select.selectItem(item);
                 expect(select.selectedItem).toBeFalsy();
-                expect(select.onSelection.emit).not.toHaveBeenCalled();
+                expect(select.selection.emit).not.toHaveBeenCalled();
             });
         });
 

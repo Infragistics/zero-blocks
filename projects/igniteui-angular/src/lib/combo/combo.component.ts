@@ -180,7 +180,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
      * @hidden @internal
      */
     @ViewChild('searchInput')
-    public searchInput: ElementRef<HTMLInputElement> = null;
+    public searchInputElement: ElementRef<HTMLInputElement> = null;
 
     /**
      * @hidden @internal
@@ -1123,7 +1123,7 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
         this.selectItems(this.valueKey !== null && this.valueKey !== undefined ?
             [args.addedItem[this.valueKey]] : [args.addedItem], false);
         this.customValueFlag = false;
-        this.searchInput.nativeElement.focus();
+        this.searchInputElement.nativeElement.focus();
         this.dropdown.focusedItem = null;
         this.virtDir.scrollTo(0);
     }
@@ -1132,8 +1132,8 @@ export class IgxComboComponent extends DisplayDensityBase implements IgxComboBas
      * @hidden @internal
      */
     public focusSearchInput(opening?: boolean): void {
-        if (this.displaySearchInput && this.searchInput) {
-            this.searchInput.nativeElement.focus();
+        if (this.displaySearchInput && this.searchInputElement) {
+            this.searchInputElement.nativeElement.focus();
         } else {
             if (opening) {
                 this.dropdownContainer.nativeElement.focus();

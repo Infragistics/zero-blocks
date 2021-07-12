@@ -119,7 +119,7 @@ export abstract class BaseToolbarDirective implements OnDestroy {
             this._setupListeners(toggleRef);
             const setHeight = () =>
                 actions.columnsAreaMaxHeight = this.columnListHeight ?? `${Math.max(this.grid.calcHeight * 0.5, 200)}px`;
-            toggleRef.onOpening.pipe(first()).subscribe(setHeight);
+            toggleRef.opening.pipe(first()).subscribe(setHeight);
         }
         toggleRef.toggle({ ...this.overlaySettings, ...{ target: anchorElement, outlet: this.grid.outlet,
             excludeFromOutsideClick: [anchorElement] }});
@@ -141,11 +141,11 @@ export abstract class BaseToolbarDirective implements OnDestroy {
         }
         /** The if statement prevents emitting open and close events twice  */
         if (toggleRef.collapsed) {
-            toggleRef.onOpening.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.opening.emit(event));
-            toggleRef.onOpened.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.opened.emit(event));
+            toggleRef.opening.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.opening.emit(event));
+            toggleRef.opened.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.opened.emit(event));
         } else {
-            toggleRef.onClosing.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.closing.emit(event));
-            toggleRef.onClosed.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.closed.emit(event));
+            toggleRef.closing.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.closing.emit(event));
+            toggleRef.closed.pipe(first(), takeUntil(this.$destroyer)).subscribe((event) => this.closed.emit(event));
         }
     }
 }

@@ -300,9 +300,9 @@ export class IgxDropDownItemBaseDirective implements DoCheck {
      * @hidden
      * @internal
      */
-    @HostListener('click', ['$event'])
-    public clicked(): void {
-    }
+     @HostListener('click', ['$event'])
+     public clicked(event): void { // eslint-disable-line no-eval
+     }
 
     /**
      * @hidden

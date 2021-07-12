@@ -663,7 +663,7 @@ describe('IgxAutocomplete', () => {
             spyOn(autocomplete, 'close').and.callThrough();
             spyOn(autocomplete.target, 'close').and.callThrough();
             spyOn(autocomplete.target, 'open').and.callThrough();
-            spyOn(autocomplete.target.onOpening, 'emit').and.callThrough();
+            spyOn(autocomplete.target.opening, 'emit').and.callThrough();
 
             UIInteractions.setInputElementValue(input, startsWith, fixture);
             tick();
@@ -678,8 +678,8 @@ describe('IgxAutocomplete', () => {
             tick();
             expect(autocomplete.onInput).toHaveBeenCalledTimes(2);
             expect(autocomplete.target.open).toHaveBeenCalledTimes(1);
-            // onOpening is emitted once, so no impact on UX
-            expect(autocomplete.target.onOpening.emit).toHaveBeenCalledTimes(1);
+            // opening is emitted once, so no impact on UX
+            expect(autocomplete.target.opening.emit).toHaveBeenCalledTimes(1);
             // keeps dropdown opened
             expect(autocomplete.close).toHaveBeenCalledTimes(0);
             expect(autocomplete.target.close).toHaveBeenCalledTimes(0);
@@ -706,8 +706,8 @@ describe('IgxAutocomplete', () => {
             fixture.detectChanges();
             tick();
             expect(autocomplete.onInput).toHaveBeenCalledTimes(3);
-            // initially calls open 2 times. This has no effect on UX, as dropdown.onOpening is not emitted
-            expect(autocomplete.target.onOpening.emit).toHaveBeenCalledTimes(2);
+            // initially calls open 2 times. This has no effect on UX, as dropdown.opening is not emitted
+            expect(autocomplete.target.opening.emit).toHaveBeenCalledTimes(2);
             expect(autocomplete.target.open).toHaveBeenCalledTimes(2);
         }));
         it('Should navigate through dropdown items with arrow up/down keys', fakeAsync(() => {

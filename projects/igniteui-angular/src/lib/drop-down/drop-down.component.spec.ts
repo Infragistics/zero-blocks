@@ -97,7 +97,7 @@ describe('IgxDropDown ', () => {
             (dropdown as any).virtDir = mockForOf;
             spyOnProperty(dropdown, 'items', 'get').and.returnValue(data);
             spyOn(dropdown.selection, 'emit').and.callThrough();
-            spyOn(dropdown.onClosed, 'emit').and.callThrough();
+            spyOn(dropdown.closed, 'emit').and.callThrough();
 
             dropdown.selectItem(data[1]);
             const selected = dropdown.selectedItem;
@@ -221,57 +221,57 @@ describe('IgxDropDown ', () => {
                 expect(dropdown.onToggleClosed).toHaveBeenCalledTimes(1);
             }));
             it('#3810 - should not emit events when calling open on opened dropdown', fakeAsync(() => {
-                spyOn(dropdown.onOpening, 'emit').and.callThrough();
-                spyOn(dropdown.onOpened, 'emit').and.callThrough();
+                spyOn(dropdown.opening, 'emit').and.callThrough();
+                spyOn(dropdown.opened, 'emit').and.callThrough();
 
                 dropdown.open();
                 tick();
                 fixture.detectChanges();
 
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(1);
 
                 dropdown.open();
                 tick();
                 fixture.detectChanges();
 
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(1);
             }));
-            it('#2798 - should allow canceling of open/close through onOpening/onClosing events', fakeAsync(() => {
+            it('#2798 - should allow canceling of open/close through opening/closing events', fakeAsync(() => {
                 const toggle: IgxToggleDirective = (dropdown as any).toggleDirective;
-                const onOpeningSpy = spyOn(dropdown.onOpening, 'emit').and.callThrough();
-                const onOpenedSpy = spyOn(dropdown.onOpened, 'emit').and.callThrough();
-                spyOn(dropdown.onClosing, 'emit').and.callThrough();
-                spyOn(dropdown.onClosed, 'emit').and.callThrough();
+                const onOpeningSpy = spyOn(dropdown.opening, 'emit').and.callThrough();
+                const onOpenedSpy = spyOn(dropdown.opened, 'emit').and.callThrough();
+                spyOn(dropdown.closing, 'emit').and.callThrough();
+                spyOn(dropdown.closed, 'emit').and.callThrough();
 
-                dropdown.onClosing.pipe(take(1)).subscribe((e: CancelableEventArgs) => e.cancel = true);
-
-                dropdown.toggle();
-                tick();
-                fixture.detectChanges();
-
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(1);
+                dropdown.closing.pipe(take(1)).subscribe((e: CancelableEventArgs) => e.cancel = true);
 
                 dropdown.toggle();
                 tick();
                 fixture.detectChanges();
 
-                expect(dropdown.onClosing.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onClosed.emit).toHaveBeenCalledTimes(0);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(1);
+
+                dropdown.toggle();
+                tick();
+                fixture.detectChanges();
+
+                expect(dropdown.closing.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.closed.emit).toHaveBeenCalledTimes(0);
 
                 toggle.close();
                 fixture.detectChanges();
                 onOpeningSpy.calls.reset();
                 onOpenedSpy.calls.reset();
 
-                dropdown.onOpening.pipe(take(1)).subscribe((e: CancelableEventArgs) => e.cancel = true);
+                dropdown.opening.pipe(take(1)).subscribe((e: CancelableEventArgs) => e.cancel = true);
                 dropdown.toggle();
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(0);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(0);
             }));
             it('should select item by SPACE/ENTER keys', fakeAsync(() => {
                 dropdown.toggle();
@@ -318,10 +318,10 @@ describe('IgxDropDown ', () => {
             }));
             it('should close the dropdown and not change selection by pressing ESC key', fakeAsync(() => {
                 spyOn(dropdown.selection, 'emit').and.callThrough();
-                spyOn(dropdown.onOpening, 'emit').and.callThrough();
-                spyOn(dropdown.onOpened, 'emit').and.callThrough();
-                spyOn(dropdown.onClosing, 'emit').and.callThrough();
-                spyOn(dropdown.onClosed, 'emit').and.callThrough();
+                spyOn(dropdown.opening, 'emit').and.callThrough();
+                spyOn(dropdown.opened, 'emit').and.callThrough();
+                spyOn(dropdown.closing, 'emit').and.callThrough();
+                spyOn(dropdown.closed, 'emit').and.callThrough();
 
                 dropdown.toggle();
                 tick();
@@ -340,11 +340,11 @@ describe('IgxDropDown ', () => {
                 tick();
                 fixture.detectChanges();
                 expect(dropdown.collapsed).toEqual(true);
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(1);
                 expect(dropdown.selection.emit).toHaveBeenCalledTimes(0);
-                expect(dropdown.onClosing.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onClosed.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.closing.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.closed.emit).toHaveBeenCalledTimes(1);
             }));
             it('should navigate through items using Up/Down/Home/End keys', fakeAsync(() => {
                 dropdown.toggle();
@@ -1191,45 +1191,45 @@ describe('IgxDropDown ', () => {
                 const tabs = fixture.debugElement.query(By.css(CSS_CLASS_TABS));
                 const input = fixture.debugElement.query(By.css('input'));
                 const img = fixture.debugElement.query(By.css('img'));
-                spyOn(dropdown.onOpening, 'emit').and.callThrough();
-                spyOn(dropdown.onOpened, 'emit').and.callThrough();
-                spyOn(dropdown.onClosing, 'emit').and.callThrough();
-                spyOn(dropdown.onClosed, 'emit').and.callThrough();
+                spyOn(dropdown.opening, 'emit').and.callThrough();
+                spyOn(dropdown.opened, 'emit').and.callThrough();
+                spyOn(dropdown.closing, 'emit').and.callThrough();
+                spyOn(dropdown.closed, 'emit').and.callThrough();
                 tabs.triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(1);
                 let dropdownItems = fixture.debugElement.queryAll(By.css(`.${CSS_CLASS_ITEM}`));
                 dropdownItems[2].triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onClosing.emit).toHaveBeenCalledTimes(1);
-                expect(dropdown.onClosed.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.closing.emit).toHaveBeenCalledTimes(1);
+                expect(dropdown.closed.emit).toHaveBeenCalledTimes(1);
 
                 input.triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(2);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(2);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(2);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(2);
                 dropdownItems = fixture.debugElement.queryAll(By.css(`.${CSS_CLASS_ITEM}`));
                 dropdownItems[1].triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onClosing.emit).toHaveBeenCalledTimes(2);
-                expect(dropdown.onClosed.emit).toHaveBeenCalledTimes(2);
+                expect(dropdown.closing.emit).toHaveBeenCalledTimes(2);
+                expect(dropdown.closed.emit).toHaveBeenCalledTimes(2);
 
                 img.triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onOpening.emit).toHaveBeenCalledTimes(3);
-                expect(dropdown.onOpened.emit).toHaveBeenCalledTimes(3);
+                expect(dropdown.opening.emit).toHaveBeenCalledTimes(3);
+                expect(dropdown.opened.emit).toHaveBeenCalledTimes(3);
                 dropdownItems = fixture.debugElement.queryAll(By.css(`.${CSS_CLASS_ITEM}`));
                 dropdownItems[0].triggerEventHandler('click', UIInteractions.getMouseEvent('click'));
                 tick();
                 fixture.detectChanges();
-                expect(dropdown.onClosing.emit).toHaveBeenCalledTimes(3);
-                expect(dropdown.onClosed.emit).toHaveBeenCalledTimes(3);
+                expect(dropdown.closing.emit).toHaveBeenCalledTimes(3);
+                expect(dropdown.closed.emit).toHaveBeenCalledTimes(3);
             }));
         });
     });
@@ -1338,8 +1338,8 @@ class DoubleIgxDropDownComponent implements OnInit {
         </igx-tab-item>
     </igx-tabs>
     <igx-drop-down igxDropDownItemNavigation (onSelection)="selection($event)"
-    (onOpening)="onToggleOpening()" (onOpened)="onToggleOpened()"
-    (onClosing)="onToggleClosing()" (onClosed)="onToggleClosed()" [width]="'400px'" [height]="'400px'">
+    (opening)="onToggleOpening()" (opened)="onToggleOpened()"
+    (closing)="onToggleClosing()" (closed)="onToggleClosed()" [width]="'400px'" [height]="'400px'">
         <igx-drop-down-item *ngFor="let item of items">
             {{ item.field }}
         </igx-drop-down-item>
