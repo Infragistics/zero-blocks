@@ -202,7 +202,7 @@ export abstract class IgxDropDownBaseDirective extends DisplayDensityBase implem
      * @param newSelection the item selected
      * @param event the event that triggered the call
      */
-    public selectItem(newSelection?: IgxDropDownItemBaseDirective, event?: Event) {
+    public selectItem(newSelection?: IgxDropDownItemBaseDirective) {
         this.selection.emit({
             newSelection,
             oldSelection: null,

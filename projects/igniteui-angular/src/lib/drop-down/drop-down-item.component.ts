@@ -57,7 +57,7 @@ export class IgxDropDownItemComponent extends IgxDropDownItemBaseDirective {
      * @hidden @internal
      */
     @HostBinding('attr.tabindex')
-    publicget setTabIndex() {
+    public get setTabIndex() {
         const shouldSetTabIndex = this.dropDown.allowItemsFocus && this.isSelectable;
         if (shouldSetTabIndex) {
             return 0;
