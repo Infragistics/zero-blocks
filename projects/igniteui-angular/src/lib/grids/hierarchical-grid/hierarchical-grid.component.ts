@@ -38,6 +38,7 @@ import { IgxGridToolbarDirective, IgxGridToolbarTemplateContext } from '../toolb
 import { IgxGridCRUDService } from '../common/crud.service';
 import { RowType } from '../common/row.interface';
 import { IgxHierarchicalGridRow } from '../grid-public-row';
+import { IgxPaginatorComponent } from '../../paginator/paginator.component';
 
 let NEXT_ID = 0;
 
@@ -87,8 +88,15 @@ export class IgxHierarchicalGridComponent extends IgxHierarchicalGridBaseDirecti
     @ContentChild(IgxGridToolbarDirective, { read: TemplateRef, static: true })
     public toolbarTemplate: TemplateRef<IgxGridToolbarTemplateContext>;
 
+    /** @hidden @internal */
+    @ContentChildren(IgxPaginatorComponent, {descendants: true})
+    public paginatorList: QueryList<IgxPaginatorComponent>;
+
     @ViewChild('toolbarOutlet', { read: ViewContainerRef })
     public toolbarOutlet: ViewContainerRef;
+
+    @ViewChild('paginatorOutlet', { read: ViewContainerRef })
+    public paginatorOutlet: ViewContainerRef;
     /**
      * @hidden
      */
@@ -193,6 +201,12 @@ export class IgxHierarchicalGridComponent extends IgxHierarchicalGridBaseDirecti
         return this._data;
     }
 
+    /** @hidden @internal */
+    public get paginator() {
+        const id = this.id;
+        return  (!this.parentIsland && this.paginationComponents?.first) || this.rootGrid.paginatorList?.find((pg) =>
+            pg.nativeElement.offsetParent?.id === id);
+    }
 
     /**
      * Sets an array of objects containing the filtered data in the `IgxHierarchicalGridComponent`.

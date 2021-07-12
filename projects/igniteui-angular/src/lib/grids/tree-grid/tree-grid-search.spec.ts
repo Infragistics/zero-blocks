@@ -352,9 +352,10 @@ describe('IgxTreeGrid - search API #tGrid', () => {
         });
 
         it('findNext should navigate search highlights with paging', async () => {
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             treeGrid.expansionDepth = Infinity;
             treeGrid.perPage = 5;
-            treeGrid.paging = true;
             await wait(50);
             fix.detectChanges();
 
@@ -374,8 +375,9 @@ describe('IgxTreeGrid - search API #tGrid', () => {
         });
 
         it('findNext should navigate search highlights with paging and collapsed rows', async () => {
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             treeGrid.perPage = 5;
-            treeGrid.paging = true;
             await wait(50);
             fix.detectChanges();
 

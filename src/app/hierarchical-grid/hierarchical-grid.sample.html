@@ -1,27 +1,31 @@
 <div class="hgrid-sample">
     <h4 class="sample-title">Sample One</h4>
+    <button (click)="log()">Layout</button>
     <div class="density-chooser" style="margin-bottom: 16px">
         <igx-buttongroup [values]="displayDensities" (selected)="selectDensity($event)"
             style="display: block; width: 500px"></igx-buttongroup>
     </div>
     <button igxButton="raised" (click)="getState()">Get state</button>
-    <igx-hierarchical-grid #grid1 [data]="localData" [showExpandAll]="true" [pinning]="{rows: 0}" [hasChildrenKey]='"hasChild"' class="hgrid"
-        [displayDensity]="density" [rowSelection]="selectionMode" [autoGenerate]="false" [allowFiltering]="true"
-        [paging]="true" [rowDraggable]="true" [height]="'600px'" [width]="'800px'" [expandChildren]="rootExpanded"
-        #hGrid>
+    <igx-hierarchical-grid #grid1 [data]="localData" [showExpandAll]="true" [pinning]="{rows: 0}"
+        [hasChildrenKey]='"hasChild"' class="hgrid" [displayDensity]="density" [rowSelection]="selectionMode"
+        [autoGenerate]="false" [allowFiltering]="true" [rowDraggable]="true" [height]="'1000px'" [width]="'800px'"
+        [expandChildren]="rootExpanded" #hGrid>
 
         <igx-grid-toolbar>
             <app-grid-search-box [grid]="grid1" [style.width]="'400px'"></app-grid-search-box>
             <igx-grid-toolbar-actions>
-               <igx-grid-toolbar-pinning></igx-grid-toolbar-pinning>
-               <igx-grid-toolbar-hiding></igx-grid-toolbar-hiding>
-               <igx-grid-toolbar-exporter></igx-grid-toolbar-exporter>
+                <igx-grid-toolbar-pinning></igx-grid-toolbar-pinning>
+                <igx-grid-toolbar-hiding></igx-grid-toolbar-hiding>
+                <igx-grid-toolbar-exporter></igx-grid-toolbar-exporter>
             </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
+        <igx-grid-footer>Footer</igx-grid-footer>
+        <igx-paginator>
+        </igx-paginator>
         <igx-column width="150px" [filterable]="false">
             <ng-template igxCell let-cell="cell" let-val>
-                <igx-icon class="pin-icon" (mouseup)="togglePining(cell.row, $event)"
-                family="imx-icons" name="{{cell.row.pinned ? 'unpin-left' : 'pin-left'}}">
+                <igx-icon class="pin-icon" (mouseup)="togglePining(cell.row, $event)" family="imx-icons"
+                    name="{{cell.row.pinned ? 'unpin-left' : 'pin-left'}}">
                 </igx-icon>
             </ng-template>
         </igx-column>
@@ -42,10 +46,12 @@
         <ng-template igxRowCollapsedIndicator>
             <igx-icon role="button">add</igx-icon>
         </ng-template>
-        <igx-row-island [rowDraggable]="true" [height]='"1200px"' [showExpandAll]='true' [key]="'childData'"
-            [autoGenerate]="false" [allowFiltering]='false' [rowSelection]='selectionMode'
+        <igx-row-island [rowDraggable]="true" [height]='"400px"' [showExpandAll]='true' [key]="'childData'"
+            [autoGenerate]="false" [allowFiltering]='true' [rowSelection]='selectionMode'
             [expandChildren]="firstLevelExpanded" #layout1>
-            <igx-column field="ID" [hasSummary]='true' [dataType]="'number'"></igx-column>
+            <igx-paginator *igxPaginator>
+            </igx-paginator>
+            <igx-column field="ID" [hasSummary]='false' [dataType]="'number'"></igx-column>
             <igx-column-group header="Information2">
                 <igx-column field="ChildLevels" [resizable]="true" [groupable]="true"></igx-column>
                 <igx-column field="ProductName" [resizable]="true" [groupable]="true"></igx-column>
@@ -73,9 +79,11 @@
                 <igx-row-island [key]="'childData2'" [autoGenerate]="false" [rowSelection]='selectionMode'>
                     <igx-column field="ChildLevels" [groupable]="true" [hasSummary]='true'></igx-column>
                     <igx-column field="ProductName" [groupable]="true" [hasSummary]='true'></igx-column>
+                    <igx-paginator *igxPaginator [perPage]="5"></igx-paginator>
                 </igx-row-island>
-
+                <igx-paginator *igxPaginator [perPage]="5"></igx-paginator>
             </igx-row-island>
+            <igx-paginator *igxPaginator [perPage]="5"></igx-paginator>
         </igx-row-island>
         <!-- <igx-row-island [key]="'childData2'" [autoGenerate]="false" [rowSelection]='selectionMode' >
                 <igx-column field="ChildLevels" [groupable]="true"></igx-column>
@@ -87,6 +95,7 @@
                 Moving parent {{data.ProductName}}!
             </div>
         </ng-template>
+        <igx-paginator></igx-paginator>
     </igx-hierarchical-grid>
 
     <h4 class="sample-title">Sample two</h4>
@@ -137,7 +146,7 @@
     <div class="sample-actions">
         <button igxButton="raised" (click)='LoadMoreColumns()'>Add columns runtime</button>
         <button igxButton="raised" (click)='changeData()'>Change data runtime</button>
-        <button  igxButton="raised" (click)='changeHeaderRI(ri1, 0)'>Change child col header 1</button>
+        <button igxButton="raised" (click)='changeHeaderRI(ri1, 0)'>Change child col header 1</button>
         <button igxButton="raised" (click)='changeHeaderRI(ri1, 1)'>Change child col header 2</button>
     </div>
     <igx-hierarchical-grid [data]="localData1" [autoGenerate]="false" [height]="'600px'" [width]="'800px'" #hGrid2>
@@ -147,7 +156,7 @@
         <igx-column *ngFor="let c of columns" [field]="c"></igx-column>
         <igx-row-island #ri1 [key]="'childData'" [autoGenerate]="false" [rowSelection]='selectionMode'
             [allowFiltering]="true">
-            <igx-column field="ID"  header='ID' [hasSummary]='true' [dataType]="'number'"></igx-column>
+            <igx-column field="ID" header='ID' [hasSummary]='true' [dataType]="'number'"></igx-column>
             <igx-column *ngFor="let c of childColumns" [field]="c"></igx-column>
         </igx-row-island>
     </igx-hierarchical-grid>

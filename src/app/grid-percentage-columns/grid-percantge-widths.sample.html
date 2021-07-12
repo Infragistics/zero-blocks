@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="sample-content">
         <div class="sample-column">
-            <igx-grid [data]="data" [locale]="locale" [allowFiltering]="true" [filterMode]="'excelStyleFilter'" displayDensity="comfortable" width="100%" height="600px" [paging]="true" [perPage]="10">
+            <igx-grid [data]="data" [locale]="locale" [allowFiltering]="true" [filterMode]="'excelStyleFilter'" displayDensity="comfortable" width="100%" height="600px">
                 <igx-column field="ProductName" [pinned]="true" [movable]="true" header="Product Name" width="19%" [dataType]="'string'" [sortable]="true" [hasSummary]="false" [editable]="true" [filterable]="true" [resizable]="true">
                 </igx-column>
                 <igx-column field="UnitsInStock" [pinned]="false" [movable]="true"  header="Units In Stock" width="19%" dataType="currency" [pipeArgs]="pipeArgs" [sortable]="true" [hasSummary]="true" [editable]="true" [filterable]="true" [resizable]="true">
@@ -16,6 +16,7 @@
                 </igx-column>
                 <igx-column field="ReorderLevel" header="Reorder Level" [movable]="true" [resizable]="true" dataType="percent" [pipeArgs]="pipeArgs" [hasSummary]="true" width="19%" [sortable]="false"  [editable]="true" >
                 </igx-column>
+                <igx-paginator [perPage]="10"></igx-paginator>
             </igx-grid>
         </div>
     </div>

@@ -86,7 +86,7 @@
         </div>
         <app-grid-with-transactions>
             <igx-grid #gridRowEditTransaction [data]="data" [primaryKey]="'ProductID'" width="900px" height="700px"
-                [rowEditable]="true" [paging]="true" [perPage]="5" (rowEdit)="rowEdit($event)" (rowEditDone)="rowEditDone($event)"
+                [rowEditable]="true" (rowEdit)="rowEdit($event)" (rowEditDone)="rowEditDone($event)"
                 (rowEditExit)="rowEditExit($event)" (rowEditEnter)="rowEditEnter($event)"
                 (cellEditEnter)="cellEnterEditMode($event)" (cellEdit)="cellEdit($event)" (cellEditDone)="cellEditDone($event)"
                 (cellEditExit)="cellEditExit($event)">
@@ -157,6 +157,7 @@
                     <button igxButton igxRowEditTabStop (click)="endEdit(false, $event)">Cancel</button>
                     <button igxButton igxRowEditTabStop (click)="endEdit(true, $event)">Apply</button>
                 </ng-template>
+                <igx-paginator [perPage]="5"></igx-paginator>
             </igx-grid>
         </app-grid-with-transactions>
         <button (click)="addRow('gridRowEditTransaction')">Add Row</button>

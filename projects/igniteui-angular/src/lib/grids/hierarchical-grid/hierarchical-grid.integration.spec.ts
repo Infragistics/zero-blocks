@@ -441,7 +441,9 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
 
     describe('Paging', () => {
         it('should work on data records only when paging is enabled and should not be affected by child grid rows.', fakeAsync(() => {
-            hierarchicalGrid.paging = true;
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
+            hierarchicalGrid.notifyChanges();
             fixture.detectChanges();
 
             expect(hierarchicalGrid.dataView.length).toEqual(15);
@@ -464,7 +466,7 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         }));
 
         it('should preserve expansion states after changing pages.', fakeAsync(() => {
-            hierarchicalGrid.paging = true;
+            fixture.componentInstance.paging = true;
             fixture.detectChanges();
 
             let dataRows = hierarchicalGrid.dataRowList.toArray() as IgxHierarchicalRowComponent[];
@@ -510,8 +512,9 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         it('should allow scrolling to the last row after page size has been changed and rows are expanded.', fakeAsync(() => {
             /* it's better to avoid scrolling and only check for scrollbar availability */
             /* scrollbar doesn't update its visibility in fakeAsync tests */
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
             hierarchicalGrid.perPage = 20;
-            hierarchicalGrid.paging = true;
             hierarchicalGrid.height = '800px';
             fixture.componentInstance.rowIsland.height = '200px';
             tick();
@@ -542,7 +545,8 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
 
         it('should correctly hide/show vertical scrollbar after page is changed.', (async () => {
             /* scrollbar doesn't update its visibility in fakeAsync tests */
-            hierarchicalGrid.paging = true;
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
             hierarchicalGrid.perPage = 5;
             fixture.detectChanges();
 
@@ -572,9 +576,10 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
 
     describe('Hiding', () => {
         it('should leave no feature UI elements when all columns are hidden', fakeAsync(() => {
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
             hierarchicalGrid.rowSelection = GridSelectionMode.multiple;
             hierarchicalGrid.rowDraggable = true;
-            hierarchicalGrid.paging = true;
             tick(DEBOUNCE_TIME);
             fixture.detectChanges();
 
@@ -953,10 +958,13 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         });
 
         it('should render paging with correct data and rows be correctly paged.', () => {
-            hierarchicalGrid.paging = true;
-            hierarchicalGrid.perPage = 5;
             hierarchicalGrid.height = '700px';
             fixture.detectChanges();
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
+            hierarchicalGrid.perPage = 5;
+            fixture.detectChanges();
+
 
             let rows = HierarchicalGridFunctions.getHierarchicalRows(fixture);
             const paginator = fixture.debugElement.query(By.directive(IgxPaginatorComponent));
@@ -1052,7 +1060,8 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         });
 
         it('should correctly apply paging state for grid and paginator when there are pinned rows.', fakeAsync(() => {
-            hierarchicalGrid.paging = true;
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
             hierarchicalGrid.perPage = 5;
             hierarchicalGrid.height = '700px';
             fixture.detectChanges();
@@ -1094,7 +1103,8 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         }));
 
         it('should have the correct records shown for pages with pinned rows', () => {
-            hierarchicalGrid.paging = true;
+            fixture.componentInstance.paging = true;
+            fixture.detectChanges();
             hierarchicalGrid.perPage = 6;
             hierarchicalGrid.height = '700px';
             fixture.detectChanges();

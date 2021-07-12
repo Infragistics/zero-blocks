@@ -61,12 +61,27 @@ All notable changes for each version of this project will be documented in this 
     ```
 - `IgxExcelExporterService`
     - Added support for exporting the grids' multi-column headers to **Excel**. By default, the multi-column headers would be exported but this behavior can be controlled by the `ignoreMultiColumnHeaders` option off the IgxExcelExporterOptions object.
-    
 
 - `IgxDateTimeEditor`, `IgxMask`, `IgxDatePicker`, `IgxTimePicker`, `IgxDateRangePicker`
     - Added IME input support. When typing in an Asian language input, the control will display input method compositions and candidate lists directly in the control’s editing area, and immediately re-flow surrounding text as the composition ends.
 
 ### General
+- `IgxGridComponent`
+    - The following properties are deprecated:
+        - `paging`
+        - `perPage`
+        - `page`
+        - `totalPages`
+        - `isFirstPage`
+        - `isLastPage`
+        - `pageChange`
+        - `perPageChange`
+        - `pagingDone`
+    - The following methods, also are deprecated:
+        - `nextPage()`
+        - `previousPage()`
+    -  **Breaking Change** the following property has been removed
+        - `paginationTemplate`
 - `IgxPaginatorComponent`
     - Deprecated properties `selectLabel` and `prepositionPage` are now removed;
     -  **Breaking Change** - the following properties are removed
@@ -76,7 +91,7 @@ All notable changes for each version of this project will be documented in this 
         - `dropdownHidden`
 - `IgxSnackbarComponent`
     - Deprecated property `message` is now removed;
-    - **Breaking Change** - the `snackbarAnimationStarted` and `snackbarAnimationDone` methods are now removed. The `animationStarted` and `animationDone` events now provide reference to the `ToggleViewEventArgs` interface as an argument and are emitted by the `onOpened` and `onClosed` events of the `IgxToggleDirective`. 
+    - **Breaking Change** - the `snackbarAnimationStarted` and `snackbarAnimationDone` methods are now removed. The `animationStarted` and `animationDone` events now provide reference to the `ToggleViewEventArgs` interface as an argument and are emitted by the `onOpened` and `onClosed` events of the `IgxToggleDirective`.
 - `IgxToastComponent`
     - Deprecated property `message` is now removed;
     - **Breaking Change** - The `isVisibleChange` event now provides reference to the `ToggleViewEventArgs` interface as an argument.

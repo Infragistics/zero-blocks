@@ -32,7 +32,7 @@
     </div>
     <div class="grid-wrapper">
         <igx-grid #grid [rowDraggable]="true" (rowDragStart)="onRowDragStart($event)"
-        (onRowDragEnd)="onRowDragEnd($event)" [data]="data" [pinning]="pinningConfig" [rowEditable]="true" [allowFiltering]='true' [primaryKey]='"ID"' [paging]="true" [width]="'800px'" [height]="'600px'" [rowSelection]="'multiple'">
+        (onRowDragEnd)="onRowDragEnd($event)" [data]="data" [pinning]="pinningConfig" [rowEditable]="true" [allowFiltering]='true' [primaryKey]='"ID"' [width]="'800px'" [height]="'600px'" [rowSelection]="'multiple'">
             <ng-template igxGridDetail let-dataItem>
                 <div>
                     <div><span class='categoryStyle'>Country:</span> {{dataItem.Country}}</div>
@@ -47,6 +47,7 @@
                     <igx-icon family="material">{{dragIcon}}{{countIcon}}</igx-icon> 
                 </div>
             </ng-template>
+            <igx-paginator></igx-paginator>
         </igx-grid>
     </div>
     <div class="log-wrapper">
@@ -97,9 +98,7 @@
     <div class="grid-wrapper">
         <igx-tree-grid #treeGridHier
             id="testTreeGrid"
-            [pinning]="pinningConfig"
-            [paging]="true"
-            [perPage]="5"
+            [pinning]="pinningConfig"            
             [width]="'900px'" [height]="'500px'"
             [data]="treeGridHierData"
             childDataKey="ChildCompanies"
@@ -111,6 +110,8 @@
             [sortable]="true" [filterable]="true" [editable]="true" [hidden]="c.hidden" [hasSummary]="c.summary"
             [minWidth]="c.minWidth" [maxWidth]="c.maxWidth">
         </igx-column>
+        
+        <igx-paginator [perPage]="5"></igx-paginator>
         </igx-tree-grid>
     </div>
     <div class="log-wrapper">
@@ -159,7 +160,6 @@
     </div>
     <div class="grid-wrapper">
         <igx-tree-grid #treeGrid
-            [paging]='true'
             [allowFiltering]='true'
             [data]="treeData"
             primaryKey="employeeID"
@@ -169,6 +169,7 @@
             <igx-column *ngFor="let c of treeColumns" [field]="c.field" [dataType]="c.dataType" [header]="c.label" [pinned]="c.pinned" [movable]="c.movable" [groupable]="false" [resizable]="c.resizable" [width]="c.width" [sortable]="true" [filterable]="true" [editable]="true"
                 [hidden]="c.hidden" [minWidth]="c.minWidth" [maxWidth]="c.maxWidth" [hasSummary]="true">
             </igx-column>
+            <igx-paginator></igx-paginator>
         </igx-tree-grid>
     </div>
     <div class="log-wrapper">
@@ -210,13 +211,20 @@
         </div>
     </div>
     <div class="grid-wrapper">
-        <igx-hierarchical-grid #hGrid [width]="'800px'" [height]="'600px'" [paging]="true" [primaryKey]='"ID"' [allowFiltering]='true' [showExpandAll]='true' [data]="hierarchicalData" [rowSelection]="'multiple'">
+        <igx-hierarchical-grid #hGrid [width]="'800px'" [height]="'600px'" [primaryKey]='"ID"' [allowFiltering]='true' [showExpandAll]='true' [data]="hierarchicalData" [rowSelection]="'multiple'">
             <igx-column *ngFor="let c of hColumns" [hasSummary]='true' [editable]="true" [sortable]="true" [field]="c.field" [header]="c.field" [width]="c.width" [pinned]='c.pinned' [groupable]='c.groupable'>
             </igx-column>
             <igx-row-island [key]="'childData'" [autoGenerate]="true" [rowSelection]="'multiple'" [allowFiltering]='true'>
-                <igx-row-island [key]="'childData'" [autoGenerate]="true" [rowSelection]="'multiple'" [allowFiltering]='true'></igx-row-island>
+                <igx-row-island [key]="'childData'" [autoGenerate]="true" [rowSelection]="'multiple'" [allowFiltering]='true'>
+                    <igx-paginator *igxPaginator [perPage]="5"></igx-paginator>
+                </igx-row-island>
+                <igx-paginator *igxPaginator [perPage]="5"></igx-paginator>
             </igx-row-island>
-            <igx-row-island [key]="'childData2'" [autoGenerate]="true" [allowFiltering]='true'></igx-row-island>
+            <igx-row-island [key]="'childData2'" [autoGenerate]="true" [allowFiltering]='true'>
+                <igx-paginator *igxPaginator [perPage]="5"></igx-paginator>
+            </igx-row-island>
+            
+            <igx-paginator></igx-paginator>
         </igx-hierarchical-grid>
     </div>
     <div class="log-wrapper">

@@ -24,7 +24,6 @@
                 displayDensity="compact"
                 [primaryKey]="'ProductID'"
                 [allowFiltering]="true" [filterMode]="'excelStyleFilter'"
-                [paging]="true"
                 columnSelection="single"
                 (columnMovingStart)="columnMovingStart($event)"
                 (columnMoving)="columnMoving($event)"
@@ -61,6 +60,7 @@
                 </igx-column>
                 <igx-column field="Discontinued" header="UnitsInStock" width="130px" [dataType]="'boolean'" [resizable]="true" [sortable]="true" [hasSummary]="false" [editable]="true">
                 </igx-column>
+                <igx-paginator></igx-paginator>
             </igx-grid>
         </div>
     </div>

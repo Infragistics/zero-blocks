@@ -139,7 +139,7 @@
             </div>
         </div>
 
-        <igx-grid #grid2 [data]="data | async" [paging]="true" [perPage]="10" [allowFiltering]="true" (onCellSelection)="onInlineEdit($event)">
+        <igx-grid #grid2 [data]="data | async" [allowFiltering]="true" (onCellSelection)="onInlineEdit($event)">
             <igx-column [sortable]="true" [field]="'ProductID'" [header]="'ID'"></igx-column>
             <igx-column [sortable]="true" [field]="'ProductName'" [filters]="customFilter" [filterable]="true"></igx-column>
             <igx-column [sortable]="true" [field]="'UnitsInStock'" [header]="'In Stock'">
@@ -160,6 +160,7 @@
                     <igx-checkbox [checked]="item" (change)="grid2.updateCell($event.checkbox.checked, ri, column?.field)"></igx-checkbox>
                 </ng-template>
             </igx-column>
+            <igx-paginator [perPage]="10"></igx-paginator>
         </igx-grid>
 
     </article>
@@ -190,7 +191,7 @@
                 </igx-column-actions>
             </div>
         </div>
-        <igx-grid #grid3 displayDensity="compact" [data]="remote | async" [paging]="true" [perPage]="10" (pagingDone)="process()" (sortingDone)="process()" [primaryKey]="'ProductID'" [rowSelection]="selectionMode">
+        <igx-grid #grid3 displayDensity="compact" [data]="remote | async" (pagingDone)="process()" (sortingDone)="process()" [primaryKey]="'ProductID'" [rowSelection]="selectionMode">
             <igx-column [sortable]="true" [field]="'ProductID'" ></igx-column>
             <igx-column [editable]="true" [field]="'ProductName'"></igx-column>
             <igx-column [sortable]="true" [field]="'UnitsInStock'" [header]="'Units in Stock'"></igx-column>
@@ -202,6 +203,7 @@
                     <igx-checkbox [checked]="item" (change)="grid3.updateCell($event.checkbox.checked, ri, column?.field)"></igx-checkbox>
                 </ng-template>
             </igx-column>
+            <igx-paginator [perPage]="10"></igx-paginator>
         </igx-grid>
         <button (click)="updateRow11()">Update Row With primaryKey</button>
     </article>

@@ -22,7 +22,7 @@ abstract class BaseRow implements RowType {
      * Returns the view index calculated per the grid page.
      */
     public get viewIndex(): number {
-        return this.index + this.grid.page * this.grid.perPage;
+        return this.index + ((this.grid.paginator?.page || 0) * (this.grid.paginator?.perPage || 0));
     }
 
     /**
@@ -250,45 +250,45 @@ export class IgxGridRow extends BaseRow implements RowType {
      * Returns the view index calculated per the grid page.
      */
     public get viewIndex(): number {
-				if (this.grid.page) {
-						const precedingDetailRows = [];
-						const precedingGroupRows = [];
-						const firstRow = this.grid.dataView[0];
-						const hasDetailRows = this.grid.expansionStates.size;
-						const hasGroupedRows = this.grid.groupingExpressions.length;
-						let precedingSummaryRows = 0;
-						const firstRowInd = this.grid.groupingFlatResult.indexOf(firstRow);
+        if (this.grid.paginator) {
+                const precedingDetailRows = [];
+                const precedingGroupRows = [];
+                const firstRow = this.grid.dataView[0];
+                const hasDetailRows = this.grid.expansionStates.size;
+                const hasGroupedRows = this.grid.groupingExpressions.length;
+                let precedingSummaryRows = 0;
+                const firstRowInd = this.grid.groupingFlatResult.indexOf(firstRow);
 
-						// from groupingFlatResult, resolve two other collections:
-						// precedingGroupedRows -> use it to resolve summaryRow for each group in previous pages
-						// precedingDetailRows -> ise it to resolve the detail row for each expanded grid row in previous pages
-						if (hasDetailRows || hasGroupedRows) {
-								this.grid.groupingFlatResult.forEach((r, ind) => {
-										const rowID = this.grid.primaryKey ? r[this.grid.primaryKey] : r;
-										if (hasGroupedRows && ind < firstRowInd && this.grid.isGroupByRecord(r)) {
-												precedingGroupRows.push(r);
-										}
-										if (this.grid.expansionStates.get(rowID) && ind < firstRowInd && !this.grid.isGroupByRecord(r)) {
-												precedingDetailRows.push(r);
-										}
-								});
-						}
+                // from groupingFlatResult, resolve two other collections:
+                // precedingGroupedRows -> use it to resolve summaryRow for each group in previous pages
+                // precedingDetailRows -> ise it to resolve the detail row for each expanded grid row in previous pages
+                if (hasDetailRows || hasGroupedRows) {
+                        this.grid.groupingFlatResult.forEach((r, ind) => {
+                                const rowID = this.grid.primaryKey ? r[this.grid.primaryKey] : r;
+                                if (hasGroupedRows && ind < firstRowInd && this.grid.isGroupByRecord(r)) {
+                                        precedingGroupRows.push(r);
+                                }
+                                if (this.grid.expansionStates.get(rowID) && ind < firstRowInd && !this.grid.isGroupByRecord(r)) {
+                                        precedingDetailRows.push(r);
+                                }
+                        });
+                }
 
-						if (this.grid.summaryCalculationMode !== GridSummaryCalculationMode.rootLevelOnly) {
-							// if firstRow is a child of the last item in precedingGroupRows,
-							// then summaryRow for this given groupedRecord is rendered after firstRow,
-							// i.e. need to decrease firstRowInd to account for the above.
-							precedingSummaryRows = precedingGroupRows.filter(gr => this.grid.isExpandedGroup(gr)).length;
-							if (this.grid.summaryPosition === GridSummaryPosition.bottom && precedingGroupRows.length &&
-								precedingGroupRows[precedingGroupRows.length - 1].records.indexOf(firstRow) > -1) {
-									precedingSummaryRows += -1;
-							}
-						}
+                if (this.grid.summaryCalculationMode !== GridSummaryCalculationMode.rootLevelOnly) {
+                    // if firstRow is a child of the last item in precedingGroupRows,
+                    // then summaryRow for this given groupedRecord is rendered after firstRow,
+                    // i.e. need to decrease firstRowInd to account for the above.
+                    precedingSummaryRows = precedingGroupRows.filter(gr => this.grid.isExpandedGroup(gr)).length;
+                    if (this.grid.summaryPosition === GridSummaryPosition.bottom && precedingGroupRows.length &&
+                        precedingGroupRows[precedingGroupRows.length - 1].records.indexOf(firstRow) > -1) {
+                            precedingSummaryRows += -1;
+                    }
+                }
 
-						return precedingDetailRows.length + precedingSummaryRows + firstRowInd + this.index;
-				} else {
-						return this.index;
-				}
+                return precedingDetailRows.length + precedingSummaryRows + firstRowInd + this.index;
+        } else {
+                return this.index;
+        }
     }
 
     /**
@@ -325,7 +325,7 @@ export class IgxTreeGridRow extends BaseRow implements RowType {
      * Returns the view index calculated per the grid page.
      */
     public get viewIndex(): number {
-        if (this.grid.hasSummarizedColumns && this.grid.page > 0) {
+        if (this.grid.hasSummarizedColumns && ((this.grid.paginator?.page || 0) > 0)) {
             if (this.grid.summaryCalculationMode !== GridSummaryCalculationMode.rootLevelOnly) {
                 const firstRowIndex = this.grid.processedExpandedFlatData.indexOf(this.grid.dataView[0].data);
                 // firstRowIndex is based on data result after all pipes triggered, excluding summary pipe
@@ -336,7 +336,7 @@ export class IgxTreeGridRow extends BaseRow implements RowType {
                 return firstRowIndex + precedingSummaryRows + this.index;
             }
         }
-        return this.index + this.grid.page * this.grid.perPage;
+        return this.index + ((this.grid.paginator?.page || 0)  * (this.grid.paginator?.perPage || 0));
     }
 
     /**
@@ -716,7 +716,7 @@ export class IgxSummaryRow implements RowType {
             }
         }
 
-        return this.index + this.grid.page * this.grid.perPage;
+        return this.index + ((this.grid.paginator?.page || 0) * (this.grid.paginator?.perPage || 0));
     }
 
     /**

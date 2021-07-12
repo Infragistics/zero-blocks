@@ -258,7 +258,8 @@ describe('IgxTreeGrid - Selection #tGrid', () => {
             fix.detectChanges();
             tick(16);
 
-            treeGrid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             treeGrid.perPage = 4;
             fix.detectChanges();
             tick(16);
@@ -512,7 +513,8 @@ describe('IgxTreeGrid - Selection #tGrid', () => {
             TreeGridFunctions.clickRowSelectionCheckbox(fix, 5);
             fix.detectChanges();
 
-            treeGrid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             treeGrid.perPage = 4;
             fix.detectChanges();
             tick(16);

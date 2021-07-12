@@ -2109,7 +2109,8 @@ describe('IgxGrid - Summaries #grid', () => {
         });
 
         it('Paging: should render correct summaries when paging is enable and position is buttom', fakeAsync(() => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 3;
             fix.detectChanges();
             tick(16);
@@ -2146,7 +2147,8 @@ describe('IgxGrid - Summaries #grid', () => {
         }));
 
         it('Paging: should render correct summaries when paging is enable and position is top', fakeAsync(() => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 3;
             grid.summaryPosition = 'top';
             fix.detectChanges();

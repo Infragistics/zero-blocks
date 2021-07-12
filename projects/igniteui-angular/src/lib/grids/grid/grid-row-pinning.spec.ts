@@ -558,8 +558,10 @@ describe('Row Pinning #grid', () => {
         beforeEach(fakeAsync(() => {
             fix = TestBed.createComponent(GridRowPinningComponent);
             fix.componentInstance.createSimpleData(12);
+            fix.detectChanges();
             grid = fix.componentInstance.instance;
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 5;
 
             fix.detectChanges();
@@ -1272,12 +1274,14 @@ describe('Row Pinning #grid', () => {
             [height]='"500px"'
             [data]="data"
             [autoGenerate]="true">
+            <igx-paginator *ngIf="paging"></igx-paginator>
         </igx-grid>
     `
 })
 export class GridRowPinningComponent {
     @ViewChild(IgxGridComponent, { read: IgxGridComponent, static: true })
     public instance: IgxGridComponent;
+    public paging = false;
 
     public data: any[] = SampleTestData.contactInfoDataFull();
     public pinningConfig: IPinningConfig = { columns: ColumnPinningPosition.Start, rows: RowPinningPosition.Top };

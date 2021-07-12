@@ -691,8 +691,10 @@ describe('IgxGrid Master Detail #grid', () => {
         describe('Paging', () => {
              it('Should not take into account expanded detail views as additional records.', fakeAsync(() => {
                 fix = TestBed.createComponent(DefaultGridMasterDetailComponent);
-                fix.componentInstance.paging = true;
                 grid = fix.componentInstance.grid;
+                fix.detectChanges();
+
+                fix.componentInstance.paging = true;
                 fix.detectChanges();
 
                 grid.expandRow(fix.componentInstance.data[0].ID);
@@ -704,9 +706,11 @@ describe('IgxGrid Master Detail #grid', () => {
 
             it('Should persist template state after paging to a page with fewer records and paging back.', fakeAsync(() => {
                 fix = TestBed.createComponent(DefaultGridMasterDetailComponent);
-                fix.componentInstance.paging = true;
                 fix.componentInstance.perPage = 5;
                 grid = fix.componentInstance.grid;
+                fix.detectChanges();
+
+                fix.componentInstance.paging = true;
                 fix.detectChanges();
 
                 grid.expandRow(fix.componentInstance.data[4].ID);
@@ -1190,9 +1194,10 @@ describe('IgxGrid Master Detail #grid', () => {
 @Component({
     template: `
         <igx-grid [data]="data" [width]="width" [height]="height" [primaryKey]="'ID'" [allowFiltering]="true"
-        [paging]="paging" [perPage]="perPage" [rowSelection]="rowSelectable">
+         [perPage]="perPage" [rowSelection]="rowSelectable">
             <igx-column *ngFor="let c of columns" [field]="c.field" [width]="c.width" [dataType]='c.dataType'>
             </igx-column>
+            <igx-paginator *ngIf="paging"></igx-paginator>
 
             <ng-template igxGridDetail let-dataItem>
                 <div>

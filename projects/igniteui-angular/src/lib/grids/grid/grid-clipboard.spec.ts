@@ -91,8 +91,10 @@ describe('IgxGrid - Clipboard #grid', () => {
 
     it('Copy data when paging is enabled', () => {
         grid.paging = true;
-        grid.perPage = 5;
         fix.detectChanges();
+        grid.paginator.perPage = 5;
+        fix.detectChanges();
+
         grid.page = 1;
         fix.detectChanges();
         const copySpy = spyOn<any>(grid.gridCopy, 'emit').and.callThrough();

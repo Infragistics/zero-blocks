@@ -749,13 +749,13 @@ export class IgxTreeGridComponent extends IgxGridBaseDirective implements GridTy
             record = this.processedRecords.get(rowID);
             this._gridAPI.expand_path_to_record(record);
 
-            if (this.paging) {
+            if (this.paginator) {
                 const rowIndex = this.processedExpandedFlatData.indexOf(rowData);
-                const page = Math.floor(rowIndex / this.perPage);
+                const page = Math.floor(rowIndex / this.paginator.perPage);
 
-                if (this.page !== page) {
+                if (this.paginator.page !== page) {
                     delayScrolling = true;
-                    this.page = page;
+                    this.paginator.page = page;
                 }
             }
         }

@@ -18,13 +18,15 @@ export class GridTemplateStrings {
         [height]="height" [width]="width">
     </igx-grid>`;
 
-    public static declareGrid(attributes = ``, events = ``, columnDefinitions: ColumnDefinitions = ``, toolbarDefinition = '') {
+    public static declareGrid(attributes = ``, events = ``, columnDefinitions: ColumnDefinitions = ``,
+            toolbarDefinition = '', paginatorDefinition = '') {
         return `<igx-grid [data]="data"
         ${ attributes}
         ${ events}
         >
         ${ toolbarDefinition }
         ${ columnDefinitions}
+        ${ paginatorDefinition }
     </igx-grid>`;
     }
 

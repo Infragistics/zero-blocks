@@ -1463,7 +1463,7 @@ describe('IgxGrid - Row Selection #grid', () => {
         }));
 
         it('Paging: Should persist through paging', () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
             fix.detectChanges();
 
             const firstRow = grid.gridAPI.get_row_by_index(0);
@@ -1472,13 +1472,14 @@ describe('IgxGrid - Row Selection #grid', () => {
 
             secondRow.onRowSelectorClick(UIInteractions.getMouseEvent('click'));
             middleRow.onRowSelectorClick(UIInteractions.getMouseEvent('click'));
+            grid.notifyChanges(true);
             fix.detectChanges();
 
             GridSelectionFunctions.verifyRowSelected(secondRow);
             GridSelectionFunctions.verifyRowSelected(middleRow);
             GridSelectionFunctions.verifyHeaderRowCheckboxState(fix, false, true);
 
-            grid.nextPage();
+            grid.paginator.nextPage();
             fix.detectChanges();
 
             GridSelectionFunctions.verifyRowSelected(secondRow, false);
@@ -1503,11 +1504,13 @@ describe('IgxGrid - Row Selection #grid', () => {
         });
 
         it('Paging: Should persist all rows selection through paging', () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
             fix.detectChanges();
 
             const secondRow = grid.gridAPI.get_row_by_index(1);
             grid.onHeaderSelectorClick(UIInteractions.getMouseEvent('click'));
+            fix.detectChanges();
+            grid.notifyChanges();
             fix.detectChanges();
 
             GridSelectionFunctions.verifyHeaderRowCheckboxState(fix, true);
@@ -1533,7 +1536,7 @@ describe('IgxGrid - Row Selection #grid', () => {
         });
 
         it('Paging: Should be able to select rows with Shift and Click', () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
             fix.detectChanges();
 
             const firstRow = grid.gridAPI.get_row_by_index(0);
@@ -1542,6 +1545,8 @@ describe('IgxGrid - Row Selection #grid', () => {
 
             // Select first row on first page
             firstRow.onClick(UIInteractions.getMouseEvent('click'));
+            fix.detectChanges();
+            grid.notifyChanges();
             fix.detectChanges();
 
             GridSelectionFunctions.verifyHeaderRowCheckboxState(fix, false, true);

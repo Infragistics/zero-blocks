@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PaginationSampleComponent implements OnInit {
 
     public totalPages: number;
-    private totalRecords: number;
+    public totalRecords: number;
 
     public ngOnInit() {
         this.totalPages = 21;

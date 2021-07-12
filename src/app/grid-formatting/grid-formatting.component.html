@@ -10,8 +10,7 @@
     [allowFiltering]="true"
     [uniqueColumnValuesStrategy]="columnValuesStrategy"
     displayDensity="compact"
-    width="900px" height="550px"
-    [paging]="true">
+    width="900px" height="550px">
     <igx-column field="OrderDate" width="200px" [dataType]="'date'" [filterable]="true" [hasSummary]="true" [summaries]="earliest" [sortable]="true">
         <!-- <ng-template igxCell let-cell="cell" let-val>
             {{val | date}}
@@ -31,6 +30,7 @@
     </igx-column>
     <igx-column field="UnitsInStock" header="UnitsInStock" width="200px" [dataType]="'number'" [sortable]="true" [hasSummary]="false">
     </igx-column>
+    <igx-paginator></igx-paginator>
 </igx-grid>
 
 <h3>Grid with remote data</h3>

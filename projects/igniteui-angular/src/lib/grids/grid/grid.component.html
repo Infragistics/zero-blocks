@@ -72,7 +72,7 @@
         | gridFiltering:filteringExpressionsTree:filterStrategy:advancedFilteringExpressionsTree:id:pipeTrigger:filteringPipeTrigger
         | gridSort:sortingExpressions:sortStrategy:id:pipeTrigger
         | gridGroupBy:groupingExpressions:groupingExpansionState:groupsExpanded:id:groupsRecords:pipeTrigger
-        | gridPaging:page:perPage:id:pipeTrigger
+        | gridPaging:paginator?.page:paginator?.perPage:id:pipeTrigger
         | gridSummary:hasSummarizedColumns:summaryCalculationMode:summaryPosition:id:showSummaryOnCollapse:pipeTrigger:summaryPipeTrigger
         | gridDetails:hasDetails:expansionStates:pipeTrigger
         | gridRowPinning:id:false:pipeTrigger
@@ -176,17 +176,10 @@
 
 <div class="igx-grid__footer" #footer>
     <ng-content select="igx-grid-footer"></ng-content>
-    <ng-container *ngIf="paging && totalRecords">
-        <ng-container
-            *ngTemplateOutlet="paginationTemplate ? paginationTemplate : defaultPaginator; context: {$implicit: this}">
-        </ng-container>
+    <ng-container *ngIf="totalRecords">
+        <ng-content select="igx-paginator"></ng-content>
     </ng-container>
 </div>
-
-<ng-template #defaultPaginator>
-    <igx-paginator [overlaySettings]="paginatorSettings" [displayDensity]="displayDensity" [(page)]="page" [totalRecords]="totalRecords" [(perPage)]="perPage">
-    </igx-paginator>
-</ng-template>
 
 <ng-template #emptyFilteredGrid>
     <span class="igx-grid__tbody-message" role="cell">

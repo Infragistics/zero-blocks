@@ -15,7 +15,7 @@
             <igx-switch (change)='onRowChange()' style="padding-left: 10px"> Bottom Row Pinning toggle</igx-switch>
             <igx-switch (change)='onChange()' style="padding-left: 10px"> Right Column Pinning toggle</igx-switch>
         </div>
-        <igx-grid [rowEditable]="true" [igxGridState]="options" [allowFiltering]="true" [primaryKey]='"ID"' [pinning]="pinningConfig" [paging]="true"
+        <igx-grid [rowEditable]="true" [igxGridState]="options" [allowFiltering]="true" [primaryKey]='"ID"' [pinning]="pinningConfig"
             #grid1 [data]="data" [width]="'800px'" [height]="'600px'" [rowSelection]="'multiple'">
             <igx-grid-toolbar [displayDensity]="grid1.displayDensity">
                 <app-grid-search-box [grid]="grid1" [style.width]="'400px'"></app-grid-search-box>
@@ -47,12 +47,13 @@
                 [width]="c.width" [pinned]='c.pinned' [groupable]='c.groupable' [hidden]='c.hidden'
                 [editable]='true' [hasSummary]='true'>
             </igx-column>
+            <igx-paginator></igx-paginator>
         </igx-grid>
     </div>
     <br/>
     <div class="sample-column">
         <div>igxHierarchicalGrid</div>
-        <igx-hierarchical-grid #hGrid [width]="'800px'" [height]="'600px'" [paging]="true" [primaryKey]='"ID"' [allowFiltering]="true"
+        <igx-hierarchical-grid #hGrid [width]="'800px'" [height]="'600px'" [primaryKey]='"ID"' [allowFiltering]="true"
             [showExpandAll]='true' [data]="hierarchicalData" [pinning]="pinningConfig" rowSelection="multiple" >
             <igx-grid-toolbar [displayDensity]="hGrid.displayDensity">
                 <app-grid-search-box [grid]="hGrid" [style.width]="'400px'"></app-grid-search-box>
@@ -79,6 +80,7 @@
                 <igx-row-island [key]="'childData'" [autoGenerate]="true" rowSelection="multiple" [allowFiltering]="true"></igx-row-island>
             </igx-row-island>
             <igx-row-island [key]="'childData2'" [autoGenerate]="true" [allowFiltering]="true"></igx-row-island>
+            <igx-paginator [perPage]="5"></igx-paginator>
         </igx-hierarchical-grid>
     </div>
 

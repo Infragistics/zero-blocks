@@ -8,11 +8,12 @@ import { IgxButtonModule } from '../directives/button/button.directive';
 import { IgxRippleModule } from '../directives/ripple/ripple.directive';
 import { IgxInputGroupModule } from '../input-group/public_api';
 
-import { IgxPageSizeSelectorComponent } from './page_size_selector.component';
+import { IgxPageSizeSelectorComponent } from './page-size-selector.component';
 import { IgxPageNavigationComponent } from './pager.component';
 import { IgxPaginatorComponent, IgxPaginatorTemplateDirective } from './paginator.component';
+import { IgxPaginatorDirective } from './paginator-interfaces';
 
-export * from './page_size_selector.component';
+export * from './page-size-selector.component';
 export * from './pager.component';
 export * from './paginator.component';
 
@@ -21,13 +22,15 @@ export * from './paginator.component';
         IgxPaginatorComponent,
         IgxPageNavigationComponent,
         IgxPageSizeSelectorComponent,
-        IgxPaginatorTemplateDirective
+        IgxPaginatorTemplateDirective,
+        IgxPaginatorDirective
     ],
     exports: [
         IgxPaginatorComponent,
         IgxPageNavigationComponent,
         IgxPageSizeSelectorComponent,
-        IgxPaginatorTemplateDirective
+        IgxPaginatorTemplateDirective,
+        IgxPaginatorDirective
     ],
     imports: [
         CommonModule,

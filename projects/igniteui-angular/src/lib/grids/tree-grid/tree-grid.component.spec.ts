@@ -14,7 +14,6 @@ import {
 } from '../../test-utils/tree-grid-components.spec';
 import { wait } from '../../test-utils/ui-interactions.spec';
 import { GridSelectionMode } from '../common/enums';
-import { IgxHierarchicalGridTestComponent } from '../grid/row-drag.directive.spec';
 import { IgxStringFilteringOperand } from '../../data-operations/filtering-condition';
 
 describe('IgxTreeGrid Component Tests #tGrid', () => {

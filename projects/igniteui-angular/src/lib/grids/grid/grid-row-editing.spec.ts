@@ -1,13 +1,11 @@
-import { IgxRowDirective } from './../row.directive';
 import { DebugElement } from '@angular/core';
 import { TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxGridAPIService } from './grid-api.service';
 import { IgxGridComponent } from './grid.component';
 import { IGridEditEventArgs, IGridEditDoneEventArgs } from '../common/events';
 import { IgxColumnComponent } from '../columns/column.component';
-import { IgxGridModule, IgxGridBaseDirective } from './public_api';
+import { IgxGridModule } from './public_api';
 import { DisplayDensity } from '../../core/displayDensity';
 import { UIInteractions, wait } from '../../test-utils/ui-interactions.spec';
 import { IgxStringFilteringOperand, IgxNumberFilteringOperand } from '../../data-operations/filtering-condition';
@@ -1116,7 +1114,8 @@ describe('IgxGrid - Row Editing #grid', () => {
         });
 
         it(`Paging: Should preserve the changes after page navigation`, () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 7;
             fix.detectChanges();
 
@@ -1150,7 +1149,8 @@ describe('IgxGrid - Row Editing #grid', () => {
         });
 
         it(`Paging: Should discard changes when changing page while editing`, () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 7;
             fix.detectChanges();
 
@@ -1177,7 +1177,8 @@ describe('IgxGrid - Row Editing #grid', () => {
         });
 
         it(`Paging: Should exit edit mode when changing the page size while editing`, () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 7;
             fix.detectChanges();
 
@@ -1208,7 +1209,8 @@ describe('IgxGrid - Row Editing #grid', () => {
 
         it(`Paging: Should exit edit mode when changing the page size resulting in the edited cell going to the next page`,
             () => {
-                grid.paging = true;
+                fix.componentInstance.paging = true;
+                fix.detectChanges();
                 grid.perPage = 7;
                 fix.detectChanges();
 
@@ -2517,7 +2519,8 @@ describe('IgxGrid - Row Editing #grid', () => {
 
         it('Should change pages when the only item on the last page is a pending added row that gets deleted', () => {
             expect(grid.data.length).toEqual(10);
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 5;
             fix.detectChanges();
 
@@ -2547,7 +2550,8 @@ describe('IgxGrid - Row Editing #grid', () => {
 
         it('Should change pages when committing deletes on the last page', () => {
             expect(grid.data.length).toEqual(10);
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 5;
             fix.detectChanges();
 
@@ -2570,7 +2574,8 @@ describe('IgxGrid - Row Editing #grid', () => {
         });
 
         it('Should NOT change pages when deleting a row on the last page', () => {
-            grid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
             grid.perPage = 5;
             fix.detectChanges();
 

@@ -19,6 +19,7 @@ export class GridColumnMovingSampleComponent implements OnInit {
     public gridMCHNewIndex = 0;
     public density: DisplayDensity = 'comfortable';
     public displayDensities;
+    public pagingEnabled = true;
 
     public mchData = [
         /* eslint-disable max-len */

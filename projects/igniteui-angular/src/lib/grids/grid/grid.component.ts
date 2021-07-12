@@ -1042,7 +1042,7 @@ export class IgxGridComponent extends IgxGridBaseDirective implements GridType, 
     protected get defaultTargetBodyHeight(): number {
         const allItems = this.totalItemCount || this.dataLength;
         return this.renderedRowHeight * Math.min(this._defaultTargetRecordNumber,
-            this.paging ? Math.min(allItems, this.perPage) : allItems);
+            this.paginator ? Math.min(allItems, this.paginator.perPage) : allItems);
     }
 
     /**

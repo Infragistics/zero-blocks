@@ -66,8 +66,8 @@ export class IgxGridHierarchicalPagingPipe implements PipeTransform {
     constructor(private gridAPI: GridBaseAPIService<IgxHierarchicalGridComponent>) { }
 
     public transform(collection: any[], page = 0, perPage = 15, _id: string, _pipeTrigger: number): any[] {
-
-        if (!this.gridAPI.grid.paging || this.gridAPI.grid.pagingMode !== GridPagingMode.Local) {
+        const paginator = this.gridAPI.grid.paginator;
+        if (!paginator || this.gridAPI.grid.pagingMode !== GridPagingMode.Local) {
             return collection;
         }
 

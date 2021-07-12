@@ -311,7 +311,7 @@ class HelperFunctions {
 @Component({
     template: `
     <igx-tree-grid #treeGrid [data]="data" childDataKey="Employees" expansionDepth="2" width="900px" height="800px" igxGridState
-        [paging]="true" perPage="5" primaryKey="ID" rowSelection="multiple" cellSelection="multiple">
+        primaryKey="ID" rowSelection="multiple" cellSelection="multiple">
 
         <igx-column *ngFor="let c of columns"
             [width]="c.width"
@@ -334,6 +334,7 @@ class HelperFunctions {
             [pinned]="c.pinned"
             [hidden]="c.hidden">
         </igx-column>
+        <igx-paginator [perPage]="5"></igx-paginator>
     </igx-tree-grid>
     `
 })

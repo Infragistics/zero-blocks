@@ -1,12 +1,10 @@
-
 import { Component, Input, Output, Optional, Inject, EventEmitter,
-    HostBinding, Directive, ContentChild } from '@angular/core';
+    HostBinding, Directive, ContentChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { CurrentResourceStrings } from '../core/i18n/resources';
 import { IDisplayDensityOptions, DisplayDensityToken, DisplayDensityBase, DisplayDensity } from '../core/displayDensity';
 import { OverlaySettings } from '../services/public_api';
 import { IPaginatorResourceStrings } from '../core/i18n/paginator-resources';
-import { IPageCancellableEventArgs, IPageEventArgs } from './paginator_interfaces';
-
+import { IPageCancellableEventArgs, IPageEventArgs } from './paginator-interfaces';
 
 @Directive({ selector: '[igxPaginatorContent],igx-paginator-content' })
 export class IgxPaginatorTemplateDirective {
@@ -166,6 +164,9 @@ export class IgxPaginatorComponent extends DisplayDensityBase {
     }
 
     public set perPage(value: number) {
+        if (value < 0 || this.perPage === value) {
+            return;
+        }
         this._perPage = Number(value);
         this.perPageChange.emit(this._perPage);
         this._selectOptions = this.sortUniqueOptions(this.defaultSelectValues, this._perPage);
@@ -191,6 +192,10 @@ export class IgxPaginatorComponent extends DisplayDensityBase {
     public set totalRecords(value: number) {
         this._totalRecords = value;
         this.totalPages = Math.ceil(this.totalRecords / this.perPage);
+        if (this.page > this.totalPages) {
+            this.page = 0;
+        }
+        this.cdr.detectChanges();
     }
 
     /**
@@ -242,7 +247,8 @@ export class IgxPaginatorComponent extends DisplayDensityBase {
         return this._resourceStrings;
     }
 
-    constructor(@Optional() @Inject(DisplayDensityToken) protected _displayDensityOptions: IDisplayDensityOptions) {
+    constructor(@Optional() @Inject(DisplayDensityToken) protected _displayDensityOptions: IDisplayDensityOptions,
+                private elementRef: ElementRef, private cdr: ChangeDetectorRef) {
         super(_displayDensityOptions);
     }
 
@@ -279,6 +285,10 @@ export class IgxPaginatorComponent extends DisplayDensityBase {
      */
     public get isLastPageDisabled(): boolean {
         return this.isLastPage;
+    }
+
+    public get nativeElement() {
+        return this.elementRef.nativeElement;
     }
 
     /**

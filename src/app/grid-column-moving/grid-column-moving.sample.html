@@ -12,6 +12,7 @@
             <div class="density-chooser">
                 <igx-buttongroup [values]="displayDensities" (selected)="selectDensity($event)"></igx-buttongroup>
             </div>
+            <button (click)="pagingEnabled = !pagingEnabled">Enable Paging</button>
             <igx-grid
                 #grid1
                 [columnSelection]="'single'"
@@ -23,7 +24,6 @@
                 (columnMovingEnd)="columnMovingEnd()"
                 [rowSelection] ="'multiple'"
                 [filterMode]="'excelStyleFilter'"
-                [paging]="true"
                 [rowEditable]="true"
                 [width]="'900px'"
                 [primaryKey]="'ID'"
@@ -50,6 +50,8 @@
                                                     [hasSummary]="c.summary"
                                                     [dataType]="c.type">
                 </igx-column>
+                <igx-paginator *ngIf="pagingEnabled">
+                </igx-paginator>
             </igx-grid>
             Drag mode: {{ grid1.selectionService.dragMode }}
             <div class="sample-buttons">

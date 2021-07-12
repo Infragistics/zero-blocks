@@ -34,7 +34,7 @@ export function DeprecateMethod(message: string): MethodDecorator {
                 for (const x of arguments) {
                     args.push(x);
                 }
-                return originalMethod.call(this, args);
+                return originalMethod.call(this, ...args);
             };
 
             return descriptor;

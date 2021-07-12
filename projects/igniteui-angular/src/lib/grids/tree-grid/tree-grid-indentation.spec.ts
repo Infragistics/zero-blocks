@@ -95,8 +95,10 @@ describe('IgxTreeGrid - Indentation #tGrid', () => {
         }));
 
         it('should persist the indentation on all pages when using paging',  fakeAsync(() => {
-            treeGrid.paging = true;
-            treeGrid.perPage = 4;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
+
+            treeGrid.paginator.perPage = 4;
             fix.detectChanges();
             tick(16);
 
@@ -253,7 +255,9 @@ describe('IgxTreeGrid - Indentation #tGrid', () => {
         }));
 
         it('should persist the indentation on all pages when using paging', fakeAsync(() => {
-            treeGrid.paging = true;
+            fix.componentInstance.paging = true;
+            fix.detectChanges();
+
             treeGrid.perPage = 3;
             fix.detectChanges();
             tick(16);

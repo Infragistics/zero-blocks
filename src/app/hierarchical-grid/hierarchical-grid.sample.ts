@@ -63,6 +63,12 @@ export class HierarchicalGridSampleComponent implements AfterViewInit {
         this.cdr.detectChanges();
     }
 
+
+    public log() {
+        console.log((this.layout1.gridAPI as any).childGrids);
+        //this.layout1.pipeTrigger++;
+        console.log(this.hGrid2.allLayoutList);
+    }
     public generateData(count: number, level: number) {
         const prods = [];
         const currLevel = level;

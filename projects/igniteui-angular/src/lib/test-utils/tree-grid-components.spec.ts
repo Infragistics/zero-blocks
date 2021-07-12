@@ -49,6 +49,7 @@ export class IgxTreeGridFilteringComponent {
         <igx-column [field]="'Name'" dataType="string"></igx-column>
         <igx-column [field]="'HireDate'" dataType="date"></igx-column>
         <igx-column [field]="'Age'" dataType="number"></igx-column>
+        <igx-paginator *ngIf="paging"></igx-paginator>
     </igx-tree-grid>
     `
 })
@@ -56,6 +57,7 @@ export class IgxTreeGridSimpleComponent {
     @ViewChild(IgxTreeGridComponent, { static: true }) public treeGrid: IgxTreeGridComponent;
     public data = SampleTestData.employeeSmallTreeData();
     public selectedRows = [];
+    public paging = false;
 }
 
 @Component({
@@ -98,22 +100,24 @@ export class IgxTreeGridWithNoScrollsComponent {
         <igx-column [field]="'Name'" dataType="string"></igx-column>
         <igx-column [field]="'JobTitle'" dataType="string"></igx-column>
         <igx-column [field]="'Age'" dataType="number"></igx-column>
+        <igx-paginator *ngIf="paging"></igx-paginator>
     </igx-tree-grid>
     `
 })
 export class IgxTreeGridPrimaryForeignKeyComponent {
     @ViewChild(IgxTreeGridComponent, { static: true }) public treeGrid: IgxTreeGridComponent;
     public data = SampleTestData.employeePrimaryForeignKeyTreeData();
+    public paging = false;
 }
 
 @Component({
     template: `
-    <igx-tree-grid #treeGrid [data]="data" childDataKey="Employees" expansionDepth="0" width="900px" height="600px"
-        [paging]="true" [perPage]="10">
+    <igx-tree-grid #treeGrid [data]="data" childDataKey="Employees" expansionDepth="0" width="900px" height="600px">
         <igx-column [field]="'ID'" dataType="number"></igx-column>
         <igx-column [field]="'Name'" dataType="string"></igx-column>
         <igx-column [field]="'HireDate'" dataType="date"></igx-column>
         <igx-column [field]="'Age'" dataType="number"></igx-column>
+        <igx-paginator [perPage]="10"></igx-paginator>
     </igx-tree-grid>
     `
 })
@@ -124,12 +128,13 @@ export class IgxTreeGridExpandingComponent {
 
 @Component({
     template: `
-    <igx-tree-grid #treeGrid [data]="data" primaryKey="ID" childDataKey="Employees" expansionDepth="2" width="900px" height="500px"
-        [paging]="true" [perPage]="10">
+    <igx-tree-grid #treeGrid [data]="data" primaryKey="ID" childDataKey="Employees" expansionDepth="2"
+        width="900px" height="500px" [perPage]="10">
         <igx-column [field]="'ID'" dataType="number"></igx-column>
         <igx-column [field]="'Name'" dataType="string"></igx-column>
         <igx-column [field]="'HireDate'" dataType="date"></igx-column>
         <igx-column [field]="'Age'" dataType="number"></igx-column>
+        <igx-paginator></igx-paginator>
     </igx-tree-grid>
     `
 })
@@ -316,6 +321,7 @@ export class IgxTreeGridSummariesKeyScroliingComponent {
         <igx-column [field]="'HireDate'" dataType="date" [hasSummary]="true"></igx-column>
         <igx-column [field]="'Age'" dataType="number" [hasSummary]="true"></igx-column>
         <igx-column [field]="'OnPTO'" dataType="boolean" [hasSummary]="true"></igx-column>
+        <igx-paginator *ngIf="paging"></igx-paginator>
     </igx-tree-grid>
     `
 })
@@ -325,6 +331,7 @@ export class IgxTreeGridSummariesKeyComponent {
     public calculationMode = 'rootAndChildLevels';
     public ageSummary = AgeSummary;
     public ageSummaryTest = AgeSummaryTest;
+    public paging = false;
 }
 
 @Component({
@@ -485,11 +492,13 @@ export class IgxTreeGridRowEditingHierarchicalDSTransactionComponent {
         <igx-column [field]="'HireDate'" dataType="date"></igx-column>
         <igx-column [field]="'Age'" dataType="number"></igx-column>
         <igx-column [field]="'OnPTO'" dataType="boolean"></igx-column>
+        <igx-paginator *ngIf="paging"></igx-paginator>
     </igx-tree-grid>`
 })
 export class IgxTreeGridRowPinningComponent {
     @ViewChild(IgxTreeGridComponent, { static: true }) public treeGrid: IgxTreeGridComponent;
     public data = SampleTestData.employeeAllTypesTreeData();
+    public paging = false;
 }
 
 @Component({
@@ -551,12 +560,14 @@ export class IgxTreeGridWrappedInContComponent {
         <igx-column [field]="'firstName'"></igx-column>
         <igx-column [field]="'lastName'"></igx-column>
         <igx-column [field]="'Salary'" dataType="number" [hasSummary]="true" ></igx-column>
+        <igx-paginator *ngIf="paging"></igx-paginator>
     </igx-tree-grid>
     `
 })
 export class IgxTreeGridSummariesScrollingComponent {
     @ViewChild(IgxTreeGridComponent, { static: true }) public treeGrid: IgxTreeGridComponent;
     public data = SampleTestData.employeeScrollingData();
+    public paging = false;
 }
 
 @Component({
@@ -777,13 +788,13 @@ export class IgxTreeGridDefaultLoadingComponent implements OnInit {
 @Component({
     template: `
     <igx-tree-grid #treeGridCustomSelectors
-        [data]="data" primaryKey="ID" foreignKey="ParentID"
-        [paging]="true" [perPage]="5" [rowSelection]="'multiple'" width="900px" height="600px">
+        [data]="data" primaryKey="ID" foreignKey="ParentID" [rowSelection]="'multiple'" width="900px" height="600px">
         <igx-column [field]="'ID'" dataType="number"></igx-column>
         <igx-column [field]="'Name'" dataType="string"></igx-column>
         <igx-column [field]="'Age'" dataType="number"></igx-column>
         <igx-column [field]="'OnPTO'" dataType="boolean"></igx-column>
         <igx-column [field]="'HireDate'" dataType="date"></igx-column>
+        <igx-paginator [perPage]="5"></igx-paginator>
         <ng-template igxRowSelector let-rowContext>
         <span class="rowNumber">{{ rowContext.index }}</span>
             <igx-checkbox [checked]="rowContext.selected" (click)="onRowCheckboxClick($event, rowContext)"></igx-checkbox>
