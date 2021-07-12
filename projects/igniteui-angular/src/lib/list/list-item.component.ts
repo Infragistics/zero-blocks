@@ -319,6 +319,8 @@ export class IgxListItemComponent implements IListChild {
         if (!this.isTrue(this.list.allowLeftPanning) && !this.isTrue(this.list.allowRightPanning)) {
             return;
         }
+
+        this.list.panningStart.emit({ item: this, direction: this.lastPanDir, keepitem: false });
     }
 
     /**
@@ -329,6 +331,7 @@ export class IgxListItemComponent implements IListChild {
         this.setContentElementLeft(0);
         this._panState = IgxListPanState.NONE;
         this.hideLeftAndRightPanTemplates();
+        this.list.panningEnd.emit({item: this, direction: this.lastPanDir, keepItem: false});
     }
 
     /**
@@ -375,6 +378,9 @@ export class IgxListItemComponent implements IListChild {
         const dir = relativeOffset > 0 ? IgxListPanState.RIGHT : IgxListPanState.LEFT;
         this.lastPanDir = dir;
 
+        const args = { item: this, direction: dir, keepItem: false};
+        this.list.panningEnd.emit(args);
+
         const oldPanState = this._panState;
         if (Math.abs(relativeOffset) < widthTriggeringGrip) {
             this.setContentElementLeft(0);
@@ -382,8 +388,6 @@ export class IgxListItemComponent implements IListChild {
             this.hideLeftAndRightPanTemplates();
             return;
         }
-
-        const args = { item: this, direction: dir, keepItem: false};
 
         if (dir === IgxListPanState.LEFT) {
             this.list.leftPan.emit(args);
