@@ -173,12 +173,12 @@ export class IgxToastComponent extends IgxNotificationsDirective
      * @hidden
      */
     public ngOnInit() {
-        this.onOpened.pipe(takeUntil(this.d$)).subscribe(() => {
+        this.opened.pipe(takeUntil(this.d$)).subscribe(() => {
             const openedEventArgs: ToggleViewEventArgs = { owner: this, id: this._overlayId };
             this.isVisibleChange.emit(openedEventArgs);
         });
 
-        this.onClosed.pipe(takeUntil(this.d$)).subscribe(() => {
+        this.closed.pipe(takeUntil(this.d$)).subscribe(() => {
             const closedEventArgs: ToggleViewEventArgs = { owner: this, id: this._overlayId };
             this.isVisibleChange.emit(closedEventArgs);
         });

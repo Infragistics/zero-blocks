@@ -102,7 +102,7 @@ export class IgxComboDropDownComponent extends IgxDropDownComponent implements I
      * @hidden @internal
      */
     public onToggleOpened() {
-        this.onOpened.emit();
+        this.opened.emit();
     }
 
     /**
