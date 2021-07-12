@@ -6,24 +6,24 @@
 
 /// @type Map
 /// @prop {Number} ghost-elevation [8] - The elevation level, between 0-24, to be used for the chip's ghost (dragging mode).
-$_default-elevation-chip: (
+$default-elevation-chip: (
     ghost-elevation: 8
 );
 
 /// @type Map
 /// @prop {Number} ghost-elevation [2] - The elevation level, between 0-24, to be used for the chip's ghost (dragging mode).
-$_fluent-elevation-chip: (
+$fluent-elevation-chip: (
     ghost-elevation: 2
 );
 
 /// @type Map
 /// @prop {Number} ghost-elevation [0] - The elevation level, between 0-24, to be used for the chip's ghost (dragging mode).
-$_bootstrap-elevation-chip: (
+$bootstrap-elevation-chip: (
     ghost-elevation: 0
 );
 
 /// @type Map
 /// @prop {Number} ghost-elevation [0] - The elevation level, between 0-24, to be used for the chip's ghost (dragging mode).
-$_indigo-elevation-chip: (
+$indigo-elevation-chip: (
     ghost-elevation: 1
 );

@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -8,7 +10,7 @@
 /// @type {Map}
 /// @prop {Map} label-color [igx-color: 'surface'] - The Color for date range separator label.
 /// @see $default-palette
-$_light-date-range-picker: (
+$light-date-range-picker: (
     label-color: (
         igx-color: ('grays', 500),
     )
@@ -17,17 +19,15 @@ $_light-date-range-picker: (
 /// Generates a fluent date-range-picker schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-date-range-picker
-$_fluent-date-range-picker: extend($_light-date-range-picker);
+/// @requires {Map} $light-date-range-picker
+$fluent-date-range-picker: $light-date-range-picker;
 
 /// Generates a bootstrap date-range-picker schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-date-range-picker
-$_bootstrap-date-range-picker: extend($_light-date-range-picker);
+/// @requires {Map} $light-date-range-picker
+$bootstrap-date-range-picker: $light-date-range-picker;
 
 /// Generates an indigo date-range-picker schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-date-range-picker
-$_indigo-date-range-picker: extend($_light-date-range-picker);
+/// @requires {Map} $light-date-range-picker
+$indigo-date-range-picker: $light-date-range-picker;

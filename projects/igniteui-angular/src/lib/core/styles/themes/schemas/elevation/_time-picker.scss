@@ -7,7 +7,7 @@
 /// @type Map
 /// @prop {Number} modal-elevation [24] - The elevation level, between 0-24, to be used for the time picker in modal mode.
 /// @prop {Number} dropdown-elevation [8] - The elevation level, between 0-24, to be used for the time picker in dropdown mode.
-$_default-elevation-time-picker: (
+$default-elevation-time-picker: (
     modal-elevation: 24,
     dropdown-elevation: 8
 );

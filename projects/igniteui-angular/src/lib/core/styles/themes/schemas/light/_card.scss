@@ -1,5 +1,6 @@
-@import '../shape/card';
-@import '../elevation/card';
+@use '../../../base' as *;
+@use '../shape/card' as *;
+@use '../elevation/card' as *;
 
 ////
 /// @group schemas
@@ -20,12 +21,12 @@
 /// @prop {Map} outline-color [igx-color: ('grays', 400)] - The outline color of an outlined type card.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-card
-/// @requires {Map} $_default-elevation-card
+/// @requires {Map} $default-shape-card
+/// @requires {Map} $default-elevation-card
 /// @see $default-palette
-$_light-card: extend(
-    $_default-shape-card,
-    $_default-elevation-card,
+$light-card: extend(
+    $default-shape-card,
+    $default-elevation-card,
     (
         variant: 'material',
 
@@ -71,13 +72,13 @@ $_light-card: extend(
 /// @prop {Number} border-radius [2px] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-card
-/// @requires {Map} $_fluent-shape-card
-/// @requires {Map} $_fluent-elevation-card
-$_fluent-card: extend(
-    $_light-card,
-    $_fluent-shape-card,
-    $_fluent-elevation-card,
+/// @requires {Map} $light-card
+/// @requires {Map} $fluent-shape-card
+/// @requires {Map} $fluent-elevation-card
+$fluent-card: extend(
+    $light-card,
+    $fluent-shape-card,
+    $fluent-elevation-card,
     (
         variant: 'fluent',
 
@@ -99,13 +100,13 @@ $_fluent-card: extend(
 /// @prop {Number} hover-elevation [0] - The elevation level, between 0-24, to be used for the hover state.
 /// @prop {Number} border-radius [4px] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-card
-/// @requires {Map} $_bootstrap-shape-card
-/// @requires {Map} $_bootstrap-elevation-card
-$_bootstrap-card: extend(
-    $_light-card,
-    $_bootstrap-shape-card,
-    $_bootstrap-elevation-card,
+/// @requires {Map} $light-card
+/// @requires {Map} $bootstrap-shape-card
+/// @requires {Map} $bootstrap-elevation-card
+$bootstrap-card: extend(
+    $light-card,
+    $bootstrap-shape-card,
+    $bootstrap-elevation-card,
     (
         variant: 'bootstrap',
 
@@ -144,13 +145,13 @@ $_bootstrap-card: extend(
 /// @prop {Number} hover-elevation [6] - The elevation level, between 0-24, to be used for the hover state.
 /// @prop {Number} border-radius [3px] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-card
-/// @requires {Map} $_indigo-shape-card
-/// @requires {Map} $_indigo-elevation-card
-$_indigo-card: extend(
-    $_light-card,
-    $_indigo-shape-card,
-    $_indigo-elevation-card,
+/// @requires {Map} $light-card
+/// @requires {Map} $indigo-shape-card
+/// @requires {Map} $indigo-elevation-card
+$indigo-card: extend(
+    $light-card,
+    $indigo-shape-card,
+    $indigo-elevation-card,
     (
         variant: 'indigo-design',
 

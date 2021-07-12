@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -11,7 +13,7 @@
 /// @property {Map} active-background [igx-color: ('secondary', A100)] - The background color used for the highlight in its active state.
 /// @property {Map} active-color [igx-color: ('secondary', A100), text-contrast: ()] - The text color used for the highlight in its active state.
 /// @see $default-palette
-$_light-highlight: (
+$light-highlight: (
     resting-background: (
         igx-color: ('grays', 300)
     ),
@@ -34,15 +36,13 @@ $_light-highlight: (
 
 /// Generates a fluent highlight schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-highlight
-$_fluent-highlight: extend($_light-highlight);
+/// @requires {Map} $light-highlight
+$fluent-highlight: $light-highlight;
 
 /// Generates a bootstrap highlight schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-highlight
-$_bootstrap-highlight: extend($_light-highlight);
+/// @requires {Map} $light-highlight
+$bootstrap-highlight: $light-highlight;
 
 /// Generates an indigo highlight schema.
 /// @type {Map}
@@ -50,9 +50,9 @@ $_bootstrap-highlight: extend($_light-highlight);
 /// @property {Map} active-color [igx-contrast-color: ('primary', 500)] - The text color used for the highlight in its active state.
 /// @property {Map} resting-color [igx-contrast-color: ( igx-color: ('grays', 300), to-opaque: 'surface' )] - The icon color used for the highlight in its resting state.
 /// @requires {function} extend
-/// @requires {Map} $_light-highlight
-$_indigo-highlight: extend(
-    $_light-highlight,
+/// @requires {Map} $light-highlight
+$indigo-highlight: extend(
+    $light-highlight,
     (
         active-background: (
             igx-color: ('primary', 500)

@@ -1,4 +1,5 @@
-@import '../light/action-strip';
+@use '../../../base' as *;
+@use '../light/action-strip' as *;
 
 ////
 /// @group schemas
@@ -10,10 +11,10 @@
 /// @type {Map}
 /// @property {Map} actions-background [igx-color: ('grays', 200), to-opaque: #000, rgba: .8]- actions container background.
 /// @requires {function} extend
-/// @requires $_light-action-strip
+/// @requires $light-action-strip
 /// @see $default-palette
-$_dark-action-strip: extend(
-    $_light-action-strip,
+$dark-action-strip: extend(
+    $light-action-strip,
     (
         variant: 'material',
 
@@ -28,9 +29,9 @@ $_dark-action-strip: extend(
 /// Generates a dark fluent action strip schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_dark-action-strip
-$_dark-fluent-action-strip: extend(
-    $_dark-action-strip,
+/// @requires $dark-action-strip
+$dark-fluent-action-strip: extend(
+    $dark-action-strip,
     (
         variant: 'fluent'
     )
@@ -39,9 +40,9 @@ $_dark-fluent-action-strip: extend(
 /// Generates a dark bootstrap action strip schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_dark-action-strip
-$_dark-bootstrap-action-strip: extend(
-    $_dark-action-strip,
+/// @requires $dark-action-strip
+$dark-bootstrap-action-strip: extend(
+    $dark-action-strip,
     (
         variant: 'bootstrap'
     )
@@ -50,5 +51,5 @@ $_dark-bootstrap-action-strip: extend(
 /// Generates a dark indigo action strip schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-action-strip
-$_dark-indigo-action-strip: extend($_indigo-action-strip);
+/// @requires $indigo-action-strip
+$dark-indigo-action-strip: extend($indigo-action-strip);

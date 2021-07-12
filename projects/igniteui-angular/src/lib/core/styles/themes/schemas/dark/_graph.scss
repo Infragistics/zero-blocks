@@ -1,4 +1,4 @@
-@import '../light/graph';
+@use '../light/graph' as *;
 
 ////
 /// @group schemas
@@ -8,26 +8,22 @@
 
 /// Generates a dark graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-graph
+/// @requires $light-graph
 /// @see $default-palette
-$_dark-graph: extend($_light-graph);
+$dark-graph: $light-graph;
 
 /// Generates a dark fluent graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-graph
-$_dark-fluent-graph: extend($_fluent-graph);
+/// @requires $fluent-graph
+$dark-fluent-graph: $fluent-graph;
 
 /// Generates a dark bootstrap graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-graph
-$_dark-bootstrap-graph: extend($_bootstrap-graph);
+/// @requires $bootstrap-graph
+$dark-bootstrap-graph: $bootstrap-graph;
 
 /// Generates a dark indigo graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-graph
-$_dark-indigo-graph: extend($_indigo-graph);
+/// @requires $indigo-graph
+$dark-indigo-graph: $indigo-graph;
 

@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -8,7 +10,7 @@
 /// @type {Map}
 /// @property {Map} background-color [igx-color: ('grays', 500)] - The background color used for modal overlays.
 /// @see $default-palette
-$_light-overlay: (
+$light-overlay: (
     background-color: (
         igx-color: ('grays', 500)
     )
@@ -18,9 +20,9 @@ $_light-overlay: (
 /// @type {Map}
 /// @property {Color} background-color [rgba(255, 255, 255, .4)] - The background color used for modal overlays.
 /// @requires {function} extend
-/// @requires {Map} $_light-overlay
-$_fluent-overlay: extend(
-    $_light-overlay,
+/// @requires {Map} $light-overlay
+$fluent-overlay: extend(
+    $light-overlay,
     (
         background-color: rgba(255, 255, 255, .4)
     )
@@ -28,13 +30,11 @@ $_fluent-overlay: extend(
 
 /// Generates a bootstrap overlay schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-overlay
-$_bootstrap-overlay: extend($_light-overlay);
+/// @requires {Map} $light-overlay
+$bootstrap-overlay: $light-overlay;
 
 /// Generates an indigo overlay schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-overlay
-$_indigo-overlay: extend($_light-overlay);
+/// @requires {Map} $light-overlay
+$indigo-overlay: $light-overlay;
 

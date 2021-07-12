@@ -27,48 +27,46 @@
 /// @prop {Color} vertical-axis-brush [null] - Sets the vertical axis line brush of the sparkline.
 /// @prop {Color} normal-range-fill [null] - Sets the normal range brush of the sparkline.
 /// @see $default-palette
-$_light-sparkline: extend(
-    (
-        'brush': (
-            igx-color: ('primary', 500)
-        ),
-        'line-thickness': null,
-        'marker-brush': null,
-        'marker-size': null,
-        'first-marker-brush': null,
-        'first-marker-size': null,
-        'last-marker-brush': null,
-        'last-marker-size': null,
-        'low-marker-brush': null,
-        'low-marker-size': null,
-        'high-marker-brush': null,
-        'high-marker-size': null,
-        'negative-brush': null,
-        'negative-marker-brush': null,
-        'negative-marker-size': null,
-        'trend-line-brush': null,
-        'trend-line-thickness': null,
-        'horizontal-axis-brush': null,
-        'vertical-axis-brush': null,
-        'normal-range-fill': null,
-    )
+$light-sparkline: (
+    'brush': (
+        igx-color: ('primary', 500)
+    ),
+    'line-thickness': null,
+    'marker-brush': null,
+    'marker-size': null,
+    'first-marker-brush': null,
+    'first-marker-size': null,
+    'last-marker-brush': null,
+    'last-marker-size': null,
+    'low-marker-brush': null,
+    'low-marker-size': null,
+    'high-marker-brush': null,
+    'high-marker-size': null,
+    'negative-brush': null,
+    'negative-marker-brush': null,
+    'negative-marker-size': null,
+    'trend-line-brush': null,
+    'trend-line-thickness': null,
+    'horizontal-axis-brush': null,
+    'vertical-axis-brush': null,
+    'normal-range-fill': null,
 );
 
 /// Generates a fluent sparkline schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-sparkline
-$_fluent-sparkline: extend($_light-sparkline);
+/// @requires {Map} $light-sparkline
+$fluent-sparkline: $light-sparkline;
 
 /// Generates a bootstrap sparkline schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-sparkline
-$_bootstrap-sparkline: extend($_light-sparkline);
+/// @requires {Map} $light-sparkline
+$bootstrap-sparkline: $light-sparkline;
 
 /// Generates an indigo sparkline schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-sparkline
-$_indigo-sparkline: extend($_light-sparkline);
+/// @requires {Map} $light-sparkline
+$indigo-sparkline: $light-sparkline;
 

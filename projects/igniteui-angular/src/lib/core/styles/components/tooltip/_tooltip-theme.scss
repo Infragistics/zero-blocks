@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -38,8 +43,8 @@
 
     $tooltip-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $tooltip-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $tooltip-schema: map.get($schema, $name);
     } @else {
         $tooltip-schema: $schema;
     }
@@ -47,7 +52,7 @@
     $theme: apply-palette($tooltip-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($tooltip-schema, 'border-radius')), 0, 16px
+        if($border-radius, $border-radius, map.get($tooltip-schema, 'border-radius')), 0, 16px
     );
 
     @if not($text-color) and $background {
@@ -57,7 +62,7 @@
     @return extend($theme, (
         name: $name,
         selector: $selector,
-        palette: $default-palette,
+        palette: $palette,
         background: $background,
         border-radius: $border-radius,
         text-color: $text-color,
@@ -66,7 +71,7 @@
 
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
-/// @requires --var
+/// @requires var-get
 @mixin igx-tooltip($theme) {
     @include igx-css-vars($theme);
 
@@ -74,9 +79,9 @@
         display: inline-flex;
         justify-content: center;
         flex-flow: column wrap;
-        background: --var($theme, 'background');
-        color: --var($theme, 'text-color');
-        border-radius: --var($theme, 'border-radius');
+        background: var-get($theme, 'background');
+        color: var-get($theme, 'text-color');
+        border-radius: var-get($theme, 'border-radius');
         margin: 0 auto;
     }
 
@@ -106,8 +111,8 @@
     $type-scale,
     $categories: (text-desktop: null, text-mobile: 'body-2')
 ) {
-    $text-desktop: map-get($categories, 'text-desktop');
-    $text-mobile: map-get($categories, 'text-mobile');
+    $text-desktop: map.get($categories, 'text-desktop');
+    $text-mobile: map.get($categories, 'text-mobile');
 
     %tooltip--mobile {
         @include igx-type-style($type-scale, $text-mobile);

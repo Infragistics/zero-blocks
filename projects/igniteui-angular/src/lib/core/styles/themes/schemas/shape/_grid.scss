@@ -6,26 +6,26 @@
 
 /// @type Map
 /// @prop {Number} drop-area-border-radius [1] - The border radius used for drop-area. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-grid: (
+$default-shape-grid: (
     drop-area-border-radius: 1
 );
 
-$_round-shape-grid: ();
+$round-shape-grid: ();
 
 /// @type Map
 /// @prop {Number} drop-area-border-radius [0] - The border radius used for drop-area. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-grid: (
+$square-shape-grid: (
     drop-area-border-radius: 0
 );
 
 /// @type Map
 /// @prop {Number} drop-area-border-radius [2px] - The border radius used for drop-area. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-grid: (
+$fluent-shape-grid: (
     drop-area-border-radius: 2px
 );
 
 /// @type Map
 /// @prop {Number} drop-area-border-radius [4px] - The border radius used for drop-area. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-grid: (
+$bootstrap-shape-grid: (
     drop-area-border-radius: 4px
 );

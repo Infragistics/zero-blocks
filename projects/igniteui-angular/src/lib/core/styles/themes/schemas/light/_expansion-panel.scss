@@ -1,4 +1,5 @@
-@import '../shape/expansion-panel';
+@use '../../../base' as *;
+@use '../shape/expansion-panel' as *;
 
 ////
 /// @group schemas
@@ -20,10 +21,10 @@
 /// @prop {Number} expanded-margin [8px] - The expansion panel margin in expanded state when positioned inside accordion.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-expansion-panel
+/// @requires {Map} $default-shape-expansion-panel
 /// @see $default-palette
-$_light-expansion-panel: extend(
-    $_default-shape-expansion-panel,
+$light-expansion-panel: extend(
+    $default-shape-expansion-panel,
     (
         header-background: #fff,
         body-background: #fff,
@@ -59,16 +60,19 @@ $_light-expansion-panel: extend(
 /// Generates a fluent expansion panel schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-expansion-panel
-$_fluent-expansion-panel: extend($_light-expansion-panel);
+/// @requires {Map} $light-expansion-panel
+$fluent-expansion-panel: extend($light-expansion-panel);
 
 /// Generates a bootstrap expansion panel schema.
 /// @type {Map}
 /// @prop {Number} border-radius [0] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-expansion-panel
-/// @requires {Map} $_bootstrap-shape-expansion-panel
-$_bootstrap-expansion-panel: extend($_light-expansion-panel, $_bootstrap-shape-expansion-panel);
+/// @requires {Map} $light-expansion-panel
+/// @requires {Map} $bootstrap-shape-expansion-panel
+$bootstrap-expansion-panel: extend(
+    $light-expansion-panel,
+    $bootstrap-shape-expansion-panel
+);
 
 // Generates an indigo expansion panel schema.
 /// @type {Map}
@@ -80,11 +84,11 @@ $_bootstrap-expansion-panel: extend($_light-expansion-panel, $_bootstrap-shape-e
 /// @prop {Number} border-radius [3px] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-expansion-panel
-/// @requires {Map} $_indigo-shape-expansion-panel
-$_indigo-expansion-panel: extend(
-    $_light-expansion-panel,
-    $_indigo-shape-expansion-panel,
+/// @requires {Map} $light-expansion-panel
+/// @requires {Map} $indigo-shape-expansion-panel
+$indigo-expansion-panel: extend(
+    $light-expansion-panel,
+    $indigo-shape-expansion-panel,
     (
         header-title-color: (
             igx-color: ('grays', 900)

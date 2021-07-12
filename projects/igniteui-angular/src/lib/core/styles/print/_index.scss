@@ -1,9 +1,9 @@
-@import 'grid-print';
+@use 'grid-print';
 
 /// Defines printing styles for all components in the library.
 /// @group print
 /// @requires {mixin} igx-grid-print
-@mixin igx-print-layout {
+@mixin layout {
     @media print {
         html,
         body,
@@ -33,7 +33,7 @@
             display: none !important;
         }
 
-        @include igx-grid-print();
+        @include grid-print.layout();
 
         .igx-bottom-nav__menu,
         .igx-button-group,

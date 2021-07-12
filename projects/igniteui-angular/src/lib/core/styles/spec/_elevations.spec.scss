@@ -1,11 +1,9 @@
 @use 'node_modules/sass-true' as *;
-@import '../base/index';
-@import '../themes/index';
+@use '../base' as *;
 
 $_my-elevations: igx-elevations(red, green, blue);
 
 @include describe('Elevations') {
-
     @include it('should add elevations as CSS variables') {
         @include assert() {
 

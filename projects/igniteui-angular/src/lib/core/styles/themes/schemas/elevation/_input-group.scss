@@ -8,7 +8,7 @@
 /// @prop {Number} search-resting-elevation [1] - The elevation level, between 0-24, to be used for the resting state of the search input.
 /// @prop {Number} search-hover-elevation [2] - The elevation level, between 0-24, to be used for the hover state of the search input.
 /// @prop {Number} search-disabled-elevation [0] - The elevation level, between 0-24, to be used for the disabled state of the search input.
-$_default-elevation-input-group: (
+$default-elevation-input-group: (
     search-resting-elevation: 1,
     search-hover-elevation: 2,
     search-disabled-elevation: 0,
@@ -18,7 +18,7 @@ $_default-elevation-input-group: (
 /// @prop {Number} search-resting-elevation [0] - The elevation level, between 0-24, to be used for the resting state of the search input.
 /// @prop {Number} search-hover-elevation [0] - The elevation level, between 0-24, to be used for the hover state of the search input.
 /// @prop {Number} search-disabled-elevation [0] - The elevation level, between 0-24, to be used for the disabled state of the search input.
-$_fluent-elevation-input-group: (
+$fluent-elevation-input-group: (
     search-resting-elevation: 0,
     search-hover-elevation: 0,
     search-disabled-elevation: 0,
@@ -28,7 +28,7 @@ $_fluent-elevation-input-group: (
 /// @prop {Number} search-resting-elevation [1] - The elevation level, between 0-24, to be used for the resting state of the search input.
 /// @prop {Number} search-hover-elevation [1] - The elevation level, between 0-24, to be used for the hover state of the search input.
 /// @prop {Number} search-disabled-elevation [1] - The elevation level, between 0-24, to be used for the disabled state of the search input.
-$_indigo-elevation-input-group: (
+$indigo-elevation-input-group: (
     search-resting-elevation: 1,
     search-hover-elevation: 1,
     search-disabled-elevation: 1,

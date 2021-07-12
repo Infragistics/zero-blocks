@@ -1,10 +1,15 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access private
 /// @author <a href="https://github.com/didimmova" target="_blank">Dilyana Dimova</a>
 ////
 
-/// @param {Map} $palette [$default-palette] - The palette used as basis for styling the component.
+/// @param {Map} $palette [null] - The palette used as basis for styling the component.
 /// @param {Map} $schema [$light-schema] - The schema used as basis for styling the component.
 /// @param {List} $margin [null] - Sets the margin (top, right, bottom, left) of the chart content.
 /// @param {String} $title-alignment [null] - The horizontal alignment to use for the title.
@@ -64,7 +69,6 @@
 /// @param {Number} $y-axis-tick-stroke-thickness [null] - Sets the thickness to apply to tickmarks along the Y-axis.
 /// @param {String} $zoom-slider-x-axis-major-stroke [null] - Gets or sets stroke brush of major gridlines on x-axis of the zoom slider pane.
 /// @param {Number} $zoom-slider-x-axis-major-stroke-thickness [null] - Gets or sets thickness of major gridlines on x-axis of the zoom slider pane.
-/// @requires $default-palette
 /// @requires $light-schema
 /// @requires apply-palette
 /// @requires extend
@@ -74,7 +78,7 @@
 ///   // Pass the theme to the igx-css-vars mixin
 ///   @include igx-css-vars($my-chart-theme);
 @function igx-financial-chart-theme(
-    $palette: $default-palette,
+    $palette: null,
     $schema: $light-schema,
 
     $margin: null,
@@ -137,19 +141,19 @@
     $selector: 'igx-financial-chart';
     $chart-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $chart-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $chart-schema: map.get($schema, $name);
     } @else {
         $chart-schema: $schema;
     }
 
     $theme: apply-palette($chart-schema, $palette);
-    $title-margin-default: map-get($theme, 'title-margin');
-    $subtitle-margin-default: map-get($theme, 'subtitle-margin');
-    $x-axis-label-margin-default: map-get($theme, 'x-axis-label-margin');
-    $x-axis-title-margin-default: map-get($theme, 'x-axis-title-margin');
-    $y-axis-label-margin-default: map-get($theme, 'y-axis-label-margin');
-    $y-axis-title-margin-default: map-get($theme, 'x-axis-title-margin');
+    $title-margin-default: map.get($theme, 'title-margin');
+    $subtitle-margin-default: map.get($theme, 'subtitle-margin');
+    $x-axis-label-margin-default: map.get($theme, 'x-axis-label-margin');
+    $x-axis-title-margin-default: map.get($theme, 'x-axis-title-margin');
+    $y-axis-label-margin-default: map.get($theme, 'y-axis-label-margin');
+    $y-axis-title-margin-default: map.get($theme, 'x-axis-title-margin');
 
     @if not($title-margin) {
         $title-margin: $title-margin-default;
@@ -267,12 +271,12 @@
     'y-axis-title-text-style': 'h3',
 )) {
     $name: 'financial-chart';
-    $title: map-get($categories, 'title');
-    $subtitle: map-get($categories, 'subtitle');
-    $x-axis-label-text-style: map-get($categories, 'x-axis-label-text-style');
-    $x-axis-title-text-style: map-get($categories, 'x-axis-title-text-style');
-    $y-axis-label-text-style: map-get($categories, 'y-axis-label-text-style');
-    $y-axis-title-text-style: map-get($categories, 'y-axis-title-text-style');
+    $title: map.get($categories, 'title');
+    $subtitle: map.get($categories, 'subtitle');
+    $x-axis-label-text-style: map.get($categories, 'x-axis-label-text-style');
+    $x-axis-title-text-style: map.get($categories, 'x-axis-title-text-style');
+    $y-axis-label-text-style: map.get($categories, 'y-axis-label-text-style');
+    $y-axis-title-text-style: map.get($categories, 'y-axis-title-text-style');
 
     $title-styles: igx-type-scale-category($type-scale, $title);
     $subtitle-styles: igx-type-scale-category($type-scale, $subtitle);

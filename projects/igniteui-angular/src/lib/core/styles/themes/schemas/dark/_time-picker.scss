@@ -1,4 +1,5 @@
-@import '../light/badge';
+@use '../../../base' as *;
+@use '../light/time-picker' as *;
 
 ////
 /// @group schemas
@@ -8,22 +9,19 @@
 
 /// Generates a dark time-picker schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-time-picker
+/// @requires $light-time-picker
 /// @see $default-palette
-$_dark-time-picker: extend($_light-time-picker);
+$dark-time-picker: $light-time-picker;
 
 /// Generates a dark fluent time-picker schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-time-picker
-$_dark-fluent-time-picker: extend($_fluent-time-picker);
+/// @requires $fluent-time-picker
+$dark-fluent-time-picker: $fluent-time-picker;
 
 /// Generates a dark bootstrap time-picker schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-time-picker
-$_dark-bootstrap-time-picker: extend($_bootstrap-time-picker);
+/// @requires $bootstrap-time-picker
+$dark-bootstrap-time-picker: $bootstrap-time-picker;
 
 /// Generates a dark indigo time-picker schema.
 /// @type {Map}
@@ -31,9 +29,9 @@ $_dark-bootstrap-time-picker: extend($_bootstrap-time-picker);
 /// @prop {Map} selected-text-color [igx-color: ('primary', 300)] -  The text color of a selected item in time picker.
 /// @prop {Map} hover-text-color [igx-color: ('primary', 300)] - The hover text color of an open time picker.
 /// @requires {function} extend
-/// @requires $_indigo-time-picker
-$_dark-indigo-time-picker: extend(
-    $_indigo-time-picker,
+/// @requires $indigo-time-picker
+$dark-indigo-time-picker: extend(
+    $indigo-time-picker,
     (
         text-color: (
             igx-contrast-color: ('surface')

@@ -1,4 +1,6 @@
-@import '../light/calendar';
+@use '../../../base' as *;
+@use '../light/calendar' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -9,9 +11,9 @@
 /// @type {Map}
 /// @prop {Map} date-disabled-text-color [igx-color: ('grays', 500), to-opaque: (), rgba: .38] - The text color for disabled dates.
 /// @requires {function} extend
-/// @requires $_light-calendar
+/// @requires $light-calendar
 /// @see $default-palette
-$_dark-calendar: extend($_light-calendar, (
+$dark-calendar: extend($light-calendar, (
     date-disabled-text-color: (
         igx-color: ('grays', 500),
         to-opaque: (),
@@ -22,17 +24,17 @@ $_dark-calendar: extend($_light-calendar, (
 /// Generates a dark fluent calendar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-calendar
-$_dark-fluent-calendar: extend($_fluent-calendar);
+/// @requires $fluent-calendar
+$dark-fluent-calendar: extend($fluent-calendar);
 
 /// Generates a dark bootstrap calendar schema.
 /// @type {Map}
 /// @prop {Map} content-background [#222] - The main content background color.
 /// @prop {Map} picker-text-color [#fff]- The idle picker month/year color.
 /// @requires {function} extend
-/// @requires $_bootstrap-calendar
-$_dark-bootstrap-calendar: extend(
-    $_bootstrap-calendar,
+/// @requires $bootstrap-calendar
+$dark-bootstrap-calendar: extend(
+    $bootstrap-calendar,
     (
         content-background: #222,
         picker-text-color: #fff,
@@ -55,9 +57,9 @@ $_dark-bootstrap-calendar: extend(
 /// @prop {Map} month-current-text-color [igx-color: ('primary', 300)]- The text color for the current/selected month.
 /// @prop {Map} month-hover-current-text-color [igx-color: ('primary', 300)]- The text color for the current/selected month on hover.
 /// @requires {function} extend
-/// @requires $_indigo-calendar
-$_dark-indigo-calendar: extend(
-    $_indigo-calendar,
+/// @requires $indigo-calendar
+$dark-indigo-calendar: extend(
+    $indigo-calendar,
     (
         content-text-color: (
             igx-contrast-color: ('surface')

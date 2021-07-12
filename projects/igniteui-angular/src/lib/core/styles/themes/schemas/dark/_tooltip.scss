@@ -1,4 +1,6 @@
-@import '../light/tooltip';
+@use '../../../base' as *;
+@use '../light/tooltip' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -7,22 +9,19 @@
 
 /// Generates a dark tooltip schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-tooltip
+/// @requires $light-tooltip
 /// @see $default-palette
-$_dark-tooltip: extend($_light-tooltip);
+$dark-tooltip: $light-tooltip;
 
 /// Generates a dark fluent tooltip schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-tooltip
-$_dark-fluent-tooltip: extend($_fluent-tooltip);
+/// @requires $fluent-tooltip
+$dark-fluent-tooltip: $fluent-tooltip;
 
 /// Generates a dark bootstrap tooltip schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-tooltip
-$_dark-bootstrap-tooltip: extend($_bootstrap-tooltip);
+/// @requires $bootstrap-tooltip
+$dark-bootstrap-tooltip: $bootstrap-tooltip;
 
 /// Generates a dark indigo tooltip schema.
 /// @type {Map}
@@ -31,9 +30,9 @@ $_dark-bootstrap-tooltip: extend($_bootstrap-tooltip);
 /// @property {Map} text-color [text-color: (igx-color: 'surface')] - The text color of the tooltip.
 ///
 /// @requires {function} extend
-/// @requires $_indigo-tooltip
-$_dark-indigo-tooltip: extend(
-    $_indigo-tooltip,
+/// @requires $indigo-tooltip
+$dark-indigo-tooltip: extend(
+    $indigo-tooltip,
     (
         background: #fff,
 

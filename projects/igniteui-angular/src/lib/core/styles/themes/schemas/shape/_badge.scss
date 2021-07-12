@@ -6,25 +6,25 @@
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for badge. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-badge: (
+$default-shape-badge: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for badge. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-badge: (
+$round-shape-badge: (
     border-radius: 1
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for badge. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-badge: (
+$square-shape-badge: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for badge. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-badge: (
+$bootstrap-shape-badge: (
     border-radius: 4px,
 );
 

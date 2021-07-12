@@ -6,13 +6,13 @@
 
 /// @type Map
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the toast.
-$_default-elevation-toast: (
+$default-elevation-toast: (
     elevation: 0
 );
 
 /// @type Map
 /// @prop {Number} elevation [10] - The elevation level, between 0-24, to be used for the toast.
-$_bootstrap-elevation-toast: (
+$bootstrap-elevation-toast: (
     elevation: 10
 );
 

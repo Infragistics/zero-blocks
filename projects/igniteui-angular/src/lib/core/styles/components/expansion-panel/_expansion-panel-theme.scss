@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -48,8 +54,8 @@
     $name: 'igx-expansion-panel';
     $expansion-panel-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $expansion-panel-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $expansion-panel-schema: map.get($schema, $name);
     } @else {
         $expansion-panel-schema: $schema;
     }
@@ -57,7 +63,7 @@
     $theme: apply-palette($expansion-panel-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($expansion-panel-schema, 'border-radius')), 0, 16px
+        if($border-radius, $border-radius, map.get($expansion-panel-schema, 'border-radius')), 0, 16px
     );
 
     @if not($header-title-color) and $header-background {
@@ -65,7 +71,7 @@
     }
 
     @if not($header-description-color) and $header-background {
-        @if type-of($header-background) == 'color' {
+        @if meta.type-of($header-background) == 'color' {
             $header-description-color: rgba(text-contrast($header-background), .8);
         }
     }
@@ -97,7 +103,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-expansion-panel($theme) {
     @include igx-css-vars($theme);
 
@@ -111,17 +117,17 @@
     %igx-expansion-panel {
         display: flex;
         flex-direction: column;
-        border-radius: --var($theme, 'border-radius');
+        border-radius: var-get($theme, 'border-radius');
         overflow: hidden;
     }
 
     %igx-expansion-panel__header-title {
-        color: --var($theme, 'header-title-color');
+        color: var-get($theme, 'header-title-color');
         margin-#{$right}: rem(16px, 16px);
     }
 
     %igx-expansion-panel__header-description {
-        color: --var($theme, 'header-description-color');
+        color: var-get($theme, 'header-description-color');
     }
 
     %igx-expansion-panel__header-title,
@@ -141,7 +147,7 @@
 
     %igx-expanded-panel-margin {
         igx-expansion-panel[aria-expanded='true'] {
-            margin: --var($theme, 'expanded-margin') 0;
+            margin: var-get($theme, 'expanded-margin') 0;
 
             &:first-of-type {
                 margin-top: 0;
@@ -158,12 +164,12 @@
         align-items: center;
         padding: $panel-padding;
         cursor: pointer;
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
 
         &:focus,
         &:active
         {
-            background: --var($theme, 'header-focus-background');
+            background: var-get($theme, 'header-focus-background');
             outline: transparent;
         }
     }
@@ -197,16 +203,16 @@
         justify-content: center;
         user-select: none;
 
-        color: --var($theme, 'header-icon-color');
+        color: var-get($theme, 'header-icon-color');
 
         igx-icon {
-            color: --var($theme, 'header-icon-color');
+            color: var-get($theme, 'header-icon-color');
         }
     }
 
     %igx-expansion-panel__body {
-        color: --var($theme, 'body-color');
-        background: --var($theme, 'body-background');
+        color: var-get($theme, 'body-color');
+        background: var-get($theme, 'body-background');
         overflow: hidden;
     }
 
@@ -215,13 +221,13 @@
 
         %igx-expansion-panel__header-title,
         %igx-expansion-panel__header-description {
-            color: --var($theme, 'disabled-color')
+            color: var-get($theme, 'disabled-color')
         }
 
         %igx-expansion-panel__header-icon--start,
         %igx-expansion-panel__header-icon--end {
             igx-icon {
-                color: --var($theme, 'disabled-color');
+                color: var-get($theme, 'disabled-color');
             }
         }
     }
@@ -237,9 +243,9 @@
     description: 'subtitle-2',
     body: 'body-2')
 ) {
-    $title: map-get($categories, 'title');
-    $description: map-get($categories, 'description');
-    $body: map-get($categories, '$body');
+    $title: map.get($categories, 'title');
+    $description: map.get($categories, 'description');
+    $body: map.get($categories, '$body');
 
     %igx-expansion-panel__header-title {
         @include igx-type-style($type-scale, $title) {

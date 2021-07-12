@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -16,7 +18,7 @@
 /// @property {Map} item-focus-background [igx-color: ('grays', 100)] - The toolbar drop-down item focus background color.
 /// @property {Map} item-focus-text-color [igx-color: ('grays', 600)] - The toolbar drop-down item focus text color.
 /// @see $default-palette
-$_light-grid-toolbar: (
+$light-grid-toolbar: (
     variant: 'material',
 
     background-color: (
@@ -55,9 +57,9 @@ $_light-grid-toolbar: (
 ///
 /// @property {Map} background-color [igx-color: 'surface'] - The toolbar background color.
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-toolbar
-$_fluent-grid-toolbar: extend(
-    $_light-grid-toolbar,
+/// @requires {Map} $light-grid-toolbar
+$fluent-grid-toolbar: extend(
+    $light-grid-toolbar,
     (
         variant: 'fluent',
 
@@ -70,9 +72,9 @@ $_fluent-grid-toolbar: extend(
 /// Generates a bootstrap grid-toolbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-toolbar
-$_bootstrap-grid-toolbar: extend(
-    $_light-grid-toolbar,
+/// @requires {Map} $light-grid-toolbar
+$bootstrap-grid-toolbar: extend(
+    $light-grid-toolbar,
     (
         variant: 'bootstrap'
     )
@@ -83,9 +85,9 @@ $_bootstrap-grid-toolbar: extend(
 /// @property {Map} background-color [igx-color: ('grays', 100)] - The toolbar background color.
 /// @property {Map} title-text-color [igx-color: ('primary', 500)] - The toolbar title text color.
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-toolbar
-$_indigo-grid-toolbar: extend(
-    $_light-grid-toolbar,
+/// @requires {Map} $light-grid-toolbar
+$indigo-grid-toolbar: extend(
+    $light-grid-toolbar,
     (
         variant: 'indigo-design',
 

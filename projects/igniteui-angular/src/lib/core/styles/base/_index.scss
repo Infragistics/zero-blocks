@@ -1,5 +1,4 @@
-@import 'variables';
-@import 'linear-channel-values';
-@import 'utilities/index';
-@import 'animations/index';
-@import 'elevations/index';
+@forward 'variables';
+@forward 'animations';
+@forward 'elevations';
+@forward 'utilities';

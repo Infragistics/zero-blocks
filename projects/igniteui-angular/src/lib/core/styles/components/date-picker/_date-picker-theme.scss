@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -8,126 +11,126 @@
 /// @param {Map} $theme - The calendar theme used to style the component.
 /// @requires igx-elevation
 /// @requires text-contrast
-/// @requires --var
+/// @requires var-get
 /// @requires rem
 @mixin igx-date-picker($theme) {
-    $palette: map-get($theme, 'palette');
-    $selected-hover-color: text-contrast(map-get($theme, 'date-selected-background'), $palette: $palette);
+    $palette: map.get($theme, 'palette');
+    $selected-hover-color: text-contrast(map.get($theme, 'date-selected-background'), $palette: $palette);
 
     @include igx-css-vars($theme, '.igx-date-picker');
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
 
     %date-picker {
         box-shadow: igx-elevation($elevation: 24);
-        border-radius: --var($theme, 'border-radius');
-        background: --var($theme, 'content-background');
+        border-radius: var-get($theme, 'border-radius');
+        background: var-get($theme, 'content-background');
         overflow: hidden;
 
         %cal-display {
-            background: --var($theme, 'content-background');
+            background: var-get($theme, 'content-background');
         }
 
         %cal-header-display {
-            background: --var($theme, 'header-background');
-            color: --var($theme, 'header-text-color');
+            background: var-get($theme, 'header-background');
+            color: var-get($theme, 'header-text-color');
         }
 
         %cal-picker-arrow {
-            color: --var($theme, 'picker-arrow-color');
+            color: var-get($theme, 'picker-arrow-color');
 
             &:hover {
-                color: --var($theme, 'picker-arrow-hover-color');
+                color: var-get($theme, 'picker-arrow-hover-color');
             }
         }
 
         %cal-picker-date {
-            color: --var($theme, 'picker-text-color');
+            color: var-get($theme, 'picker-text-color');
 
             &:hover,
             &:focus {
-                color: --var($theme, 'picker-text-hover-color');
+                color: var-get($theme, 'picker-text-hover-color');
             }
         }
 
         %cal-value {
-            color: --var($theme, 'content-text-color');
+            color: var-get($theme, 'content-text-color');
             min-width: 14.28%;
 
             @if $bootstrap-theme {
                 &:hover,
                 &:focus {
-                    color: --var($theme, 'date-selected-text-color');
+                    color: var-get($theme, 'date-selected-text-color');
                 }
             }
         }
 
         %cal-value--label {
-            color: --var($theme, 'label-color');
+            color: var-get($theme, 'label-color');
 
             &:hover,
             &:focus {
-                color: --var($theme, 'label-color');
+                color: var-get($theme, 'label-color');
             }
         }
 
         %cal-value--weekend {
-            color: --var($theme, 'weekend-text-color');
+            color: var-get($theme, 'weekend-text-color');
         }
 
         %cal-value--special {
-            color: --var($theme, 'date-special-text-color');
-            background: --var($theme, 'date-special-background');
+            color: var-get($theme, 'date-special-text-color');
+            background: var-get($theme, 'date-special-background');
         }
 
         %cal-value--disabled {
-            color: --var($theme, 'date-disabled-text-color');
+            color: var-get($theme, 'date-disabled-text-color');
         }
 
         %cal-value--year-current {
-            color: --var($theme, 'year-current-text-color');
+            color: var-get($theme, 'year-current-text-color');
 
             @if $bootstrap-theme {
                 &:hover,
                 &:focus {
-                    color: --var($theme, 'year-hover-text-color');
+                    color: var-get($theme, 'year-hover-text-color');
                 }
             }
         }
 
         %cal-value--year-hover {
-            color: --var($theme, 'year-hover-text-color');
+            color: var-get($theme, 'year-hover-text-color');
         }
 
         %cal-value--month-hover {
-            color: --var($theme, 'month-hover-text-color');
+            color: var-get($theme, 'month-hover-text-color');
         }
 
         %cal-value--month-current {
-            color: --var($theme, 'month-current-text-color');
+            color: var-get($theme, 'month-current-text-color');
         }
 
         %cal-value--inactive {
-            color: --var($theme, 'inactive-text-color');
+            color: var-get($theme, 'inactive-text-color');
 
             &:hover {
-                color: --var($theme, 'inactive-text-color');
+                color: var-get($theme, 'inactive-text-color');
             }
         }
 
         %cal-value--selected {
-            color: --var($theme, 'date-selected-text-color');
-            // background: --var($theme, 'date-selected-background') !important;
+            color: var-get($theme, 'date-selected-text-color');
+            // background: var-get($theme, 'date-selected-background') !important;
         }
 
         %cal-value--current {
-            color: --var($theme, 'date-current-text-color');
+            color: var-get($theme, 'date-current-text-color');
         }
 
         %cal-value--hover {
             %cal-value-content::after {
-                background: --var($theme, 'date-hover-background');
+                background: var-get($theme, 'date-hover-background');
             }
 
             &%cal-value--selected %cal-value-content::after {

@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -6,130 +9,138 @@
 /// @requires {mixin} bem-mod
 ////
 
-/// Linear Progress
-@include b(igx-linear-bar) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    /// Linear Progress
+    @include b(igx-linear-bar) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @extend %linear-display !optional;
+        @extend %linear-display !optional;
 
-    @include e(base) {
-        @extend %linear-bar !optional;
-    }
-
-    @include e(indicator) {
-        @extend %linear-indicator !optional;
-        @extend %linear-indicator--default !optional;
-    }
-
-    @include e(value) {
-        @extend %linear-value !optional;
-        @extend %linear-value--start !optional;
-    }
-
-    @include e(value, $m: start) {
-        @extend %linear-value !optional;
-        @extend %linear-value--start !optional;
-    }
-
-    @include e(value, $m: center) {
-        @extend %linear-value !optional;
-        @extend %linear-value--center !optional;
-    }
-
-    @include e(value, $m: end) {
-        @extend %linear-value !optional;
-        @extend %linear-value--end !optional;
-    }
-
-    @include e(value, $m: top) {
-        @extend %linear-value !optional;
-        @extend %linear-value--top !optional;
-    }
-
-    @include e(value, $m: hidden) {
-        @extend %linear-value !optional;
-        @extend %linear-value--hidden !optional;
-    }
-
-    @include m(danger) {
-        @include e(indicator) {
-            @extend %linear-indicator--danger !optional;
+        @include e(base) {
+            @extend %linear-bar !optional;
         }
-    }
 
-    @include m(warning) {
         @include e(indicator) {
-            @extend %linear-indicator--warning !optional;
-        }
-    }
-
-    @include m(info) {
-        @include e(indicator) {
-            @extend %linear-indicator--info !optional;
-        }
-    }
-
-    @include m(success) {
-        @include e(indicator) {
-            @extend %linear-indicator--success !optional;
-        }
-    }
-
-    @include m(striped) {
-        @include e(indicator) {
-            @extend %linear-indicator--striped !optional;
-        }
-    }
-
-    @include m(indeterminate) {
-        @include e(indicator) {
-            @extend %linear-indicator--indeterminate !optional;
+            @extend %linear-indicator !optional;
+            @extend %linear-indicator--default !optional;
         }
 
         @include e(value) {
             @extend %linear-value !optional;
+            @extend %linear-value--start !optional;
+        }
+
+        @include e(value, $m: start) {
+            @extend %linear-value !optional;
+            @extend %linear-value--start !optional;
+        }
+
+        @include e(value, $m: center) {
+            @extend %linear-value !optional;
+            @extend %linear-value--center !optional;
+        }
+
+        @include e(value, $m: end) {
+            @extend %linear-value !optional;
+            @extend %linear-value--end !optional;
+        }
+
+        @include e(value, $m: top) {
+            @extend %linear-value !optional;
+            @extend %linear-value--top !optional;
+        }
+
+        @include e(value, $m: hidden) {
+            @extend %linear-value !optional;
             @extend %linear-value--hidden !optional;
         }
+
+        @include m(danger) {
+            @include e(indicator) {
+                @extend %linear-indicator--danger !optional;
+            }
+        }
+
+        @include m(warning) {
+            @include e(indicator) {
+                @extend %linear-indicator--warning !optional;
+            }
+        }
+
+        @include m(info) {
+            @include e(indicator) {
+                @extend %linear-indicator--info !optional;
+            }
+        }
+
+        @include m(success) {
+            @include e(indicator) {
+                @extend %linear-indicator--success !optional;
+            }
+        }
+
+        @include m(striped) {
+            @include e(indicator) {
+                @extend %linear-indicator--striped !optional;
+            }
+        }
+
+        @include m(indeterminate) {
+            @include e(indicator) {
+                @extend %linear-indicator--indeterminate !optional;
+            }
+
+            @include e(value) {
+                @extend %linear-value !optional;
+                @extend %linear-value--hidden !optional;
+            }
+        }
     }
-}
 
-/// Circular Progress
-@include b(igx-circular-bar) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+    /// Circular Progress
+    @include b(igx-circular-bar) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @extend %circular-display !optional;
+        @extend %circular-display !optional;
 
-    @include e(inner) {
-        @extend %circular-inner !optional;
-    }
-
-    @include e(outer) {
-        @extend %circular-outer !optional;
-    }
-
-    @include e(text) {
-        @extend %circular-text !optional;
-    }
-
-    @include e(gradient-start) {
-        @extend %circular-gradient-start !optional;
-    }
-
-    @include e(gradient-end) {
-        @extend %circular-gradient-end !optional;
-    }
-
-    @include m(indeterminate) {
-        @extend %circular-display--indeterminate !optional;
+        @include e(inner) {
+            @extend %circular-inner !optional;
+        }
 
         @include e(outer) {
-            @extend %circular-outer--indeterminate !optional;
+            @extend %circular-outer !optional;
         }
 
         @include e(text) {
-            @extend %circular-text--hidden !optional;
+            @extend %circular-text !optional;
+        }
+
+        @include e(gradient-start) {
+            @extend %circular-gradient-start !optional;
+        }
+
+        @include e(gradient-end) {
+            @extend %circular-gradient-end !optional;
+        }
+
+        @include m(indeterminate) {
+            @extend %circular-display--indeterminate !optional;
+
+            @include e(outer) {
+                @extend %circular-outer--indeterminate !optional;
+            }
+
+            @include e(text) {
+                @extend %circular-text--hidden !optional;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ $print-background: #eee;
 
 /// Defines printing styles for the igx-grid component.
 /// @group print
-@mixin igx-grid-print {
+@mixin layout {
     igx-grid {
         igx-input-group,
         igx-checkbox,

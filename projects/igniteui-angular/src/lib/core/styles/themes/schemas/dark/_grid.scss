@@ -1,4 +1,5 @@
-@import '../light/grid';
+@use '../../../base' as *;
+@use '../light/grid' as *;
 
 ////
 /// @group schemas
@@ -38,7 +39,7 @@
 /// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('secondary', 500)] - The color of the selected cell inside a selected row/column.
 /// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('secondary', A700)] - The selected row hover text color.
 
-$_base-dark-grid: (
+$base-dark-grid: (
     header-background: (
         igx-color: ('grays', 100),
         to-opaque: #222
@@ -162,16 +163,16 @@ $_base-dark-grid: (
     )
 );
 
-/// Generates a dark grid schema based on a mix of $_light-grid and $_base-dark-grid.
+/// Generates a dark grid schema based on a mix of $light-grid and $base-dark-grid.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-grid
-/// @requires $_base-dark-grid
+/// @requires $light-grid
+/// @requires $base-dark-grid
 /// @see $default-palette
-$_dark-grid: extend($_light-grid, $_base-dark-grid);
+$dark-grid: extend($light-grid, $base-dark-grid);
 
 
-/// Generates a dark fluent grid schema based on a mix of $_fluent-grid and $_base-dark-grid.
+/// Generates a dark fluent grid schema based on a mix of $fluent-grid and $base-dark-grid.
 /// @prop {Map} header-selected-background [igx-color: ('grays', 200), to-opaque: #222] - The table header background color when selected (ex. column selection).
 /// @prop {Map} header-selected-text-color [igx-color: ('grays', 200), to-opaque: #222, text-contrast: ()] - The table header text color when selected (ex. column selection).
 /// @prop {Map} row-hover-background [igx-color: ('grays', 100), to-opaque: #222] - The hover row background color.
@@ -182,11 +183,11 @@ $_dark-grid: extend($_light-grid, $_base-dark-grid);
 /// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('grays', 300)] - The selected row hover text color.
 ///
 /// @requires {function} extend
-/// @requires $_fluent-grid
-/// @requires $_base-dark-grid
-$_dark-fluent-grid: extend(
-    $_fluent-grid,
-    $_base-dark-grid,
+/// @requires $fluent-grid
+/// @requires $base-dark-grid
+$dark-fluent-grid: extend(
+    $fluent-grid,
+    $base-dark-grid,
     (
         header-selected-background: (
             igx-color: ('grays', 200),
@@ -231,7 +232,7 @@ $_dark-fluent-grid: extend(
 );
 
 
-/// Generates a dark bootstrap grid schema based on a mix of $_bootstrap-grid and $_base-dark-grid.
+/// Generates a dark bootstrap grid schema based on a mix of $bootstrap-grid and $base-dark-grid.
 /// @type {Map}
 ///
 /// @prop {Color} header-background [#222] - The table header background color.
@@ -241,11 +242,11 @@ $_dark-fluent-grid: extend(
 /// @prop {Map} cell-selected-within-background [igx-color: ('secondary', 500), rgba: .5, to-opaque: #222] - The background of the selected cell inside a selected row/column.
 ///
 /// @requires {function} extend
-/// @requires $_bootstrap-grid
-/// @requires $_base-dark-grid
-$_dark-bootstrap-grid: extend(
-    $_bootstrap-grid,
-    $_base-dark-grid,
+/// @requires $bootstrap-grid
+/// @requires $base-dark-grid
+$dark-bootstrap-grid: extend(
+    $bootstrap-grid,
+    $base-dark-grid,
     (
         header-background: #222,
         header-text-color: #fff,
@@ -330,9 +331,9 @@ $_dark-bootstrap-grid: extend(
 /// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('primary', 400)] - The color of the selected cell inside a selected row/column.
 ///
 /// @requires {function} extend
-/// @requires $_indigo-grid
-$_dark-indigo-grid: extend(
-    $_indigo-grid,
+/// @requires $indigo-grid
+$dark-indigo-grid: extend(
+    $indigo-grid,
     (
         header-background: (
             igx-color: 'surface',

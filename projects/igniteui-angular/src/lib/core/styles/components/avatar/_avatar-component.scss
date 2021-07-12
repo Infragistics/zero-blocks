@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,42 +8,49 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-avatar) {
-    // Register the component in the component registry
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-avatar) {
+        // Register the component in the component registry
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+            )
+        );
 
-    @extend %igx-avatar-display !optional;
+        @extend %igx-avatar-display !optional;
 
-    @include e(image) {
-        @extend %igx-avatar-image !optional;
-    }
+        @include e(image) {
+            @extend %igx-avatar-image !optional;
+        }
 
-    @include m(rounded) {
-        @extend %igx-avatar--rounded !optional;
-    }
+        @include m(rounded) {
+            @extend %igx-avatar--rounded !optional;
+        }
 
-    @include m(small) {
-        @extend %igx-avatar--small !optional;
-    }
+        @include m(small) {
+            @extend %igx-avatar--small !optional;
+        }
 
-    @include m(medium) {
-        @extend %igx-avatar--medium !optional;
-    }
+        @include m(medium) {
+            @extend %igx-avatar--medium !optional;
+        }
 
-    @include m(large) {
-        @extend %igx-avatar--large !optional;
-    }
+        @include m(large) {
+            @extend %igx-avatar--large !optional;
+        }
 
-    @include m(initials) {
-        @extend %igx-avatar-initials--small !optional;
-    }
+        @include m(initials) {
+            @extend %igx-avatar-initials--small !optional;
+        }
 
-    @include mx(medium, initials) {
-        @extend %igx-avatar-initials--medium !optional;
-    }
+        @include mx(medium, initials) {
+            @extend %igx-avatar-initials--medium !optional;
+        }
 
-    @include mx(large, initials) {
-        @extend %igx-avatar-initials--large !optional;
+        @include mx(large, initials) {
+            @extend %igx-avatar-initials--large !optional;
+        }
     }
 }

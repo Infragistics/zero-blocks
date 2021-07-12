@@ -1,4 +1,5 @@
-@import '../shape/tabs';
+@use '../../../base' as *;
+@use '../shape/tabs' as *;
 
 ////
 /// @group schemas
@@ -29,10 +30,10 @@
 /// @property {Number} border-radius [0] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-tabs
+/// @requires {Map} $default-shape-tabs
 /// @see $default-palette
-$_light-tabs: extend(
-    $_default-shape-tabs,
+$light-tabs: extend(
+    $default-shape-tabs,
     (
         item-text-color: (
             igx-color: ('grays', 700)
@@ -105,9 +106,9 @@ $_light-tabs: extend(
 /// @property {Map} indicator-color [igx-color: ('grays', 400)] - The color used for the tabs borders.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-tabs
-/// @requires {Map} $_fluent-shape-tabs
-$_fluent-tabs: extend($_light-tabs, $_fluent-shape-tabs);
+/// @requires {Map} $light-tabs
+/// @requires {Map} $fluent-shape-tabs
+$fluent-tabs: extend($light-tabs, $fluent-shape-tabs);
 
 /// Generates a bootstrap tabs schema.
 /// @type {Map}
@@ -124,11 +125,11 @@ $_fluent-tabs: extend($_light-tabs, $_fluent-shape-tabs);
 /// @property {map} border-color--hover [igx-color: ('grays', 200)] - The color used for the tab items border on hover.
 /// @property {Number} border-radius [4px] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-tabs
-/// @requires {Map} $_bootstrap-shape-tabs
-$_bootstrap-tabs: extend(
-    $_light-tabs,
-    $_bootstrap-shape-tabs,
+/// @requires {Map} $light-tabs
+/// @requires {Map} $bootstrap-shape-tabs
+$bootstrap-tabs: extend(
+    $light-tabs,
+    $bootstrap-shape-tabs,
     (
         variant: 'bootstrap',
 
@@ -196,9 +197,9 @@ $_bootstrap-tabs: extend(
 /// @property {Color} button-hover-background [transparent] - The color used for the button background on hover.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-tabs
-$_indigo-tabs: extend(
-    $_light-tabs,
+/// @requires {Map} $light-tabs
+$indigo-tabs: extend(
+    $light-tabs,
     (
         variant: 'indigo-design',
 

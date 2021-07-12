@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,138 +8,147 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-card) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-card-display !optional;
+@mixin component {
+    @include b(igx-card) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+                igx-button,
+            )
+        );
 
-    @include e(tgroup) {
-        @extend %igx-card-tgroup !optional;
+        @extend %igx-card-display !optional;
+
+        @include e(tgroup) {
+            @extend %igx-card-tgroup !optional;
+        }
+
+        @include e(media) {
+            @extend %igx-card-media !optional;
+        }
+
+        @include e(media, $m: right) {
+            @extend %igx-card-media--right !optional;
+        }
+
+        @include m(outlined) {
+            @extend %igx-card--outlined !optional;
+        }
+
+        @include m(horizontal) {
+            @extend %igx-card--horizontal !optional;
+        }
     }
 
-    @include e(media) {
-        @extend %igx-card-media !optional;
+    @include b(igx-card-header) {
+        @extend %igx-card-header !optional;
+
+        @include e(thumbnail) {
+            @extend %igx-card-header-thumbnail !optional;
+        }
+
+        @include e(titles) {
+            @extend %igx-card-header-titles !optional;
+        }
+
+        @include e(title) {
+            @extend %igx-card-header-title !optional;
+        }
+
+        @include e(title, $m: small) {
+            @extend %igx-card-header-title !optional;
+            @extend %igx-card-header-title--small !optional;
+        }
+
+        @include e(subtitle) {
+            @extend %igx-card-header-subtitle !optional;
+        }
+
+        @include m(compact) {
+            @extend %igx-card-header--compact !optional;
+        }
+
+        @include m(vertical) {
+            @extend %igx-card-header--vertical !optional;
+        }
     }
 
-    @include e(media, $m: right) {
-        @extend %igx-card-media--right !optional;
+    @include b(igx-card-content) {
+        @extend %igx-card-content !optional;
     }
 
-    @include m(outlined) {
-        @extend %igx-card--outlined !optional;
-    }
-
-    @include m(horizontal) {
-        @extend %igx-card--horizontal !optional;
-    }
-}
-
-@include b(igx-card-header) {
-    @extend %igx-card-header !optional;
-
-    @include e(thumbnail) {
-        @extend %igx-card-header-thumbnail !optional;
-    }
-
-    @include e(titles) {
-        @extend %igx-card-header-titles !optional;
-    }
-
-    @include e(title) {
-        @extend %igx-card-header-title !optional;
-    }
-
-    @include e(title, $m: small) {
-        @extend %igx-card-header-title !optional;
-        @extend %igx-card-header-title--small !optional;
-    }
-
-    @include e(subtitle) {
-        @extend %igx-card-header-subtitle !optional;
-    }
-
-    @include m(compact) {
-        @extend %igx-card-header--compact !optional;
-    }
-
-    @include m(vertical) {
-        @extend %igx-card-header--vertical !optional;
-    }
-}
-
-@include b(igx-card-content) {
-    @extend %igx-card-content !optional;
-}
-
-@include b(igx-card-actions) {
-    @extend %igx-card-actions !optional;
-
-    @include e(icons) {
-        @extend %igx-card-actions__icons !optional;
-    }
-
-    @include e(buttons) {
-        @extend %igx-card-actions__buttons !optional;
-    }
-
-    @include e(igroup) {
-        @extend %igx-card-actions-igroup !optional;
-    }
-
-    @include e(igroup, $m: start) {
-        @extend %igx-card-actions-igroup !optional;
-        @extend %igx-card-actions-igroup--start !optional;
-    }
-
-    @include e(igroup, $m: end) {
-        @extend %igx-card-actions-igroup !optional;
-        @extend %igx-card-actions-igroup--end !optional;
-    }
-
-    @include e(bgroup) {
-        @extend %igx-card-actions-bgroup !optional;
-    }
-
-    @include m(vertical) {
-        @extend %igx-card-actions--vertical !optional;
+    @include b(igx-card-actions) {
+        @extend %igx-card-actions !optional;
 
         @include e(icons) {
-            @extend %igx-card-actions__icons--vertical !optional;
+            @extend %igx-card-actions__icons !optional;
         }
 
         @include e(buttons) {
-            @extend %igx-card-actions__buttons--vertical !optional;
-        }
-    }
-
-    @include m(reverse) {
-        @include e(icons) {
-            @extend %igx-card-actions__icons--reverse !optional;
+            @extend %igx-card-actions__buttons !optional;
         }
 
-        @include e(buttons) {
-            @extend %igx-card-actions__buttons--reverse !optional;
-        }
-    }
-
-    @include mx(vertical, reverse) {
-        @include e(icons) {
-            @extend %igx-card-actions__icons--vertical-reverse !optional;
+        @include e(igroup) {
+            @extend %igx-card-actions-igroup !optional;
         }
 
-        @include e(buttons) {
-            @extend %igx-card-actions__buttons--vertical-reverse !optional;
-        }
-    }
-
-    @include m(justify) {
-        @include e(icons) {
-            @extend %igx-card-actions__icons--justify !optional;
+        @include e(igroup, $m: start) {
+            @extend %igx-card-actions-igroup !optional;
+            @extend %igx-card-actions-igroup--start !optional;
         }
 
-        @include e(buttons) {
-            @extend %igx-card-actions__buttons--justify !optional;
+        @include e(igroup, $m: end) {
+            @extend %igx-card-actions-igroup !optional;
+            @extend %igx-card-actions-igroup--end !optional;
+        }
+
+        @include e(bgroup) {
+            @extend %igx-card-actions-bgroup !optional;
+        }
+
+        @include m(vertical) {
+            @extend %igx-card-actions--vertical !optional;
+
+            @include e(icons) {
+                @extend %igx-card-actions__icons--vertical !optional;
+            }
+
+            @include e(buttons) {
+                @extend %igx-card-actions__buttons--vertical !optional;
+            }
+        }
+
+        @include m(reverse) {
+            @include e(icons) {
+                @extend %igx-card-actions__icons--reverse !optional;
+            }
+
+            @include e(buttons) {
+                @extend %igx-card-actions__buttons--reverse !optional;
+            }
+        }
+
+        @include mx(vertical, reverse) {
+            @include e(icons) {
+                @extend %igx-card-actions__icons--vertical-reverse !optional;
+            }
+
+            @include e(buttons) {
+                @extend %igx-card-actions__buttons--vertical-reverse !optional;
+            }
+        }
+
+        @include m(justify) {
+            @include e(icons) {
+                @extend %igx-card-actions__icons--justify !optional;
+            }
+
+            @include e(buttons) {
+                @extend %igx-card-actions__buttons--justify !optional;
+            }
         }
     }
 }

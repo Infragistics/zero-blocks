@@ -1,4 +1,4 @@
-@import '../light/geo-map';
+@use '../light/geo-map' as *;
 
 ////
 /// @group schemas
@@ -8,29 +8,25 @@
 
 /// Generates a dark base geo map schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-geo-map
-/// @see $_light-geo-map
-$_dark-geo-map: extend($_light-geo-map);
+/// @requires $light-geo-map
+/// @see $light-geo-map
+$dark-geo-map: $light-geo-map;
 
 /// Generates a dark fluent geo map schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-geo-map
-/// @see $_fluent-geo-map
-$_dark-fluent-geo-map: extend($_fluent-geo-map);
+/// @requires $fluent-geo-map
+/// @see $fluent-geo-map
+$dark-fluent-geo-map: $fluent-geo-map;
 
 /// Generates a dark bootstrap geo map schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-geo-map
-/// @see $_bootstrap-geo-map
-$_dark-bootstrap-geo-map: extend($_bootstrap-geo-map);
+/// @requires $bootstrap-geo-map
+/// @see $bootstrap-geo-map
+$dark-bootstrap-geo-map: $bootstrap-geo-map;
 
 /// Generates a dark indigo geo map schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-geo-map
-/// @see $_indigo-geo-map
-$_dark-indigo-geo-map: extend($_indigo-geo-map);
+/// @requires $indigo-geo-map
+/// @see $indigo-geo-map
+$dark-indigo-geo-map: $indigo-geo-map;
 

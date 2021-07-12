@@ -1,4 +1,4 @@
-@import '../index';
+@use '../../themes' as *;
 
 @include igx-core($direction: rtl);
 @include igx-typography($font-family: $bootstrap-typeface, $type-scale: $bootstrap-type-scale);

@@ -1,3 +1,4 @@
+@use '../../../base' as *;
 
 ////
 /// @group schemas
@@ -29,7 +30,7 @@
 /// @property {Map} tick-color [igx-color: ('grays', 500)] - The background-color of the tick.
 /// @property {Map} tick-color-tall [igx-color: ('grays', 500)] - The background-color of the tall tick.
 /// @see $default-palette
-$_light-slider: (
+$light-slider: (
     variant: 'material',
 
     tick-color:  (
@@ -117,8 +118,8 @@ $_light-slider: (
 /// @property {Map} base-track-hover-color [igx-color: ('primary', 500), rgba: .32] - The base background color of the track on hover.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-slider
-$_fluent-slider: extend($_light-slider, (
+/// @requires {Map} $light-slider
+$fluent-slider: extend($light-slider, (
     variant: 'fluent',
 
     track-color: (
@@ -167,9 +168,9 @@ $_fluent-slider: extend($_light-slider, (
 /// @property {Map} thumb-disabled-border-color [igx-color: ('grays', 400), to-opaque: #fff] - The thumb border color when its disabled
 /// @property {Map} thumb-focus-color [igx-color: ('primary', 200)] - The focus outline color of the thumb.
 /// @requires {function} extend
-/// @requires {Map} $_light-slider
-$_bootstrap-slider: extend(
-    $_fluent-slider,
+/// @requires {Map} $light-slider
+$bootstrap-slider: extend(
+    $fluent-slider,
     (
         variant: 'bootstrap',
 
@@ -199,9 +200,9 @@ $_bootstrap-slider: extend(
 /// @property {Map} thumb-focus-color [igx-color: ('primary', 200)] - The focus outline color of the thumb.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-slider
-$_indigo-slider: extend(
-    $_light-slider,
+/// @requires {Map} $light-slider
+$indigo-slider: extend(
+    $light-slider,
     (
         variant: 'indigo-design',
 

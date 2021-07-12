@@ -1,3 +1,5 @@
+@use '../../projects/igniteui-angular/src/lib/core/styles/themes/index' as *;
+
 @include b(igniteui-logo) {
     @include e(u) {
         fill: #f60;
@@ -103,6 +105,4 @@
             @include animation(fade-in-fwd .3s $ease-out-quad);
         }
     }
-
-
 }

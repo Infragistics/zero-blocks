@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -53,8 +59,8 @@
     $name: 'igx-card';
     $card-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $card-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $card-schema: map.get($schema, $name);
     } @else {
         $card-schema: $schema;
     }
@@ -62,7 +68,7 @@
     $theme: apply-palette($card-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($card-schema, 'border-radius')),0 ,24px
+        if($border-radius, $border-radius, map.get($card-schema, 'border-radius')),0 ,24px
     );
 
     @if not($header-text-color) and $background {
@@ -70,30 +76,30 @@
     }
 
     @if not($actions-text-color) and $background {
-        @if type-of($background) == 'color' {
+        @if meta.type-of($background) == 'color' {
             $actions-text-color: rgba(text-contrast($background), .5);
         }
     }
 
     @if not($content-text-color) and $background {
-        @if type-of($background) == 'color' {
+        @if meta.type-of($background) == 'color' {
             $content-text-color: rgba(text-contrast($background), .7);
         }
     }
 
     @if not($subtitle-text-color) and $background {
-        @if type-of($background) == 'color' {
+        @if meta.type-of($background) == 'color' {
             $subtitle-text-color: rgba(text-contrast($background), .7);
         }
     }
 
     @if not($resting-shadow) {
-        $resting-elevation: map-get($card-schema, 'resting-elevation');
+        $resting-elevation: map.get($card-schema, 'resting-elevation');
         $resting-shadow: igx-elevation($elevations, $resting-elevation);
     }
 
     @if not($hover-shadow) {
-        $hover-elevation: map-get($card-schema, 'hover-elevation');
+        $hover-elevation: map.get($card-schema, 'hover-elevation');
         $hover-shadow: igx-elevation($elevations, $hover-elevation);
     }
 
@@ -116,11 +122,11 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-card($theme) {
     @include igx-css-vars($theme);
 
-    $variant: map-get($theme, 'variant');
+    $variant: map.get($theme, 'variant');
     $not-material-theme: $variant != 'material';
 
     $card-heading-padding: rem(16px);
@@ -137,25 +143,25 @@
     %igx-card-display {
         display: flex;
         flex-direction: column;
-        box-shadow: --var($theme, 'resting-shadow');
+        box-shadow: var-get($theme, 'resting-shadow');
         overflow: hidden;
-        border-radius: --var($theme, 'border-radius');
-        background: --var($theme, 'background');
+        border-radius: var-get($theme, 'border-radius');
+        background: var-get($theme, 'background');
         transition: $card-transitions;
         backface-visibility: hidden;
 
         @if $not-material-theme {
-            border: 1px solid --var($theme, 'outline-color');
+            border: 1px solid var-get($theme, 'outline-color');
         }
 
         &:hover {
-            box-shadow: --var($theme, 'hover-shadow');
+            box-shadow: var-get($theme, 'hover-shadow');
         }
     }
 
     %igx-card--outlined {
         box-shadow: none;
-        border: 1px solid --var($theme, 'outline-color');
+        border: 1px solid var-get($theme, 'outline-color');
 
         &:hover {
             box-shadow: none;
@@ -173,7 +179,7 @@
         align-content: flex-start;
         width: 100%;
         padding: $card-heading-padding;
-        color: --var($theme, 'header-text-color');
+        color: var-get($theme, 'header-text-color');
 
         &:empty {
             display: block;
@@ -223,7 +229,7 @@
     }
 
     %igx-card-header-subtitle {
-        color: --var($theme, 'subtitle-text-color');
+        color: var-get($theme, 'subtitle-text-color');
     }
 
     %igx-card-tgroup {
@@ -235,7 +241,7 @@
         width: 100%;
         flex: 1 1 auto;
         padding: $card-content-padding;
-        color: --var($theme, 'content-text-color');
+        color: var-get($theme, 'content-text-color');
     }
 
     %igx-card-media {
@@ -281,7 +287,7 @@
         display: flex;
         align-items: center;
         order: 1;
-        color: --var($theme, 'actions-text-color');
+        color: var-get($theme, 'actions-text-color');
         margin-#{$left}: auto;
 
         &:empty {
@@ -358,7 +364,7 @@
         flex-flow: row nowrap;
 
         %igx-button--icon {
-            color: --var($theme, 'actions-text-color');
+            color: var-get($theme, 'actions-text-color');
         }
     }
 
@@ -384,10 +390,10 @@
     subtitle: 'subtitle-2',
     content: 'body-2')
 ) {
-    $title: map-get($categories, 'title');
-    $title-small: map-get($categories, 'title-small');
-    $subtitle: map-get($categories, 'subtitle');
-    $content: map-get($categories, 'content');
+    $title: map.get($categories, 'title');
+    $title-small: map.get($categories, 'title-small');
+    $subtitle: map.get($categories, 'subtitle');
+    $content: map.get($categories, 'content');
 
     %igx-card-header-title {
         @include igx-type-style($type-scale, $title) {

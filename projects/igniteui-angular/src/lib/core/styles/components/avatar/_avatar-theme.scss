@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -33,8 +37,8 @@
     $name: 'igx-avatar';
     $avatar-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $avatar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $avatar-schema: map.get($schema, $name);
     } @else {
         $avatar-schema: $schema;
     }
@@ -42,7 +46,7 @@
     $theme: apply-palette($avatar-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($avatar-schema, 'border-radius')), 0, 16px
+        if($border-radius, $border-radius, map.get($avatar-schema, 'border-radius')), 0, 16px
     );
 
     @if not($color) and $background {
@@ -62,26 +66,26 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-avatar($theme) {
     @include igx-css-vars($theme);
 
-    $size: map-get($theme, 'size');
+    $size: map.get($theme, 'size');
     $small-size: rem(40px);
     $medium-size: rem(64px);
     $large-size: rem(88px);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
 
-    $box-shadow: map-get((
+    $box-shadow: map.get((
         material: null,
         fluent: null,
-        bootstrap: 0 0 0 rem(3px) --var($theme, 'background'),
+        bootstrap: 0 0 0 rem(3px) var-get($theme, 'background'),
         indigo-design: null,
     ), $variant);
 
-    %_igx-avatar-outline {
+    %igx-avatar-outline {
         position: absolute;
         content: '';
         width: 100%;
@@ -96,17 +100,17 @@
         justify-content: center;
         align-items: center;
         user-select: none;
-        color: --var($theme, 'color');
-        background: --var($theme, 'background');
+        color: var-get($theme, 'color');
+        background: var-get($theme, 'background');
         vertical-align: middle;
-        border-radius: --var($theme, 'border-radius');
+        border-radius: var-get($theme, 'border-radius');
         outline-style: none;
         flex-shrink: 0;
 
         &::after {
             box-shadow: none;
             @if $bootstrap-theme {
-                @extend %_igx-avatar-outline;
+                @extend %igx-avatar-outline;
             }
             transition: box-shadow .15s $ease-in-out-quad;
         }
@@ -120,7 +124,7 @@
         width: 100%;
         height: 100%;
         border-radius: inherit;
-        background-color: --var($theme, 'background');
+        background-color: var-get($theme, 'background');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -128,7 +132,7 @@
 
     %igx-avatar--rounded {
         --igx-avatar-border-radius: 44px;
-        border-radius: --var(('border-radius': 44px), 'border-radius');
+        border-radius: var-get(('border-radius': 44px), 'border-radius');
     }
 
     %igx-avatar--initials {
@@ -137,37 +141,37 @@
 
     %igx-avatar-initials--small {
         --size: #{$size or $small-size};
-        font-size: calc(#{--var(('size': $size or $small-size), 'size')} / 2);
-        line-height: calc(#{--var(('size': $size or $small-size), 'size')} / 2);
+        font-size: calc(#{var-get(('size': $size or $small-size), 'size')} / 2);
+        line-height: calc(#{var-get(('size': $size or $small-size), 'size')} / 2);
     }
 
     %igx-avatar-initials--medium {
         --size: #{$size or $medium-size};
-        font-size: calc(#{--var(('size': $size or $medium-size), 'size')} / 2);
-        line-height: calc(#{--var(('size': $size or $medium-size), 'size')} / 2);
+        font-size: calc(#{var-get(('size': $size or $medium-size), 'size')} / 2);
+        line-height: calc(#{var-get(('size': $size or $medium-size), 'size')} / 2);
     }
 
     %igx-avatar-initials--large {
         --size: #{$size or $large-size};
-        font-size: calc(#{--var(('size': $size or $large-size), 'size')} / 2);
-        line-height: calc(#{--var(('size': $size or $large-size), 'size')} / 2);
+        font-size: calc(#{var-get(('size': $size or $large-size), 'size')} / 2);
+        line-height: calc(#{var-get(('size': $size or $large-size), 'size')} / 2);
     }
 
     %igx-avatar--small {
         --size: #{$size or $small-size};
-        width: --var(('size': $size or $small-size), 'size');
-        height: --var(('size': $size or $small-size), 'size');
+        width: var-get(('size': $size or $small-size), 'size');
+        height: var-get(('size': $size or $small-size), 'size');
     }
 
     %igx-avatar--medium {
         --size: #{$size or $medium-size};
-        width: --var(('size': $size or $medium-size), 'size');
-        height: --var(('size': $size or $medium-size), 'size');
+        width: var-get(('size': $size or $medium-size), 'size');
+        height: var-get(('size': $size or $medium-size), 'size');
     }
 
     %igx-avatar--large {
         --size: #{$size or $large-size};
-        width: --var(('size': $size or $large-size), 'size');
-        height: --var(('size': $size or $large-size), 'size');
+        width: var-get(('size': $size or $large-size), 'size');
+        height: var-get(('size': $size or $large-size), 'size');
     }
 }

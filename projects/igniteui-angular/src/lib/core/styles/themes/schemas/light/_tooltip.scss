@@ -1,4 +1,5 @@
-@import '../shape/tooltip';
+@use '../../../base' as *;
+@use '../shape/tooltip' as *;
 
 ////
 /// @group schemas
@@ -14,10 +15,10 @@
 /// @property {Number} border-radius [.25] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-tooltip
+/// @requires {Map} $default-shape-tooltip
 /// @see $default-palette
-$_light-tooltip: extend(
-    $_default-shape-tooltip,
+$light-tooltip: extend(
+    $default-shape-tooltip,
     (
         background: (
             igx-color: ('grays', 700),
@@ -42,11 +43,11 @@ $_light-tooltip: extend(
 /// @prop {Map} text-color [igx-contrast-color: ('grays', 900)] - The text color of the tooltip.
 /// @prop {Number} border-radius [2px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-tooltip
-/// @requires {Map} $_fluent-shape-tooltip
-$_fluent-tooltip: extend(
-    $_light-tooltip,
-    $_fluent-shape-tooltip,
+/// @requires {Map} $light-tooltip
+/// @requires {Map} $fluent-shape-tooltip
+$fluent-tooltip: extend(
+    $light-tooltip,
+    $fluent-shape-tooltip,
     (
         background: (
             igx-color: ('grays', 900)
@@ -64,11 +65,11 @@ $_fluent-tooltip: extend(
 /// @prop {Map} text-color [igx-contrast-color: ('grays', 900)] - The text color of the tooltip.
 /// @prop {Number} border-radius [4px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_light-tooltip
-/// @requires $_bootstrap-shape-tooltip
-$_bootstrap-tooltip: extend(
-    $_light-tooltip,
-    $_bootstrap-shape-tooltip,
+/// @requires $light-tooltip
+/// @requires $bootstrap-shape-tooltip
+$bootstrap-tooltip: extend(
+    $light-tooltip,
+    $bootstrap-shape-tooltip,
     (
         background: (
             igx-color: ('grays', 900)
@@ -87,11 +88,11 @@ $_bootstrap-tooltip: extend(
 /// @prop {Number} border-radius [3px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-tooltip
-/// @requires {Map} $_indigo-shape-tooltip
-$_indigo-tooltip: extend(
-    $_light-tooltip,
-    $_indigo-shape-tooltip,
+/// @requires {Map} $light-tooltip
+/// @requires {Map} $indigo-shape-tooltip
+$indigo-tooltip: extend(
+    $light-tooltip,
+    $indigo-shape-tooltip,
     (
         background: (
             igx-color: ('grays', 600)

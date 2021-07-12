@@ -6,13 +6,13 @@
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for watermark. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-watermark: (
+$round-shape-watermark: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for watermark. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-watermark: (
+$square-shape-watermark: (
     border-radius: 0,
 );
 
@@ -20,17 +20,17 @@ $_square-shape-watermark: (
 /// @prop {Number} border-radius [0] - The border radius used for watermark. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
 /// @requires {Map} $_square-shape-watermark
-$_material-shape-watermark: extend($_square-shape-watermark);
+$material-shape-watermark: $square-shape-watermark;
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for watermark. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-watermark: (
+$fluent-shape-watermark: (
     border-radius: 2px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for watermark. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-watermark: (
+$bootstrap-shape-watermark: (
     border-radius: 4px,
 );
 
@@ -38,5 +38,5 @@ $_bootstrap-shape-watermark: (
 /// @prop {Number} border-radius [1] - The border radius used for watermark. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
 /// @requires {Map} $_round-shape-watermark
-$_indigo-shape-watermark: extend($_round-shape-watermark);
+$indigo-shape-watermark: $round-shape-watermark;
 

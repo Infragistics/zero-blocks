@@ -7,7 +7,7 @@
 /// @type Map
 /// @prop {Number} border-radius [.2] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [.75] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-time-picker: (
+$default-shape-time-picker: (
     border-radius: .2,
     active-item-border-radius: .75,
 );
@@ -15,7 +15,7 @@ $_default-shape-time-picker: (
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [1] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-time-picker: (
+$round-shape-time-picker: (
     border-radius: 1,
     active-item-border-radius: 1,
 );
@@ -23,7 +23,7 @@ $_round-shape-time-picker: (
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [0] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-time-picker: (
+$square-shape-time-picker: (
     border-radius: 0,
     active-item-border-radius: 0,
 );
@@ -31,7 +31,7 @@ $_square-shape-time-picker: (
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [2px] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-time-picker: (
+$fluent-shape-time-picker: (
     border-radius: 2px,
     active-item-border-radius: 2px,
 );
@@ -39,7 +39,7 @@ $_fluent-shape-time-picker: (
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [4px] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-time-picker: (
+$bootstrap-shape-time-picker: (
     border-radius: 4px,
     active-item-border-radius: 4px,
 );
@@ -47,7 +47,7 @@ $_bootstrap-shape-time-picker: (
 /// @type Map
 /// @prop {Number} border-radius [3px] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [20px] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-time-picker: (
+$indigo-shape-time-picker: (
     border-radius: 3px,
     active-item-border-radius: 20px
 );

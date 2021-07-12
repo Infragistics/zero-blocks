@@ -1,4 +1,6 @@
-@import '../light/tree';
+@use '../../../base' as *;
+@use '../light/tree' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -9,7 +11,7 @@
 /// @type {Map}
 /// @prop {Map} background-active [igx-color: ('grays', 300)] - The background color used for the active tree node.
 /// @prop {Map} foreground-active [igx-color: ('grays', 300)] - The color used for the content in active state of the tree node.
-$_base-dark-tree: (
+$base-dark-tree: (
     background-active: (
         igx-color: ('grays', 300),
     ),
@@ -26,9 +28,9 @@ $_base-dark-tree: (
 /// Generates a dark tree schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-tree
-/// @requires $_base-dark-tree
-$_dark-tree: extend($_light-tree, $_base-dark-tree);
+/// @requires $light-tree
+/// @requires $base-dark-tree
+$dark-tree: extend($light-tree, $base-dark-tree);
 
 /// Generates a dark fluent tree schema.
 /// @type {Map}
@@ -37,11 +39,11 @@ $_dark-tree: extend($_light-tree, $_base-dark-tree);
 /// @prop {Map} background-active-selected [igx-color: ('grays', 200)] - The background color used for the active selected tree node.
 /// @prop {Map} foreground-active-selected [igx-color: ('grays', 900)] - The color used for the content of the active selected tree node.
 /// @requires {function} extend
-/// @requires $_fluent-tree
-/// @requires $_base-dark-tree
-$_dark-fluent-tree: extend(
-    $_fluent-tree,
-    $_base-dark-tree,
+/// @requires $fluent-tree
+/// @requires $base-dark-tree
+$dark-fluent-tree: extend(
+    $fluent-tree,
+    $base-dark-tree,
     (
         backgroubd-selected: (
             igx-color: ('grays', 400)
@@ -64,13 +66,13 @@ $_dark-fluent-tree: extend(
 /// Generates a dark bootstrap tree schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-tree
-/// @requires $_base-dark-tree
-$_dark-bootstrap-tree: extend($_bootstrap-tree, $_base-dark-tree);
+/// @requires $bootstrap-tree
+/// @requires $base-dark-tree
+$dark-bootstrap-tree: extend($bootstrap-tree, $base-dark-tree);
 
 /// Generates a dark indigo tree schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-tree
-/// @requires $_base-dark-tree
-$_dark-indigo-tree: extend($_indigo-tree, $_base-dark-tree);
+/// @requires $indigo-tree
+/// @requires $base-dark-tree
+$dark-indigo-tree: extend($indigo-tree, $base-dark-tree);

@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,164 +8,169 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-checkbox) {
-    $block: bem--selector-to-string(&);
-    @include register-component('igx-checkbox');
+@mixin component {
+    @include b(igx-checkbox) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @extend %cbx-display !optional;
-
-    &:hover {
-        @include e(ripple) {
-            @extend %cbx-ripple--hover !optional;
-            @extend %cbx-ripple--hover-unchecked !optional;
-        }
-    }
-
-    &:active {
-        @include e(ripple) {
-            @extend %cbx-ripple--hover !optional;
-            @extend %cbx-ripple--hover-unchecked !optional;
-            @extend %cbx-ripple--pressed !optional;
-        }
-    }
-
-    @include e(input) {
-        @extend %cbx-input !optional;
-    }
-
-    @include e(label) {
-        @extend %cbx-label !optional;
-        @extend %cbx-label-pos--after !optional;
-    }
-
-    @include e(label, $m: before) {
-        @extend %cbx-label !optional;
-        @extend %cbx-label-pos--before !optional;
-    }
-
-    @include e(composite-wrapper) {
-        @extend %cbx-composite-wrapper !optional;
-    }
-
-    @include e(composite) {
-        @extend %cbx-composite !optional;
-    }
-
-    @include e(composite-mark) {
-        @extend %cbx-composite-mark !optional;
-    }
-
-    @include e(ripple) {
-        @extend %cbx-ripple !optional;
-    }
-
-    @include m(focused) {
-        @extend  %igx-checkbox--focused !optional;
-
-        @include e(ripple) {
-            @extend %cbx-ripple--focused !optional;
-        }
-    }
-
-    @include mx(focused, checked) {
-        @extend  %igx-checkbox--focused-checked !optional;
-    }
-
-    @include m(indeterminate) {
-        @extend %igx-checkbox--indeterminate !optional;
-
-        @include  e(composite) {
-            @extend %cbx-composite--x !optional;
-        }
-
-        @include e(composite-mark) {
-            @extend %cbx-composite-mark--in !optional;
-        }
+        @extend %cbx-display !optional;
 
         &:hover {
             @include e(ripple) {
                 @extend %cbx-ripple--hover !optional;
-                @extend %cbx-ripple--hover-checked !optional;
+                @extend %cbx-ripple--hover-unchecked !optional;
             }
         }
 
         &:active {
             @include e(ripple) {
                 @extend %cbx-ripple--hover !optional;
-                @extend %cbx-ripple--hover-checked !optional;
+                @extend %cbx-ripple--hover-unchecked !optional;
                 @extend %cbx-ripple--pressed !optional;
             }
         }
-    }
 
-    @include m(checked) {
-        @include e(composite) {
-            @extend %cbx-composite--x !optional;
+        @include e(input) {
+            @extend %cbx-input !optional;
         }
-
-        @include e(composite-mark) {
-            @extend %cbx-composite-mark--x !optional;
-        }
-
-        &:hover {
-            @include e(ripple) {
-                @extend %cbx-ripple--hover !optional;
-                @extend %cbx-ripple--hover-checked !optional;
-            }
-        }
-
-        &:active {
-            @include e(ripple) {
-                @extend %cbx-ripple--hover !optional;
-                @extend %cbx-ripple--hover-checked !optional;
-                @extend %cbx-ripple--pressed !optional;
-            }
-        }
-    }
-
-    @include m(disabled) {
-        @extend %cbx-display--disabled !optional;
 
         @include e(label) {
-            @extend %cbx-label--disabled !optional;
+            @extend %cbx-label !optional;
+            @extend %cbx-label-pos--after !optional;
         }
 
         @include e(label, $m: before) {
-            @extend %cbx-label--disabled !optional;
+            @extend %cbx-label !optional;
+            @extend %cbx-label-pos--before !optional;
+        }
+
+        @include e(composite-wrapper) {
+            @extend %cbx-composite-wrapper !optional;
         }
 
         @include e(composite) {
-            @extend %cbx-composite--disabled !optional;
+            @extend %cbx-composite !optional;
         }
-    }
 
-    @include m(plain) {
-        @extend %cbx-display--plain !optional;
-    }
+        @include e(composite-mark) {
+            @extend %cbx-composite-mark !optional;
+        }
 
-    @include mx(focused, checked) {
         @include e(ripple) {
-            @extend %cbx-ripple--focused !optional;
-            @extend %cbx-ripple--focused-checked !optional;
+            @extend %cbx-ripple !optional;
         }
-    }
 
-    @include mx(focused, indeterminate) {
-        @include e(ripple) {
-            @extend %cbx-ripple--focused !optional;
-            @extend %cbx-ripple--focused-checked !optional;
+        @include m(focused) {
+            @extend  %igx-checkbox--focused !optional;
+
+            @include e(ripple) {
+                @extend %cbx-ripple--focused !optional;
+            }
         }
-    }
 
-    @include mx(indeterminate, disabled) {
-        @include e(composite) {
-            @extend %cbx-composite--x--disabled !optional;
+        @include mx(focused, checked) {
+            @extend  %igx-checkbox--focused-checked !optional;
         }
-    }
 
-    @include mx(checked, disabled) {
-        @include e(composite) {
-            @extend %cbx-composite--x--disabled !optional;
+        @include m(indeterminate) {
+            @extend %igx-checkbox--indeterminate !optional;
+
+            @include  e(composite) {
+                @extend %cbx-composite--x !optional;
+            }
+
+            @include e(composite-mark) {
+                @extend %cbx-composite-mark--in !optional;
+            }
+
+            &:hover {
+                @include e(ripple) {
+                    @extend %cbx-ripple--hover !optional;
+                    @extend %cbx-ripple--hover-checked !optional;
+                }
+            }
+
+            &:active {
+                @include e(ripple) {
+                    @extend %cbx-ripple--hover !optional;
+                    @extend %cbx-ripple--hover-checked !optional;
+                    @extend %cbx-ripple--pressed !optional;
+                }
+            }
+        }
+
+        @include m(checked) {
+            @include e(composite) {
+                @extend %cbx-composite--x !optional;
+            }
+
+            @include e(composite-mark) {
+                @extend %cbx-composite-mark--x !optional;
+            }
+
+            &:hover {
+                @include e(ripple) {
+                    @extend %cbx-ripple--hover !optional;
+                    @extend %cbx-ripple--hover-checked !optional;
+                }
+            }
+
+            &:active {
+                @include e(ripple) {
+                    @extend %cbx-ripple--hover !optional;
+                    @extend %cbx-ripple--hover-checked !optional;
+                    @extend %cbx-ripple--pressed !optional;
+                }
+            }
+        }
+
+        @include m(disabled) {
+            @extend %cbx-display--disabled !optional;
+
+            @include e(label) {
+                @extend %cbx-label--disabled !optional;
+            }
+
+            @include e(label, $m: before) {
+                @extend %cbx-label--disabled !optional;
+            }
+
+            @include e(composite) {
+                @extend %cbx-composite--disabled !optional;
+            }
+        }
+
+        @include m(plain) {
+            @extend %cbx-display--plain !optional;
+        }
+
+        @include mx(focused, checked) {
+            @include e(ripple) {
+                @extend %cbx-ripple--focused !optional;
+                @extend %cbx-ripple--focused-checked !optional;
+            }
+        }
+
+        @include mx(focused, indeterminate) {
+            @include e(ripple) {
+                @extend %cbx-ripple--focused !optional;
+                @extend %cbx-ripple--focused-checked !optional;
+            }
+        }
+
+        @include mx(indeterminate, disabled) {
+            @include e(composite) {
+                @extend %cbx-composite--x--disabled !optional;
+            }
+        }
+
+        @include mx(checked, disabled) {
+            @include e(composite) {
+                @extend %cbx-composite--x--disabled !optional;
+            }
         }
     }
 }

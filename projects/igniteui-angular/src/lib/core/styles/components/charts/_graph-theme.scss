@@ -1,10 +1,15 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 ////
 
-/// @param {Map} $palette [$default-palette] - The palette used as basis for styling the component.
+/// @param {Map} $palette [null] - The palette used as basis for styling the component.
 /// @param {Map} $schema [$light-schema] - The schema used as basis for styling the component.
 /// @param {Color} $backing-brush [null] - Sets the brush to use to fill the backing of the bullet graph.
 /// @param {Color} $backing-outline [null] - Sets the brush to use for the outline of the backing.
@@ -26,7 +31,6 @@
 /// @param {Color} $value-brush [null] - Sets the brush to use for the actual value element.
 /// @param {Color} $value-outline [null] - Sets the brush to use for the outline of actual value element.
 /// @param {Number} $value-stroke-thickness [null] - Sets the stroke thickness to use when rendering single actual value element.
-/// @requires $default-palette
 /// @requires $light-schema
 /// @requires apply-palette
 /// @requires extend
@@ -36,7 +40,7 @@
 ///   // Pass the theme to the igx-css-vars mixin
 ///   @include igx-css-vars($my-chart-theme);
 @function igx-bullet-graph-theme(
-    $palette: $default-palette,
+    $palette: null,
     $schema: $light-schema,
 
     $backing-brush: null,
@@ -64,8 +68,8 @@
     $selector: 'igx-bullet-graph';
     $chart-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $chart-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $chart-schema: map.get($schema, $name);
     } @else {
         $chart-schema: $schema;
     }

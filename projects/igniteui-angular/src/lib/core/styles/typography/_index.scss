@@ -1,4 +1,4 @@
-@import './base';
-@import './variables';
-@import './typography';
-@import './scale-presets/index';
+@forward 'base';
+@forward 'variables';
+@forward 'typography';
+@forward 'scale-presets';

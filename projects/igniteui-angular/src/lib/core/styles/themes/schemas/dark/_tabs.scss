@@ -1,4 +1,5 @@
-@import '../light/badge';
+@use '../../../base' as *;
+@use '../light/tabs' as *;
 
 ////
 /// @group schemas
@@ -10,32 +11,32 @@
 /// @type {Map}
 /// @prop {Color} item-background [#222] - The background color used for the tabs header.
 /// @prop {Color} button-background [#222] - The color used for the button background.
-$_base-dark-tabs: (
+$base-dark-tabs: (
     item-background: #222,
     button-background: #222
 );
 
-/// Generates a dark tabs schema based on a mix of $_light-tabs and $_base-dark-tabs.
+/// Generates a dark tabs schema based on a mix of $light-tabs and $base-dark-tabs.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-tabs
-/// @requires $_base-dark-tabs
+/// @requires $light-tabs
+/// @requires $base-dark-tabs
 /// @see $default-palette
-$_dark-tabs: extend($_light-tabs, $_base-dark-tabs);
+$dark-tabs: extend($light-tabs, $base-dark-tabs);
 
-/// Generates a dark fluent tabs schema based on a mix of $_fluent-tabs and $_base-dark-tabs.
+/// Generates a dark fluent tabs schema based on a mix of $fluent-tabs and $base-dark-tabs.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-tabs
-/// @requires $_base-dark-tabs
-$_dark-fluent-tabs: extend($_fluent-tabs, $_base-dark-tabs);
+/// @requires $fluent-tabs
+/// @requires $base-dark-tabs
+$dark-fluent-tabs: extend($fluent-tabs, $base-dark-tabs);
 
-/// Generates a dark bootstrap tabs schema based on a mix of $_bootstrap-tabs and $_base-dark-tabs.
+/// Generates a dark bootstrap tabs schema based on a mix of $bootstrap-tabs and $base-dark-tabs.
 /// @type {Map}
 /// @prop {Map} item-background [igx-color: ('primary', 400)] - The background color used for the tabs header.
 /// @requires {function} extend
-/// @requires $_bootstrap-tabs
-$_dark-bootstrap-tabs: extend($_bootstrap-tabs, (
+/// @requires $bootstrap-tabs
+$dark-bootstrap-tabs: extend($bootstrap-tabs, (
     item-hover-color: (
         igx-color: ('primary', 400)
     ),
@@ -44,5 +45,5 @@ $_dark-bootstrap-tabs: extend($_bootstrap-tabs, (
 /// Generates a dark indigo tabs schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-tabs
-$_dark-indigo-tabs: extend($_indigo-tabs);
+/// @requires $indigo-tabs
+$dark-indigo-tabs: extend($indigo-tabs);

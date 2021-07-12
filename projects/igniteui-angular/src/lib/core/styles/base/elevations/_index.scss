@@ -1,3 +1,10 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../variables' as *;
+@use '../utilities' as *;
+
 ////
 /// @group elevations
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -110,10 +117,10 @@
 /// @param {Color} $l3-color - The ambient color.
 /// @returns {String} - A string to be used as box-shadow value.
 @function _elevation($elevation, $l1-color, $l2-color, $l3-color) {
-    @return unquote(#{
-        map-get(_l1-shadows($l1-color), $elevation),
-        map-get(_l2-shadows($l2-color), $elevation),
-        map-get(_l3-shadows($l3-color), $elevation)}
+    @return string.unquote(#{
+        map.get(_l1-shadows($l1-color), $elevation),
+        map.get(_l2-shadows($l2-color), $elevation),
+        map.get(_l3-shadows($l3-color), $elevation)}
     );
 }
 
@@ -128,7 +135,7 @@
 
     @for $i from 1 through 24 {
         $elevation: (#{$i}: _elevation($i, $color-1, $color-2, $color-3));
-        $result: map-merge($result, $elevation)
+        $result: map.merge($result, $elevation)
     }
 
     @return $result;
@@ -152,7 +159,7 @@ $igx-elevations: igx-elevations(
 /// @param {number} $elevation [0] - The elevation level from 0 to 24.
 /// @returns {String} Returns a box-shadow value.
 @function igx-elevation($elevations: null, $elevation: 0) {
-    @if type-of($elevation) != number or not unitless($elevation) {
+    @if meta.type-of($elevation) != number or not math.is-unitless($elevation) {
         @error '$elevation must be a number';
     }
 
@@ -168,6 +175,6 @@ $igx-elevations: igx-elevations(
         );
     }
 
-    @return map-get($elevations, #{$elevation});
+    @return map.get($elevations, #{$elevation});
 }
 

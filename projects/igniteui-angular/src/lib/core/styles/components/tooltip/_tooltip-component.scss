@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -6,23 +9,25 @@
 /// @requires {mixin} bem-mod
 ////
 
-@include b(igx-tooltip) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-tooltip) {
+        $this: bem--selector-to-string(&);
+        @include register-component(string.slice($this, 2, -1));
 
-    @extend %tooltip-display !optional;
-
-    @include m(desktop) {
         @extend %tooltip-display !optional;
-        @extend %tooltip--desktop !optional;
-    }
 
-    @include m(mobile) {
-        @extend %tooltip-display !optional;
-        @extend %tooltip--mobile !optional;
-    }
+        @include m(desktop) {
+            @extend %tooltip-display !optional;
+            @extend %tooltip--desktop !optional;
+        }
 
-    @include m(disabled) {
-        @extend %tooltip--disabled !optional;
+        @include m(mobile) {
+            @extend %tooltip-display !optional;
+            @extend %tooltip--mobile !optional;
+        }
+
+        @include m(disabled) {
+            @extend %tooltip--disabled !optional;
+        }
     }
 }

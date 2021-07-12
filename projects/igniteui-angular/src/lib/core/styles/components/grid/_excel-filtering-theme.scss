@@ -1,3 +1,10 @@
+@use '../../base' as *;
+@use '../../typography/base' as *;
+@use '../../themes/schemas/dark' as *;
+@use '../button-group/button-group-component' as *;
+@use '../button-group/button-group-theme' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access private
@@ -9,11 +16,11 @@
 /// @param {Map} $palette - The palette map used as base for the component.
 /// @requires igx-color
 /// @requires rem
-/// @requires --var
-@mixin _excel-filtering($theme, $palette) {
+/// @requires var-get
+@mixin excel-filtering($theme, $palette) {
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
-    $variant: map-get($theme, 'variant');
+    $variant: map.get($theme, 'variant');
 
     %grid-excel-filter {
         display: block;
@@ -61,14 +68,14 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-        background: --var($theme, 'filtering-row-background');
+        background: var-get($theme, 'filtering-row-background');
         // TODO The border-radius should not be hardcoded.
         border-radius: rem(4px);
 
         @include igx-button-group(igx-button-group-theme(
             $shadow: none,
             $schema: $dark-schema,
-            $item-background: --var($theme, 'filtering-row-background'),
+            $item-background: var-get($theme, 'filtering-row-background'),
             $item-hover-background: igx-color($palette, 'grays', 100),
             $item-selected-background: igx-color($palette, 'grays', 100),
             $item-text-color: igx-color($palette, 'grays', 700),
@@ -198,7 +205,7 @@
                     margin: initial;
                 }
 
-                @include _icon-w-margin(rem(8px), $right);
+                @include icon-w-margin(rem(8px), $right);
             }
         }
     }
@@ -327,7 +334,7 @@
     %grid-excel-menu__secondary {
         width: 520px;
         min-width: 520px;
-        background: --var($theme, 'filtering-row-background');
+        background: var-get($theme, 'filtering-row-background');
         box-shadow: igx-elevation($elevation: 12);
         border-radius: rem(4px);
     }
@@ -439,12 +446,12 @@
 /// @param {Map} $type-scale - A typographic scale as produced by igx-type-scale.
 /// @param {Map} $categories [(haeder-comfortable: 'overline', header-compact: 'subtitle-1')] - The categories from the typographic scale used for type styles.
 /// @requires {mixin} igx-type-style
-@mixin _excel-filtering-typography($type-scale, $categories: (
+@mixin excel-filtering-typography($type-scale, $categories: (
     header-comfortable: 'overline',
     header-compact: 'subtitle-1')
 ) {
-    $header-comfortable: map-get($categories, 'header-comfortable');
-    $header-compact: map-get($categories, 'header-compact');
+    $header-comfortable: map.get($categories, 'header-comfortable');
+    $header-compact: map.get($categories, 'header-compact');
 
 
     %grid-excel-menu {

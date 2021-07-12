@@ -17,39 +17,34 @@
 /// @property {String} leader-line-visibility [null] - Sets whether the leader lines are visible. Valid values are: 'visible' and 'collapsed'.
 /// @property {Number} radius-factor [null] - Sets the scaling factor of the chart's radius. Value between 0 and 1.
 /// @see $default-palette
-$_light-pie-chart: extend(
-    (
-        'brushes': series,
-        'outlines': series,
-        'label-extent': null,
-        'label-inner-color': null,
-        'label-outer-color': null,
-        'labels-position': null,
-        'leader-line-margin': null,
-        'leader-line-type': null,
-        'leader-line-visibility': null,
-        'radius-factor': null,
-    )
+$light-pie-chart: (
+    'brushes': series,
+    'outlines': series,
+    'label-extent': null,
+    'label-inner-color': null,
+    'label-outer-color': null,
+    'labels-position': null,
+    'leader-line-margin': null,
+    'leader-line-type': null,
+    'leader-line-visibility': null,
+    'radius-factor': null,
 );
 
 /// Generates a fluent pie chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-pie-chart
-/// @see $_light-pie-chart
-$_fluent-pie-chart: extend($_light-pie-chart);
+/// @requires {Map} $light-pie-chart
+/// @see $light-pie-chart
+$fluent-pie-chart: $light-pie-chart;
 
 /// Generates a bootstrap pie chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-pie-chart
-/// @see $_light-pie-chart
-$_bootstrap-pie-chart: extend($_light-pie-chart);
+/// @requires {Map} $light-pie-chart
+/// @see $light-pie-chart
+$bootstrap-pie-chart: $light-pie-chart;
 
 /// Generates an indigo pie chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-pie-chart
-/// @see $_light-pie-chart
-$_indigo-pie-chart: extend($_light-pie-chart);
+/// @requires {Map} $light-pie-chart
+/// @see $light-pie-chart
+$indigo-pie-chart: $light-pie-chart;
 

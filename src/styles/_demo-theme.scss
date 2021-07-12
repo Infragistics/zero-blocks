@@ -1,7 +1,7 @@
-@import '../../projects/igniteui-angular/src/lib/core/styles/themes/index';
-@import 'variables';
-@import 'mixins';
-@import 'app-layout';
+@use '../../projects/igniteui-angular/src/lib/core/styles/themes' as *;
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'app-layout';
 
 /* autoprefixer grid: on */
 body {
@@ -15,8 +15,11 @@ body {
 
 @include igx-core($direction: $direction);
 @include igx-typography($font-family: $typeface, $type-scale: $type-scale);
-@include igx-theme($palette: $palette, $schema: $schema, $legacy-support: $legacy-support);
-
+@include igx-theme(
+    $palette: $palette,
+    $schema: $schema,
+    $legacy-support: $legacy-support,
+);
 
 .dock {
     @include igx-css-vars(igc-dock-manager-theme());

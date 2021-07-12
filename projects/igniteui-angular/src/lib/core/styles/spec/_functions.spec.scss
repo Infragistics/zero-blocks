@@ -1,6 +1,5 @@
 @use 'node_modules/sass-true' as *;
-@import '../base/index';
-@import '../themes/index';
+@use '../base' as *;
 
 @include describe('Unit conversions') {
     @include it('should convert pixel numbers to rem') {
@@ -95,7 +94,7 @@
 $_primary: #09f;
 $_secondary: #97c;
 $_palette: igx-palette($_primary, $_secondary);
-$default-palette: $_palette;
+$theme-palette: $_palette;
 
 @include describe('Palette operations') {
     @include describe('igx-color') {
@@ -123,15 +122,15 @@ $default-palette: $_palette;
             @include assert-equal(type-of($value), color);
         }
 
-        @include it('should return a value of type color from $default-palette w/ color as only argument')  {
+        @include it('should return a value of type color from $theme-palette w/ color as only argument')  {
             $value: igx-color($color: secondary);
-            $actual: igx-color($default-palette, 'secondary');
+            $actual: igx-color($theme-palette, 'secondary');
             @include assert-equal($value, $actual);
         }
 
-        @include it('should return a value of type color from $default-palette w/ color and variant as only arguments')  {
+        @include it('should return a value of type color from $theme-palette w/ color and variant as only arguments')  {
             $value: igx-color($color: secondary, $variant: 700);
-            $actual: igx-color($default-palette, 'secondary', 700);
+            $actual: igx-color($theme-palette, 'secondary', 700);
             @include assert-equal($value, $actual);
         }
     }
@@ -224,5 +223,35 @@ $default-palette: $_palette;
             'p-margin-left': 12px
         );
         @include assert-equal($actual, $expected);
+    }
+}
+
+@include describe('Theme Module System') {
+    $components: (
+        igx-checkbox: (
+            'usedBy': (
+                igx-combo,
+                igx-grid
+            )
+        )
+    ) !global;
+
+    @include it('should include theme if other themes depend on it') {
+        $excluded: (igx-checkbox, igx-combo);
+        $test: is-used(
+            $name: 'igx-checkbox',
+            $checklist: $excluded,
+        );
+        @include assert-equal($test, true);
+    }
+
+    @include it('should exclude theme if no themes depend on it') {
+        $excluded: (igx-checkbox, igx-grid, igx-combo);
+        $test: is-used(
+            $name: 'igx-checkbox',
+            $checklist: $excluded,
+        );
+
+        @include assert-equal($test, false);
     }
 }

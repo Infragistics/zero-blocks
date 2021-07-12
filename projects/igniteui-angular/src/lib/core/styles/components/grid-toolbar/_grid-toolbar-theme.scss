@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -50,8 +54,8 @@
     $selector: 'igx-grid-toolbar, .igx-grid-toolbar__dd-list';
     $grid-toolbar-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $grid-toolbar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $grid-toolbar-schema: map.get($schema, $name);
     } @else {
         $grid-toolbar-schema: $schema;
     }
@@ -104,11 +108,11 @@
 /// @requires {mixin} ellipsis
 /// @requires rem
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-grid-toolbar($theme) {
     @include igx-css-vars($theme);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
 
     $left: if-ltr(left, right);
@@ -147,22 +151,22 @@
         justify-content: space-between;
         grid-row: 1;
         font-size: $grid-toolbar-fs;
-        border-bottom: 1px solid igx-color(map-get($theme, 'palette'), 'grays', 300);
-        background: --var($theme, 'background-color');
+        border-bottom: 1px solid igx-color(map.get($theme, 'palette'), 'grays', 300);
+        background: var-get($theme, 'background-color');
         height: auto;
-        min-height: map-get($grid-toolbar-height, 'comfortable');
+        min-height: map.get($grid-toolbar-height, 'comfortable');
         position: relative;
 
         @include if-ltr() {
-            padding: map-get($grid-toolbar-padding, 'comfortable');
+            padding: map.get($grid-toolbar-padding, 'comfortable');
         }
 
         @include if-rtl() {
-            padding: map-get($grid-toolbar-padding-rtl, 'comfortable');
+            padding: map.get($grid-toolbar-padding-rtl, 'comfortable');
         }
 
         [igxButton] {
-            margin-#{$left}: map-get($grid-toolbar-spacer, 'comfortable');
+            margin-#{$left}: map.get($grid-toolbar-spacer, 'comfortable');
 
             &:first-of-type {
                 margin-#{$left}: 0;
@@ -188,41 +192,41 @@
     }
 
     %igx-grid-toolbar--cosy {
-        min-height: map-get($grid-toolbar-height, 'cosy');
+        min-height: map.get($grid-toolbar-height, 'cosy');
         @include if-ltr() {
-            padding: map-get($grid-toolbar-padding, 'cosy');
+            padding: map.get($grid-toolbar-padding, 'cosy');
         }
 
         @include if-rtl() {
-            padding: map-get($grid-toolbar-padding-rtl, 'cosy');
+            padding: map.get($grid-toolbar-padding-rtl, 'cosy');
         }
 
         [igxButton] {
-            margin-#{$left}: map-get($grid-toolbar-spacer, 'cosy');
+            margin-#{$left}: map.get($grid-toolbar-spacer, 'cosy');
         }
     }
 
     %igx-grid-toolbar--compact {
-        min-height: map-get($grid-toolbar-height, 'compact');
+        min-height: map.get($grid-toolbar-height, 'compact');
         @include if-ltr() {
-            padding: map-get($grid-toolbar-padding, 'compact');
+            padding: map.get($grid-toolbar-padding, 'compact');
         }
 
         @include if-rtl() {
-            padding: map-get($grid-toolbar-padding-rtl, 'compact');
+            padding: map.get($grid-toolbar-padding-rtl, 'compact');
         }
 
         [igxButton] {
-            margin-#{$left}: map-get($grid-toolbar-spacer, 'compact');
+            margin-#{$left}: map.get($grid-toolbar-spacer, 'compact');
         }
     }
 
     %igx-grid-toolbar__title {
-        color: --var($theme, 'title-text-color');
+        color: var-get($theme, 'title-text-color');
         flex: 1 1 auto;
         @include ellipsis();
         max-width: 40ch;
-        margin-#{$right}: map-get($grid-toolbar-spacer, 'comfortable')
+        margin-#{$right}: map.get($grid-toolbar-spacer, 'comfortable')
     }
 
     %igx-grid-toolbar__custom-content {
@@ -236,11 +240,11 @@
         display: flex;
         align-items: center;
         flex-flow: row wrap;
-        margin-#{$left}: map-get($grid-toolbar-spacer, 'comfortable');
+        margin-#{$left}: map.get($grid-toolbar-spacer, 'comfortable');
 
         > * {
             display: flex;
-            margin-#{$left}: map-get($grid-toolbar-spacer, 'comfortable');
+            margin-#{$left}: map.get($grid-toolbar-spacer, 'comfortable');
 
             &:first-child {
                 margin-#{$left}: 0;
@@ -272,28 +276,28 @@
         bottom: rem(-1px);
         height: rem(2px);
         overflow: hidden;
-        background: --var($theme, 'background-color');
+        background: var-get($theme, 'background-color');
 
         igx-linear-bar > * {
             border-radius: 0;
 
             &:first-child > div {
-                background: igx-color(map-get($theme, 'palette'), 'secondary');
+                background: igx-color(map.get($theme, 'palette'), 'secondary');
             }
         }
     }
 
     %igx-grid-toolbar__adv-filter--filtered {
-        border-color: igx-color(map-get($theme, 'palette'), 'secondary') !important;
+        border-color: igx-color(map.get($theme, 'palette'), 'secondary') !important;
 
         @if $bootstrap-theme {
             border-width: 2px;
-            border-color: igx-color(map-get($theme, 'palette'), 'primary', 800) !important;
-            color: igx-color(map-get($theme, 'palette'), 'primary', 800);
+            border-color: igx-color(map.get($theme, 'palette'), 'primary', 800) !important;
+            color: igx-color(map.get($theme, 'palette'), 'primary', 800);
 
             &:hover,
             &:focus {
-                background: igx-color(map-get($theme, 'palette'), 'primary', 800);
+                background: igx-color(map.get($theme, 'palette'), 'primary', 800);
             }
         }
     }
@@ -304,7 +308,7 @@
 
     %igx-grid-toolbar__dd-list {
         list-style: none;
-        background: --var($theme, 'dropdown-background');
+        background: var-get($theme, 'dropdown-background');
         margin: 0;
         padding: 0;
         box-shadow: igx-elevation($elevation: 8);
@@ -314,17 +318,17 @@
         cursor: pointer;
         position: relative;
         padding: em(8px) em(16px);
-        color: --var($theme, 'item-text-color');
+        color: var-get($theme, 'item-text-color');
         white-space: nowrap;
 
         &:hover {
-            background: --var($theme, 'item-hover-background');
-            color: --var($theme, 'item-hover-text-color');
+            background: var-get($theme, 'item-hover-background');
+            color: var-get($theme, 'item-hover-text-color');
         }
 
         &:focus {
-            background: --var($theme, 'item-focus-background');
-            color: --var($theme, 'item-focus-text-color');
+            background: var-get($theme, 'item-focus-background');
+            color: var-get($theme, 'item-focus-text-color');
         }
     }
 }

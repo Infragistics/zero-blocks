@@ -1,3 +1,5 @@
+@use '../../base' as *;
+
 ////
 /// @access private
 /// @group components
@@ -6,7 +8,7 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@mixin _advanced-filtering-partial {
+@mixin advanced-filtering-partial {
     @include b(igx-advanced-filter) {
         @include _advanced-filtering-legend();
         @include _advanced-filtering-tree();

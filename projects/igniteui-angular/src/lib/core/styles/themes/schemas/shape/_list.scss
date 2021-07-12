@@ -7,7 +7,7 @@
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for list component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for list item. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-list: (
+$default-shape-list: (
     border-radius: 0,
     item-border-radius: 0,
 );
@@ -15,7 +15,7 @@ $_default-shape-list: (
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for list component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [1] - The border radius used for list item. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-list: (
+$round-shape-list: (
     border-radius: 1,
     item-border-radius: 1,
 );
@@ -23,7 +23,7 @@ $_round-shape-list: (
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for list component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for list item. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-list: (
+$square-shape-list: (
     border-radius: 0,
     item-border-radius: 0,
 );
@@ -31,7 +31,7 @@ $_square-shape-list: (
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for list component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for list item. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-list: (
+$bootstrap-shape-list: (
     border-radius: 4px,
     item-border-radius: 0,
 );
@@ -39,7 +39,7 @@ $_bootstrap-shape-list: (
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for list component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [2px] - The border radius used for list item. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-list: (
+$indigo-shape-list: (
     border-radius: 0,
     item-border-radius: 2px
 );

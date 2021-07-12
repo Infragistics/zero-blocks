@@ -1,4 +1,4 @@
-@import '../light/doughnut-chart';
+@use '../light/doughnut-chart' as *;
 
 ////
 /// @group schemas
@@ -9,25 +9,21 @@
 /// Generates a dark doughnut chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-doughnut-chart
 /// @see $default-palette
-$_dark-doughnut-chart: extend($_light-doughnut-chart);
+$dark-doughnut-chart: $light-doughnut-chart;
 
 /// Generates a dark fluent doughnut-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-doughnut-chart
-$_dark-fluent-doughnut-chart: extend($_fluent-doughnut-chart);
+/// @requires $fluent-doughnut-chart
+$dark-fluent-doughnut-chart: $fluent-doughnut-chart;
 
 /// Generates a dark bootstrap doughnut-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-doughnut-chart
-$_dark-bootstrap-doughnut-chart: extend($_bootstrap-doughnut-chart);
+/// @requires $bootstrap-doughnut-chart
+$dark-bootstrap-doughnut-chart: $bootstrap-doughnut-chart;
 
 /// Generates a dark indigo doughnut-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-doughnut-chart
-$_dark-indigo-doughnut-chart: extend($_indigo-doughnut-chart);
+/// @requires $indigo-doughnut-chart
+$dark-indigo-doughnut-chart: $indigo-doughnut-chart;
 

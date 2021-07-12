@@ -1,4 +1,5 @@
-@import '../light/category-chart';
+@use '../../../base' as *;
+@use '../light/category-chart' as *;
 
 ////
 /// @group schemas
@@ -16,7 +17,7 @@
 /// @prop {Color} y-axis-label-text-color [igx-color: ('grays', 400), to-opaque: #fff] - Sets the color of labels on the Y-axis.
 /// @prop {Color} y-axis-tick-stroke [igx-color: ('grays', 400), to-opaque: #fff] - Sets the color to apply to tickmarks along the Y-axis.
 /// @prop {Color} y-axis-title-text-color [igx-color: ('grays', 400), to-opaque: #fff] - Sets the color of the title on the Y-axis.
-$_base-dark-category-chart: (
+$base-dark-category-chart: (
     title-text-color: (
         igx-color: ('grays', 400),
         to-opaque: #fff
@@ -58,31 +59,31 @@ $_base-dark-category-chart: (
     )
 );
 
-/// Generates a dark category-chart schema based on a mix of $_light-category-chart and $_base-dark-category-chart
+/// Generates a dark category-chart schema based on a mix of $light-category-chart and $base-dark-category-chart
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-category-chart
-/// @requires $_base-dark-category-chart
+/// @requires $light-category-chart
+/// @requires $base-dark-category-chart
 /// @see $default-palette
-$_dark-category-chart: extend($_light-category-chart, $_base-dark-category-chart);
+$dark-category-chart: extend($light-category-chart, $base-dark-category-chart);
 
-/// Generates a dark fluent category-chart schema based on a mix of $_fluent-category-chart and $_base-dark-category-chart
+/// Generates a dark fluent category-chart schema based on a mix of $fluent-category-chart and $base-dark-category-chart
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-category-chart
-/// @requires $_base-dark-category-chart
-$_dark-fluent-category-chart: extend($_fluent-category-chart, $_base-dark-category-chart);
+/// @requires $fluent-category-chart
+/// @requires $base-dark-category-chart
+$dark-fluent-category-chart: extend($fluent-category-chart, $base-dark-category-chart);
 
-/// Generates a bootstrap category-chart schema based on a mix of $_bootstrap-category-chart and $_base-dark-category-chart
+/// Generates a bootstrap category-chart schema based on a mix of $bootstrap-category-chart and $base-dark-category-chart
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-category-chart
-/// @requires $_base-dark-category-chart
-$_dark-bootstrap-category-chart: extend($_bootstrap-category-chart, $_base-dark-category-chart);
+/// @requires $bootstrap-category-chart
+/// @requires $base-dark-category-chart
+$dark-bootstrap-category-chart: extend($bootstrap-category-chart, $base-dark-category-chart);
 
-/// Generates an indigo category-chart schema based on a mix of $_indigo-category-chart and $_base-dark-category-chart
+/// Generates an indigo category-chart schema based on a mix of $indigo-category-chart and $base-dark-category-chart
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-category-chart
-/// @requires $_base-dark-category-chart
-$_dark-indigo-category-chart: extend($_indigo-category-chart, $_base-dark-category-chart);
+/// @requires $indigo-category-chart
+/// @requires $base-dark-category-chart
+$dark-indigo-category-chart: extend($indigo-category-chart, $base-dark-category-chart);

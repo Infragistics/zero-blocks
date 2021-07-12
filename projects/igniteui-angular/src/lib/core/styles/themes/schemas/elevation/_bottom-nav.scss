@@ -6,19 +6,19 @@
 
 /// @type Map
 /// @prop {Number} elevation [8] - The elevation level, between 0-24, to be used for the bottom nav.
-$_default-elevation-bottom-nav: (
+$default-elevation-bottom-nav: (
     elevation: 8
 );
 
 /// @type Map
 /// @prop {Number} elevation [1] - The elevation level, between 0-24, to be used for the bottom nav.
-$_fluent-elevation-bottom-nav: (
+$fluent-elevation-bottom-nav: (
     elevation: 1
 );
 
 /// @type Map
 /// @prop {Number} elevation [4] - The elevation level, between 0-24, to be used for the bottom nav.
-$_indigo-elevation-bottom-nav: (
+$indigo-elevation-bottom-nav: (
     elevation: 4
 );
 

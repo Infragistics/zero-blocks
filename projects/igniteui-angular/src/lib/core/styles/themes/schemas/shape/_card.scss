@@ -6,36 +6,36 @@
 
 /// @type Map
 /// @prop {Number} border-radius [.17] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-card: (
+$default-shape-card: (
     border-radius: .17,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-card: (
+$round-shape-card: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-card: (
+$square-shape-card: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-card: (
+$fluent-shape-card: (
     border-radius: 2px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-card: (
+$bootstrap-shape-card: (
     border-radius: 4px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [3px] - The border radius used for card. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-card: (
+$indigo-shape-card: (
     border-radius: 3px,
 );

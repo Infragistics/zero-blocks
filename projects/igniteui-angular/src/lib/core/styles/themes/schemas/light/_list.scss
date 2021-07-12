@@ -1,4 +1,5 @@
-@import '../shape/list';
+@use '../../../base' as *;
+@use '../shape/list' as *;
 
 ////
 /// @group schemas
@@ -43,10 +44,10 @@
 /// @prop {Color} border-width [0] - The list border width.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-list
+/// @requires {Map} $default-shape-list
 /// @see $default-palette
-$_light-list: extend(
-    $_default-shape-list,
+$light-list: extend(
+    $default-shape-list,
     (
         background: (
             igx-color: 'surface'
@@ -125,8 +126,8 @@ $_light-list: extend(
 /// Generates a fluent list schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-list
-$_fluent-list: extend($_light-list);
+/// @requires {Map} $light-list
+$fluent-list: extend($light-list);
 
 /// Generates a bootstrap list schema.
 /// @type {Map}
@@ -144,11 +145,11 @@ $_fluent-list: extend($_light-list);
 /// @prop {Number} border-color [igx-color: ('grays', 300)] - The list border color.
 /// @prop {Color} border-width [rem(1px)] - The list border width.
 /// @requires {function} extend
-/// @requires {Map} $_light-list
-/// @requires {Map} $_bootstrap-shape-list
-$_bootstrap-list: extend(
-    $_light-list,
-    $_bootstrap-shape-list,
+/// @requires {Map} $light-list
+/// @requires {Map} $bootstrap-shape-list
+$bootstrap-list: extend(
+    $light-list,
+    $bootstrap-shape-list,
     (
         variant: 'bootstrap',
 
@@ -209,11 +210,11 @@ $_bootstrap-list: extend(
 /// @prop {Number} item-border-radius [2px] - The border radius used for list item. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-list
-/// @requires {Map} $_indigo-shape-list
-$_indigo-list: extend(
-    $_light-list,
-    $_indigo-shape-list,
+/// @requires {Map} $light-list
+/// @requires {Map} $indigo-shape-list
+$indigo-list: extend(
+    $light-list,
+    $indigo-shape-list,
     (
         variant: 'indigo-design',
 

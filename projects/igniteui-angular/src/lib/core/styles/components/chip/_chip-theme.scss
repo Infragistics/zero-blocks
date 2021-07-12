@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -91,8 +97,8 @@
     $selector: 'igx-chip, .igx-chip__ghost';
     $chip-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $chip-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $chip-schema: map.get($schema, $name);
     } @else {
         $chip-schema: $schema;
     }
@@ -100,7 +106,7 @@
     $theme: apply-palette($chip-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($chip-schema, 'border-radius')), 0, 16px
+        if($border-radius, $border-radius, map.get($chip-schema, 'border-radius')), 0, 16px
     );
 
     @if not($text-color) and $background {
@@ -110,7 +116,7 @@
     @if not($hover-background) and $background {
         $luminance: luminance($background);
 
-        @if type-of($luminance) == 'color' and $luminance + .05 < .5 {
+        @if meta.type-of($luminance) == 'color' and $luminance + .05 < .5 {
             $hover-background: lighten-color($background, 14%);
         } @else {
             $hover-background: darken-color($background, 4%);
@@ -124,7 +130,7 @@
     @if not($focus-background) and $background {
         $luminance: luminance($background);
 
-        @if type-of($luminance) == 'color' and $luminance + .05 < .5 {
+        @if meta.type-of($luminance) == 'color' and $luminance + .05 < .5 {
             $focus-background: lighten-color($background, 22%);
         } @else {
             $focus-background: darken-color($background, 8%);
@@ -138,7 +144,7 @@
     @if not($selected-background) and $background {
         $luminance: luminance($background);
 
-        @if type-of($luminance) == 'color' and $luminance + .05 < .5 {
+        @if meta.type-of($luminance) == 'color' and $luminance + .05 < .5 {
             $selected-background: lighten-color($background, 22%);
         } @else {
             $selected-background: darken-color($background, 8%);
@@ -160,7 +166,7 @@
     @if not($focus-selected-background) and $selected-background {
         $luminance: luminance($selected-background);
 
-        @if type-of($luminance) == 'color' and $luminance + .05 < .5 {
+        @if meta.type-of($luminance) == 'color' and $luminance + .05 < .5 {
             $focus-selected-background: lighten-color($background, 32%);
         } @else {
             $focus-selected-background: darken-color($background, 16%);
@@ -192,7 +198,7 @@
     }
 
     @if not($ghost-shadow) {
-        $ghost-elevation: map-get($chip-schema, 'ghost-elevation');
+        $ghost-elevation: map.get($chip-schema, 'ghost-elevation');
         $ghost-shadow: igx-elevation($elevations, $ghost-elevation);
     }
 
@@ -238,14 +244,14 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-chip($theme) {
     @include igx-css-vars($theme);
 
     $transition: all 120ms $ease-in-out-quad;
     $chip-max-width: 32ch;
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
 
     $chip-height-material: (
@@ -260,7 +266,7 @@
         compact: rem(18px)
     );
 
-    $chip-height: map-get((
+    $chip-height: map.get((
         material: $chip-height-material,
         fluent: $chip-height-fluent,
         bootstrap: $chip-height-material,
@@ -273,17 +279,17 @@
         compact: 0 rem(2px)
     );
 
-    $box-shadow: map-get((
+    $box-shadow: map.get((
         material: null,
         fluent: null,
-        bootstrap: 0 0 0 rem(3px) --var($theme, 'hover-background'),
+        bootstrap: 0 0 0 rem(3px) var-get($theme, 'hover-background'),
         indigo-design: null
     ), $variant);
 
     $item-padding: 4px;
     $chip-item-padding: 0 rem($item-padding);
 
-    $chip-avatar-inset: map-get((
+    $chip-avatar-inset: map.get((
         material: 0,
         fluent: -$item-padding,
         bootstrap: 0,
@@ -374,27 +380,27 @@
 
     %igx-chip-custom-icon {
         igx-icon {
-            width: map-get($chip-icon-size, 'comfortable');
-            height: map-get($chip-icon-size, 'comfortable');
-            font-size: map-get($chip-icon-size, 'comfortable');
+            width: map.get($chip-icon-size, 'comfortable');
+            height: map.get($chip-icon-size, 'comfortable');
+            font-size: map.get($chip-icon-size, 'comfortable');
             outline-style: none;
         }
     }
 
     %igx-chip-custom-icon--cosy {
         igx-icon {
-            width: map-get($chip-icon-size, 'cosy');
-            height: map-get($chip-icon-size, 'cosy');
-            font-size: map-get($chip-icon-size, 'cosy');
+            width: map.get($chip-icon-size, 'cosy');
+            height: map.get($chip-icon-size, 'cosy');
+            font-size: map.get($chip-icon-size, 'cosy');
             outline-style: none;
         }
     }
 
     %igx-chip-custom-icon--compact {
         igx-icon {
-            width: map-get($chip-icon-size, 'compact');
-            height: map-get($chip-icon-size, 'compact');
-            font-size: map-get($chip-icon-size, 'compact');
+            width: map.get($chip-icon-size, 'compact');
+            height: map.get($chip-icon-size, 'compact');
+            font-size: map.get($chip-icon-size, 'compact');
             outline-style: none;
         }
     }
@@ -430,7 +436,7 @@
 
     %igx-chip__content {
         @include ellipsis();
-        padding: map-get($chip-padding, 'comfortable');
+        padding: map.get($chip-padding, 'comfortable');
         max-width: $chip-max-width;
 
         &:empty {
@@ -439,17 +445,17 @@
     }
 
     %igx-chip__content--cosy {
-        padding: map-get($chip-padding, 'cosy');
+        padding: map.get($chip-padding, 'cosy');
     }
 
     %igx-chip__content--compact {
-        padding: map-get($chip-padding, 'compact');
+        padding: map.get($chip-padding, 'compact');
     }
 
     %igx-chip__remove {
         display: inline-flex;
         margin-#{$right}: rem(4px);
-        color: --var($theme, 'remove-icon-color', currentColor);
+        color: var-get($theme, 'remove-icon-color', currentColor);
 
         &:empty {
             display: none;
@@ -462,7 +468,7 @@
 
             igx-icon {
                 outline-style: none;
-                color: --var($theme, 'remove-icon-color-focus');
+                color: var-get($theme, 'remove-icon-color-focus');
             }
         }
 
@@ -507,14 +513,14 @@
         align-items: center;
         justify-content: center;
         flex: 1 1 auto;
-        height: map-get($chip-height, 'comfortable');
+        height: map.get($chip-height, 'comfortable');
         padding: $chip-item-padding;
-        color: --var($theme, 'text-color');
-        background: --var($theme, 'background');
+        color: var-get($theme, 'text-color');
+        background: var-get($theme, 'background');
         border-width: 1px;
         border-style: solid;
-        border-color: --var($theme, 'border-color');
-        border-radius: --var($theme, 'border-radius');
+        border-color: var-get($theme, 'border-color');
+        border-radius: var-get($theme, 'border-radius');
         user-select: none;
         overflow: hidden;
         cursor: pointer;
@@ -524,86 +530,86 @@
     }
 
     %igx-chip__item--hover {
-        color: --var($theme, 'hover-text-color');
-        background: --var($theme, 'hover-background');
-        border-color: --var($theme, 'hover-border-color');
+        color: var-get($theme, 'hover-text-color');
+        background: var-get($theme, 'hover-background');
+        border-color: var-get($theme, 'hover-border-color');
         transition: all 120ms ease-in;
     }
 
     %igx-chip__item--focus {
-        color: --var($theme, 'focus-text-color');
-        background: --var($theme, 'focus-background');
-        border-color: --var($theme, 'focus-border-color');
+        color: var-get($theme, 'focus-text-color');
+        background: var-get($theme, 'focus-background');
+        border-color: var-get($theme, 'focus-border-color');
         outline-style: none;
         box-shadow: $box-shadow;
 
         @if $variant == 'indigo-design' {
-            box-shadow: 0 0 0 rem(3px) --var($theme, 'focus-outline-color');
+            box-shadow: 0 0 0 rem(3px) var-get($theme, 'focus-outline-color');
         }
     }
 
     %igx-chip__item--selected {
-        color: --var($theme, 'selected-text-color');
-        background: --var($theme, 'selected-background');
-        border-color: --var($theme, 'selected-border-color');
+        color: var-get($theme, 'selected-text-color');
+        background: var-get($theme, 'selected-background');
+        border-color: var-get($theme, 'selected-border-color');
     }
 
     %igx-chip__item--hover-selected {
-        color: --var($theme, 'hover-selected-text-color');
-        background: --var($theme, 'hover-selected-background');
-        border-color: --var($theme, 'hover-selected-border-color');
+        color: var-get($theme, 'hover-selected-text-color');
+        background: var-get($theme, 'hover-selected-background');
+        border-color: var-get($theme, 'hover-selected-border-color');
         transition: $transition;
     }
 
     %igx-chip__item--focus-selected {
-        color: --var($theme, 'focus-selected-text-color');
-        background: --var($theme, 'focus-selected-background');
-        border-color: --var($theme, 'focus-selected-border-color');
+        color: var-get($theme, 'focus-selected-text-color');
+        background: var-get($theme, 'focus-selected-background');
+        border-color: var-get($theme, 'focus-selected-border-color');
         transition: $transition;
 
         @if $variant == 'indigo-design' {
-            box-shadow: 0 0 0 rem(3px) --var($theme, 'focus-selected-outline-color');
+            box-shadow: 0 0 0 rem(3px) var-get($theme, 'focus-selected-outline-color');
         }
     }
 
     %igx-chip__item--cosy {
-        height: map-get($chip-height, 'cosy');
-        padding: map-get($chip-padding, 'cosy');
+        height: map.get($chip-height, 'cosy');
+        padding: map.get($chip-padding, 'cosy');
     }
 
     %igx-chip__item--compact {
-        height: map-get($chip-height, 'compact');
-        padding: map-get($chip-padding, 'compact');
+        height: map.get($chip-height, 'compact');
+        padding: map.get($chip-padding, 'compact');
     }
 
     %igx-chip__ghost {
         position: absolute;
         z-index: 10;
-        box-shadow: --var($theme, 'ghost-shadow');
+        box-shadow: var-get($theme, 'ghost-shadow');
         overflow: hidden;
-        color: --var($theme, 'focus-text-color');
-        background: --var($theme, 'ghost-background');
+        color: var-get($theme, 'focus-text-color');
+        background: var-get($theme, 'ghost-background');
 
         &:hover,
         &:focus {
-            background: --var($theme, 'ghost-background');
+            background: var-get($theme, 'ghost-background');
         }
     }
 
     %igx-chip__ghost--cosy {
-        height: map-get($chip-height, 'cosy');
+        height: map.get($chip-height, 'cosy');
 
         %igx-chip__content {
-            padding: map-get($chip-padding, 'cosy');
+            padding: map.get($chip-padding, 'cosy');
         }
     }
 
     %igx-chip__ghost--compact {
         @extend  %igx-chip-custom-icon--compact;
-        height: map-get($chip-height, 'compact');
+        height: map.get($chip-height, 'compact');
 
         %igx-chip__content {
-            padding: map-get($chip-padding, 'compact');
+            padding: map.get($chip-padding, 'compact');
         }
     }
 }
@@ -619,7 +625,7 @@
     $type-scale,
     $categories: (text: 'body-2'))
 {
-    $text: map-get($categories, 'text');
+    $text: map.get($categories, 'text');
 
     %igx-chip {
         @include igx-type-style($type-scale, $text) {

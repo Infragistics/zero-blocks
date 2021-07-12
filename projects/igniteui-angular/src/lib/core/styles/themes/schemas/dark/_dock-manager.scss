@@ -1,4 +1,6 @@
-@import '../light/dock-manager';
+@use '../../../base' as *;
+@use '../light/dock-manager' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -20,9 +22,9 @@
 /// @prop {Color} splitter-background [igx-clor: ('grays', 100), to-opaque: #000] - Sets the background color for the splitters.
 /// @prop {Color} tab-background-active [igx-color: 'surface'] - Sets the background color for active tabs.
 /// @requires {function} extend
-/// @requires $_light-dock-manager
-$_dark-dock-manager: extend(
-    $_light-dock-manager, (
+/// @requires $light-dock-manager
+$dark-dock-manager: extend(
+    $light-dock-manager, (
         accent-color: (
             igx-color: ('grays', 400),
             to-opaque: #000,
@@ -88,9 +90,9 @@ $_dark-dock-manager: extend(
 /// @prop {Color} tab-text [igx-contrast-color: 'surface'] - Sets the text color for tabs.
 /// @prop {Color} text-color [igx-contrast-color: 'surface'] - Sets the text color for most elements in the dock manager. Used as the default joystick icon color.
 /// @requires {function} extend
-/// @requires $_fluent-dock-manager
-$_dark-fluent-dock-manager: extend(
-    $_fluent-dock-manager, (
+/// @requires $fluent-dock-manager
+$dark-fluent-dock-manager: extend(
+    $fluent-dock-manager, (
         accent-color: (
             igx-color: 'surface',
             rgba: .5,
@@ -185,9 +187,9 @@ $_dark-fluent-dock-manager: extend(
 /// @prop {Color} splitter-handle [igx-color: ('grays', 50), to-opaque: ()] - Sets the background color for the splitter handles.
 /// @prop {Color} text-color [igx-contrast-color: 'surface'] - Sets the text color for most elements in the dock manager. Used as the default joystick icon color.
 /// @requires {function} extend
-/// @requires $_bootstrap-dock-manager
-$_dark-bootstrap-dock-manager: extend(
-    $_bootstrap-dock-manager, (
+/// @requires $bootstrap-dock-manager
+$dark-bootstrap-dock-manager: extend(
+    $bootstrap-dock-manager, (
         accent-color: (
             igx-color: 'surface',
             rgba: .33,
@@ -257,9 +259,9 @@ $_dark-bootstrap-dock-manager: extend(
 /// @prop {Color} tab-background-active [igx-color: ('grays', 100), to-opaque: (igx-color: 'surface')] - Sets the background color for active tabs.
 /// @prop {Color} tab-background [igx-color: 'surface'] - Sets the background color for tabs.
 /// @requires {function} extend
-/// @requires $_indigo-dock-manager
-$_dark-indigo-dock-manager: extend(
-    $_indigo-dock-manager,
+/// @requires $indigo-dock-manager
+$dark-indigo-dock-manager: extend(
+    $indigo-dock-manager,
     (
         background-color: (
             igx-color: 'surface',

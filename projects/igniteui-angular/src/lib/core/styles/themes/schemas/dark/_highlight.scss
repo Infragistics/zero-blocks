@@ -1,4 +1,6 @@
-@import '../light/highlight';
+@use '../../../base' as *;
+@use '../light/highlight' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -9,9 +11,9 @@
 /// @type {Map}
 /// @property {Map} resting-color [igx-color: ('grays', 300), to-opaque: #222, text-contrast: ()] - The icon color used for the highlight in its resting state.
 /// @requires {function} extend
-/// @requires $_light-highlight
+/// @requires $light-highlight
 /// @see $default-palette
-$_dark-highlight: extend($_light-highlight, (
+$dark-highlight: extend($light-highlight, (
     resting-color: (
         igx-color: ('grays', 300),
         to-opaque: (#222),
@@ -23,8 +25,8 @@ $_dark-highlight: extend($_light-highlight, (
 /// @type {Map}
 /// @property {Map} resting-color [igx-color: ('grays', 300), to-opaque: #222, text-contrast: ()] - The icon color used for the highlight in its resting state.
 /// @requires {function} extend
-/// @requires $_fluent-highlight
-$_dark-fluent-highlight: extend($_fluent-highlight, (
+/// @requires $fluent-highlight
+$dark-fluent-highlight: extend($fluent-highlight, (
     resting-color: (
         igx-color: ('grays', 300),
         to-opaque: (#222),
@@ -33,16 +35,11 @@ $_dark-fluent-highlight: extend($_fluent-highlight, (
 ));
 
 /// Generates a dark bootstrap highlight schema.
-/// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-highlight
-$_dark-bootstrap-highlight: extend($_bootstrap-highlight, (
-
-));
+/// @requires $bootstrap-highlight
+$dark-bootstrap-highlight: $bootstrap-highlight;
 
 /// Generates a dark indigo highlight schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-highlight
-$_dark-indigo-highlight: extend($_indigo-highlight);
+/// @requires $indigo-highlight
+$dark-indigo-highlight: $indigo-highlight;
 

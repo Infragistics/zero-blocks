@@ -1,4 +1,4 @@
-@import '../../../projects/igniteui-angular/src/lib/core/styles/themes/index';
+@use '../../../projects/igniteui-angular/src/lib/core/styles/themes/index' as *;
 
 .circular-samples {
     display: flex;
@@ -28,10 +28,10 @@
 }
 
 .custom-gradient {
-    $circ-theme: igx-progress-circular-theme(
-        $progress-circle-color: purple orange,
-    );
+    // $circ-theme: igx-progress-circular-theme(
+    //     $progress-circle-color: purple orange,
+    // );
 
-    @include igx-progress-circular($circ-theme);
+    // @include igx-progress-circular($circ-theme);
 }
 

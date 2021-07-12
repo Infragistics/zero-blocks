@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -6,74 +9,78 @@
 /// @requires {mixin} bem-mod
 ////
 
-/// @access public
-@include b(igx-drop-down) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-drop-down) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @extend %igx-drop-down !optional;
+        @extend %igx-drop-down !optional;
 
-    @include e(list) {
-        @extend %igx-drop-down__list !optional;
-    }
+        @include e(list) {
+            @extend %igx-drop-down__list !optional;
+        }
 
-    @include e(list-scroll) {
-        @extend %igx-drop-down__list-scroll !optional;
-    }
+        @include e(list-scroll) {
+            @extend %igx-drop-down__list-scroll !optional;
+        }
 
-    @include e(item) {
-        @extend %igx-drop-down__item !optional;
-    }
+        @include e(item) {
+            @extend %igx-drop-down__item !optional;
+        }
 
-    @include e(inner) {
-        @extend %igx-drop-down__inner !optional;
-    }
+        @include e(inner) {
+            @extend %igx-drop-down__inner !optional;
+        }
 
-    @include e(content) {
-        @extend %igx-drop-down__content !optional;
-    }
+        @include e(content) {
+            @extend %igx-drop-down__content !optional;
+        }
 
-    @include e(item, $m: cosy) {
-        @extend %igx-drop-down__item--cosy !optional;
-    }
+        @include e(item, $m: cosy) {
+            @extend %igx-drop-down__item--cosy !optional;
+        }
 
-    @include e(item, $m: compact) {
-        @extend %igx-drop-down__item--compact !optional;
-    }
+        @include e(item, $m: compact) {
+            @extend %igx-drop-down__item--compact !optional;
+        }
 
-    @include e(item, $m: focused) {
-        @extend %igx-drop-down__item--focused !optional;
-    }
+        @include e(item, $m: focused) {
+            @extend %igx-drop-down__item--focused !optional;
+        }
 
-    @include e(item, $m: selected) {
-        @extend %igx-drop-down__item--selected !optional;
-    }
+        @include e(item, $m: selected) {
+            @extend %igx-drop-down__item--selected !optional;
+        }
 
-    @include e(item, $mods: (selected, focused)) {
-        @extend %igx-drop-down__item--selected--focused !optional;
-    }
+        @include e(item, $mods: (selected, focused)) {
+            @extend %igx-drop-down__item--selected--focused !optional;
+        }
 
-    @include e(item, $m: disabled) {
-        @extend %igx-drop-down__item--disabled !optional;
-    }
+        @include e(item, $m: disabled) {
+            @extend %igx-drop-down__item--disabled !optional;
+        }
 
-    @include e(header) {
-        @extend %igx-drop-down__header !optional;
-    }
+        @include e(header) {
+            @extend %igx-drop-down__header !optional;
+        }
 
-    @include e(header, $m: cosy) {
-        @extend %igx-drop-down__header--cosy !optional;
-    }
+        @include e(header, $m: cosy) {
+            @extend %igx-drop-down__header--cosy !optional;
+        }
 
-    @include e(header, $m: compact) {
-        @extend %igx-drop-down__header--compact !optional;
-    }
+        @include e(header, $m: compact) {
+            @extend %igx-drop-down__header--compact !optional;
+        }
 
-    @include e(group) {
-        @extend %igx-drop-down__group !optional;
-    }
+        @include e(group) {
+            @extend %igx-drop-down__group !optional;
+        }
 
-    @include e(group, $m: disabled) {
-        @extend %igx-drop-down__item--disabled !optional;
+        @include e(group, $m: disabled) {
+            @extend %igx-drop-down__item--disabled !optional;
+        }
     }
 }

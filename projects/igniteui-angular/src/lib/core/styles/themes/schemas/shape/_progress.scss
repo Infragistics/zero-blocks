@@ -6,19 +6,19 @@
 
 /// @type Map
 /// @prop {Number} track-border-radius [0] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-progress: (
+$default-shape-progress: (
     track-border-radius: 0
 );
 
 /// @type Map
 /// @prop {Number} track-border-radius [1] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-progress: (
+$round-shape-progress: (
     track-border-radius: 1
 );
 
 /// @type Map
 /// @prop {Number} track-border-radius [0] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-progress: (
+$square-shape-progress: (
     track-border-radius: 0
 );
 
@@ -26,11 +26,11 @@ $_square-shape-progress: (
 /// @prop {Number} track-border-radius [0] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
 /// @requires {Map} $_square-shape-progress
-$_fluent-shape-progress: extend($_square-shape-progress);
+$fluent-shape-progress: $square-shape-progress;
 
 /// @type Map
 /// @prop {Number} track-border-radius [4px] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-progress: (
+$bootstrap-shape-progress: (
     track-border-radius: 4px
 );
 

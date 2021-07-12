@@ -1,4 +1,5 @@
-@import '../light/slider';
+@use '../../../base' as *;
+@use '../light/slider' as *;
 
 ////
 /// @group schemas
@@ -8,19 +9,18 @@
 
 /// Generates a dark slider schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-slider
+/// @requires $light-slider
 /// @see $default-palette
-$_dark-slider: extend($_light-slider);
+$dark-slider: $light-slider;
 
 /// Generates a dark fluent slider schema.
 /// @type {Map}
 /// @property {Map} track-color [igx-color: ('secondary', 700), to-opaque: #222] - The thumb border color.
 /// @property {Map} thumb-disabled-border-color [igx-color: ('grays', 400), to-opaque: #222] - The thumb border color when its disabled
 /// @requires {function} extend
-/// @requires $_fluent-slider
-$_dark-fluent-slider: extend(
-    $_fluent-slider,
+/// @requires $fluent-slider
+$dark-fluent-slider: extend(
+    $fluent-slider,
     (
         track-color: (
             igx-color: ('grays', 700),
@@ -39,8 +39,8 @@ $_dark-fluent-slider: extend(
 /// @property {Map} track-color [igx-color: ('secondary', 700), to-opaque: #222] - The thumb border color.
 /// @property {Map} thumb-disabled-border-color [igx-color: ('grays', 400), to-opaque: #222] - The thumb border color when its disabled
 /// @requires {function} extend
-/// @requires $_bootstrap-slider
-$_dark-bootstrap-slider: extend($_bootstrap-slider, (
+/// @requires $bootstrap-slider
+$dark-bootstrap-slider: extend($bootstrap-slider, (
     track-color: (
         igx-color: ('grays', 700),
         to-opaque: #222
@@ -58,8 +58,8 @@ $_dark-bootstrap-slider: extend($_bootstrap-slider, (
 /// @property {Map} base-track-hover-color [igx-color: ('grays', 600)] - The base background color of the track on hover.
 ///
 /// @requires {function} extend
-/// @requires $_indigo-slider
-$_dark-indigo-slider: extend($_indigo-slider, (
+/// @requires $indigo-slider
+$dark-indigo-slider: extend($indigo-slider, (
     base-track-hover-color: (
         igx-color: ('grays', 600)
     ),

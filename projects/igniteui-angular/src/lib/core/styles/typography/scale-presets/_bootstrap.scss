@@ -1,3 +1,6 @@
+@use '../base' as *;
+@use '../../base' as *;
+
 $bootstrap_h1: igx-type-style(
     $font-size: rem(40px),
     $font-weight: 500,

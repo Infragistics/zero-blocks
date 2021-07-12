@@ -1,4 +1,10 @@
+@use '../variables' as *;
 @use 'sass:math';
+@use 'sass:color';
+@use 'sass:meta';
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:string';
 
 ////
 /// @group Utilities
@@ -10,10 +16,10 @@
 /// @param {number|string} $pixels - The pixel value to be converted.
 /// @param {number|string} $context [$browser-context] - The base context to convert against.
 @function em($pixels, $context: $browser-context) {
-    @if (unitless($pixels)) {
+    @if (math.is-unitless($pixels)) {
         $pixels: $pixels * 1px;
     }
-    @if (unitless($context)) {
+    @if (math.is-unitless($context)) {
         $context: $context * 1px;
     }
     @return math.div($pixels, $context) * 1em;
@@ -24,10 +30,10 @@
 /// @param {number|string} $pixels - The pixel value to be converted.
 /// @param {number|string} $context [$browser-context] - The base context to convert against.
 @function rem($pixels, $context: $browser-context) {
-    @if (unitless($pixels)) {
+    @if (math.is-unitless($pixels)) {
         $pixels: $pixels * 1px;
     }
-    @if (unitless($context)) {
+    @if (math.is-unitless($context)) {
         $context: $context * 1px;
     }
     @return math.div($pixels, $context) * 1rem;
@@ -38,11 +44,21 @@
 /// @param {number|string} $num - The relative value to be converted.
 /// @param {number|string} $context [$browser-context] - The base context to convert against.
 @function px($num, $context: $browser-context) {
-    @if type-of $num == 'number' {
+    @if meta.type-of($num) == 'number' {
         @return math.div($num, $num * 0 + 1) * 16px;
     }
 
     @return $num;
+}
+
+/// Calculates the linear channel value for a given sRGB color.
+/// @access private
+@function _lcv($value) {
+    @return if(
+        $value < .03928,
+        math.div($value, 12.92),
+        math.pow(math.div($value + .055, 1.055), 2.4)
+    );
 }
 
 /// Calculates the luminance for a given color.
@@ -50,12 +66,12 @@
 ///
 /// @param {Color} $color - The color to calculate luminance for.
 @function luminance($color) {
-    @if type-of($color) == 'color' {
-        $red: nth($linear-channel-values, red($color) + 1);
-        $green: nth($linear-channel-values, green($color) + 1);
-        $blue: nth($linear-channel-values, blue($color) + 1);
+    @if meta.type-of($color) == 'color' {
+        $r: math.div(color.red($color), 255);
+        $g: math.div(color.green($color), 255);
+        $b: math.div(color.blue($color), 255);
 
-        @return .2126 * $red + .7152 * $green + .0722 * $blue;
+        @return .2126 * _lcv($r) + .7152 * _lcv($g) + .0722 * _lcv($b);
     }
     @return $color;
 }
@@ -70,7 +86,7 @@
     $backLum: luminance($background) + .05;
     $foreLum: luminance($foreground) + .05;
 
-    @return math.div(max($backLum, $foreLum), min($backLum, $foreLum));
+    @return math.div(math.max($backLum, $foreLum), math.min($backLum, $foreLum));
 }
 
 /// Returns an alpha channel map for a given palette variant.
@@ -80,7 +96,7 @@
     $material: (50: .02, 100: .04, 200: .08, 300: .12, 400: .26, 500: .38, 600: .54, 700: .62, 800: .74, 900: .87);
     $indigo: (50: .02, 100: .03, 200: .06, 300: .15, 400: .21, 500: .4, 600: .52, 700: .64, 800: .77, 900: .9);
 
-    @return map-get((
+    @return map.get((
         'material': $material,
         'fluent': $material,
         'bootstrap': $material,
@@ -131,7 +147,7 @@
 /// @param {Color} $name - The base color name (primary, secondary, etc.) to be used to generate a color variant.
 /// @param {number|string} $variant - The target shade variant.
 /// @param {number|string} $theme - The target theme variant.
-@function _gen-hsla-color($name, $variant, $theme) {
+@function gen-hsla-color($name, $variant, $theme) {
     $h: var(--igx-#{$name}-h);
     $s: var(--igx-#{$name}-s);
     $l: var(--igx-#{$name}-l);
@@ -229,7 +245,7 @@
     @each $saturation in $saturations {
         $shade: gen-color($color, $saturation);
         $contrast: text-contrast(to-opaque($shade, $base, null));
-        $result: map-merge($result, (
+        $result: map.merge($result, (
             $saturation: $shade,
             #{$saturation}-contrast: $contrast
         ));
@@ -252,7 +268,7 @@
     @each $saturation, $opacity in $shades {
         $shade: rgba($color, $opacity);
         $contrast: text-contrast(to-opaque($shade, $base, null));
-        $result: map-merge($result, (
+        $result: map.merge($result, (
             $saturation: $shade,
             #{$saturation}-contrast: $contrast
         ));
@@ -337,7 +353,6 @@
     );
 }
 
-
 /// @access private
 /// Used in igx-color to test internally
 /// for color and variant validity.
@@ -351,8 +366,8 @@ $p-test: igx-palette(#fff, #000);
 /// @param {number|string} $variant [500] - The target color shade from the color palette.
 /// @returns {Color} White if no palette, color, and variant matches found.
 @function igx-color($palette: null, $color: primary, $variant: 500) {
-    $c: map-get($palette or $p-test, $color);
-    $v: if($c, map-get($c, $variant), null);
+    $c: map.get($palette or $p-test, $color);
+    $v: if($c, map.get($c, $variant), null);
 
     @if not($c) {
         @error 'The passed color #{$color} is not valid.';
@@ -365,12 +380,12 @@ $p-test: igx-palette(#fff, #000);
     @if $palette == null {
         @return if(
             legacy(),
-            igx-color($default-palette, $color, $variant),
+            igx-color($theme-palette, $color, $variant),
             #{var(--igx-#{$color}-#{$variant})}
         );
     }
 
-    @return map-get($c, $variant);
+    @return map.get($c, $variant);
 }
 
 /// Retrieves a contrast text color for a given color from a color palette.
@@ -393,7 +408,7 @@ $p-test: igx-palette(#fff, #000);
 /// $list: var-to-parts(var(--igx-primary-500)); // igx primary 500
 /// @returns {List}
 @function var-to-parts($value, $separator: '-') {
-    @if type-of($value) != 'string' {
+    @if meta.type-of($value) != 'string' {
         @return null;
     }
 
@@ -407,12 +422,12 @@ $p-test: igx-palette(#fff, #000);
 /// If the value is not a CSS variable it's simply passed through.
 /// @access private
 /// @returns {Color | Map}
-@function igx-color-from-var($value, $palette: $default-palette, $raw: true) {
+@function igx-color-from-var($value, $palette: $theme-palette, $raw: true) {
     $parts: var-to-parts($value);
-    $is-igx: index($parts, 'igx');
+    $is-igx: list.index($parts, 'igx');
 
     @if $parts and $is-igx {
-        $c: nth($parts, 2);
+        $c: list.nth($parts, 2);
         $v: to-number(nth($parts, 3));
         $color: igx-color($palette, $c, $v);
         @return if($raw, $color, (($c $v): $color));
@@ -428,18 +443,18 @@ $p-test: igx-palette(#fff, #000);
 /// @param {Map} $palette [$default-palette] - Pass an igx-palette if the passed colors are CSS variable references.
 /// @requires {function} igx-color-from-var
 /// @return {Color} - The color representation of the rgba value.
-@function to-opaque($color-1, $color-2: #fff, $palette: $default-palette) {
+@function to-opaque($color-1, $color-2: #fff, $palette: $theme-palette) {
     $color-1: igx-color-from-var($color-1, $palette);
     $color-2: igx-color-from-var($color-2, $palette);
 
-    @if type-of($color-1) == color and type-of($color-2) == color {
-        $red: red($color-1);
-        $green: green($color-1);
-        $blue: blue($color-1);
-        $a: alpha($color-1);
-        $r: floor($a * $red + (1 - $a) * red($color-2));
-        $g: floor($a * $green + (1 - $a) * green($color-2));
-        $b: floor($a * $blue + (1 - $a) * blue($color-2));
+    @if meta.type-of($color-1) == color and meta.type-of($color-2) == color {
+        $red: color.red($color-1);
+        $green: color.green($color-1);
+        $blue: color.blue($color-1);
+        $a: color.alpha($color-1);
+        $r: math.floor($a * $red + (1 - $a) * color.red($color-2));
+        $g: math.floor($a * $green + (1 - $a) * color.green($color-2));
+        $b: math.floor($a * $blue + (1 - $a) * color.blue($color-2));
         @return rgb($r, $g, $b);
     }
     @return $color-1;
@@ -462,12 +477,12 @@ $p-test: igx-palette(#fff, #000);
     $background: igx-color-from-var($background, $palette, $raw: false);
     $foreground: igx-color-from-var($foreground, $palette);
 
-    @if type-of($background) == 'map' {
-        @return igx-contrast-color(null, nth(map-keys($background), 1)...);
+    @if meta.type-of($background) == 'map' {
+        @return igx-contrast-color(null, nth(map.keys($background), 1)...);
     }
 
-    @if type-of($foreground) == 'color' and type-of($background) == 'color' {
-        $level: map-get((
+    @if meta.type-of($foreground) == 'color' and meta.type-of($background) == 'color' {
+        $level: map.get((
             'A': 3,
             'AA': 4.5,
             'AAA': 7
@@ -499,8 +514,8 @@ $p-test: igx-palette(#fff, #000);
 /// @param {*} $value - The value to test.
 /// @return {Bool}
 @function is-direction($value) {
-    $is-keyword: index( ( to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
-    $is-angle: type-of($value)=='number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+    $is-keyword: list.index(( to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+    $is-angle: meta.type-of($value)=='number' and list.index('deg' 'grad' 'turn' 'rad', math.unit($value));
     @return $is-keyword or $is-angle;
 }
 
@@ -510,10 +525,10 @@ $p-test: igx-palette(#fff, #000);
 /// @param {String|List} $items - The components list to check in.
 /// @return {List} - The list of passed items.
 @function is-component($items) {
-    $register: map-keys($components);
+    $register: map.keys($components);
     @each $item in $items {
-        @if not(index($register, $item)) {
-            @error unquote('Can\'t exclude "#{$item}" because it is not in the list of known components.');
+        @if not(list.index($register, $item)) {
+            @warn unquote('Can\'t exclude "#{$item}" because it is not in the list of known components.');
         }
     }
     @return $items;
@@ -530,47 +545,47 @@ $p-test: igx-palette(#fff, #000);
     $sign: '';
     @if $num < 0 {
         $sign: '-';
-        $num: abs($num);
+        $num: math.abs($num);
     }
     @if $num >= 0 and $num < $radix {
-        @return $sign + str-slice($chars, ($num + 1), ($num + 1));
+        @return $sign + string.slice($chars, ($num + 1), ($num + 1));
     }
     $q: $num;
     @while $q !=0 {
         $r: $q % $radix;
-        $q: floor($q / $radix);
-        $result: str-slice($chars, ($r + 1), ($r + 1)) + $result;
+        $q: math.floor($q / $radix);
+        $result: string.slice($chars, ($r + 1), ($r + 1)) + $result;
     }
     @return $sign + $result;
 }
 
 /// @access private
 @function to-number($value) {
-    @if type-of($value) == 'number' {
+    @if meta.type-of($value) == 'number' {
         @return $value;
-    } @else if type-of($value) != 'string' {
+    } @else if meta.type-of($value) != 'string' {
         $_: log('Value for `to-number` should be a number or a string.');
     }
 
     $result: 0;
     $digits: 0;
-    $minus: str-slice($value, 1, 1) == '-';
+    $minus: string.slice($value, 1, 1) == '-';
     $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
 
-    @for $i from if($minus, 2, 1) through str-length($value) {
-        $character: str-slice($value, $i, $i);
+    @for $i from if($minus, 2, 1) through string.length($value) {
+        $character: string.slice($value, $i, $i);
 
-        @if not(index(map-keys($numbers), $character) or $character == '.') {
+        @if not(list.index(map.keys($numbers), $character) or $character == '.') {
             @return $value;
         }
 
         @if $character == '.' {
             $digits: 1;
         } @else if $digits == 0 {
-            $result: $result * 10 + map-get($numbers, $character);
+            $result: $result * 10 + map.get($numbers, $character);
         } @else {
             $digits: $digits * 10;
-            $result: $result + map-get($numbers, $character) / $digits;
+            $result: $result + map.get($numbers, $character) / $digits;
         }
     }
 
@@ -586,7 +601,7 @@ $p-test: igx-palette(#fff, #000);
 
     @each $key, $value in $map {
         @if($value) != null {
-            $result: map-merge($result, (
+            $result: map.merge($result, (
                 #{$key}: $value
             ));
         }
@@ -603,7 +618,7 @@ $p-test: igx-palette(#fff, #000);
     $result: ();
 
     @each $map in $maps {
-        $result: map-merge($result, map-clean($map));
+        $result: map.merge($result, map-clean($map));
     }
 
     @return $result;
@@ -616,7 +631,7 @@ $p-test: igx-palette(#fff, #000);
 /// @param {string} $key - A key from the theme map to assign as value to the property.
 /// @example scss Assign the color property in a rule-set to a value from the default avatar theme.
 ///   %igx-avatar-icon {
-///     color: --var($avatar-theme, 'icon-color');
+///     color: var-get($avatar-theme, 'icon-color');
 ///   }
 ///   // If legacy-support is off, it will produce the following:
 ///   // %igx-avatar-icon {
@@ -624,18 +639,18 @@ $p-test: igx-palette(#fff, #000);
 ///   // }
 ///   // otherwise, it will return the value for key 'icon-color' in the '$avatar-theme';
 /// @returns {String} - The value of the key in the passed map, or the name of key concatenated with the key name.
-@function --var($map, $key, $fallback: null) {
-    @if map-has-key($map, $key) {
+@function var-get($map, $key, $fallback: null) {
+    @if map.has-key($map, $key) {
         @if not(legacy()) {
             @if not($fallback) {
                 @return var(--#{$key})
             }
             @return var(--#{$key}, #{$fallback})
         } @else {
-            @return map-get($map, $key);
+            @return map.get($map, $key);
         }
     } @else {
-        @error unquote('The map you passed does not contain a key #{$key}');
+        @error string.unquote('The map you passed does not contain a key #{$key}');
     }
 }
 
@@ -645,14 +660,14 @@ $p-test: igx-palette(#fff, #000);
 /// @param {string} $separator - The string separator to split the string by.
 @function str-split($string, $separator) {
     $split-arr: ();
-    $index : str-index($string, $separator);
+    $index : string.index($string, $separator);
     @while $index != null {
-        $item: str-slice($string, 1, $index - 1);
-        $split-arr: append($split-arr, $item);
-        $string: str-slice($string, $index + 1);
-        $index : str-index($string, $separator);
+        $item: string.slice($string, 1, $index - 1);
+        $split-arr: list.append($split-arr, $item);
+        $string: string.slice($string, $index + 1);
+        $index : string.index($string, $separator);
     }
-    $split-arr: append($split-arr, $string);
+    $split-arr: list.append($split-arr, $string);
     @return $split-arr;
 }
 
@@ -672,7 +687,7 @@ $p-test: igx-palette(#fff, #000);
 ///   $resolved-value: resolve-value($value, $palette);
 @function resolve-value($value, $payload: null) {
     $result: null;
-    $dp: $default-palette;
+    $tp: $theme-palette;
 
     // Uncomment to discover some broken themes
     // @if type-of($value) != 'map' or type-of($value) != 'list' {
@@ -680,23 +695,23 @@ $p-test: igx-palette(#fff, #000);
     // }
 
     @each $fn, $args in $value {
-        $func: get-function($fn);
+        $func: meta.get-function($fn);
 
-        @if legacy() or length(map-keys($value)) > 1 {
+        @if list.length(map.keys($value)) > 1 {
             @if $result == null and ($fn == 'igx-color' or $fn == 'igx-contrast-color') {
-                $result: call($func, $payload or $dp, $args...);
-            } @else if $fn == 'to-opaque' and type-of($args) == 'map' {
-                $result: call($func, $result, resolve-value($args, $payload or $dp));
+                $result: meta.call($func, $payload or $tp, $args...);
+            } @else if $fn == 'to-opaque' and meta.type-of($args) == 'map' {
+                $result: meta.call($func, $result, resolve-value($args, $payload or $tp));
             } @else if $result {
-                $result: call($func, $result, $args...);
+                $result: meta.call($func, $result, $args...);
             } @else {
-                $result: call($func, $args);
+                $result: meta.call($func, $args);
             }
         } @else {
             @if $result == null and ($fn == 'igx-color' or $fn == 'igx-contrast-color') {
-                $result: call($func, null, $args...);
+                $result: meta.call($func, $payload, $args...);
             } @else {
-                $result: call($func, $args...);
+                $result: meta.call($func, $args...);
             }
         }
     }
@@ -707,11 +722,11 @@ $p-test: igx-palette(#fff, #000);
 /// Returns a random color.
 /// @access private
 @function random-color() {
-    @return hsl(random(360), 100%, 50%);
+    @return hsl(math.random(360), 100%, 50%);
 }
 
 @function igx-generate-series-colors($palette) {
-    $color-blind: if(global-variable-exists('_igx-enhanced-accessibility'), $_igx-enhanced-accessibility, false);
+    $color-blind: if(meta.global-variable-exists('_igx-enhanced-accessibility'), $_igx-enhanced-accessibility, false);
 
     @if $color-blind {
         @return (
@@ -762,7 +777,7 @@ $p-test: igx-palette(#fff, #000);
 @function apply-palette($schema, $palette) {
     $result: ();
     @each $key, $value in $schema {
-        @if type-of($value) == 'map' {
+        @if meta.type-of($value) == 'map' {
             $result: extend($result, (#{$key}: resolve-value($value, $palette)));
         } @else {
             $result: extend($result, (#{$key}: $value));
@@ -797,7 +812,7 @@ $p-test: igx-palette(#fff, #000);
 
 @function legacy() {
     @return if(
-        global-variable-exists('igx-legacy-support'),
+        meta.global-variable-exists('igx-legacy-support'),
         $igx-legacy-support,
         false
     );
@@ -806,8 +821,8 @@ $p-test: igx-palette(#fff, #000);
 /// Returns calc value between given min and max values
 /// @access private
 @function fraction-clamp($factor, $min, $max) {
-    $min: if(unitless($min), $min * 1px, $min);
-    $max: if(unitless($max), $max * 1px, $max);
+    $min: if(math.is-unitless($min), $min * 1px, $min);
+    $max: if(math.is-unitless($max), $max * 1px, $max);
 
     @if $min > $max {
         @error 'Min boundary should be less than max boundary.';
@@ -822,19 +837,19 @@ $p-test: igx-palette(#fff, #000);
 /// If the value is NOT unitless return the value or list of values with the unit you pass
 /// @access private
 @function round-borders($value, $min: 0, $max: 0) {
-    @if type-of($value) == 'number' and unitless($value) {
+    @if meta.type-of($value) == 'number' and math.is-unitless($value) {
 
         @if $value < 0 or $value > 1 {
             @return $value;
         }
 
-        @return round(fraction-clamp($value, $min, $max));
+        @return math.round(fraction-clamp($value, $min, $max));
     }
 
-    @if type-of($value) == 'list' and length($value) <= 4 {
+    @if meta.type-of($value) == 'list' and list.length($value) <= 4 {
         $result: ();
         @each $i in $value {
-            $result: append($result, round-borders($i, $min, $max), auto);
+            $result: list.append($result, round-borders($i, $min, $max), auto);
         }
         @return $result;
     }
@@ -842,7 +857,7 @@ $p-test: igx-palette(#fff, #000);
     @return $value;
 }
 
-/// A thin wrapper around Sass' lighten function
+/// A thin wrapper around Sass' color scale function
 /// to allow pass-through for values other than those
 /// of type color.
 /// @access private
@@ -851,13 +866,13 @@ $p-test: igx-palette(#fff, #000);
 /// @returns {Color | any} - The modified color as produced by the lighten function.
 /// If the value passed is not a color, then the passed value will be returned.
 @function lighten-color($color, $amount) {
-    @if type-of($color) == 'color' {
-        @return lighten($color, $amount);
+    @if meta.type-of($color) == 'color' {
+        @return color.scale($color, $lightness: $amount);
     }
     @return $color;
 }
 
-/// A thin wrapper around Sass' darken function
+/// A thin wrapper around Sass' color scale function
 /// to allow pass-through for values other than those
 /// of type color.
 /// @access private
@@ -866,8 +881,8 @@ $p-test: igx-palette(#fff, #000);
 /// @returns {Color | any} - The modified color as produced by the lighten function.
 /// If the value passed is not a color, then the passed value will be returned.
 @function darken-color($color, $amount) {
-    @if type-of($color) == 'color' {
-        @return darken($color, $amount);
+    @if meta.type-of($color) == 'color' {
+        @return color.scale($color, $lightness: -$amount);
     }
     @return $color;
 }
@@ -880,7 +895,7 @@ $p-test: igx-palette(#fff, #000);
 ///    $left: if-ltr(left, right);
 ///    $right: if-ltr(right, left);
 @function if-ltr($if, $else: null) {
-    $dir: if(global-variable-exists('direction'), $direction, 'ltr');
+    $dir: if(meta.global-variable-exists('direction'), $direction, 'ltr');
 
     @if $dir != rtl {
         @return $if;
@@ -901,7 +916,7 @@ $p-test: igx-palette(#fff, #000);
 }
 
 @function expand-shorthand($list) {
-    $len: length($list);
+    $len: list.length($list);
 
     $margins: (
         'margin-top': null,
@@ -918,25 +933,25 @@ $p-test: igx-palette(#fff, #000);
             $n: 2;
         }
 
-        $key: nth(map-keys($margins), $i);
-        $value: nth($list, $n);
+        $key: list.nth(map.keys($margins), $i);
+        $value: list.nth($list, $n);
 
-        $margins: map-merge($margins, ($key: $value));
+        $margins: map.merge($margins, ($key: $value));
     }
 
     @return $margins;
 }
 
 @function map-keys-prefix($map, $prefix, $separator: '-') {
-    $keys: map-keys($map);
-    $len: length($keys);
+    $keys: map.keys($map);
+    $len: list.length($keys);
     $result: ();
 
     @for $i from 1 through $len {
-        $key: nth($keys, $i);
+        $key: list.nth($keys, $i);
 
-        $result: map-merge($result, (
-            '#{$prefix}#{$separator}#{$key}': map-get($map, $key))
+        $result: map.merge($result, (
+            '#{$prefix}#{$separator}#{$key}': map.get($map, $key))
         );
     }
 
@@ -944,10 +959,10 @@ $p-test: igx-palette(#fff, #000);
 }
 
 @function str-replace($string, $search, $replace: '') {
-    $index: str-index($string, $search);
+    $index: string.index($string, $search);
     @if $index {
-        @return str-slice($string, 1, $index - 1) + $replace + str-replace(
-            str-slice($string, $index + str-length($search)),
+        @return string.slice($string, 1, $index - 1) + $replace + str-replace(
+            string.slice($string, $index + string.length($search)),
             $search,
             $replace
         );
@@ -955,3 +970,28 @@ $p-test: igx-palette(#fff, #000);
     @return $string;
 }
 
+/// @access private
+@function is-used($name, $checklist) {
+    $used: true;
+
+    @if list.index($checklist, $name) {
+        $deps: map.get($components, $name, 'usedBy');
+        $excluded: ();
+
+        @each $item in $checklist {
+            @if list.index($deps, $item) {
+                $excluded: list.append($excluded, $item);
+            }
+        }
+
+        $used: list.length($deps) != list.length($excluded);
+
+        @if not($used) {
+            $dropped-themes: list.append($dropped-themes, $name) !global;
+        } @else {
+            @warn 'You\'ve opted to exclude the "#{$name}" theme but it was held back as the following themes depend on it: "#{$deps}".';
+        }
+    }
+
+    @return $used;
+}

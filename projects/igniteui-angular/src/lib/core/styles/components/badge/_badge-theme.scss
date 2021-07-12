@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -53,8 +57,8 @@
     $name: 'igx-badge';
     $badge-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $badge-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $badge-schema: map.get($schema, $name);
     } @else {
         $badge-schema: $schema;
     }
@@ -62,7 +66,7 @@
     $theme: apply-palette($badge-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($badge-schema, 'border-radius')), 0, 11px
+        if($border-radius, $border-radius, map.get($badge-schema, 'border-radius')), 0, 11px
     );
 
     @if not($icon-color) and $background-color {
@@ -74,7 +78,7 @@
     }
 
     @if not($shadow) {
-        $elevation: map-get($badge-schema, 'elevation');
+        $elevation: map.get($badge-schema, 'elevation');
         $shadow: igx-elevation($elevations, $elevation);
     }
 
@@ -95,11 +99,11 @@
 /// @requires {mixin} igx-css-vars
 /// @requires igx-color
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-badge($theme) {
     @include igx-css-vars($theme);
 
-    $palette: map-get($theme, 'palette');
+    $palette: map.get($theme, 'palette');
 
     $badge-width: 22px;
     $badge-height: $badge-width;
@@ -120,13 +124,13 @@
         height: $badge-height;
         font-size: $badge-font-size;
         font-weight: $badge-font-weight;
-        color: --var($theme, 'text-color');
+        color: var-get($theme, 'text-color');
         line-height: 1;
-        background: --var($theme, 'background-color');
-        border-radius: --var($theme, 'border-radius');
-        box-shadow: --var($theme, 'shadow');
-        border-width: --var($theme, 'border-width');
-        border-color: --var($theme, 'border-color');
+        background: var-get($theme, 'background-color');
+        border-radius: var-get($theme, 'border-radius');
+        box-shadow: var-get($theme, 'shadow');
+        border-width: var-get($theme, 'border-width');
+        border-color: var-get($theme, 'border-color');
         border-style: $border-type;
         overflow: hidden;
 
@@ -138,7 +142,7 @@
             height: $badge-width - 2px;
             font-size: $badge-icon-font-size;
             font-weight: $badge-font-weight;
-            color: --var($theme, 'icon-color');
+            color: var-get($theme, 'icon-color');
         }
     }
 

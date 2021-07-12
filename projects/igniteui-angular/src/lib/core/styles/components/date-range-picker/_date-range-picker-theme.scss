@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -7,7 +12,7 @@
 /// @param {Map} $palette [null] - The palette used as basis for styling the component.
 /// @param {Map} $schema [$light-schema] - The schema used as basis for styling the component.
 /// @param {color} $label-color [null] - The color for date range separator label.
-/// @requires --var
+/// @requires var-get
 /// @requires rem
 @function igx-date-range-picker-theme(
     $palette: null,
@@ -17,8 +22,8 @@
     $name: 'igx-date-range';
     $date-range-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $date-range-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $date-range-schema: map.get($schema, $name);
     } @else {
         $date-range-schema: $schema;
     }
@@ -35,7 +40,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-date-range-picker($theme) {
     @include igx-css-vars($theme);
     $left: if-ltr(left, right);
@@ -69,20 +74,20 @@
     %igx-date-range-picker__label {
         display: flex;
         align-items: center;
-        color: --var($theme, 'label-color');
+        color: var-get($theme, 'label-color');
         margin: 0 rem(8px);
-        padding-top: rem(18px, map-get($base-scale-size, 'comfortable'));
+        padding-top: rem(18px, map.get($base-scale-size, 'comfortable'));
     }
 
     %igx-date-range-picker--cosy {
         %igx-date-range-picker__label {
-            padding-top: rem(18px, map-get($base-scale-size, 'cosy'));
+            padding-top: rem(18px, map.get($base-scale-size, 'cosy'));
         }
     }
 
     %igx-date-range-picker--compact {
         %igx-date-range-picker__label {
-            padding-top: rem(18px, map-get($base-scale-size, 'compact'));
+            padding-top: rem(18px, map.get($base-scale-size, 'compact'));
         }
     }
 
@@ -118,7 +123,7 @@
         label: 'subtitle-1',
     )
 ) {
-    $label: map-get($categories, 'label');
+    $label: map.get($categories, 'label');
 
     %igx-date-range__label {
         @include igx-type-style($type-scale, $label);

@@ -1,6 +1,10 @@
+@use '../../base' as *;
+@use '../../typography/base' as *;
+@use '../../themes/schemas' as *;
+@use '../ripple/ripple-theme' as *;
+@use '../ripple/ripple-component' as *;
+@use 'sass:map';
 @use 'sass:math';
-@import '../ripple/ripple-theme';
-@import '../ripple/ripple-component';
 
 ////
 /// @group themes
@@ -47,8 +51,8 @@
     $name: 'igx-radio';
     $radio-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $radio-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $radio-schema: map.get($schema, $name);
     } @else {
         $radio-schema: $schema;
     }
@@ -77,25 +81,25 @@
 /// @requires {mixin} hide-default
 /// @requires igx-ripple-theme
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-radio($theme) {
     @include igx-css-vars($theme);
     @include scale-in-out($start-scale: .9);
 
     $label-margin: em(8px);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
     $not-bootstrap-theme: $variant != 'bootstrap';
 
-    $size: map-get((
+    $size: map.get((
         material: em(20px),
         fluent: em(20px),
         bootstrap: em(14px),
         indigo-design: em(20px),
     ), $variant);
 
-    $scale: map-get((
+    $scale: map.get((
         material: scale(.5),
         fluent: scale(.5),
         bootstrap: scale(.3),
@@ -105,19 +109,19 @@
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
 
-    $border-width: map-get((
+    $border-width: map.get((
         material: rem(2px),
         fluent: rem(1px),
         bootstrap: rem(1px),
         indigo-design: rem(2px),
     ), $variant);
 
-    $radio-hover-scale: map-get((
+    $radio-hover-scale: map.get((
         material: null,
         fluent: scale(.5),
     ), $variant);
 
-    $ripple-display: map-get((
+    $ripple-display: map.get((
         material: block,
         fluent: none,
         indigo-design: none,
@@ -132,7 +136,8 @@
     $ripple-radius: math.div($ripple-size, 2);
 
     $ripple-theme: igx-ripple-theme(
-        $color: --var($theme, 'fill-color')
+        $schema: $light-schema,
+        $color: var-get($theme, 'fill-color')
     );
 
     %radio-display {
@@ -140,7 +145,7 @@
         display: inline-flex;
         flex-flow: row nowrap;
         align-items: center;
-        color: --var($theme, 'label-color');
+        color: var-get($theme, 'label-color');
     }
 
     %radio-input {
@@ -149,7 +154,7 @@
 
     %radio-display--disabled {
         pointer-events: none;
-        color: --var($theme, 'disabled-color');
+        color: var-get($theme, 'disabled-color');
         user-select: none;
     }
 
@@ -161,7 +166,7 @@
         min-width: $size;
         line-height: $size;
         cursor: pointer;
-        color: --var($theme, 'label-color');
+        color: var-get($theme, 'label-color');
 
         user-select: none;
 
@@ -188,56 +193,56 @@
         }
 
         &::after {
-            border: $border-width $border-style --var($theme, 'empty-color');
+            border: $border-width $border-style var-get($theme, 'empty-color');
         }
     }
 
     %radio-composite--x {
         &::before {
-            border: $border-width $border-style --var($theme, 'fill-color');
+            border: $border-width $border-style var-get($theme, 'fill-color');
 
             @if $bootstrap-theme {
-                border-color: --var($theme, 'fill-hover-border-color');
+                border-color: var-get($theme, 'fill-hover-border-color');
             }
 
-            background: --var($theme, 'fill-color-hover');
+            background: var-get($theme, 'fill-color-hover');
             transform: $scale;
         }
 
         &::after {
-            border: $border-width $border-style --var($theme, 'fill-color');
+            border: $border-width $border-style var-get($theme, 'fill-color');
 
             @if $bootstrap-theme{
-                background: --var($theme, 'fill-color');
+                background: var-get($theme, 'fill-color');
             }
         }
     }
 
     %igx-radio-hover__composite {
         &::before {
-            background: --var($theme, 'fill-color-hover');
+            background: var-get($theme, 'fill-color-hover');
             transform: $radio-hover-scale;
         }
     }
 
     %igx-radio--checked-active__composite {
         &::before {
-            background: --var($theme, 'fill-color-hover');
-            border-color: --var($theme, 'fill-hover-border-color');
+            background: var-get($theme, 'fill-color-hover');
+            border-color: var-get($theme, 'fill-hover-border-color');
         }
 
         &::after {
             @if $bootstrap-theme {
-                border-color: --var($theme, 'fill-color');
+                border-color: var-get($theme, 'fill-color');
             } @else {
-                border-color: --var($theme, 'fill-hover-border-color');
+                border-color: var-get($theme, 'fill-hover-border-color');
             }
         }
     }
 
     %radio-composite--disabled {
         &::after {
-            border: $border-width $border-style --var($theme, 'disabled-color');
+            border: $border-width $border-style var-get($theme, 'disabled-color');
 
             @if $bootstrap-theme {
                 background: transparent;
@@ -247,11 +252,11 @@
 
     %radio-composite--x--disabled {
         &::after {
-            border: $border-width $border-style --var($theme, 'disabled-color');
+            border: $border-width $border-style var-get($theme, 'disabled-color');
         }
 
         &::before {
-            background: --var($theme, 'disabled-color');
+            background: var-get($theme, 'disabled-color');
             border: $border-width $border-style transparent;
         }
     }
@@ -313,7 +318,7 @@
                 position: absolute;
                 top: -$focus-outline-offset-top;
                 left: -$focus-outline-offset-left;
-                box-shadow: 0 0 0 1px --var($theme, 'focus-outline-color');
+                box-shadow: 0 0 0 1px var-get($theme, 'focus-outline-color');
                 width: calc(100% + (#{$focus-outline-offset-left} * 2));
                 height: calc(100% + (#{$focus-outline-offset-top} * 2));
             }
@@ -322,14 +327,14 @@
         @if $variant == 'bootstrap' {
             %radio-composite {
                 border-radius: $border-radius;
-                box-shadow: 0 0 0 2px --var($theme, 'focus-outline-color');
+                box-shadow: 0 0 0 2px var-get($theme, 'focus-outline-color');
             }
         }
 
         @if $variant == 'indigo-design' {
             %radio-composite {
                 border-radius: $border-radius;
-                box-shadow: 0 0 0 3px --var($theme, 'focus-outline-color');
+                box-shadow: 0 0 0 3px var-get($theme, 'focus-outline-color');
             }
         }
     }
@@ -337,19 +342,19 @@
     %igx-radio--focused-checked {
         @if $variant == 'indigo-design' {
             %radio-composite {
-                box-shadow: 0 0 0 3px --var($theme, 'focus-outline-color-focused');
+                box-shadow: 0 0 0 3px var-get($theme, 'focus-outline-color-focused');
             }
         }
     }
 
     %radio-ripple--focused {
-        background: --var($theme, 'empty-color');
+        background: var-get($theme, 'empty-color');
         transition: background .2s $ease-out-quad;
         opacity: .12;
     }
 
     %radio-ripple--focused-checked {
-        background: --var($theme, 'fill-color');
+        background: var-get($theme, 'fill-color');
     }
 
     %radio-ripple--hover {
@@ -366,13 +371,13 @@
 
     %radio-ripple--hover-unchecked {
         &::after {
-            background: --var($theme, 'empty-color');
+            background: var-get($theme, 'empty-color');
         }
     }
 
     %radio-ripple--hover-checked {
         &::after {
-            background: --var($theme, 'fill-color');
+            background: var-get($theme, 'fill-color');
         }
     }
 
@@ -393,7 +398,7 @@
     $type-scale,
     $categories: (label: 'subtitle-1')
 ) {
-    $label: map-get($categories, 'label');
+    $label: map.get($categories, 'label');
 
     %radio-label {
         @include igx-type-style($type-scale, $label) {

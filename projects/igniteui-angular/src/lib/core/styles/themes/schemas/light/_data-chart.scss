@@ -19,55 +19,53 @@
 /// @property {String} title-horizontal-alignment [null] - The horizontal alignment to use for the title.
 /// @property {String} subtitle-horizontal-alignment [null] - The horizontal alignment to use for the subtitle.
 /// @see $default-palette
-$_light-data-chart: extend(
-    (
-        'margin': null,
+$light-data-chart: (
+    'margin': null,
 
-        'title-text-color': (
-            igx-color: ('grays', 900)
-        ),
+    'title-text-color': (
+        igx-color: ('grays', 900)
+    ),
 
-        'title-margin': null,
+    'title-margin': null,
 
-        'subtitle-text-color': (
-            igx-color: ('grays', 600)
-        ),
+    'subtitle-text-color': (
+        igx-color: ('grays', 600)
+    ),
 
-        'subtitle-margin': null,
+    'subtitle-margin': null,
 
-        'brushes': series,
+    'brushes': series,
 
-        'marker-brushes': series,
+    'marker-brushes': series,
 
-        'outlines': series,
+    'outlines': series,
 
-        'marker-outlines': series,
+    'marker-outlines': series,
 
-        'plot-area-background': (
-            igx-color: ('surface', 500)
-        ),
+    'plot-area-background': (
+        igx-color: ('surface', 500)
+    ),
 
-        'title-horizontal-alignment': null,
+    'title-horizontal-alignment': null,
 
-        'subtitle-horizontal-alignment': null,
-    )
+    'subtitle-horizontal-alignment': null,
 );
 
 /// Generates a fluent data-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-data-chart
-$_fluent-data-chart: extend($_light-data-chart);
+/// @requires {Map} $light-data-chart
+$fluent-data-chart: $light-data-chart;
 
 /// Generates a bootstrap data-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-data-chart
-$_bootstrap-data-chart: extend($_light-data-chart);
+/// @requires {Map} $light-data-chart
+$bootstrap-data-chart: $light-data-chart;
 
 /// Generates an indigo data-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-data-chart
-$_indigo-data-chart: extend($_light-data-chart);
+/// @requires {Map} $light-data-chart
+$indigo-data-chart: $light-data-chart;
 

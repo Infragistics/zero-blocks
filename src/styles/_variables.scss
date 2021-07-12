@@ -1,3 +1,5 @@
+@use '../../projects/igniteui-angular/src/lib/core/styles/themes' as *;
+
 $palette: $dark-indigo-palette;
 $schema: $dark-indigo-schema;
 $typeface: $indigo-typeface;

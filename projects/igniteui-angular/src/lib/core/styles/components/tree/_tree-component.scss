@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -6,81 +9,89 @@
 /// @requires {mixin} bem-mod
 ////
 
-@include b(igx-tree) {
-    @extend %tree-display !optional;
-}
+@mixin component {
+    @include b(igx-tree) {
+        @extend %tree-display !optional;
+        $this: bem--selector-to-string(&);
 
-@include b(igx-tree-node) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-checkbox,
+                igx-icon,
+            )
+        );
+    }
 
-    @extend %tree-node !optional;
+    @include b(igx-tree-node) {
+        @extend %tree-node !optional;
 
-    @include e(wrapper) {
-        @extend %node-wrapper !optional;
+        @include e(wrapper) {
+            @extend %node-wrapper !optional;
 
-        &:hover {
-            &::after {
-                @extend %indigo-opacity !optional;
+            &:hover {
+                &::after {
+                    @extend %indigo-opacity !optional;
+                }
             }
         }
-    }
 
-    @include e(wrapper, $m: cosy) {
-        @extend %node-wrapper--cosy !optional;
-    }
+        @include e(wrapper, $m: cosy) {
+            @extend %node-wrapper--cosy !optional;
+        }
 
-    @include e(wrapper, $m: compact) {
-        @extend %node-wrapper--compact !optional;
-    }
+        @include e(wrapper, $m: compact) {
+            @extend %node-wrapper--compact !optional;
+        }
 
-    // STATES START
-    @include e(wrapper, $m: selected) {
-        @extend %node-wrapper--selected !optional;
-    }
+        // STATES START
+        @include e(wrapper, $m: selected) {
+            @extend %node-wrapper--selected !optional;
+        }
 
-    @include e(wrapper, $m: active) {
-        @extend %node-wrapper--active !optional;
-    }
+        @include e(wrapper, $m: active) {
+            @extend %node-wrapper--active !optional;
+        }
 
-    @include e(wrapper, $mods: (active, selected)) {
-        @extend %node-wrapper--active-selected !optional;
-    }
+        @include e(wrapper, $mods: (active, selected)) {
+            @extend %node-wrapper--active-selected !optional;
+        }
 
-    @include e(wrapper, $m: focused) {
-        @extend %node-wrapper--focused !optional;
-    }
+        @include e(wrapper, $m: focused) {
+            @extend %node-wrapper--focused !optional;
+        }
 
-    @include e(wrapper, $m: disabled) {
-        @extend %node-wrapper--disabled !optional;
-    }
-    // STATES END
+        @include e(wrapper, $m: disabled) {
+            @extend %node-wrapper--disabled !optional;
+        }
+        // STATES END
 
-    @include e(content) {
-        @extend %node-content !optional;
-    }
+        @include e(content) {
+            @extend %node-content !optional;
+        }
 
-    @include e(spacer) {
-        @extend %node-spacer !optional;
-    }
+        @include e(spacer) {
+            @extend %node-spacer !optional;
+        }
 
-    @include e(toggle-button) {
-        @extend %node-toggle-button !optional;
-    }
+        @include e(toggle-button) {
+            @extend %node-toggle-button !optional;
+        }
 
-    @include e(toggle-button, $m: hidden) {
-        @extend %node-toggle-button--hidden !optional;
-    }
+        @include e(toggle-button, $m: hidden) {
+            @extend %node-toggle-button--hidden !optional;
+        }
 
-    @include e(drop-indicator) {
-        @extend %node-drop-indicator !optional;
-    }
+        @include e(drop-indicator) {
+            @extend %node-drop-indicator !optional;
+        }
 
-    @include e(select) {
-        @extend %node-select !optional;
-    }
+        @include e(select) {
+            @extend %node-select !optional;
+        }
 
-    @include e(group) {
-        @extend %node-group !optional;
+        @include e(group) {
+            @extend %node-group !optional;
+        }
     }
 }

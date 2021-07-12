@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -19,7 +21,7 @@
 /// @prop {Map} menu-text-color [igx-color: ('grays', 900)] - The idle menu text color.
 /// @prop {Map} menu-button-text-color [igx-color: ('secondary', 500)] - The menu button text color.
 /// @see $default-palette
-$_light-grid-filtering: (
+$light-grid-filtering: (
     menu-background: #fff,
     toggle-background: transparent,
     toggle-filtered-background: transparent,
@@ -56,9 +58,9 @@ $_light-grid-filtering: (
 /// @type {Map}
 /// @prop {Map} menu-background [igx-color: 'surface'] - The idle menu background color.
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-filtering
-$_fluent-grid-filtering: extend(
-    $_light-grid-filtering,
+/// @requires {Map} $light-grid-filtering
+$fluent-grid-filtering: extend(
+    $light-grid-filtering,
     (
         menu-background: (
             igx-color: 'surface'
@@ -69,12 +71,12 @@ $_fluent-grid-filtering: extend(
 /// Generates a bootstrap grid-filtering schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-filtering
-$_bootstrap-grid-filtering: extend($_light-grid-filtering);
+/// @requires {Map} $light-grid-filtering
+$bootstrap-grid-filtering: extend($light-grid-filtering);
 
 /// Generates an indigo grid-filtering schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-filtering
-$_indigo-grid-filtering: extend($_light-grid-filtering);
+/// @requires {Map} $light-grid-filtering
+$indigo-grid-filtering: extend($light-grid-filtering);
 

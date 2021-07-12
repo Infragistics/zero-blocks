@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -27,69 +29,64 @@
 /// @prop {Color} value-outline [null] - Sets the brush to use for the outline of actual value element.
 /// @prop {Number} value-stroke-thickness [null] - Sets the stroke thickness to use when rendering single actual value element.
 /// @see $default-palette
-$_light-graph: extend(
-    (
-        'backing-brush': (
-            igx-color: 'surface',
-            darken: 5%
-        ),
-        'backing-outline': (
-            igx-color: 'surface',
-            darken: 8%
-        ),
-        'backing-stroke-thickness': null,
-        'font-brush': (
-            igx-contrast-color: 'surface',
-            rgba: .62
-        ),
-        'minor-tick-brush': (
-            igx-contrast-color: 'surface',
-            rgba: .62
-        ),
-        'minor-tick-thickness': null,
-        'range-brushes': series,
-        'range-outlines': series,
-        'scale-background-brush': (
-            igx-color: 'primary',
-        ),
-        'scale-background-outline': (
-            igx-color: 'surface',
-        ),
-        'scale-background-thickness': null,
-        'target-value-breadth': null,
-        'target-value-brush': (
-            igx-color: ('grays', 800),
-        ),
-        'target-value-outline': null,
-        'target-value-thickness': null,
-        'tick-brush': (
-            igx-contrast-color: 'surface',
-            rgba: .62
-        ),
-        'tick-stroke-thickness': null,
-        'value-brush': (
-            igx-color: ('grays', 800),
-        ),
-        'value-outline': null,
-        'value-stroke-thickness': null,
-    )
+$light-graph: (
+    'backing-brush': (
+        igx-color: 'surface',
+        darken: 5%
+    ),
+    'backing-outline': (
+        igx-color: 'surface',
+        darken: 8%
+    ),
+    'backing-stroke-thickness': null,
+    'font-brush': (
+        igx-contrast-color: 'surface',
+        rgba: .62
+    ),
+    'minor-tick-brush': (
+        igx-contrast-color: 'surface',
+        rgba: .62
+    ),
+    'minor-tick-thickness': null,
+    'range-brushes': series,
+    'range-outlines': series,
+    'scale-background-brush': (
+        igx-color: 'primary',
+    ),
+    'scale-background-outline': (
+        igx-color: 'surface',
+    ),
+    'scale-background-thickness': null,
+    'target-value-breadth': null,
+    'target-value-brush': (
+        igx-color: ('grays', 800),
+    ),
+    'target-value-outline': null,
+    'target-value-thickness': null,
+    'tick-brush': (
+        igx-contrast-color: 'surface',
+        rgba: .62
+    ),
+    'tick-stroke-thickness': null,
+    'value-brush': (
+        igx-color: ('grays', 800),
+    ),
+    'value-outline': null,
+    'value-stroke-thickness': null,
 );
 
 /// Generates a fluent graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-graph
-$_fluent-graph: extend($_light-graph);
+/// @requires {Map} $light-graph
+$fluent-graph: $light-graph;
 
 /// Generates a bootstrap graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-graph
-$_bootstrap-graph: extend($_light-graph);
+/// @requires {Map} $light-graph
+$bootstrap-graph: $light-graph;
 
 /// Generates an indigo graph schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-graph
-$_indigo-graph: extend($_light-graph);
+/// @requires {Map} $light-graph
+$indigo-graph: $light-graph;
 

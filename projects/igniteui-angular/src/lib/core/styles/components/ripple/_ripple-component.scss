@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Ripple
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,13 +8,19 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-ripple) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-ripple-wrapper !optional;
+@mixin component {
+    @include b(igx-ripple) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @include e(inner) {
-        @extend %igx-ripple-display !optional;
+        @extend %igx-ripple-wrapper !optional;
+
+        @include e(inner) {
+            @extend %igx-ripple-display !optional;
+        }
     }
 }

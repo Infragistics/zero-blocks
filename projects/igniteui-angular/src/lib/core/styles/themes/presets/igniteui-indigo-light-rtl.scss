@@ -1,4 +1,4 @@
-@import '../index';
+@use '../../themes' as *;
 
 @include igx-core($direction: rtl);
 @include igx-typography($font-family: $indigo-typeface, $type-scale: $indigo-type-scale);

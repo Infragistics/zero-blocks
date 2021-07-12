@@ -1,4 +1,4 @@
-@import '../light/shape-chart';
+@use '../light/shape-chart' as *;
 
 ////
 /// @group schemas
@@ -8,26 +8,22 @@
 
 /// Generates a dark shape chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-shape-chart
+/// @requires $light-shape-chart
 /// @see $default-palette
-$_dark-shape-chart: extend($_light-shape-chart);
+$dark-shape-chart: $light-shape-chart;
 
 /// Generates a dark fluent shape-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-shape-chart
-$_dark-fluent-shape-chart: extend($_fluent-shape-chart);
+/// @requires $fluent-shape-chart
+$dark-fluent-shape-chart: $fluent-shape-chart;
 
 /// Generates a dark bootstrap shape-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-shape-chart
-$_dark-bootstrap-shape-chart: extend($_bootstrap-shape-chart);
+/// @requires $bootstrap-shape-chart
+$dark-bootstrap-shape-chart: $bootstrap-shape-chart;
 
 /// Generates a dark indigo shape-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-shape-chart
-$_dark-indigo-shape-chart: extend($_indigo-shape-chart);
+/// @requires $indigo-shape-chart
+$dark-indigo-shape-chart: $indigo-shape-chart;
 

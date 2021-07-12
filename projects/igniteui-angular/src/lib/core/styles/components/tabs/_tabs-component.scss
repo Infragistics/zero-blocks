@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,80 +8,89 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-tabs) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-tabs) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button,
+                igx-icon,
+            )
+        );
 
-    @extend %tabs-display !optional;
+        @extend %tabs-display !optional;
 
-    @include e(header) {
-        @extend %tabs-header !optional;
-    }
+        @include e(header) {
+            @extend %tabs-header !optional;
+        }
 
-    @include e(header-button) {
-        @extend %tabs-header-button !optional;
-    }
+        @include e(header-button) {
+            @extend %tabs-header-button !optional;
+        }
 
-    @include e(header-button, $m: hidden) {
-        @extend %tabs-header-button--hidden !optional;
-    }
+        @include e(header-button, $m: hidden) {
+            @extend %tabs-header-button--hidden !optional;
+        }
 
-    @include e(header-button, $m: none) {
-        @extend %tabs-header-button--none !optional;
-    }
+        @include e(header-button, $m: none) {
+            @extend %tabs-header-button--none !optional;
+        }
 
-    @include e(header-content) {
-        @extend %tabs-header-content !optional;
-    }
-    @include e(header-wrapper) {
-        @extend %tabs-header-wrapper !optional;
-    }
+        @include e(header-content) {
+            @extend %tabs-header-content !optional;
+        }
 
-    @include e(header-scroll) {
-        @extend %tabs-header-scroll !optional;
-    }
+        @include e(header-wrapper) {
+            @extend %tabs-header-wrapper !optional;
+        }
 
-    @include e(header-scroll, $m: start) {
-        @extend %tabs-header-scroll--start !optional;
-    }
+        @include e(header-scroll) {
+            @extend %tabs-header-scroll !optional;
+        }
 
-    @include e(header-scroll, $m: end) {
-        @extend %tabs-header-scroll--end !optional;
-    }
+        @include e(header-scroll, $m: start) {
+            @extend %tabs-header-scroll--start !optional;
+        }
 
-    @include e(header-scroll, $m: center) {
-        @extend %tabs-header-scroll--center !optional;
-    }
+        @include e(header-scroll, $m: end) {
+            @extend %tabs-header-scroll--end !optional;
+        }
 
-    @include e(header-scroll, $m: justify) {
-        @extend %tabs-header-scroll--justify !optional;
-    }
+        @include e(header-scroll, $m: center) {
+            @extend %tabs-header-scroll--center !optional;
+        }
 
-    @include e(header-item) {
-        @extend %tabs-header-item !optional;
-    }
+        @include e(header-scroll, $m: justify) {
+            @extend %tabs-header-scroll--justify !optional;
+        }
 
-    @include e(header-item, $m: selected) {
-        @extend %tabs-header-item--selected !optional;
-    }
+        @include e(header-item) {
+            @extend %tabs-header-item !optional;
+        }
 
-    @include e(header-item, $m: disabled) {
-        @extend %tabs-header-item--disabled !optional;
-    }
+        @include e(header-item, $m: selected) {
+            @extend %tabs-header-item--selected !optional;
+        }
 
-    @include e(header-item-inner) {
-        @extend %tabs-header-item-inner !optional;
-    }
+        @include e(header-item, $m: disabled) {
+            @extend %tabs-header-item--disabled !optional;
+        }
 
-    @include e(header-active-indicator) {
-        @extend  %tabs-header-active-indicator !optional;
-    }
+        @include e(header-item-inner) {
+            @extend %tabs-header-item-inner !optional;
+        }
 
-    @include e(panels) {
-        @extend %tabs-panels !optional;
-    }
+        @include e(header-active-indicator) {
+            @extend  %tabs-header-active-indicator !optional;
+        }
 
-    @include e(panel) {
-        @extend %tabs-panel !optional;
+        @include e(panels) {
+            @extend %tabs-panels !optional;
+        }
+
+        @include e(panel) {
+            @extend %tabs-panel !optional;
+        }
     }
 }

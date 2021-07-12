@@ -6,19 +6,19 @@
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-expansion-panel: (
+$default-shape-expansion-panel: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-expansion-panel: (
+$round-shape-expansion-panel: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-expansion-panel: (
+$square-shape-expansion-panel: (
     border-radius: 0,
 );
 
@@ -26,11 +26,11 @@ $_square-shape-expansion-panel: (
 /// @prop {Number} border-radius [0] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
 /// @requires {Map} $_square-shape-expansion-panel
-$_bootstrap-shape-expansion-panel: extend($_square-shape-expansion-panel);
+$bootstrap-shape-expansion-panel: $square-shape-expansion-panel;
 
 /// @type Map
 /// @prop {Number} border-radius [3px] - The border radius used for expansion-panel. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-expansion-panel: (
+$indigo-shape-expansion-panel: (
     border-radius: 3px
 );
 

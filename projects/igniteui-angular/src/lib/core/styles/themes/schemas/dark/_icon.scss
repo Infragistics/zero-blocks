@@ -1,4 +1,5 @@
-@import '../light/icon';
+@use '../../../base' as *;
+@use '../light/icon' as *;
 
 ////
 /// @group schemas
@@ -8,19 +9,18 @@
 
 /// Generates a dark icon schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-icon
+/// @requires $light-icon
 /// @see $default-palette
-$_dark-icon: extend($_light-icon);
+$dark-icon: $light-icon;
 
 /// Generates a dark fluent icon schema.
 /// @type {Map}
 /// @property {Color} color [#fff] - The icon color.
 /// @property {Map} disabled-color [igx-color: ('grays' 500)] - The icon color.
 /// @requires {function} extend
-/// @requires $_light-icon
-$_dark-fluent-icon: extend(
-    $_fluent-icon,
+/// @requires $light-icon
+$dark-fluent-icon: extend(
+    $fluent-icon,
     (
         color: #fff,
 
@@ -33,11 +33,11 @@ $_dark-fluent-icon: extend(
 /// Generates a dark bootstrap icon schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-icon
-$_dark-bootstrap-icon: extend($_bootstrap-icon);
+/// @requires $light-icon
+$dark-bootstrap-icon: $bootstrap-icon;
 
 /// Generates a dark indigo icon schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-icon
-$_dark-indigo-icon: extend($_indigo-icon);
+/// @requires $light-icon
+$dark-indigo-icon: $indigo-icon;

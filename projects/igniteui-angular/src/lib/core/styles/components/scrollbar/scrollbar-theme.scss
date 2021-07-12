@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -31,8 +35,8 @@
     $selector: '.igx-scrollbar';
     $scrollbar-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $scrollbar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $scrollbar-schema: map.get($schema, $name);
     } @else {
         $scrollbar-schema: $schema;
     }
@@ -52,25 +56,25 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-scrollbar($theme) {
     @include igx-css-vars($theme);
 
     %scrollbar-display {
-        @if type-of(map-get($theme, 'size') == 'string') {
-            scrollbar-width: --var($theme, 'size');
+        @if type-of(map.get($theme, 'size') == 'string') {
+            scrollbar-width: var-get($theme, 'size');
         }
 
-        scrollbar-color: --var($theme, 'thumb-background') --var($theme, 'track-background');
+        scrollbar-color: var-get($theme, 'thumb-background') var-get($theme, 'track-background');
 
         ::-webkit-scrollbar {
-            width: --var($theme, 'size');
-            height: --var($theme, 'size');
-            background: --var($theme, 'track-background');
+            width: var-get($theme, 'size');
+            height: var-get($theme, 'size');
+            background: var-get($theme, 'track-background');
         }
 
         ::-webkit-scrollbar-thumb {
-            background: --var($theme, 'thumb-background');
+            background: var-get($theme, 'thumb-background');
         }
     }
 

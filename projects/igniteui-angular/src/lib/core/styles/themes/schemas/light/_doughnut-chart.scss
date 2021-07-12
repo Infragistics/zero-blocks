@@ -17,36 +17,34 @@
 /// @property {Color} selected-slice-stroke [null] - Sets the stroke color of the selected slice.
 /// @property {Number} selected-slice-stroke-thickness [null] - Sets the stroke thickness of the selected slice.
 /// @see $default-palette
-$_light-doughnut-chart: extend(
-    (
-        'brushes': series,
-        'outlines': series,
-        'others-category-fill': null,
-        'others-category-opacity': null,
-        'others-category-stroke': null,
-        'others-category-stroke-thickness': null,
-        'selected-slice-fill': null,
-        'selected-slice-opacity': null,
-        'selected-slice-stroke': null,
-        'selected-slice-stroke-thickness': null,
-    )
+$light-doughnut-chart: (
+    'brushes': series,
+    'outlines': series,
+    'others-category-fill': null,
+    'others-category-opacity': null,
+    'others-category-stroke': null,
+    'others-category-stroke-thickness': null,
+    'selected-slice-fill': null,
+    'selected-slice-opacity': null,
+    'selected-slice-stroke': null,
+    'selected-slice-stroke-thickness': null,
 );
 
 /// Generates a fluent doughnut-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-doughnut-chart
-$_fluent-doughnut-chart: extend($_light-doughnut-chart);
+/// @requires {Map} $light-doughnut-chart
+$fluent-doughnut-chart: $light-doughnut-chart;
 
 /// Generates a bootstrap doughnut-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-doughnut-chart
-$_bootstrap-doughnut-chart: extend($_light-doughnut-chart);
+/// @requires {Map} $light-doughnut-chart
+$bootstrap-doughnut-chart: $light-doughnut-chart;
 
 /// Generates an indigo doughnut-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-doughnut-chart
-$_indigo-doughnut-chart: extend($_light-doughnut-chart);
+/// @requires {Map} $light-doughnut-chart
+$indigo-doughnut-chart: $light-doughnut-chart;
 

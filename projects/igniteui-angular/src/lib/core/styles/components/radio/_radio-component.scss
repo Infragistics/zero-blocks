@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,125 +8,131 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-radio) {
-    $block: bem--selector-to-string(&);
-    @include register-component(igx-radio);
 
-    @extend %radio-display !optional;
+@mixin component {
+    @include b(igx-radio) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    &:hover {
-        @include e(composite) {
-            @extend %igx-radio-hover__composite !optional;
-        }
-
-        @include e(ripple) {
-            @extend %radio-ripple--hover !optional;
-            @extend %radio-ripple--hover-unchecked !optional;
-        }
-    }
-
-    &:active {
-        @include e(composite) {
-            @extend %igx-radio-hover__composite !optional;
-        }
-
-        @include e(ripple) {
-            @extend %radio-ripple--hover !optional;
-            @extend %radio-ripple--hover-unchecked !optional;
-            @extend %radio-ripple--pressed !optional;
-        }
-    }
-
-    @include e(input) {
-        @extend %radio-input !optional;
-    }
-
-    @include e(composite) {
-        @extend %radio-composite !optional;
-    }
-
-    @include e(label) {
-        @extend %radio-label !optional;
-        @extend %radio-label--after !optional;
-    }
-
-    @include e(label, $m: before) {
-        @extend %radio-label !optional;
-        @extend %radio-label--before !optional;
-    }
-
-    @include e(ripple) {
-        @extend %radio-ripple !optional;
-    }
-
-    @include m(focused) {
-        @extend %igx-radio--focused !optional;
-
-        @include e(ripple) {
-            @extend %radio-ripple--focused !optional;
-        }
-    }
-
-    @include mx(focused, checked) {
-        @extend  %igx-radio--focused-checked !optional;
-    }
-
-    @include m(checked) {
-        @include e(composite) {
-            @extend %radio-composite--x !optional;
-        }
+        @extend %radio-display !optional;
 
         &:hover {
             @include e(composite) {
-                @extend %igx-radio--checked-active__composite !optional;
+                @extend %igx-radio-hover__composite !optional;
             }
 
             @include e(ripple) {
                 @extend %radio-ripple--hover !optional;
-                @extend %radio-ripple--hover-checked !optional;
+                @extend %radio-ripple--hover-unchecked !optional;
             }
         }
 
         &:active {
             @include e(composite) {
-                @extend %igx-radio--checked-active__composite !optional;
+                @extend %igx-radio-hover__composite !optional;
             }
 
             @include e(ripple) {
                 @extend %radio-ripple--hover !optional;
-                @extend %radio-ripple--hover-checked !optional;
+                @extend %radio-ripple--hover-unchecked !optional;
                 @extend %radio-ripple--pressed !optional;
+            }
+        }
+
+        @include e(input) {
+            @extend %radio-input !optional;
+        }
+
+        @include e(composite) {
+            @extend %radio-composite !optional;
+        }
+
+        @include e(label) {
+            @extend %radio-label !optional;
+            @extend %radio-label--after !optional;
+        }
+
+        @include e(label, $m: before) {
+            @extend %radio-label !optional;
+            @extend %radio-label--before !optional;
+        }
+
+        @include e(ripple) {
+            @extend %radio-ripple !optional;
+        }
+
+        @include m(focused) {
+            @extend %igx-radio--focused !optional;
+
+            @include e(ripple) {
+                @extend %radio-ripple--focused !optional;
+            }
+        }
+
+        @include mx(focused, checked) {
+            @extend  %igx-radio--focused-checked !optional;
+        }
+
+        @include m(checked) {
+            @include e(composite) {
+                @extend %radio-composite--x !optional;
+            }
+
+            &:hover {
+                @include e(composite) {
+                    @extend %igx-radio--checked-active__composite !optional;
+                }
+
+                @include e(ripple) {
+                    @extend %radio-ripple--hover !optional;
+                    @extend %radio-ripple--hover-checked !optional;
+                }
+            }
+
+            &:active {
+                @include e(composite) {
+                    @extend %igx-radio--checked-active__composite !optional;
+                }
+
+                @include e(ripple) {
+                    @extend %radio-ripple--hover !optional;
+                    @extend %radio-ripple--hover-checked !optional;
+                    @extend %radio-ripple--pressed !optional;
+                }
+            }
+        }
+
+        @include m(disabled) {
+            @extend %radio-display--disabled !optional;
+
+            @include e(composite) {
+                @extend %radio-composite--disabled !optional;
+            }
+        }
+
+        @include mx(focused, checked) {
+            @include e(ripple) {
+                @extend %radio-ripple--focused !optional;
+                @extend %radio-ripple--focused-checked !optional;
+            }
+        }
+
+        @include mx(checked, disabled) {
+            @include e(composite) {
+                @extend %radio-composite--x--disabled !optional;
             }
         }
     }
 
-    @include m(disabled) {
-        @extend %radio-display--disabled !optional;
+    @include b(igx-radio-group) {
+        display: block;
 
-        @include e(composite) {
-            @extend %radio-composite--disabled !optional;
+        @include m(vertical) {
+            display: flex;
+            flex-flow: column;
         }
-    }
-
-    @include mx(focused, checked) {
-        @include e(ripple) {
-            @extend %radio-ripple--focused !optional;
-            @extend %radio-ripple--focused-checked !optional;
-        }
-    }
-
-    @include mx(checked, disabled) {
-        @include e(composite) {
-            @extend %radio-composite--x--disabled !optional;
-        }
-    }
-}
-
-@include b(igx-radio-group) {
-    display: block;
-
-    @include m(vertical) {
-        display: flex;
-        flex-flow: column;
     }
 }

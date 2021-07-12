@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access private
@@ -9,9 +12,9 @@
 /// @param {Map} $palette - The palette map used as base for the component.
 /// @requires igx-color
 /// @requires rem
-/// @requires --var
-@mixin _advanced-filtering($theme, $palette) {
-    $variant: map-get($theme, variant);
+/// @requires var-get
+@mixin advanced-filtering($theme, $palette) {
+    $variant: map.get($theme, variant);
     $not-bootstrap-theme: $variant != 'bootstrap';
     $bootstrap-theme: $variant == 'bootstrap';
 
@@ -29,7 +32,7 @@
         width: 660px;
         min-width: 660px;
         max-width: 720px;
-        background-color: --var($theme, 'filtering-row-background');
+        background-color: var-get($theme, 'filtering-row-background');
         box-shadow: igx-elevation($elevation: 12);
         border-radius: rem(4px);
     }
@@ -87,26 +90,26 @@
 
     %filter-tree__line--and {
 
-        background: --var($theme, 'filtering-background-and');
+        background: var-get($theme, 'filtering-background-and');
 
         &-selected {
-            background: --var($theme, 'filtering-background-and--focus');
+            background: var-get($theme, 'filtering-background-and--focus');
         }
 
         &:focus {
-            box-shadow: inset 0 0 0 2px --var($theme, 'filtering-background-and--focus');
+            box-shadow: inset 0 0 0 2px var-get($theme, 'filtering-background-and--focus');
         }
     }
 
     %filter-tree__line--or {
-        background: --var($theme, 'filtering-background-or');
+        background: var-get($theme, 'filtering-background-or');
 
         &-selected {
-            background-color: --var($theme, 'filtering-background-or--focus');
+            background-color: var-get($theme, 'filtering-background-or--focus');
         }
 
         &:focus {
-            box-shadow: inset 0 0 0 2px --var($theme, 'filtering-background-or--focus');
+            box-shadow: inset 0 0 0 2px var-get($theme, 'filtering-background-or--focus');
         }
     }
 
@@ -226,11 +229,11 @@
     }
 
     %filter-legend__item--and::before {
-        background: --var($theme, 'filtering-background-and');
+        background: var-get($theme, 'filtering-background-and');
     }
 
     %filter-legend__item--or::before {
-        background: --var($theme, 'filtering-background-or');
+        background: var-get($theme, 'filtering-background-or');
     }
 
     %filter-con-menu {
@@ -238,7 +241,7 @@
         display: flex;
         flex-flow: column;
         width: 196px;
-        background-color: --var($theme, 'filtering-row-background');
+        background-color: var-get($theme, 'filtering-row-background');
         padding: rem(16px);
         margin-#{$left}: rem(16px);
         border-radius: rem(4px);
@@ -286,13 +289,13 @@
         position: absolute;
         top: rem(-18px);
         #{$right}: rem(-18px);
-        background-color: --var($theme, 'filtering-row-background');
+        background-color: var-get($theme, 'filtering-row-background');
         border: 1px solid igx-color($palette, 'grays', 200);
 
         &:hover,
         &:focus {
             @if $not-bootstrap-theme {
-                background-color: --var($theme, 'filtering-row-background');
+                background-color: var-get($theme, 'filtering-row-background');
             }
         }
     }

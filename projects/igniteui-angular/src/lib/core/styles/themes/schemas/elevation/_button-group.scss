@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -12,28 +14,28 @@ $_flat-button-group: (
 
 /// @type Map
 /// @prop {Number} elevation [2] - The elevation level, between 0-24, to be used for the button group shadow.
-$_default-elevation-button-group: (
+$default-elevation-button-group: (
     elevation: 2
 );
 
 /// @type Map
 /// @requires {function} extend
 /// @requires {Map} $_flat-button-group
-$_fluent-elevation-button-group: extend(
+$fluent-elevation-button-group: extend(
     $_flat-button-group
 );
 
 /// @type Map
 /// @requires {function} extend
 /// @requires {Map} $_flat-button-group
-$_bootstrap-elevation-button-group: extend(
+$bootstrap-elevation-button-group: extend(
     $_flat-button-group
 );
 
 /// @type Map
 /// @requires {function} extend
 /// @requires {Map} $_flat-button-group
-$_indigo-elevation-button-group: extend(
+$indigo-elevation-button-group: extend(
     $_flat-button-group
 );
 

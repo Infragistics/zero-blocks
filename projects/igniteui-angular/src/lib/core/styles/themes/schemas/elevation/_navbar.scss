@@ -6,18 +6,18 @@
 
 /// @type Map
 /// @prop {Number} elevation [4] - The elevation level, between 0-24, to be used for the navbar.
-$_default-elevation-navbar: (
+$default-elevation-navbar: (
     elevation: 4
 );
 
 /// @type Map
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the navbar.
-$_bootstrap-elevation-navbar: (
+$bootstrap-elevation-navbar: (
     elevation: 0
 );
 
 /// @type Map
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the navbar.
-$_indigo-elevation-navbar: (
+$indigo-elevation-navbar: (
     elevation: 0
 );

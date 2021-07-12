@@ -1,5 +1,6 @@
-@import '../shape/carousel';
-@import '../elevation/carousel';
+@use '../../../base' as *;
+@use '../shape/carousel' as *;
+@use '../elevation/carousel' as *;
 
 ////
 /// @group schemas
@@ -23,12 +24,12 @@
 /// @prop {Number} button-elevation [1] - The elevation level, between 0-24, to be used for the carousel buttons.
 /// @prop {Number} border-radius [0] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-carousel
-/// @requires {Map} $_default-elevation-carousel
+/// @requires {Map} $default-shape-carousel
+/// @requires {Map} $default-elevation-carousel
 /// @see $default-palette
-$_light-carousel: extend(
-    $_default-shape-carousel,
-    $_default-elevation-carousel,
+$light-carousel: extend(
+    $default-shape-carousel,
+    $default-elevation-carousel,
     (
         slide-background: #fff,
 
@@ -64,13 +65,13 @@ $_light-carousel: extend(
 /// @prop {Number} border-radius [0] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} button-elevation [0] - The elevation level, between 0-24, to be used for the carousel buttons.
 /// @requires {function} extend
-/// @requires {Map} $_light-carousel
-/// @requires {Map} $_square-shape-carousel
-/// @requires {Map} $_fluent-elevation-carousel
-$_fluent-carousel: extend(
-    $_light-carousel,
-    $_square-shape-carousel,
-    $_fluent-elevation-carousel
+/// @requires {Map} $light-carousel
+/// @requires {Map} $square-shape-carousel
+/// @requires {Map} $fluent-elevation-carousel
+$fluent-carousel: extend(
+    $light-carousel,
+    $square-shape-carousel,
+    $fluent-elevation-carousel
 );
 
 /// Generates a bootstrap carousel schema.
@@ -78,13 +79,14 @@ $_fluent-carousel: extend(
 /// @prop {Number} border-radius [4px] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} button-elevation [0] - The elevation level, between 0-24, to be used for the carousel buttons.
 /// @requires {function} extend
-/// @requires {Map} $_light-carousel
-/// @requires {Map} $_bootstrap-shape-carousel
-/// @requires {Map} $_bootstrap-elevation-carousel
-$_bootstrap-carousel: extend(
-    $_light-carousel,
-    $_bootstrap-shape-carousel,
-    $_bootstrap-elevation-carousel, (
+/// @requires {Map} $light-carousel
+/// @requires {Map} $bootstrap-shape-carousel
+/// @requires {Map} $bootstrap-elevation-carousel
+$bootstrap-carousel: extend(
+    $light-carousel,
+    $bootstrap-shape-carousel,
+    $bootstrap-elevation-carousel,
+    (
         variant: 'bootstrap'
     )
 );
@@ -103,13 +105,14 @@ $_bootstrap-carousel: extend(
 /// @prop {Number} button-elevation [0] - The elevation level, between 0-24, to be used for the carousel buttons.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-carousel
-/// @requires {Map} $_default-shape-carousel
-/// @requires {Map} $_indigo-elevation-carousel
-$_indigo-carousel: extend(
-    $_light-carousel,
-    $_default-shape-carousel,
-    $_indigo-elevation-carousel, (
+/// @requires {Map} $light-carousel
+/// @requires {Map} $default-shape-carousel
+/// @requires {Map} $indigo-elevation-carousel
+$indigo-carousel: extend(
+    $light-carousel,
+    $default-shape-carousel,
+    $indigo-elevation-carousel,
+    (
         variant: 'indigo-design',
 
         button-background: (

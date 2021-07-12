@@ -1,5 +1,6 @@
-@import '../shape/navdrawer';
-@import '../elevation/navdrawer';
+@use '../../../base' as *;
+@use '../shape/navdrawer' as *;
+@use '../elevation/navdrawer' as *;
 
 ////
 /// @group schemas
@@ -26,12 +27,12 @@
 /// @prop {Number} item-border-radius [.16667] - The border radius used for the navdrawer items. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-navdrawer
-/// @requires {Map} $_default-elevation-navdrawer
+/// @requires {Map} $default-shape-navdrawer
+/// @requires {Map} $default-elevation-navdrawer
 /// @see $default-palette
-$_light-navdrawer: extend(
-    $_default-shape-navdrawer,
-    $_default-elevation-navdrawer,
+$light-navdrawer: extend(
+    $default-shape-navdrawer,
+    $default-elevation-navdrawer,
     (
         variant: 'material',
 
@@ -95,9 +96,9 @@ $_light-navdrawer: extend(
 /// Generates a fluent navdrawer schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-navdrawer
-$_fluent-navdrawer: extend(
-    $_light-navdrawer,
+/// @requires {Map} $light-navdrawer
+$fluent-navdrawer: extend(
+    $light-navdrawer,
     (
         variant: 'fluent',
     )
@@ -106,9 +107,9 @@ $_fluent-navdrawer: extend(
 /// Generates a bootstrap navdrawer schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-navdrawer
-$_bootstrap-navdrawer: extend(
-    $_light-navdrawer,
+/// @requires {Map} $light-navdrawer
+$bootstrap-navdrawer: extend(
+    $light-navdrawer,
     (
         variant: 'bootstrap',
     )
@@ -130,13 +131,13 @@ $_bootstrap-navdrawer: extend(
 /// @prop {Number} border-radius [0] - The border radius used for the navdrawer component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [1] - The border radius used for the navdrawer items. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-navdrawer
-/// @requires {Map} $_indigo-shape-navdrawer
-/// @requires {Map} $_indigo-elevation-navdrawer
-$_indigo-navdrawer: extend(
-    $_light-navdrawer,
-    $_indigo-shape-navdrawer,
-    $_indigo-elevation-navdrawer,
+/// @requires {Map} $light-navdrawer
+/// @requires {Map} $indigo-shape-navdrawer
+/// @requires {Map} $indigo-elevation-navdrawer
+$indigo-navdrawer: extend(
+    $light-navdrawer,
+    $indigo-shape-navdrawer,
+    $indigo-elevation-navdrawer,
     (
         variant: 'indigo-design',
 

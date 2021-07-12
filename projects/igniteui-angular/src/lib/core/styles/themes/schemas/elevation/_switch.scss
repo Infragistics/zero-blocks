@@ -8,7 +8,7 @@
 /// @property {Number} resting-elevation [2] - The elevation level, between 0-24, to be used for the resting state.
 /// @property {Number} hover-elevation [3] - The elevation level, between 0-24, to be used for the hover state.
 /// @property {Number} disabled-elevation [1] - The elevation level, between 0-24, to be used for the disabled state.
-$_default-elevation-switch: (
+$default-elevation-switch: (
     resting-elevation: 2,
     hover-elevation: 3,
     disabled-elevation: 1

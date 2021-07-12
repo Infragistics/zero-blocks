@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -40,8 +46,8 @@
     $name: 'igx-bottom-nav';
     $bottom-nav-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $bottom-nav-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $bottom-nav-schema: map.get($schema, $name);
     } @else {
         $bottom-nav-schema: $schema;
     }
@@ -49,13 +55,13 @@
     $theme: apply-palette($bottom-nav-schema, $palette);
 
     @if not($idle-item-color) and $background {
-        @if type-of($background) == 'color' {
+        @if meta.type-of($background) == 'color' {
             $idle-item-color: rgba(text-contrast($background), .7);
         }
     }
 
     @if not($shadow) {
-        $elevation: map-get($bottom-nav-schema, 'elevation');
+        $elevation: map.get($bottom-nav-schema, 'elevation');
         $shadow: igx-elevation($igx-elevations, $elevation);
     }
 
@@ -77,7 +83,7 @@
 /// @requires extend
 /// @requires rem
 /// @requires $ease-in-out-quad
-/// @requires --var
+/// @requires var-get
 @mixin igx-bottom-nav($theme) {
     @include igx-css-vars($theme);
 
@@ -106,7 +112,7 @@
         left: 0;
         right: 0;
         height: $menu-height;
-        background: --var($theme, 'background');
+        background: var-get($theme, 'background');
         overflow: hidden;
         z-index: 8;
     }
@@ -114,13 +120,13 @@
     %igx-bottom-nav-menu--top {
         top: 0;
         bottom: inherit;
-        box-shadow: --var($theme, 'shadow');
+        box-shadow: var-get($theme, 'shadow');
     }
 
     %igx-bottom-nav-menu--bottom {
         top: inherit;
         bottom: 0;
-        box-shadow: --var($theme, 'shadow');
+        box-shadow: var-get($theme, 'shadow');
     }
 
     %igx-bottom-nav-menu-item {
@@ -133,7 +139,7 @@
         min-width: $item-min-width;
         max-width: $item-max-width;
         height: 100%;
-        color: --var($theme, 'idle-item-color');
+        color: var-get($theme, 'idle-item-color');
         cursor: pointer;
         user-select: none;
         overflow: hidden;
@@ -149,7 +155,7 @@
     }
 
     %igx-bottom-nav-menu-item--selected {
-        color: --var($theme, 'active-item-color');
+        color: var-get($theme, 'active-item-color');
         transition: color .15s $ease-in-out-quad, opacity .25s $ease-in-out-quad;
     }
 
@@ -191,7 +197,7 @@
 /// @param {Map} $categories [(label: 'caption')] - The categories from the typographic scale used for type styles.
 /// @requires {mixin} igx-type-style
 @mixin igx-bottom-nav-typography($type-scale, $categories: (label: 'caption')) {
-    $label: map-get($categories, 'label');
+    $label: map.get($categories, 'label');
 
     %igx-tab-label {
         @include igx-type-style($type-scale, $label) {

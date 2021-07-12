@@ -1,4 +1,5 @@
-@import '../shape/calendar';
+@use '../../../base' as *;
+@use '../shape/calendar' as *;
 
 ////
 /// @group schemas
@@ -54,10 +55,10 @@
 /// @prop {Number} border-radius [.2] - The border radius used for calendar. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} date-border-radius [1] - The border radius used for calendar date. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-calendar
+/// @requires {Map} $default-shape-calendar
 /// @see $default-palette
-$_light-calendar: extend(
-    $_default-shape-calendar,
+$light-calendar: extend(
+    $default-shape-calendar,
     (
         variant: 'material',
 
@@ -207,11 +208,11 @@ $_light-calendar: extend(
 /// @prop {Number} date-border-radius [0] - The border radius used for calendar date. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} month-border-radius [0] - The border radius used for calendar month. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-calendar
-/// @requires {Map} $_fluent-shape-calendar
-$_fluent-calendar: extend(
-    $_light-calendar,
-    $_fluent-shape-calendar,
+/// @requires {Map} $light-calendar
+/// @requires {Map} $fluent-shape-calendar
+$fluent-calendar: extend(
+    $light-calendar,
+    $fluent-shape-calendar,
     (
         variant: 'fluent',
         date-current-text-color: #fff,
@@ -264,11 +265,11 @@ $_fluent-calendar: extend(
 /// @prop {Number} date-border-radius [4px] - The border radius used for calendar date. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} month-border-radius [4px] - The border radius used for calendar month. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-calendar
-/// @requires {Map} $_bootstrap-shape-calendar
-$_bootstrap-calendar: extend(
-    $_light-calendar,
-    $_bootstrap-shape-calendar,
+/// @requires {Map} $light-calendar
+/// @requires {Map} $bootstrap-shape-calendar
+$bootstrap-calendar: extend(
+    $light-calendar,
+    $bootstrap-shape-calendar,
     (
         variant: 'bootstrap',
 
@@ -379,11 +380,11 @@ $_bootstrap-calendar: extend(
 /// @prop {Number} date-border-radius [1] - The border radius used for calendar date. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} month-border-radius [1] - The border radius used for calendar month. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-calendar
-/// @requires {Map} $_indigo-shape-calendar
-$_indigo-calendar: extend(
-    $_light-calendar,
-    $_indigo-shape-calendar,
+/// @requires {Map} $light-calendar
+/// @requires {Map} $indigo-shape-calendar
+$indigo-calendar: extend(
+    $light-calendar,
+    $indigo-shape-calendar,
     (
         variant: 'indigo-design',
 

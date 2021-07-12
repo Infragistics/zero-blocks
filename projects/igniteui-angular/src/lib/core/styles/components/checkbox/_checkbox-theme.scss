@@ -1,6 +1,10 @@
+@use '../../base' as *;
+@use '../../typography/base' as *;
+@use '../../themes/schemas' as *;
+@use '../ripple/ripple-component' as *;
+@use '../ripple/ripple-theme' as *;
+@use 'sass:map';
 @use 'sass:math';
-@import '../ripple/ripple-theme';
-@import '../ripple/ripple-component';
 
 ////
 /// @group themes
@@ -49,8 +53,8 @@
     $name: 'igx-checkbox';
     $checkbox-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $checkbox-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $checkbox-schema: map.get($schema, $name);
     } @else {
         $checkbox-schema: $schema;
     }
@@ -58,11 +62,11 @@
     $theme: apply-palette($checkbox-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($checkbox-schema, 'border-radius')), 0, 10px
+        if($border-radius, $border-radius, map.get($checkbox-schema, 'border-radius')), 0, 10px
     );
 
     $border-radius-ripple: round-borders(
-        if($border-radius-ripple, $border-radius-ripple, map-get($checkbox-schema, 'border-radius-ripple')), 0, 24px
+        if($border-radius-ripple, $border-radius-ripple, map.get($checkbox-schema, 'border-radius-ripple')), 0, 24px
     );
 
     @return extend($theme, (
@@ -90,7 +94,7 @@
 /// @requires igx-ripple-theme
 /// @requires rem
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-checkbox($theme) {
     @include igx-css-vars($theme);
 
@@ -102,24 +106,24 @@
     $size-bs: em(14px);
     $checkbox-radius: math.div($size, 2);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
 
-    $size: map-get((
+    $size: map.get((
         material: $size,
         fluent: $size,
         bootstrap: $size-bs,
         indigo-design: $size,
     ), $variant);
 
-    $border-width: map-get((
+    $border-width: map.get((
         material: 2px,
         fluent: 1px,
         bootstrap: 1px,
         indigo-design: 2px,
     ), $variant);
 
-    $ripple-display: map-get((
+    $ripple-display: map.get((
         material: block,
         fluent: none,
         bootstrap: none,
@@ -128,14 +132,14 @@
 
     $label-margin: em(8px);
 
-    $mark-stroke: map-get((
+    $mark-stroke: map.get((
         material: 3,
         fluent: 1,
         bootstrap: 2,
         indigo-design: 3,
     ), $variant);
 
-    $mark-offset: map-get((
+    $mark-offset: map.get((
         material: 0,
         fluent: -1px,
         bootstrap: 0,
@@ -149,7 +153,8 @@
     $ripple-radius: math.div($ripple-size, 2);
 
     $ripple-theme: igx-ripple-theme(
-        $color: --var($theme, 'fill-color')
+        $schema: $light-schema,
+        $color: var-get($theme, 'fill-color')
     );
 
     $left: if-ltr(left, right);
@@ -193,8 +198,8 @@
         min-width: $size;
         border-width: rem($border-width);
         border-style: solid;
-        border-color: --var($theme, 'empty-color');
-        border-radius: --var($theme, 'border-radius');
+        border-color: var-get($theme, 'empty-color');
+        border-radius: var-get($theme, 'border-radius');
         -webkit-tap-highlight-color: transparent;
         transition: border-color .2s $ease-out-quad;
         overflow: hidden;
@@ -211,21 +216,21 @@
     }
 
     %cbx-composite--x {
-        border-color: --var($theme, 'fill-color');
-        background: --var($theme, 'fill-color');
+        border-color: var-get($theme, 'fill-color');
+        background: var-get($theme, 'fill-color');
 
         &::after {
-            background: --var($theme, 'fill-color');
+            background: var-get($theme, 'fill-color');
         }
     }
 
     %cbx-composite--disabled {
-        border-color: --var($theme, 'disabled-color');
+        border-color: var-get($theme, 'disabled-color');
         background: transparent;
 
         @if $bootstrap-theme {
             %cbx-composite-mark {
-                stroke: --var($theme, 'empty-color');
+                stroke: var-get($theme, 'empty-color');
             }
         }
     }
@@ -234,20 +239,20 @@
         @if $bootstrap-theme {
             background: transparent;
         } @else {
-            background: --var($theme, 'disabled-color');
+            background: var-get($theme, 'disabled-color');
         }
 
         &::after {
             @if $bootstrap-theme {
                 background: transparent;
             } @else {
-                background: --var($theme, 'disabled-color');
+                background: var-get($theme, 'disabled-color');
             }
         }
 
         @if $bootstrap-theme {
             %cbx-composite-mark--x {
-                stroke: --var($theme, 'empty-color');
+                stroke: var-get($theme, 'empty-color');
             }
         }
     }
@@ -258,7 +263,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        stroke: --var($theme, 'tick-color');
+        stroke: var-get($theme, 'tick-color');
         stroke-linecap: square;
         stroke-width: $mark-stroke;
         stroke-dasharray: $mark-length;
@@ -290,7 +295,7 @@
 
     %cbx-label {
         display: inline-block;
-        color: --var($theme, 'label-color');
+        color: var-get($theme, 'label-color');
         cursor: pointer;
         user-select: none;
         word-wrap: break-all;
@@ -317,7 +322,7 @@
     }
 
     %cbx-label--disabled {
-        color: --var($theme, 'disabled-color-label');
+        color: var-get($theme, 'disabled-color-label');
     }
 
     %cbx-ripple {
@@ -329,7 +334,7 @@
         right: calc(100% - #{$ripple-radius} - #{$checkbox-radius});
         width: $ripple-size;
         height: $ripple-size;
-        border-radius: --var($theme, 'border-radius-ripple');
+        border-radius: var-get($theme, 'border-radius-ripple');
         overflow: hidden;
         pointer-events: none;
         filter: opacity(1);
@@ -346,7 +351,7 @@
                 position: absolute;
                 top: -$focus-outline-offset-top;
                 left: -$focus-outline-offset-left;
-                box-shadow: 0 0 0 1px --var($theme, 'focus-outline-color');
+                box-shadow: 0 0 0 1px var-get($theme, 'focus-outline-color');
                 width: calc(100% + (#{$focus-outline-offset-left} * 2));
                 height: calc(100% + (#{$focus-outline-offset-top} * 2));
             }
@@ -354,15 +359,15 @@
 
         @if $variant == 'bootstrap' {
             %cbx-composite {
-                border-radius: --var($theme, 'border-radius');
-                box-shadow: 0 0 0 2px --var($theme, 'focus-outline-color');
+                border-radius: var-get($theme, 'border-radius');
+                box-shadow: 0 0 0 2px var-get($theme, 'focus-outline-color');
             }
         }
 
         @if $variant == 'indigo-design' {
             %cbx-composite {
-                border-radius: --var($theme, 'border-radius');
-                box-shadow: 0 0 0 3px --var($theme, 'focus-outline-color');
+                border-radius: var-get($theme, 'border-radius');
+                box-shadow: 0 0 0 3px var-get($theme, 'focus-outline-color');
             }
         }
     }
@@ -370,20 +375,20 @@
     %igx-checkbox--focused-checked {
         @if $variant == 'indigo-design' {
             %cbx-composite {
-                border-radius: --var($theme, 'border-radius');
-                box-shadow: 0 0 0 3px --var($theme, 'focus-outline-color-focused');
+                border-radius: var-get($theme, 'border-radius');
+                box-shadow: 0 0 0 3px var-get($theme, 'focus-outline-color-focused');
             }
         }
     }
 
     %cbx-ripple--focused {
-        background: --var($theme, 'empty-color');
+        background: var-get($theme, 'empty-color');
         transition: background .2s $ease-out-quad;
         opacity: .12;
     }
 
     %cbx-ripple--focused-checked {
-        background: --var($theme, 'fill-color');
+        background: var-get($theme, 'fill-color');
     }
 
     %cbx-ripple--hover {
@@ -400,13 +405,13 @@
 
     %cbx-ripple--hover-unchecked {
         &::after {
-            background: --var($theme, 'empty-color');
+            background: var-get($theme, 'empty-color');
         }
     }
 
     %cbx-ripple--hover-checked {
         &::after {
-            background: --var($theme, 'fill-color');
+            background: var-get($theme, 'fill-color');
         }
     }
 
@@ -436,7 +441,7 @@
     $type-scale,
     $categories: (label: 'subtitle-1')
 ) {
-    $label: map-get($categories, 'label');
+    $label: map.get($categories, 'label');
 
     %cbx-label {
         @include igx-type-style($type-scale, $label) {

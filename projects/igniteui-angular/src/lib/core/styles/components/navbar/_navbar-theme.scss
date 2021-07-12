@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -42,8 +47,8 @@
     $name: 'igx-navbar';
     $navbar-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $navbar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $navbar-schema: map.get($schema, $name);
     } @else {
         $navbar-schema: $schema;
     }
@@ -63,7 +68,7 @@
     }
 
     @if not($shadow) {
-        $elevation: map-get($navbar-schema, 'elevation');
+        $elevation: map.get($navbar-schema, 'elevation');
         $shadow: igx-elevation($elevations, $elevation);
     }
 
@@ -85,7 +90,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-navbar($theme) {
     @include igx-css-vars($theme);
 
@@ -105,9 +110,9 @@
         min-height: 56px;
         max-height: 128px;
         padding: $navbar-padding;
-        background: --var($theme, 'background');
-        color: --var($theme, 'text-color');
-        box-shadow: --var($theme, 'shadow');
+        background: var-get($theme, 'background');
+        color: var-get($theme, 'text-color');
+        box-shadow: var-get($theme, 'shadow');
         z-index: 4;
         overflow: hidden;
     }
@@ -136,11 +141,11 @@
     %igx-navbar-icon-display {
         > igx-icon {
             cursor: pointer;
-            color: --var($theme, 'idle-icon-color');
+            color: var-get($theme, 'idle-icon-color');
             transition: color .15s $ease-out-quad;
 
             &:hover {
-                color: --var($theme, 'hover-icon-color');
+                color: var-get($theme, 'hover-icon-color');
             }
         }
     }
@@ -164,7 +169,7 @@
     igx-navbar-title,
     [igxNavbarTitle] {
         @extend %igx-navbar-part;
-        @extend %igx-navbar-title;
+        @extend %igx-navbar-title !optional;
     }
 }
 
@@ -176,7 +181,7 @@
 /// @param {Map} $categories [(title: 'h6')] - The categories from the typographic scale used for type styles.
 /// @requires {mixin} igx-type-style
 @mixin igx-navbar-typography($type-scale, $categories: (title: 'h6')) {
-    $title: map-get($categories, 'title');
+    $title: map.get($categories, 'title');
 
     %igx-navbar-title {
         @include igx-type-style($type-scale, $title);

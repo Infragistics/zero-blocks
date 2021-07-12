@@ -6,37 +6,37 @@
 
 /// @type Map
 /// @prop {Number} border-radius [.17] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-snackbar: (
+$default-shape-snackbar: (
     border-radius: .17,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-snackbar: (
+$round-shape-snackbar: (
     border-radius: 1
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-snackbar: (
+$square-shape-snackbar: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-snackbar: (
+$fluent-shape-snackbar: (
     border-radius: 2px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [.17] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_default-shape-snackbar
-$_bootstrap-shape-snackbar: extend($_default-shape-snackbar);
+/// @requires $default-shape-snackbar
+$bootstrap-shape-snackbar: $default-shape-snackbar;
 
 /// @type Map
 /// @prop {Number} border-radius [6px] - The border radius used for snackbar. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-snackbar: (
+$indigo-shape-snackbar: (
     border-radius: 6px
 );
 

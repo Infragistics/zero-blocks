@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @access private
@@ -6,14 +9,17 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(linear-gauge) {
-    // Register the component in the component registry
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
-}
 
-@include b(radial-gauge) {
-    // Register the component in the component registry
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(linear-gauge) {
+        // Register the component in the component registry
+        $this: bem--selector-to-string(&);
+        @include register-component(string.slice($this, 2, -1));
+    }
+
+    @include b(radial-gauge) {
+        // Register the component in the component registry
+        $this: bem--selector-to-string(&);
+        @include register-component(string.slice($this, 2, -1));
+    }
 }

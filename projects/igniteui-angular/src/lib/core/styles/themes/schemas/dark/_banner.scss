@@ -1,4 +1,6 @@
-@import '../light/banner';
+@use '../../../base' as *;
+@use '../light/banner' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -7,24 +9,22 @@
 
 /// Generates a dark banner schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-banner
+/// @requires $light-banner
 /// @see $default-palette
-$_dark-banner: extend($_light-banner);
+$dark-banner: $light-banner;
 
 /// Generates a dark fluent banner schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-banner
-$_dark-fluent-banner: extend($_fluent-banner);
+/// @requires $fluent-banner
+$dark-fluent-banner: $fluent-banner;
 
 /// Generates a dark bootstrap banner schema.
 /// @type {Map}
 /// @property {Map} banner-background [#333]- The background color used banner background.
 /// @requires {function} extend
-/// @requires $_bootstrap-banner
-$_dark-bootstrap-banner: extend(
-    $_bootstrap-banner,
+/// @requires $bootstrap-banner
+$dark-bootstrap-banner: extend(
+    $bootstrap-banner,
     (
         banner-background: #333,
     )
@@ -32,6 +32,5 @@ $_dark-bootstrap-banner: extend(
 
 /// Generates a dark indigo banner schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-banner
-$_dark-indigo-banner: extend($_indigo-banner);
+/// @requires $indigo-banner
+$dark-indigo-banner: $indigo-banner;

@@ -1,4 +1,4 @@
-@import '../light/data-chart';
+@use '../light/data-chart' as *;
 
 ////
 /// @group schemas
@@ -8,26 +8,22 @@
 
 /// Generates a dark data chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-data-chart
+/// @requires $light-data-chart
 /// @see $default-palette
-$_dark-data-chart: extend($_light-data-chart);
+$dark-data-chart: $light-data-chart;
 
 /// Generates a dark fluent data-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-data-chart
-$_dark-fluent-data-chart: extend($_fluent-data-chart);
+/// @requires $fluent-data-chart
+$dark-fluent-data-chart: $fluent-data-chart;
 
 /// Generates a dark bootstrap data-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-data-chart
-$_dark-bootstrap-data-chart: extend($_bootstrap-data-chart);
+/// @requires $bootstrap-data-chart
+$dark-bootstrap-data-chart: $bootstrap-data-chart;
 
 /// Generates a dark indigo data-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-data-chart
-$_dark-indigo-data-chart: extend($_indigo-data-chart);
+/// @requires $indigo-data-chart
+$dark-indigo-data-chart: $indigo-data-chart;
 

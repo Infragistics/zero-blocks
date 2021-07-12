@@ -6,19 +6,19 @@
 
 /// @type Map
 /// @property {Number} border-radius [0] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-tabs: (
+$default-shape-tabs: (
     border-radius: 0
 );
 
 /// @type Map
 /// @property {Number} border-radius [1] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-tabs: (
+$round-shape-tabs: (
     border-radius: 1
 );
 
 /// @type Map
 /// @property {Number} border-radius [0] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-tabs: (
+$square-shape-tabs: (
     border-radius: 0
 );
 
@@ -26,10 +26,10 @@ $_square-shape-tabs: (
 /// @property {Number} border-radius [0] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
 /// @requires {Map} $_square-shape-tabs
-$_fluent-shape-tabs: extend($_square-shape-tabs);
+$fluent-shape-tabs: $square-shape-tabs;
 
 /// @type Map
 /// @property {Number} border-radius [4px] - The border radius used for tabs. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-tabs: (
+$bootstrap-shape-tabs: (
     border-radius: 4px
 );

@@ -3,90 +3,73 @@
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 ////
 
-// Anything imported here shouldn't affect
-// theme configuration
+@use 'utilities' as *;
 
-// Import utilities
-@import './utilities';
+// Common components
+@use '../components/_common/igx-control';
+@use '../components/_common/igx-display-container' as display-container;
+@use '../components/_common/igx-drag' as drag;
+@use '../components/_common/igx-vhelper' as vhelper;
+@use '../components/ripple/ripple-component' as ripple;
 
-
-// Common component modules
-@import '../components/_common/igx-control';
-@import '../components/_common/igx-display-container';
-@import '../components/_common/igx-drag';
-@import '../components/_common/igx-vhelper';
-
-// Ensure the ripple is loaded before other component themes
-@import '../components/ripple/ripple-component';
-
-// Component composition styles
-@import '../components/action-strip/action-strip-component';
-@import '../components/avatar/avatar-component';
-@import '../components/badge/badge-component';
-@import '../components/bottom-nav/bottom-nav-component';
-@import '../components/button/button-component';
-@import '../components/divider/divider-component';
-@import '../components/button-group/button-group-component';
-@import '../components/banner/banner-component';
-@import '../components/calendar/calendar-component';
-@import '../components/card/card-component';
-@import '../components/carousel/carousel-component';
-@import '../components/checkbox/checkbox-component';
-@import '../components/chip/chip-component';
-@import '../components/column-actions/column-actions-component';
-@import '../components/combo/combo-component';
-@import '../components/charts/category-chart-component';
-@import '../components/charts/data-chart-component';
-@import '../components/charts/doughnut-chart-component';
-@import '../components/charts/financial-chart-component';
-@import '../components/charts/funnel-chart-component';
-@import '../components/charts/gauge-component';
-@import '../components/charts/geo-map-component';
-@import '../components/charts/graph-component';
-@import '../components/charts/pie-chart-component';
-@import '../components/charts/shape-chart-component';
-@import '../components/charts/sparkline-component';
-@import '../components/date-picker/date-picker-component';
-@import '../components/date-range-picker/date-range-picker-component';
-@import '../components/dialog/dialog-component';
-@import '../components/dock-manager/dock-manager-component';
-@import '../components/drop-down/drop-down-component';
-@import '../components/expansion-panel/expansion-panel-component';
-@import '../components/grid/grid-component';
-@import '../components/grid-summary/grid-summary-component';
-@import '../components/paginator/paginator-component';
-@import '../components/grid-toolbar/grid-toolbar-component';
-@import '../components/highlight/highlight-component';
-@import '../components/icon/icon-component';
-@import '../components/input/input-group-component';
-@import '../components/list/list-component';
-@import '../components/navbar/navbar-component';
-@import '../components/navdrawer/navdrawer-component';
-@import '../components/overlay/overlay-component';
-@import '../components/progress/progress-component';
-@import '../components/radio/radio-component';
-@import '../components/scrollbar/scrollbar-component';
-@import '../components/slider/slider-component';
-@import '../components/splitter/splitter-component';
-@import '../components/snackbar/snackbar-component';
-@import '../components/switch/switch-component';
-@import '../components/tabs/tabs-component';
-@import '../components/toast/toast-component';
-@import '../components/tooltip/tooltip-component';
-@import '../components/time-picker/time-picker-component';
-@import '../components/tree/tree-component';
-@import '../components/watermark/watermark-component';
-@import '../print/index';
-
-// Includes the base for each theme.
-[class^='igx-'] {
-    &,
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
-}
+// Other components
+@use '../components/action-strip/action-strip-component' as action-strip;
+@use '../components/avatar/avatar-component' as avatar;
+@use '../components/badge/badge-component' as badge;
+@use '../components/bottom-nav/bottom-nav-component' as bottom-nav;
+@use '../components/button/button-component' as button;
+@use '../components/divider/divider-component' as divider;
+@use '../components/button-group/button-group-component' as button-group;
+@use '../components/banner/banner-component' as banner;
+@use '../components/calendar/calendar-component' as calendar;
+@use '../components/card/card-component' as card;
+@use '../components/carousel/carousel-component' as carousel;
+@use '../components/checkbox/checkbox-component' as checkbox;
+@use '../components/chip/chip-component' as chip;
+@use '../components/column-actions/column-actions-component' as column-actions;
+@use '../components/combo/combo-component' as combo;
+@use '../components/charts/category-chart-component' as category-chart;
+@use '../components/charts/data-chart-component' as data-chart;
+@use '../components/charts/doughnut-chart-component' as doughnut-chart;
+@use '../components/charts/financial-chart-component' as financial-chart;
+@use '../components/charts/funnel-chart-component' as funnel-chart;
+@use '../components/charts/gauge-component' as gauge;
+@use '../components/charts/geo-map-component' as geo-map;
+@use '../components/charts/graph-component' as graph;
+@use '../components/charts/pie-chart-component' as pie-chart;
+@use '../components/charts/shape-chart-component' as shape-chart;
+@use '../components/charts/sparkline-component' as sparkline;
+@use '../components/date-picker/date-picker-component' as date-picker;
+@use '../components/date-range-picker/date-range-picker-component' as date-range-picker;
+@use '../components/dialog/dialog-component' as dialog;
+@use '../components/dock-manager/dock-manager-component' as dock-manager;
+@use '../components/drop-down/drop-down-component' as drop-down;
+@use '../components/expansion-panel/expansion-panel-component' as expansion-panel;
+@use '../components/grid/grid-component' as grid;
+@use '../components/grid-summary/grid-summary-component' as grid-summary;
+@use '../components/grid-toolbar/grid-toolbar-component' as grid-toolbar;
+@use '../components/highlight/highlight-component' as highlight;
+@use '../components/icon/icon-component' as icon;
+@use '../components/input/input-group-component' as input-group;
+@use '../components/list/list-component' as list;
+@use '../components/navbar/navbar-component' as navbar;
+@use '../components/navdrawer/navdrawer-component' as navdrawer;
+@use '../components/overlay/overlay-component' as overlay;
+@use '../components/paginator/paginator-component' as paginator;
+@use '../components/progress/progress-component' as progress;
+@use '../components/radio/radio-component' as radio;
+@use '../components/scrollbar/scrollbar-component' as scrollbar;
+@use '../components/slider/slider-component' as slider;
+@use '../components/splitter/splitter-component' as splitter;
+@use '../components/snackbar/snackbar-component' as snackbar;
+@use '../components/switch/switch-component' as switch;
+@use '../components/tabs/tabs-component' as tabs;
+@use '../components/toast/toast-component' as toast;
+@use '../components/tooltip/tooltip-component' as tooltip;
+@use '../components/time-picker/time-picker-component' as time-picker;
+@use '../components/tree/tree-component' as tree;
+@use '../components/watermark/watermark-component' as watermark;
+@use '../print';
 
 /// @param {boolean} $print-layout [true] - Activates the printing styles of the components.
 /// @param {string} $direction [ltr] - Sets the layout direction. Can be 'ltr' or 'rtl'.
@@ -95,8 +78,8 @@
 /// @requires {mixin} igx-print-layout
 @mixin igx-core(
     $print-layout: true,
-    $direction: ltr,
-    $enhanced-accessibility: false
+    $direction: $direction,
+    $enhanced-accessibility: $enhanced-accessibility
 ) {
     @if $direction != ltr and $direction != rtl {
         $direction: ltr !global;
@@ -104,12 +87,90 @@
         $direction: $direction !global;
     }
 
-    $_igx-enhanced-accessibility: $enhanced-accessibility !global;
+    $enhanced-accessibility: $enhanced-accessibility !global;
 
-    @include igx-vhelper();
+    // Angular hack for binding to [hidden] property
+    // not working
+    [hidden] {
+        display: none !important;
+    }
+
+    // Common styles
+    @include vhelper.component();
+    @include display-container.component();
+    @include drag.component();
+
+    // Includes the base for each theme.
+    [class^='igx-'] {
+        &,
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+    }
+
+    // Component styles
+    @include ripple.component();
+    @include action-strip.component();
+    @include avatar.component();
+    @include badge.component();
+    @include banner.component();
+    @include bottom-nav.component();
+    @include button.component();
+    @include button-group.component();
+    @include divider.component();
+    @include calendar.component();
+    @include card.component();
+    @include carousel.component();
+    @include checkbox.component();
+    @include chip.component();
+    @include column-actions.component();
+    @include combo.component();
+    @include category-chart.component();
+    @include data-chart.component();
+    @include doughnut-chart.component();
+    @include financial-chart.component();
+    @include funnel-chart.component();
+    @include gauge.component();
+    @include geo-map.component();
+    @include graph.component();
+    @include pie-chart.component();
+    @include shape-chart.component();
+    @include sparkline.component();
+    @include date-picker.component();
+    @include date-range-picker.component();
+    @include dialog.component();
+    @include dock-manager.component();
+    @include drop-down.component();
+    @include expansion-panel.component();
+    @include grid.component();
+    @include grid-summary.component();
+    @include grid-toolbar.component();
+    @include highlight.component();
+    @include icon.component();
+    @include input-group.component();
+    @include list.component();
+    @include navbar.component();
+    @include navdrawer.component();
+    @include overlay.component();
+    @include paginator.component();
+    @include progress.component();
+    @include radio.component();
+    @include scrollbar.component();
+    @include slider.component();
+    @include splitter.component();
+    @include snackbar.component();
+    @include switch.component();
+    @include tabs.component();
+    @include toast.component();
+    @include tooltip.component();
+    @include time-picker.component();
+    @include tree.component();
+    @include watermark.component();
 
     @if $print-layout == true {
-        @include igx-print-layout();
+        @include print.layout();
     }
 }
 

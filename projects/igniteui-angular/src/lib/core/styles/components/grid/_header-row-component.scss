@@ -1,3 +1,5 @@
+@use '../../base' as *;
+
 ////
 /// @access private
 /// @group components
@@ -6,7 +8,7 @@
 /// @requires {mixin} bem-mod
 ////
 
-@mixin _header-row {
+@mixin header-row {
     @include b(igx-grid-thead) {
         @extend %grid-thead-container !optional;
 

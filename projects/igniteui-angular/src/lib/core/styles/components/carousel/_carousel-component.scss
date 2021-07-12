@@ -1,4 +1,8 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Carousel
+/// @access private
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 /// @requires {mixin} bem-block
@@ -6,7 +10,6 @@
 /// @requires {mixin} bem-mod
 ////
 
-/// @access private
 @mixin _igx-carousel-indicators-partial {
     @include b(igx-carousel-indicators) {
         @extend %igx-carousel-indicators !optional;
@@ -27,7 +30,6 @@
     }
 }
 
-/// @access private
 @mixin _igx-carousel-navigation-partial {
     @include b(igx-nav-dot) {
         @extend %igx-nav-dot !optional;
@@ -50,7 +52,6 @@
     }
 }
 
-/// @access private
 @mixin _igx-carousel-slide-partial {
     @include b(igx-slide) {
         @extend %igx-carousel-slide !optional;
@@ -65,37 +66,42 @@
     }
 }
 
-/// @access public
-@include b(igx-carousel) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-carousel) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+            )
+        );
 
-    @extend %igx-carousel-display !optional;
+        @extend %igx-carousel-display !optional;
 
-    @include e(inner) {
-        @extend %igx-carousel-slide-wrapper !optional;
+        @include e(inner) {
+            @extend %igx-carousel-slide-wrapper !optional;
+        }
+
+        @include e(label) {
+            @extend %igx-carousel-indicators-label !optional;
+        }
+
+        @include e(arrow) {
+            @extend %igx-carousel-arrow !optional;
+        }
+
+        @include e(arrow, $m: prev) {
+            @extend %igx-carousel-arrow !optional;
+            @extend %igx-carousel-arrow--prev !optional;
+        }
+
+        @include e(arrow, $m: next) {
+            @extend %igx-carousel-arrow !optional;
+            @extend %igx-carousel-arrow--next !optional;
+        }
+
+        @include _igx-carousel-indicators-partial();
+        @include _igx-carousel-navigation-partial();
+        @include _igx-carousel-slide-partial();
     }
-
-    @include e(label) {
-        @extend %igx-carousel-indicators-label !optional;
-    }
-
-    @include e(arrow) {
-        @extend %igx-carousel-arrow !optional;
-    }
-
-    @include e(arrow, $m: prev) {
-        @extend %igx-carousel-arrow !optional;
-        @extend %igx-carousel-arrow--prev !optional;
-    }
-
-    @include e(arrow, $m: next) {
-        @extend %igx-carousel-arrow !optional;
-        @extend %igx-carousel-arrow--next !optional;
-    }
-
-    @include _igx-carousel-indicators-partial();
-    @include _igx-carousel-navigation-partial();
-    @include _igx-carousel-slide-partial();
 }
-

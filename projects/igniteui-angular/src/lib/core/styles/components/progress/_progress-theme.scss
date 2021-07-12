@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:list';
+
 ////
 /// @group themes
 /// @access public
@@ -47,8 +53,8 @@
     $name: 'igx-linear-bar';
     $linear-bar-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $linear-bar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $linear-bar-schema: map.get($schema, $name);
     } @else {
         $linear-bar-schema: $schema;
     }
@@ -56,7 +62,7 @@
     $theme: apply-palette($linear-bar-schema, $palette);
 
     $track-border-radius: round-borders(
-        if($track-border-radius, $track-border-radius, map-get($linear-bar-schema, 'track-border-radius')), 0, 8px
+        if($track-border-radius, $track-border-radius, map.get($linear-bar-schema, 'track-border-radius')), 0, 8px
     );
 
     @return extend($theme, (
@@ -77,34 +83,34 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-progress-linear($theme) {
     @include igx-css-vars($theme);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
 
-    $bar-height: map-get((
+    $bar-height: map.get((
         material: rem(4px),
         fluent: rem(4px),
         bootstrap: rem(16px),
         indigo-design: rem(4px),
     ), $variant);
 
-    $gradient-orientation: map-get((
+    $gradient-orientation: map.get((
         material: -45deg,
         fluent: -45deg,
         bootstrap: 45deg,
         indigo-design: 45deg,
     ), $variant);
 
-    $background-size: map-get((
+    $background-size: map.get((
         material: rem(40px) rem(40px),
         fluent: rem(40px) rem(40px),
         bootstrap: rem(16px) rem(16px),
         indigo-design: rem(20px),
     ), $variant);
 
-    $stripe-color: --var($theme, 'stripes-color');
+    $stripe-color: var-get($theme, 'stripes-color');
     $value-fs: em(14px, 16px);
     $value-fw: 600;
     $value-margin: 0;
@@ -122,9 +128,9 @@
         position: relative;
         width: inherit;
         height: $bar-height;
-        background: --var($theme, 'track-color');
+        background: var-get($theme, 'track-color');
         overflow: hidden;
-        border-radius: --var($theme, 'track-border-radius');
+        border-radius: var-get($theme, 'track-border-radius');
         z-index: 0;
     }
 
@@ -177,29 +183,29 @@
     }
 
     %linear-indicator--default {
-        background: --var($theme, 'fill-color-default')
+        background: var-get($theme, 'fill-color-default')
     }
 
     %linear-indicator--danger {
-        background-color: --var($theme, 'fill-color-danger');
+        background-color: var-get($theme, 'fill-color-danger');
     }
 
     %linear-indicator--warning {
-        background-color: --var($theme, 'fill-color-warning');
+        background-color: var-get($theme, 'fill-color-warning');
     }
 
     %linear-indicator--info {
-        background-color: --var($theme, 'fill-color-info');
+        background-color: var-get($theme, 'fill-color-info');
     }
 
     %linear-indicator--success {
-        background-color: --var($theme, 'fill-color-success');
+        background-color: var-get($theme, 'fill-color-success');
     }
 
 
     %linear-value {
         margin: $value-margin;
-        color: --var($theme, 'text-color');
+        color: var-get($theme, 'text-color');
         font-size: $value-fs;
         font-weight: $value-fw;
     }
@@ -261,7 +267,7 @@
 ///   // Pass the theme to the igx-progress-circular component mixin
 ///   @include igx-progress-circular($my-progress-circle-theme);
 @function igx-progress-circular-theme(
-    $palette: $default-palette,
+    $palette: null,
     $schema: $light-schema,
 
     $base-circle-color: null,
@@ -273,25 +279,25 @@
     $circular-bar-schema: ();
 
 
-    @if map-has-key($schema, $name) {
-        $circular-bar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $circular-bar-schema: map.get($schema, $name);
     } @else {
         $circular-bar-schema: $schema;
     }
 
     $theme: apply-palette($circular-bar-schema, $palette);
 
-    $progress-circle-color-start: map-get($theme, 'progress-circle-color');
-    $progress-circle-color-end: map-get($theme, 'progress-circle-color');
+    $progress-circle-color-start: map.get($theme, 'progress-circle-color');
+    $progress-circle-color-end: map.get($theme, 'progress-circle-color');
 
-    @if type-of($progress-circle-color) == 'color' {
+    @if meta.type-of($progress-circle-color) == 'color' {
         $progress-circle-color-start: $progress-circle-color;
         $progress-circle-color-end: $progress-circle-color;
     }
 
-    @if length($progress-circle-color) == 2 {
-        $progress-circle-color-start: nth($progress-circle-color, 1);
-        $progress-circle-color-end: nth($progress-circle-color, 2);
+    @if list.length($progress-circle-color) == 2 {
+        $progress-circle-color-start: list.nth($progress-circle-color, 1);
+        $progress-circle-color-end: list.nth($progress-circle-color, 2);
     }
 
     @return extend($theme, (
@@ -308,23 +314,23 @@
 /// @requires {mixin} igx-css-vars
 /// @requires rem
 /// @requires {mixin} rotate-center
-/// @requires --var
+/// @requires var-get
 @mixin igx-progress-circular($theme) {
     // Include rotate animation
     @include rotate-center();
 
     @include igx-css-vars($theme);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
 
-    $stroke-width: map-get((
+    $stroke-width: map.get((
         material: rem(4px),
         fluent: rem(4px),
         bootstrap: rem(8px),
         indigo-design: rem(6px),
     ), $variant);
 
-    $palette: map-get($theme, 'palette');
+    $palette: map.get($theme, 'palette');
     $circular-value-fs: rem(32px, 16px);
     $circular-value-fw: 600;
     $animation-direction: if-ltr(normal, reverse);
@@ -351,7 +357,7 @@
     %circular-inner {
         stroke-width: $stroke-width;
         fill: transparent;
-        stroke: --var($theme, 'base-circle-color');
+        stroke: var-get($theme, 'base-circle-color');
     }
 
     %circular-outer {
@@ -375,7 +381,7 @@
     %circular-text {
         font-size: $circular-value-fs;
         font-weight: $circular-value-fw;
-        fill: --var($theme, 'text-color');
+        fill: var-get($theme, 'text-color');
     }
 
     %circular-text--hidden {
@@ -383,11 +389,11 @@
     }
 
     %circular-gradient-start {
-        stop-color: --var($theme, 'progress-circle-color-start');
+        stop-color: var-get($theme, 'progress-circle-color-start');
     }
 
     %circular-gradient-end {
-        stop-color: --var($theme, 'progress-circle-color-end');
+        stop-color: var-get($theme, 'progress-circle-color-end');
     }
 
     @include keyframes('indeterminate-accordion') {

@@ -1,4 +1,6 @@
-@import '../light/expansion-panel';
+@use '../../../base' as *;
+@use '../light/expansion-panel' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -9,32 +11,32 @@
 /// @type {Map}
 /// @prop {Color} header-background [#222] - The panel header background color.
 /// @prop {Color} body-background [#222] - The panel body background color.
-$_base-dark-expansion-panel: (
+$base-dark-expansion-panel: (
     header-background: #222,
     body-background: #222,
 );
 
-/// Generates a dark expansion panel schema based on a mix of $_light-expansion-panel and $_base-dark-expansion-panel.
+/// Generates a dark expansion panel schema based on a mix of $light-expansion-panel and $base-dark-expansion-panel.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-expansion-panel
-/// @requires $_base-dark-expansion-panel
+/// @requires $light-expansion-panel
+/// @requires $base-dark-expansion-panel
 /// @see $default-palette
-$_dark-expansion-panel: extend($_light-expansion-panel, $_base-dark-expansion-panel);
+$dark-expansion-panel: extend($light-expansion-panel, $base-dark-expansion-panel);
 
-/// Generates a dark fluent expansion panel schema based on a mix of $_fluent-expansion-panel and $_base-dark-expansion-panel.
+/// Generates a dark fluent expansion panel schema based on a mix of $fluent-expansion-panel and $base-dark-expansion-panel.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-expansion-panel
-/// @requires $_base-dark-expansion-panel
-$_dark-fluent-expansion-panel: extend($_fluent-expansion-panel, $_base-dark-expansion-panel);
+/// @requires $fluent-expansion-panel
+/// @requires $base-dark-expansion-panel
+$dark-fluent-expansion-panel: extend($fluent-expansion-panel, $base-dark-expansion-panel);
 
-/// Generates a dark bootstrap expansion panel schema based on a mix of $_bootstrap-expansion-panel and $_base-dark-expansion-panel.
+/// Generates a dark bootstrap expansion panel schema based on a mix of $bootstrap-expansion-panel and $base-dark-expansion-panel.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-expansion-panel
-/// @requires $_base-dark-expansion-panel
-$_dark-bootstrap-expansion-panel: extend($_bootstrap-expansion-panel, $_base-dark-expansion-panel);
+/// @requires $bootstrap-expansion-panel
+/// @requires $base-dark-expansion-panel
+$dark-bootstrap-expansion-panel: extend($bootstrap-expansion-panel, $base-dark-expansion-panel);
 
 /// Generates a dark indigo expansion panel schema.
 /// @type {Map}
@@ -46,9 +48,9 @@ $_dark-bootstrap-expansion-panel: extend($_bootstrap-expansion-panel, $_base-dar
 /// @prop {Number} border-radius [3px] - The border radius used for expansion-panel.
 ///
 /// @requires {function} extend
-/// @requires $_indigo-expansion-panel
-$_dark-indigo-expansion-panel: extend(
-    $_indigo-expansion-panel,
+/// @requires $indigo-expansion-panel
+$dark-indigo-expansion-panel: extend(
+    $indigo-expansion-panel,
     (
         header-background: (
             igx-color: 'surface'

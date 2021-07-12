@@ -1,5 +1,6 @@
-@import '../shape/switch';
-@import '../elevation/switch';
+@use '../../../base' as *;
+@use '../shape/switch' as *;
+@use '../elevation/switch' as *;
 
 ////
 /// @group schemas
@@ -33,12 +34,12 @@
 /// @property {Color} border-on-hover-color [transparent] - The border color of the  on-switch.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-switch
-/// @requires {Map} $_default-elevation-switch
+/// @requires {Map} $default-shape-switch
+/// @requires {Map} $default-elevation-switch
 /// @see $default-palette
-$_light-switch: extend(
-    $_default-shape-switch,
-    $_default-elevation-switch,
+$light-switch: extend(
+    $default-shape-switch,
+    $default-elevation-switch,
     (
         variant: 'material',
 
@@ -103,11 +104,11 @@ $_light-switch: extend(
 /// @property {Number} border-radius-track [10px] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-switch
-/// @requires {Map} $_fluent-shape-switch
-$_fluent-switch: extend(
-    $_light-switch,
-    $_fluent-shape-switch,
+/// @requires {Map} $light-switch
+/// @requires {Map} $fluent-shape-switch
+$fluent-switch: extend(
+    $light-switch,
+    $fluent-shape-switch,
     (
         variant: 'fluent',
 
@@ -162,11 +163,11 @@ $_fluent-switch: extend(
 /// @property {Map} focus-outline-color [igx-color: ('primary', 200)] - The focus outlined color.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_fluent-switch
-/// @requires {Map} $_bootstrap-shape-switch
-$_bootstrap-switch: extend(
-    $_fluent-switch,
-    $_bootstrap-shape-switch,
+/// @requires {Map} $fluent-switch
+/// @requires {Map} $bootstrap-shape-switch
+$bootstrap-switch: extend(
+    $fluent-switch,
+    $bootstrap-shape-switch,
     (
         variant: 'bootstrap',
 
@@ -206,11 +207,11 @@ $_bootstrap-switch: extend(
 /// @property {Map} focus-outline-color-focused [igx-color: ('primary', 200)] - The focus outlined color for focused state.
 ///
 /// @requires {function} extend
-/// @requires $_light-switch
-/// @requires $_indigo-shape-switch
-$_indigo-switch: extend(
-    $_light-switch,
-    $_indigo-shape-switch,
+/// @requires $light-switch
+/// @requires $indigo-shape-switch
+$indigo-switch: extend(
+    $light-switch,
+    $indigo-shape-switch,
     (
         variant: 'indigo-design',
 

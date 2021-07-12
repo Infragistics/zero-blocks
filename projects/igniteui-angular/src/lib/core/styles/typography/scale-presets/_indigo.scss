@@ -1,3 +1,6 @@
+@use '../base' as *;
+@use '../../base' as *;
+
 $indigo_h1: igx-type-style(
     $font-size: rem(96px),
     $font-weight: 200,

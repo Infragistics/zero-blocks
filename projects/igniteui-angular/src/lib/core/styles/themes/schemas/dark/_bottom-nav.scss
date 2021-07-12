@@ -1,4 +1,6 @@
-@import '../light/bottom-nav';
+@use '../../../base' as *;
+@use '../light/bottom-nav' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -8,43 +10,43 @@
 /// Generates the base dark bottom-nav schema.
 /// @type {Map}
 /// @prop {Color} background [#222] - The background color used for the bottom-nav.
-$_base-dark-bottom-nav: (
+$base-dark-bottom-nav: (
     background: #222
 );
 
-/// Generates a dark bottom-nav schema based on a mix of $_light-bottom-nav and $_base-dark-bottom-nav
+/// Generates a dark bottom-nav schema based on a mix of $light-bottom-nav and $base-dark-bottom-nav
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-bottom-nav
-/// @requires $_base-dark-bottom-nav
+/// @requires $light-bottom-nav
+/// @requires $base-dark-bottom-nav
 /// @see $default-palette
-$_dark-bottom-nav: extend($_light-bottom-nav, $_base-dark-bottom-nav);
+$dark-bottom-nav: extend($light-bottom-nav, $base-dark-bottom-nav);
 
-/// Generates a dark fluent bottom-nav schema based on a mix of $_fluent-bottom-nav and $_base-dark-bottom-nav
+/// Generates a dark fluent bottom-nav schema based on a mix of $fluent-bottom-nav and $base-dark-bottom-nav
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-bottom-nav
-/// @requires $_base-dark-bottom-nav
-$_dark-fluent-bottom-nav: extend($_fluent-bottom-nav, $_base-dark-bottom-nav);
+/// @requires $fluent-bottom-nav
+/// @requires $base-dark-bottom-nav
+$dark-fluent-bottom-nav: extend($fluent-bottom-nav, $base-dark-bottom-nav);
 
-/// Generates a dark bootstrap bottom-nav schema based on a mix of $_bootstrap-bottom-nav and $_base-dark-bottom-nav
+/// Generates a dark bootstrap bottom-nav schema based on a mix of $bootstrap-bottom-nav and $base-dark-bottom-nav
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-bottom-nav
-/// @requires $_base-dark-bottom-nav
-$_dark-bootstrap-bottom-nav: extend($_bootstrap-bottom-nav, $_base-dark-bottom-nav);
+/// @requires $bootstrap-bottom-nav
+/// @requires $base-dark-bottom-nav
+$dark-bootstrap-bottom-nav: extend($bootstrap-bottom-nav, $base-dark-bottom-nav);
 
-/// Generates a dark indigo bottom-nav schema based on a mix of $_indigo-bottom-nav and $_base-dark-bottom-nav
+/// Generates a dark indigo bottom-nav schema based on a mix of $indigo-bottom-nav and $base-dark-bottom-nav
 /// @type {Map}
 /// @prop {Map} background [igx-color: 'surface'] - The background color used for the bottom-nav.
 /// @prop {Color} active-item-color [igx-contrast-color: 'surface'] - The text-color used for the active color.
 /// @prop {Map} idle-item-color [igx-contrast-color: 'surface', rgba: .6] - The text-color used for the idle color.
 /// @requires {function} extend
-/// @requires $_indigo-bottom-nav
-/// @requires $_base-dark-bottom-nav
-$_dark-indigo-bottom-nav: extend(
-    $_indigo-bottom-nav,
-    $_base-dark-bottom-nav,
+/// @requires $indigo-bottom-nav
+/// @requires $base-dark-bottom-nav
+$dark-indigo-bottom-nav: extend(
+    $indigo-bottom-nav,
+    $base-dark-bottom-nav,
     (
         background: (
             igx-color: 'surface',

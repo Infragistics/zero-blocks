@@ -1,4 +1,5 @@
-@import '../light/radio';
+@use '../../../base' as *;
+@use '../light/radio' as *;
 
 ////
 /// @group schemas
@@ -8,24 +9,22 @@
 
 /// Generates a dark radio schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-ripple
+/// @requires $light-ripple
 /// @see $default-palette
-$_dark-radio: extend($_light-radio);
+$dark-radio: $light-radio;
 
 /// Generates a dark fluent radio schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-radio
-$_dark-fluent-radio: extend($_fluent-radio);
+/// @requires $fluent-radio
+$dark-fluent-radio: $fluent-radio;
 
 /// Generates a dark bootstrap radio schema.
 /// @type {Map}
 /// @property {Map} fill-hover-border-color [igx-color: 'surface'] - The text color used for the label text.
 /// @property {Map} fill-color-hover [igx-color: 'surface'] - The checked border and dot colors on hover.
 /// @requires {function} extend
-/// @requires $_bootstrap-radio
-$_dark-bootstrap-radio: extend($_bootstrap-radio, (
+/// @requires $bootstrap-radio
+$dark-bootstrap-radio: extend($bootstrap-radio, (
     fill-hover-border-color: (
         igx-color: 'surface'
     ),
@@ -43,9 +42,9 @@ $_dark-bootstrap-radio: extend($_bootstrap-radio, (
 /// @property {Map} fill-color-hover [#fff] - The checked border and dot colors on hover.
 /// @property {Map} disabled-color [igx-color: ('grays', 400)] - The disabled border and dot colors.
 /// @requires {function} extend
-/// @requires $_indigo-radio
-$_dark-indigo-radio: extend(
-    $_indigo-radio,
+/// @requires $indigo-radio
+$dark-indigo-radio: extend(
+    $indigo-radio,
     (
         fill-hover-border-color: #fff,
 

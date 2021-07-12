@@ -1,4 +1,4 @@
-@import '../light/ripple';
+@use '../light/ripple' as *;
 
 ////
 /// @group schemas
@@ -8,26 +8,22 @@
 
 /// Generates a dark ripple schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-ripple
+/// @requires $light-ripple
 /// @see $default-palette
-$_dark-ripple: extend($_light-ripple);
+$dark-ripple: $light-ripple;
 
 /// Generates a dark fluent ripple schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-ripple
-$_dark-fluent-ripple: extend($_fluent-ripple);
+/// @requires $fluent-ripple
+$dark-fluent-ripple: $fluent-ripple;
 
 /// Generates a dark bootstrap ripple schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-ripple
-$_dark-bootstrap-ripple: extend($_bootstrap-ripple);
+/// @requires $bootstrap-ripple
+$dark-bootstrap-ripple: $bootstrap-ripple;
 
 /// Generates a dark indigo ripple schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-ripple
-$_dark-indigo-ripple: extend($_indigo-ripple);
+/// @requires $indigo-ripple
+$dark-indigo-ripple: $indigo-ripple;
 

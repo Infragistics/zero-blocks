@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -6,23 +8,23 @@
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-chip: (
+$round-shape-chip: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-chip: (
+$square-shape-chip: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [.25] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-chip: (
+$bootstrap-shape-chip: (
     border-radius: .25
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {Map} $_round-shape-button
-$_indigo-shape-chip: extend($_round-shape-chip);
+$indigo-shape-chip: extend($round-shape-chip);

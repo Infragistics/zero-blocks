@@ -1,3 +1,5 @@
+@use '../light/divider' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -6,25 +8,23 @@
 
 /// Generates a dark divider schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-divider
+/// @requires $light-divider
 /// @see $default-palette
-$_dark-divider: extend($_light-divider);
+$dark-divider: $light-divider;
 
 /// Generates a dark fluent divider schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-divider
-$_dark-fluent-divider: extend($_fluent-divider);
+/// @requires $luent-divider
+$dark-fluent-divider: $fluent-divider;
 
 /// Generates a dark bootstrap divider schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-divider
-$_dark-bootstrap-divider: extend($_bootstrap-divider);
+/// @requires $bootstrap-divider
+$dark-bootstrap-divider: $bootstrap-divider;
 
 /// Generates a dark indigo divider schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-divider
-$_dark-indigo-divider: extend($_indigo-divider);
+/// @requires $indigo-divider
+$dark-indigo-divider: $indigo-divider;

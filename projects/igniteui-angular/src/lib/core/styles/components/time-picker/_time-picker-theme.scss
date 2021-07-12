@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -68,8 +74,8 @@
 
     $time-picker-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $time-picker-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $time-picker-schema: map.get($schema, $name);
     } @else {
         $time-picker-schema: $schema;
     }
@@ -77,11 +83,11 @@
     $theme: apply-palette($time-picker-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($time-picker-schema, 'border-radius')), 0, 20px
+        if($border-radius, $border-radius, map.get($time-picker-schema, 'border-radius')), 0, 20px
     );
 
     $active-item-border-radius: round-borders(
-        if($active-item-border-radius, $active-item-border-radius, map-get($time-picker-schema, 'active-item-border-radius')), 0, 20px
+        if($active-item-border-radius, $active-item-border-radius, map.get($time-picker-schema, 'active-item-border-radius')), 0, 20px
     );
 
     @if not($text-color) and $background-color {
@@ -93,7 +99,7 @@
     }
 
     @if not($header-time-period-color) and $header-background {
-        @if type-of($header-background) == 'color' {
+        @if meta.type-of($header-background) == 'color' {
             $header-time-period-color: rgba(text-contrast($header-background), .8);
         }
     }
@@ -103,24 +109,24 @@
     }
 
     @if not($active-item-background) and $background-color {
-        @if type-of($background-color) == 'color' {
+        @if meta.type-of($background-color) == 'color' {
             $active-item-background: rgba(text-contrast($background-color), .12);
         }
     }
 
     @if not($disabled-text-color) and $disabled-item-background {
-        @if type-of($disabled-item-background) == 'color' {
+        @if meta.type-of($disabled-item-background) == 'color' {
             $disabled-text-color: rgba(text-contrast($disabled-item-background), .6);
         }
     }
 
     @if not($modal-shadow) {
-        $elevation: map-get($time-picker-schema, 'modal-elevation');
+        $elevation: map.get($time-picker-schema, 'modal-elevation');
         $modal-shadow: igx-elevation($elevations, $elevation);
     }
 
     @if not($dropdown-shadow) {
-        $elevation: map-get($time-picker-schema, 'dropdown-elevation');
+        $elevation: map.get($time-picker-schema, 'dropdown-elevation');
         $dropdown-shadow: igx-elevation($elevations, $elevation);
     }
 
@@ -148,11 +154,11 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-time-picker($theme) {
     @include igx-css-vars($theme);
 
-    $variant: map-get($theme, 'variant');
+    $variant: map.get($theme, 'variant');
     $not-bootstrap-theme: $variant != 'bootstrap';
 
     $left: if-ltr(left, right);
@@ -160,7 +166,7 @@
 
     $vertical-header-width: rem(168px);
 
-    $picker-buttons-padding: map-get((
+    $picker-buttons-padding: map.get((
         material: rem(8px),
         fluent: rem(8px),
         bootstrap: rem(16px)
@@ -171,8 +177,8 @@
         flex-flow: column nowrap;
         max-width: rem(340px);
         min-width: rem(320px);
-        border-radius: --var($theme, 'border-radius');
-        box-shadow: --var($theme, 'modal-shadow');
+        border-radius: var-get($theme, 'border-radius');
+        box-shadow: var-get($theme, 'modal-shadow');
         overflow: hidden;
     }
 
@@ -182,13 +188,13 @@
     }
 
     %time-picker__main {
-        background: --var($theme, 'background-color');
+        background: var-get($theme, 'background-color');
         flex: 1 1 auto;
     }
 
     %time-picker--dropdown {
         min-width: rem(200px);
-        box-shadow: --var($theme, 'dropdown-shadow');
+        box-shadow: var-get($theme, 'dropdown-shadow');
     }
 
     %time-picker__body {
@@ -250,7 +256,7 @@
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: center;
-        color: --var($theme, 'text-color');
+        color: var-get($theme, 'text-color');
         overflow: hidden;
 
         &:focus,
@@ -262,7 +268,7 @@
     %time-picker__item {
         width: rem(54px);
         padding: rem(5px) rem(10px);
-        border-radius: --var($theme, 'active-item-border-radius');
+        border-radius: var-get($theme, 'active-item-border-radius');
         height: rem(48px);
         display: flex;
         justify-content: center;
@@ -274,32 +280,32 @@
         }
 
         &:hover {
-            color: --var($theme, 'hover-text-color');
+            color: var-get($theme, 'hover-text-color');
         }
     }
 
     %time-picker__item--selected {
         font-size: rem(24px);
-        color: --var($theme, 'selected-text-color');
+        color: var-get($theme, 'selected-text-color');
     }
 
     %time-picker__item--active {
-        background: --var($theme, 'active-item-background');
+        background: var-get($theme, 'active-item-background');
     }
 
     %time-picker__item--disabled {
-        color: --var($theme, 'disabled-text-color');
-        background: --var($theme, 'disabled-item-background');
+        color: var-get($theme, 'disabled-text-color');
+        background: var-get($theme, 'disabled-item-background');
         pointer-events: none;
     }
 
     %time-picker__header {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
         padding: rem(24px) rem(16px);
     }
 
     %time-picker__header-ampm {
-        color: --var($theme, 'header-time-period-color');
+        color: var-get($theme, 'header-time-period-color');
     }
 
     %time-picker__header--vertical {
@@ -308,7 +314,7 @@
 
     %time-picker__header-hour {
         display: flex;
-        color: --var($theme, 'header-hour-text-color');
+        color: var-get($theme, 'header-hour-text-color');
 
         @include if-rtl() {
             flex-direction: row-reverse;
@@ -348,9 +354,9 @@
     header-hour: 'h4',
     content: 'body-1')
 ) {
-    $time-period: map-get($categories, 'header-time-period');
-    $header-hour: map-get($categories, 'header-hour');
-    $content: map-get($categories, 'content');
+    $time-period: map.get($categories, 'header-time-period');
+    $header-hour: map.get($categories, 'header-hour');
+    $content: map.get($categories, 'content');
 
     %time-picker__header-ampm {
         @include igx-type-style($type-scale, $time-period);

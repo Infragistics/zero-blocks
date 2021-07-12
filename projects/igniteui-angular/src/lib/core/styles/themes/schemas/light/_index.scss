@@ -4,185 +4,185 @@
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 ////
 
-@import './avatar';
-@import './action-strip';
-@import './badge';
-@import './banner';
-@import './bottom-nav';
-@import './button';
-@import './button-group';
-@import './calendar';
-@import './card';
-@import './carousel';
-@import './category-chart';
-@import './checkbox';
-@import './chip';
-@import './column-actions';
-@import './combo';
-@import './dialog';
-@import './data-chart';
-@import './doughnut-chart';
-@import './funnel-chart';
-@import './date-range-picker';
-@import './divider';
-@import './dock-manager';
-@import './drop-down';
-@import './expansion-panel';
-@import './gauge';
-@import './financial-chart';
-@import './graph';
-@import './grid';
-@import './grid-filtering';
-@import './pagination';
-@import './grid-summary';
-@import './grid-toolbar';
-@import './highlight';
-@import './icon';
-@import './input-group';
-@import './list';
-@import './navbar';
-@import './navdrawer';
-@import './geo-map';
-@import './overlay';
-@import './pie-chart';
-@import './progress';
-@import './radio';
-@import './ripple';
-@import './scrollbar';
-@import './shape-chart';
-@import './slider';
-@import './snackbar';
-@import './sparkline';
-@import './splitter';
-@import './switch';
-@import './tabs';
-@import './time-picker';
-@import './toast';
-@import './tooltip';
-@import './tree';
-@import './watermark';
+@use './avatar' as *;
+@use './action-strip' as *;
+@use './badge' as *;
+@use './banner' as *;
+@use './bottom-nav' as *;
+@use './button' as *;
+@use './button-group' as *;
+@use './calendar' as *;
+@use './card' as *;
+@use './carousel' as *;
+@use './category-chart' as *;
+@use './checkbox' as *;
+@use './chip' as *;
+@use './column-actions' as *;
+@use './combo' as *;
+@use './dialog' as *;
+@use './data-chart' as *;
+@use './doughnut-chart' as *;
+@use './funnel-chart' as *;
+@use './date-range-picker' as *;
+@use './divider' as *;
+@use './dock-manager' as *;
+@use './drop-down' as *;
+@use './expansion-panel' as *;
+@use './gauge' as *;
+@use './financial-chart' as *;
+@use './graph' as *;
+@use './grid' as *;
+@use './grid-filtering' as *;
+@use './pagination' as *;
+@use './grid-summary' as *;
+@use './grid-toolbar' as *;
+@use './highlight' as *;
+@use './icon' as *;
+@use './input-group' as *;
+@use './list' as *;
+@use './navbar' as *;
+@use './navdrawer' as *;
+@use './geo-map' as *;
+@use './overlay' as *;
+@use './pie-chart' as *;
+@use './progress' as *;
+@use './radio' as *;
+@use './ripple' as *;
+@use './scrollbar' as *;
+@use './shape-chart' as *;
+@use './slider' as *;
+@use './snackbar' as *;
+@use './sparkline' as *;
+@use './splitter' as *;
+@use './switch' as *;
+@use './tabs' as *;
+@use './time-picker' as *;
+@use './toast' as *;
+@use './tooltip' as *;
+@use './tree' as *;
+@use './watermark' as *;
 
 /// The default schema. Used to create Material Design themes.
 /// Use with light palettes.
 /// @type Map
-/// @property {Map} igx-avatar [$_light-avatar]
-/// @property {Map} igx-action-strip [$_light-action-strip]
-/// @property {Map} igx-badge [$_light-badge]
-/// @property {Map} igx-banner [$_light-banner]
-/// @property {Map} igx-bottom-nav [$_light-bottom-nav]
-/// @property {Map} igx-button [$_light-button]
-/// @property {Map} igx-button-group [$_light-button-group]
-/// @property {Map} igx-calendar [$_light-calendar]
-/// @property {Map} igx-card [$_light-card]
-/// @property {Map} igx-carousel [$_light-carousel]
-/// @property {Map} category-chart [$_light-category-chart]
-/// @property {Map} data-chart [$_light-data-chart]
-/// @property {Map} doughnut-chart [$_light-dough-chart]
-/// @property {Map} funnel-chart [$_light-funnel-chart]
-/// @property {Map} igx-checkbox [$_light-checkbox]
-/// @property {Map} igx-chip [$_light-chip]
-/// @property {Map} igx-column-actions [$_light-column-actions]
-/// @property {Map} igx-combo [$_light-combo]
-/// @property {Map} igx-dialog [$_light-dialog]
-/// @property {Map} igx-date-range-picker [$_light-date-range-picker ]
-/// @property {Map} igx-divider [$_light-divider]
-/// @property {Map} igc-dockmanager [$_light-dock-manager]
-/// @property {Map} igx-drop-down [$_light-drop-down]
-/// @property {Map} igx-expansion-panel [$_light-expansion-panel]
-/// @property {Map} linear-gauge [$_light-linear-gauge]
-/// @property {Map} radial-gauge [$_light-radial-gauge]
-/// @property {Map} financial-chart [$_light-financial-chart]
-/// @property {Map} bullet-graph [$_light-graph]
-/// @property {Map} igx-grid [$_light-grid]
-/// @property {Map} igx-grid-filtering [$_light-grid-filtering]
-/// @property {Map} igx-paginator [$_light-pagination]
-/// @property {Map} igx-grid-summary [$_light-grid-summary]
-/// @property {Map} igx-grid-toolbar [$_light-grid-toolbar]
-/// @property {Map} igx-highlight [$_light-highlight]
-/// @property {Map} igx-icon [$_light-icon]
-/// @property {Map} igx-input-group [$_light-input-group]
-/// @property {Map} igx-list [$_light-list]
-/// @property {Map} geo-map [$_light-geo-map]
-/// @property {Map} igx-navbar [$_light-navbar]
-/// @property {Map} igx-nav-drawer [$_light-nav-drawer]
-/// @property {Map} igx-overlay [$_light-overlay]
-/// @property {Map} pie-chart [$_light-pie-chart]
-/// @property {Map} igx-progress-linear [$_light-progress-linear]
-/// @property {Map} igx-progress-circular [$_light-progress-circular]
-/// @property {Map} igx-radio [$_light-radio]
-/// @property {Map} igx-ripple [$_light-ripple]
-/// @property {Map} igx-scrollbar [$_light-scrollbar]
-/// @property {Map} shape-chart [$_light-shape-chart]
-/// @property {Map} igx-slider [$_light-slider]
-/// @property {Map} igx-snackbar [$_light-snackbar]
-/// @property {Map} sparkline [$_light-sparkline]
-/// @property {Map} igx-splitter [$_light-splitter]
-/// @property {Map} igx-switch [$_light-switch]
-/// @property {Map} igx-tabs [$_light-tabs]
-/// @property {Map} igx-time-picker [$_light-time-picker]
-/// @property {Map} igx-toast [$_light-toast]
-/// @property {Map} igx-tooltip [$_light-tooltip]
-/// @property {Map} igx-tree [$_light-tree]
+/// @property {Map} igx-avatar [$light-avatar]
+/// @property {Map} igx-action-strip [$light-action-strip]
+/// @property {Map} igx-badge [$light-badge]
+/// @property {Map} igx-banner [$light-banner]
+/// @property {Map} igx-bottom-nav [$light-bottom-nav]
+/// @property {Map} igx-button [$light-button]
+/// @property {Map} igx-button-group [$light-button-group]
+/// @property {Map} igx-calendar [$light-calendar]
+/// @property {Map} igx-card [$light-card]
+/// @property {Map} igx-carousel [$light-carousel]
+/// @property {Map} category-chart [$light-category-chart]
+/// @property {Map} data-chart [$light-data-chart]
+/// @property {Map} doughnut-chart [$light-dough-chart]
+/// @property {Map} funnel-chart [$light-funnel-chart]
+/// @property {Map} igx-checkbox [$light-checkbox]
+/// @property {Map} igx-chip [$light-chip]
+/// @property {Map} igx-column-actions [$light-column-actions]
+/// @property {Map} igx-combo [$light-combo]
+/// @property {Map} igx-dialog [$light-dialog]
+/// @property {Map} igx-date-range-picker [$light-date-range-picker ]
+/// @property {Map} igx-divider [$light-divider]
+/// @property {Map} igc-dockmanager [$light-dock-manager]
+/// @property {Map} igx-drop-down [$light-drop-down]
+/// @property {Map} igx-expansion-panel [$light-expansion-panel]
+/// @property {Map} linear-gauge [$light-linear-gauge]
+/// @property {Map} radial-gauge [$light-radial-gauge]
+/// @property {Map} financial-chart [$light-financial-chart]
+/// @property {Map} bullet-graph [$light-graph]
+/// @property {Map} igx-grid [$light-grid]
+/// @property {Map} igx-grid-filtering [$light-grid-filtering]
+/// @property {Map} igx-paginator [$light-pagination]
+/// @property {Map} igx-grid-summary [$light-grid-summary]
+/// @property {Map} igx-grid-toolbar [$light-grid-toolbar]
+/// @property {Map} igx-highlight [$light-highlight]
+/// @property {Map} igx-icon [$light-icon]
+/// @property {Map} igx-input-group [$light-input-group]
+/// @property {Map} igx-list [$light-list]
+/// @property {Map} geo-map [$light-geo-map]
+/// @property {Map} igx-navbar [$light-navbar]
+/// @property {Map} igx-nav-drawer [$light-nav-drawer]
+/// @property {Map} igx-overlay [$light-overlay]
+/// @property {Map} pie-chart [$light-pie-chart]
+/// @property {Map} igx-progress-linear [$light-progress-linear]
+/// @property {Map} igx-progress-circular [$light-progress-circular]
+/// @property {Map} igx-radio [$light-radio]
+/// @property {Map} igx-ripple [$light-ripple]
+/// @property {Map} igx-scrollbar [$light-scrollbar]
+/// @property {Map} shape-chart [$light-shape-chart]
+/// @property {Map} igx-slider [$light-slider]
+/// @property {Map} igx-snackbar [$light-snackbar]
+/// @property {Map} sparkline [$light-sparkline]
+/// @property {Map} igx-splitter [$light-splitter]
+/// @property {Map} igx-switch [$light-switch]
+/// @property {Map} igx-tabs [$light-tabs]
+/// @property {Map} igx-time-picker [$light-time-picker]
+/// @property {Map} igx-toast [$light-toast]
+/// @property {Map} igx-tooltip [$light-tooltip]
+/// @property {Map} igx-tree [$light-tree]
 $light-schema: (
-    igx-avatar: $_light-avatar,
-    igx-action-strip: $_light-action-strip,
-    igx-badge: $_light-badge,
-    igx-banner: $_light-banner,
-    igx-bottom-nav: $_light-bottom-nav,
-    igx-button: $_light-button,
-    igx-button-group: $_light-button-group,
-    igx-calendar: $_light-calendar,
-    igx-card: $_light-card,
-    igx-carousel: $_light-carousel,
-    category-chart: $_light-category-chart,
-    data-chart: $_light-data-chart,
-    doughnut-chart: $_light-doughnut-chart,
-    funnel-chart: $_light-funnel-chart,
-    igx-checkbox: $_light-checkbox,
-    igx-chip: $_light-chip,
-    igx-column-actions: $_light-column-actions,
-    igx-combo: $_light-combo,
-    igx-dialog: $_light-dialog,
-    igx-date-range: $_light-date-range-picker,
-    igx-divider: $_light-divider,
-    igc-dockmanager: $_light-dock-manager,
-    igx-drop-down: $_light-drop-down,
-    igx-expansion-panel: $_light-expansion-panel,
-    linear-gauge: $_light-linear-gauge,
-    radial-gauge: $_light-radial-gauge,
-    financial-chart: $_light-financial-chart,
-    bullet-graph: $_light-graph,
-    igx-grid: $_light-grid,
-    igx-grid-filtering: $_light-grid-filtering,
-    igx-paginator: $_light-pagination,
-    igx-grid-summary: $_light-grid-summary,
-    igx-grid-toolbar: $_light-grid-toolbar,
-    igx-highlight: $_light-highlight,
-    igx-icon: $_light-icon,
-    igx-input-group: $_light-input-group,
-    igx-list: $_light-list,
-    geo-map: $_light-geo-map,
-    igx-navbar: $_light-navbar,
-    igx-nav-drawer: $_light-navdrawer,
-    igx-overlay: $_light-overlay,
-    igx-linear-bar: $_light-progress-linear,
-    igx-circular-bar: $_light-progress-circular,
-    pie-chart: $_light-pie-chart,
-    igx-radio: $_light-radio,
-    igx-ripple: $_light-ripple,
-    shape-chart: $_light-shape-chart,
-    igx-scrollbar: $_light-scrollbar,
-    igx-slider: $_light-slider,
-    igx-snackbar: $_light-snackbar,
-    sparkline: $_light-sparkline,
-    igx-splitter: $_light-splitter,
-    igx-switch: $_light-switch,
-    igx-tabs: $_light-tabs,
-    igx-time-picker: $_light-time-picker,
-    igx-toast: $_light-toast,
-    igx-tooltip: $_light-tooltip,
-    igx-tree: $_light-tree,
-    igx-watermark: $_light-watermark
+    igx-avatar: $light-avatar,
+    igx-action-strip: $light-action-strip,
+    igx-badge: $light-badge,
+    igx-banner: $light-banner,
+    igx-bottom-nav: $light-bottom-nav,
+    igx-button: $light-button,
+    igx-button-group: $light-button-group,
+    igx-calendar: $light-calendar,
+    igx-card: $light-card,
+    igx-carousel: $light-carousel,
+    category-chart: $light-category-chart,
+    data-chart: $light-data-chart,
+    doughnut-chart: $light-doughnut-chart,
+    funnel-chart: $light-funnel-chart,
+    igx-checkbox: $light-checkbox,
+    igx-chip: $light-chip,
+    igx-column-actions: $light-column-actions,
+    igx-combo: $light-combo,
+    igx-dialog: $light-dialog,
+    igx-date-range: $light-date-range-picker,
+    igx-divider: $light-divider,
+    igc-dockmanager: $light-dock-manager,
+    igx-drop-down: $light-drop-down,
+    igx-expansion-panel: $light-expansion-panel,
+    linear-gauge: $light-linear-gauge,
+    radial-gauge: $light-radial-gauge,
+    financial-chart: $light-financial-chart,
+    bullet-graph: $light-graph,
+    igx-grid: $light-grid,
+    igx-grid-filtering: $light-grid-filtering,
+    igx-paginator: $light-pagination,
+    igx-grid-summary: $light-grid-summary,
+    igx-grid-toolbar: $light-grid-toolbar,
+    igx-highlight: $light-highlight,
+    igx-icon: $light-icon,
+    igx-input-group: $light-input-group,
+    igx-list: $light-list,
+    geo-map: $light-geo-map,
+    igx-navbar: $light-navbar,
+    igx-nav-drawer: $light-navdrawer,
+    igx-overlay: $light-overlay,
+    igx-linear-bar: $light-progress-linear,
+    igx-circular-bar: $light-progress-circular,
+    pie-chart: $light-pie-chart,
+    igx-radio: $light-radio,
+    igx-ripple: $light-ripple,
+    shape-chart: $light-shape-chart,
+    igx-scrollbar: $light-scrollbar,
+    igx-slider: $light-slider,
+    igx-snackbar: $light-snackbar,
+    sparkline: $light-sparkline,
+    igx-splitter: $light-splitter,
+    igx-switch: $light-switch,
+    igx-tabs: $light-tabs,
+    igx-time-picker: $light-time-picker,
+    igx-toast: $light-toast,
+    igx-tooltip: $light-tooltip,
+    igx-tree: $light-tree,
+    igx-watermark: $light-watermark,
 );
 
 /// An alias of $light-schema.
@@ -194,194 +194,194 @@ $light-material-schema: $light-schema;
 /// Use in combination with light palettes.
 /// @type Map
 $light-fluent-schema: (
-    igx-avatar: $_fluent-avatar,
-    igx-action-strip: $_fluent-action-strip,
-    igx-badge: $_fluent-badge,
-    igx-banner: $_fluent-banner,
-    igx-bottom-nav: $_fluent-bottom-nav,
-    igx-button: $_fluent-button,
-    igx-button-group: $_fluent-button-group,
-    igx-calendar: $_fluent-calendar,
-    igx-card: $_fluent-card,
-    igx-carousel: $_fluent-carousel,
-    category-chart: $_fluent-category-chart,
-    igx-checkbox: $_fluent-checkbox,
-    igx-chip: $_fluent-chip,
-    igx-column-actions: $_fluent-column-actions,
-    igx-combo: $_fluent-combo,
-    igx-dialog: $_fluent-dialog,
-    data-chart: $_fluent-data-chart,
-    doughnut-chart: $_fluent-doughnut-chart,
-    funnel-chart: $_fluent-funnel-chart,
-    igx-date-range: $_fluent-date-range-picker,
-    igx-divider: $_fluent-divider,
-    igc-dockmanager: $_fluent-dock-manager,
-    igx-drop-down: $_fluent-drop-down,
-    igx-expansion-panel: $_fluent-expansion-panel,
-    linear-gauge: $_fluent-linear-gauge,
-    radial-gauge: $_fluent-radial-gauge,
-    financial-chart: $_fluent-financial-chart,
-    bullet-graph: $_fluent-graph,
-    igx-grid: $_fluent-grid,
-    igx-grid-filtering: $_fluent-grid-filtering,
-    igx-paginator: $_fluent-pagination,
-    igx-grid-summary: $_fluent-grid-summary,
-    igx-grid-toolbar: $_fluent-grid-toolbar,
-    igx-highlight: $_fluent-highlight,
-    igx-icon: $_fluent-icon,
-    igx-input-group: $_fluent-input-group,
-    igx-list: $_fluent-list,
-    geo-map: $_fluent-geo-map,
-    igx-navbar: $_fluent-navbar,
-    igx-nav-drawer: $_fluent-navdrawer,
-    igx-overlay: $_fluent-overlay,
-    igx-linear-bar: $_fluent-progress-linear,
-    igx-circular-bar: $_fluent-progress-circular,
-    pie-chart: $_fluent-pie-chart,
-    igx-radio: $_fluent-radio,
-    igx-ripple: $_fluent-ripple,
-    shape-chart: $_fluent-shape-chart,
-    igx-scrollbar: $_fluent-scrollbar,
-    igx-slider: $_fluent-slider,
-    igx-snackbar: $_fluent-snackbar,
-    sparkline: $_fluent-sparkline,
-    igx-splitter: $_fluent-splitter,
-    igx-switch: $_fluent-switch,
-    igx-tabs: $_fluent-tabs,
-    igx-time-picker: $_fluent-time-picker,
-    igx-toast: $_fluent-toast,
-    igx-tooltip: $_fluent-tooltip,
-    igx-tree: $_fluent-tree,
-    igx-watermark: $_fluent-watermark
+    igx-avatar: $fluent-avatar,
+    igx-action-strip: $fluent-action-strip,
+    igx-badge: $fluent-badge,
+    igx-banner: $fluent-banner,
+    igx-bottom-nav: $fluent-bottom-nav,
+    igx-button: $fluent-button,
+    igx-button-group: $fluent-button-group,
+    igx-calendar: $fluent-calendar,
+    igx-card: $fluent-card,
+    igx-carousel: $fluent-carousel,
+    category-chart: $fluent-category-chart,
+    igx-checkbox: $fluent-checkbox,
+    igx-chip: $fluent-chip,
+    igx-column-actions: $fluent-column-actions,
+    igx-combo: $fluent-combo,
+    igx-dialog: $fluent-dialog,
+    data-chart: $fluent-data-chart,
+    doughnut-chart: $fluent-doughnut-chart,
+    funnel-chart: $fluent-funnel-chart,
+    igx-date-range: $fluent-date-range-picker,
+    igx-divider: $fluent-divider,
+    igc-dockmanager: $fluent-dock-manager,
+    igx-drop-down: $fluent-drop-down,
+    igx-expansion-panel: $fluent-expansion-panel,
+    linear-gauge: $fluent-linear-gauge,
+    radial-gauge: $fluent-radial-gauge,
+    financial-chart: $fluent-financial-chart,
+    bullet-graph: $fluent-graph,
+    igx-grid: $fluent-grid,
+    igx-grid-filtering: $fluent-grid-filtering,
+    igx-paginator: $fluent-pagination,
+    igx-grid-summary: $fluent-grid-summary,
+    igx-grid-toolbar: $fluent-grid-toolbar,
+    igx-highlight: $fluent-highlight,
+    igx-icon: $fluent-icon,
+    igx-input-group: $fluent-input-group,
+    igx-list: $fluent-list,
+    geo-map: $fluent-geo-map,
+    igx-navbar: $fluent-navbar,
+    igx-nav-drawer: $fluent-navdrawer,
+    igx-overlay: $fluent-overlay,
+    igx-linear-bar: $fluent-progress-linear,
+    igx-circular-bar: $fluent-progress-circular,
+    pie-chart: $fluent-pie-chart,
+    igx-radio: $fluent-radio,
+    igx-ripple: $fluent-ripple,
+    shape-chart: $fluent-shape-chart,
+    igx-scrollbar: $fluent-scrollbar,
+    igx-slider: $fluent-slider,
+    igx-snackbar: $fluent-snackbar,
+    sparkline: $fluent-sparkline,
+    igx-splitter: $fluent-splitter,
+    igx-switch: $fluent-switch,
+    igx-tabs: $fluent-tabs,
+    igx-time-picker: $fluent-time-picker,
+    igx-toast: $fluent-toast,
+    igx-tooltip: $fluent-tooltip,
+    igx-tree: $fluent-tree,
+    igx-watermark: $fluent-watermark,
 );
 
 /// Used to create bootstrap component themes.
 /// Use in combination with light palettes.
 /// @type Map
 $light-bootstrap-schema: (
-    igx-avatar: $_bootstrap-avatar,
-    igx-action-strip: $_bootstrap-action-strip,
-    igx-badge: $_bootstrap-badge,
-    igx-banner: $_bootstrap-banner,
-    igx-bottom-nav: $_bootstrap-bottom-nav,
-    igx-button: $_bootstrap-button,
-    igx-button-group: $_bootstrap-button-group,
-    igx-calendar: $_bootstrap-calendar,
-    igx-card: $_bootstrap-card,
-    igx-carousel: $_bootstrap-carousel,
-    category-chart: $_bootstrap-category-chart,
-    igx-checkbox: $_bootstrap-checkbox,
-    igx-chip: $_bootstrap-chip,
-    igx-column-actions: $_bootstrap-column-actions,
-    igx-combo: $_bootstrap-combo,
-    igx-dialog: $_bootstrap-dialog,
-    data-chart: $_bootstrap-data-chart,
-    doughnut-chart: $_bootstrap-doughnut-chart,
-    funnel-chart: $_bootstrap-funnel-chart,
-    igx-date-range: $_bootstrap-date-range-picker,
-    igx-divider: $_bootstrap-divider,
-    igc-dockmanager: $_bootstrap-dock-manager,
-    igx-drop-down: $_bootstrap-drop-down,
-    igx-expansion-panel: $_bootstrap-expansion-panel,
-    linear-gauge: $_bootstrap-linear-gauge,
-    radial-gauge: $_bootstrap-radial-gauge,
-    financial-chart: $_bootstrap-financial-chart,
-    bullet-graph: $_bootstrap-graph,
-    igx-grid: $_bootstrap-grid,
-    igx-grid-filtering: $_bootstrap-grid-filtering,
-    igx-paginator: $_bootstrap-pagination,
-    igx-grid-summary: $_bootstrap-grid-summary,
-    igx-grid-toolbar: $_bootstrap-grid-toolbar,
-    igx-highlight: $_bootstrap-highlight,
-    igx-icon: $_bootstrap-icon,
-    igx-input-group: $_bootstrap-input-group,
-    igx-list: $_bootstrap-list,
-    geo-map: $_bootstrap-geo-map,
-    igx-navbar: $_bootstrap-navbar,
-    igx-nav-drawer: $_bootstrap-navdrawer,
-    igx-overlay: $_bootstrap-overlay,
-    igx-linear-bar: $_bootstrap-progress-linear,
-    igx-circular-bar: $_bootstrap-progress-circular,
-    pie-chart: $_bootstrap-pie-chart,
-    igx-radio: $_bootstrap-radio,
-    igx-ripple: $_bootstrap-ripple,
-    shape-chart: $_bootstrap-shape-chart,
-    igx-scrollbar: $_bootstrap-scrollbar,
-    igx-slider: $_bootstrap-slider,
-    igx-snackbar: $_bootstrap-snackbar,
-    sparkline: $_bootstrap-sparkline,
-    igx-splitter: $_bootstrap-splitter,
-    igx-switch: $_bootstrap-switch,
-    igx-tabs: $_bootstrap-tabs,
-    igx-time-picker: $_bootstrap-time-picker,
-    igx-toast: $_bootstrap-toast,
-    igx-tooltip: $_bootstrap-tooltip,
-    igx-tree: $_bootstrap-tree,
-    igx-watermark: $_bootstrap-watermark
+    igx-avatar: $bootstrap-avatar,
+    igx-action-strip: $bootstrap-action-strip,
+    igx-badge: $bootstrap-badge,
+    igx-banner: $bootstrap-banner,
+    igx-bottom-nav: $bootstrap-bottom-nav,
+    igx-button: $bootstrap-button,
+    igx-button-group: $bootstrap-button-group,
+    igx-calendar: $bootstrap-calendar,
+    igx-card: $bootstrap-card,
+    igx-carousel: $bootstrap-carousel,
+    category-chart: $bootstrap-category-chart,
+    igx-checkbox: $bootstrap-checkbox,
+    igx-chip: $bootstrap-chip,
+    igx-column-actions: $bootstrap-column-actions,
+    igx-combo: $bootstrap-combo,
+    igx-dialog: $bootstrap-dialog,
+    data-chart: $bootstrap-data-chart,
+    doughnut-chart: $bootstrap-doughnut-chart,
+    funnel-chart: $bootstrap-funnel-chart,
+    igx-date-range: $bootstrap-date-range-picker,
+    igx-divider: $bootstrap-divider,
+    igc-dockmanager: $bootstrap-dock-manager,
+    igx-drop-down: $bootstrap-drop-down,
+    igx-expansion-panel: $bootstrap-expansion-panel,
+    linear-gauge: $bootstrap-linear-gauge,
+    radial-gauge: $bootstrap-radial-gauge,
+    financial-chart: $bootstrap-financial-chart,
+    bullet-graph: $bootstrap-graph,
+    igx-grid: $bootstrap-grid,
+    igx-grid-filtering: $bootstrap-grid-filtering,
+    igx-paginator: $bootstrap-pagination,
+    igx-grid-summary: $bootstrap-grid-summary,
+    igx-grid-toolbar: $bootstrap-grid-toolbar,
+    igx-highlight: $bootstrap-highlight,
+    igx-icon: $bootstrap-icon,
+    igx-input-group: $bootstrap-input-group,
+    igx-list: $bootstrap-list,
+    geo-map: $bootstrap-geo-map,
+    igx-navbar: $bootstrap-navbar,
+    igx-nav-drawer: $bootstrap-navdrawer,
+    igx-overlay: $bootstrap-overlay,
+    igx-linear-bar: $bootstrap-progress-linear,
+    igx-circular-bar: $bootstrap-progress-circular,
+    pie-chart: $bootstrap-pie-chart,
+    igx-radio: $bootstrap-radio,
+    igx-ripple: $bootstrap-ripple,
+    shape-chart: $bootstrap-shape-chart,
+    igx-scrollbar: $bootstrap-scrollbar,
+    igx-slider: $bootstrap-slider,
+    igx-snackbar: $bootstrap-snackbar,
+    sparkline: $bootstrap-sparkline,
+    igx-splitter: $bootstrap-splitter,
+    igx-switch: $bootstrap-switch,
+    igx-tabs: $bootstrap-tabs,
+    igx-time-picker: $bootstrap-time-picker,
+    igx-toast: $bootstrap-toast,
+    igx-tooltip: $bootstrap-tooltip,
+    igx-tree: $bootstrap-tree,
+    igx-watermark: $bootstrap-watermark,
 );
 
 /// Used to create indigo component themes.
 /// Use in combination with light palettes.
 /// @type Map
 $light-indigo-schema: (
-    igx-avatar: $_indigo-avatar,
-    igx-action-strip: $_indigo-action-strip,
-    igx-badge: $_indigo-badge,
-    igx-banner: $_indigo-banner,
-    igx-bottom-nav: $_indigo-bottom-nav,
-    igx-button: $_indigo-button,
-    igx-button-group: $_indigo-button-group,
-    igx-calendar: $_indigo-calendar,
-    igx-card: $_indigo-card,
-    igx-carousel: $_indigo-carousel,
-    category-chart: $_indigo-category-chart,
-    igx-checkbox: $_indigo-checkbox,
-    igx-chip: $_indigo-chip,
-    igx-column-actions: $_bootstrap-column-actions,
-    igx-combo: $_indigo-combo,
-    igx-dialog: $_indigo-dialog,
-    data-chart: $_indigo-data-chart,
-    doughnut-chart: $_indigo-doughnut-chart,
-    funnel-chart: $_indigo-funnel-chart,
-    igx-date-range: $_indigo-date-range-picker,
-    igx-drop-down: $_indigo-drop-down,
-    igx-divider: $_indigo-divider,
-    igc-dockmanager: $_indigo-dock-manager,
-    igx-expansion-panel: $_indigo-expansion-panel,
-    linear-gauge: $_indigo-linear-gauge,
-    radial-gauge: $_indigo-radial-gauge,
-    financial-chart: $_indigo-financial-chart,
-    bullet-graph: $_indigo-graph,
-    igx-grid: $_indigo-grid,
-    igx-grid-filtering: $_indigo-grid-filtering,
-    igx-paginator: $_indigo-pagination,
-    igx-grid-summary: $_indigo-grid-summary,
-    igx-grid-toolbar: $_indigo-grid-toolbar,
-    igx-highlight: $_indigo-highlight,
-    igx-icon: $_indigo-icon,
-    igx-input-group: $_indigo-input-group,
-    igx-list: $_indigo-list,
-    geo-map: $_indigo-geo-map,
-    igx-navbar: $_indigo-navbar,
-    igx-nav-drawer: $_indigo-navdrawer,
-    igx-overlay: $_indigo-overlay,
-    igx-linear-bar: $_indigo-progress-linear,
-    igx-circular-bar: $_indigo-progress-circular,
-    pie-chart: $_indigo-pie-chart,
-    igx-radio: $_indigo-radio,
-    shape-chart: $_indigo-shape-chart,
-    igx-ripple: $_indigo-ripple,
-    igx-scrollbar: $_indigo-scrollbar,
-    igx-slider: $_indigo-slider,
-    igx-snackbar: $_indigo-snackbar,
-    sparkline: $_indigo-sparkline,
-    igx-splitter: $_indigo-splitter,
-    igx-switch: $_indigo-switch,
-    igx-tabs: $_indigo-tabs,
-    igx-time-picker: $_indigo-time-picker,
-    igx-toast: $_indigo-toast,
-    igx-tooltip: $_indigo-tooltip,
-    igx-tree: $_indigo-tree,
-    igx-watermark: $_indigo-watermark
+    igx-avatar: $indigo-avatar,
+    igx-action-strip: $indigo-action-strip,
+    igx-badge: $indigo-badge,
+    igx-banner: $indigo-banner,
+    igx-bottom-nav: $indigo-bottom-nav,
+    igx-button: $indigo-button,
+    igx-button-group: $indigo-button-group,
+    igx-calendar: $indigo-calendar,
+    igx-card: $indigo-card,
+    igx-carousel: $indigo-carousel,
+    category-chart: $indigo-category-chart,
+    igx-checkbox: $indigo-checkbox,
+    igx-chip: $indigo-chip,
+    igx-column-actions: $bootstrap-column-actions,
+    igx-combo: $indigo-combo,
+    igx-dialog: $indigo-dialog,
+    data-chart: $indigo-data-chart,
+    doughnut-chart: $indigo-doughnut-chart,
+    funnel-chart: $indigo-funnel-chart,
+    igx-date-range: $indigo-date-range-picker,
+    igx-drop-down: $indigo-drop-down,
+    igx-divider: $indigo-divider,
+    igc-dockmanager: $indigo-dock-manager,
+    igx-expansion-panel: $indigo-expansion-panel,
+    linear-gauge: $indigo-linear-gauge,
+    radial-gauge: $indigo-radial-gauge,
+    financial-chart: $indigo-financial-chart,
+    bullet-graph: $indigo-graph,
+    igx-grid: $indigo-grid,
+    igx-grid-filtering: $indigo-grid-filtering,
+    igx-paginator: $indigo-pagination,
+    igx-grid-summary: $indigo-grid-summary,
+    igx-grid-toolbar: $indigo-grid-toolbar,
+    igx-highlight: $indigo-highlight,
+    igx-icon: $indigo-icon,
+    igx-input-group: $indigo-input-group,
+    igx-list: $indigo-list,
+    geo-map: $indigo-geo-map,
+    igx-navbar: $indigo-navbar,
+    igx-nav-drawer: $indigo-navdrawer,
+    igx-overlay: $indigo-overlay,
+    igx-linear-bar: $indigo-progress-linear,
+    igx-circular-bar: $indigo-progress-circular,
+    pie-chart: $indigo-pie-chart,
+    igx-radio: $indigo-radio,
+    shape-chart: $indigo-shape-chart,
+    igx-ripple: $indigo-ripple,
+    igx-scrollbar: $indigo-scrollbar,
+    igx-slider: $indigo-slider,
+    igx-snackbar: $indigo-snackbar,
+    sparkline: $indigo-sparkline,
+    igx-splitter: $indigo-splitter,
+    igx-switch: $indigo-switch,
+    igx-tabs: $indigo-tabs,
+    igx-time-picker: $indigo-time-picker,
+    igx-toast: $indigo-toast,
+    igx-tooltip: $indigo-tooltip,
+    igx-tree: $indigo-tree,
+    igx-watermark: $indigo-watermark,
 );
 

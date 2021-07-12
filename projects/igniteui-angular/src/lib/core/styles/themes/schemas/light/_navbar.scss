@@ -1,4 +1,5 @@
-@import '../elevation/navbar';
+@use '../../../base' as *;
+@use '../elevation/navbar' as *;
 
 ////
 /// @group schemas
@@ -16,10 +17,10 @@
 /// @prop {Number} elevation [4] - The elevation level, between 0-24, to be used for the navbar.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-elevation-navbar
+/// @requires {Map} $default-elevation-navbar
 /// @see $default-palette
-$_light-navbar: extend(
-    $_default-elevation-navbar,
+$light-navbar: extend(
+    $default-elevation-navbar,
     (
         background: (
             igx-color: ('primary', 500)
@@ -41,9 +42,8 @@ $_light-navbar: extend(
 
 /// Generates a fluent navbar schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-navbar
-$_fluent-navbar: extend($_light-navbar);
+/// @requires {Map} $light-navbar
+$fluent-navbar: $light-navbar;
 
 /// Generates a bootstrap navbar schema.
 /// @type {Map}
@@ -53,11 +53,11 @@ $_fluent-navbar: extend($_light-navbar);
 /// @prop {Map} hover-icon-color [igx-contrast-color: 'surface'] - The navbar hover icon color.
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the navbar.
 /// @requires {function} extend
-/// @requires {Map} $_light-navbar
-/// @requires {Map} $_bootstrap-elevation-navbar
-$_bootstrap-navbar: extend(
-    $_light-navbar,
-    $_bootstrap-elevation-navbar,
+/// @requires {Map} $light-navbar
+/// @requires {Map} $bootstrap-elevation-navbar
+$bootstrap-navbar: extend(
+    $light-navbar,
+    $bootstrap-elevation-navbar,
     (
         background: (
             igx-color: 'surface',
@@ -81,6 +81,6 @@ $_bootstrap-navbar: extend(
 /// @type {Map}
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the navbar.
 /// @requires {function} extend
-/// @requires {Map} $_light-navbar
-/// @requires {Map} $_indigo-elevation-navbar
-$_indigo-navbar: extend($_light-navbar, $_indigo-elevation-navbar);
+/// @requires {Map} $light-navbar
+/// @requires {Map} $indigo-elevation-navbar
+$indigo-navbar: extend($light-navbar, $indigo-elevation-navbar);

@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -45,8 +50,8 @@
     $name: 'igx-snackbar';
     $snackbar-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $snackbar-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $snackbar-schema: map.get($schema, $name);
     } @else {
         $snackbar-schema: $schema;
     }
@@ -54,7 +59,7 @@
     $theme: apply-palette($snackbar-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($snackbar-schema, 'border-radius')), 0, 24px
+        if($border-radius, $border-radius, map.get($snackbar-schema, 'border-radius')), 0, 24px
     );
 
     @if not($button-color) and $background {
@@ -66,7 +71,7 @@
     }
 
     @if not($shadow) {
-        $elevation: map-get($snackbar-schema, 'elevation');
+        $elevation: map.get($snackbar-schema, 'elevation');
         $shadow: igx-elevation($elevations, $elevation);
     }
 
@@ -84,7 +89,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-snackbar($theme) {
     @include igx-css-vars($theme);
     @include fade-in();
@@ -107,11 +112,11 @@
         min-height: $snackbar-min-height;
         padding: $snackbar-padding;
         margin: 8px;
-        color: --var($theme, 'text-color');
-        background: --var($theme, 'background');
+        color: var-get($theme, 'text-color');
+        background: var-get($theme, 'background');
         backface-visibility: hidden;
-        box-shadow: --var($theme, 'shadow');
-        border-radius: --var($theme, 'border-radius');
+        box-shadow: var-get($theme, 'shadow');
+        border-radius: var-get($theme, 'border-radius');
         backdrop-filter: blur(8px);
     }
 
@@ -121,7 +126,7 @@
 
     %igx-snackbar-button {
         background: transparent;
-        color: --var($theme, 'button-color');
+        color: var-get($theme, 'button-color');
         border: 0;
         line-height: $snackbar-button-line-height;
         margin-#{$left}: $snackbar-button-left-margin;
@@ -137,7 +142,7 @@
         @include animation('fade-in' .35s ease-out);
 
         &:hover {
-            color: --var($theme, 'button-color');
+            color: var-get($theme, 'button-color');
         }
     }
 }
@@ -150,7 +155,7 @@
 /// @param {Map} $categories [(text: 'body-2')] - The categories from the typographic scale used for type styles.
 /// @requires {mixin} igx-type-style
 @mixin igx-snackbar-typography($type-scale, $categories: (text: 'body-2')) {
-    $text: map-get($categories, 'text');
+    $text: map.get($categories, 'text');
 
     %igx-snackbar-message {
         @include igx-type-style($type-scale, $text);

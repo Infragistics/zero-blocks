@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -6,1041 +9,1048 @@
 /// @requires {mixin} bem-mod
 /// @requires {mixin} bem-mods
 ////
-@include b(igx-input-group) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %form-group-display !optional;
+@mixin component {
+    @include b(igx-input-group) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon
+            )
+        );
 
-    &:hover {
-        @extend	%form-group-display--hover !optional;
-    }
-
-    @include e(bundle) {
-        @extend %form-group-bundle !optional;
-
-        &:hover {
-            @extend %form-group-bundle--hover !optional;
-        }
-    }
-
-    @include e(bundle-main) {
-        @extend %form-group-bundle-main !optional;
-    }
-
-    @include e(label) {
-        @extend %form-group-label !optional;
-    }
-
-    @include e(input) {
-        @extend %form-group-input !optional;
-        @extend %chrome-autofill-fix !optional;
-        @extend %edge-clear-icon-fix !optional;
-
-        &:hover {
-            @extend %form-group-input--hover !optional;
-        }
-
-        &:focus {
-            @extend %form-group-input--focus !optional;
-        }
-    }
-
-    @include e(file-input) {
-        @extend %form-group-file-input !optional;
-
-        &:hover {
-            @extend %form-group-input--hover !optional;
-        }
-
-        &:focus {
-            @extend %form-group-input--focus !optional;
-        }
-    }
-
-    @include e(clear-icon) {
-        @extend %form-group-clear-icon !optional;
-    }
-
-    @include e(upload-button) {
-        @extend %form-group-upload-button !optional;
-    }
-
-    @include e(textarea) {
-        @extend %form-group-input !optional;
-        @extend %form-group-textarea !optional;
-
-        &:hover {
-            @extend %form-group-input--hover !optional;
-        }
-
-        &:focus {
-            @extend %form-group-input--focus !optional;
-        }
-    }
-
-    @include e(border) {
-        @extend %form-group-border !optional;
-    }
-
-    @include e(hint) {
-        @extend %form-group-helper !optional;
-    }
-
-    @include e(hint-item, $m: start) {
-        @extend %form-group-helper-item !optional;
-        @extend %form-group-helper-item--start !optional;
-    }
-
-    @include e(hint-item, $m: end) {
-        @extend %form-group-helper-item !optional;
-        @extend %form-group-helper-item--end !optional;
-    }
-
-    @include m(focused) {
         @extend %form-group-display !optional;
 
-        @include e(bundle) {
-            @extend %form-group-bundle--focus	!optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--float !optional;
-            @extend %form-group-label--focus !optional;
-        }
-
-        @include e(border) {
-            @extend %form-group-border--focus !optional;
-        }
-    }
-
-    @include m(placeholder) {
-        @include e(label) {
-            @extend %form-group-label--float !optional;
-            @extend %form-group-label--fixed !optional;
-        }
-    }
-
-    @include m(filled) {
-        @include e(label) {
-            @extend %form-group-label--float !optional;
-        }
-    }
-
-    @include m(file) {
-        @include e(label) {
-            @extend %form-group-label--float !optional;
-        }
-    }
-
-    @include m(required) {
-        @include e(label) {
-            @extend %form-group-label--required !optional;
-        }
-    }
-
-    @include m(invalid) {
-        @extend %form-group-display--error !optional;
-
-        @include e(label) {
-            @extend %form-group-label--error !optional;
-        }
-
-        @include e(border) {
-            @extend %form-group-border--error !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-helper--error !optional;
+        &:hover {
+            @extend	%form-group-display--hover !optional;
         }
 
         @include e(bundle) {
-            @extend %form-group-bundle--error !optional;
-        }
-    }
-
-    @include m(valid) {
-        @include e(label) {
-            @extend %form-group-label--success !optional;
-        }
-
-        @include e(border) {
-            @extend %form-group-border--success !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-helper--success !optional;
-        }
-
-        @include e(bundle) {
-            @extend %form-group-bundle--success !optional;
-        }
-    }
-
-    @include m(disabled) {
-        @extend %form-group-display--disabled !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--disabled !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--fixed !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--disabled !optional;
-        }
-
-        @include e(textarea) {
-            @extend %form-group-textarea--disabled !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-input--disabled !optional;
-        }
-    }
-
-    @include mx(disabled, required) {
-        @extend %form-group-display--disabled !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--disabled !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--fixed !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--disabled !optional;
-        }
-
-        @include e(textarea) {
-            @extend %form-group-textarea--disabled !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-input--disabled !optional;
-        }
-    }
-
-    @include m(cosy) {
-        @extend %form-group-display--cosy !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--cosy !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--cosy !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--cosy !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-file-input--cosy !optional;
-        }
-
-        @include e(textarea) {
-            @extend %form-group-textarea--cosy !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-hint--cosy !optional;
-        }
-    }
-
-    @include m(compact) {
-        @extend %form-group-display--compact !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--compact !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--compact !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--compact !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-file-input--compact !optional;
-        }
-
-        @include e(textarea) {
-            @extend %form-group-textarea--compact !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-hint--compact !optional;
-        }
-    }
-
-    @include m(box) {
-        @extend %form-group-display--no-margin !optional;
-
-        @include e(wrapper) {
-            @extend %form-group-box-wrapper !optional;
-        }
-
-        @include e(bundle) {
-            @extend %form-group-bundle--box !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--box !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-file-input--box !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--box !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-helper--box !optional;
-        }
-    }
-
-    @include mx(box, cosy) {
-        @extend %form-group-display--no-margin-cosy !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--box-cosy !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-cosy !optional;
-        }
-    }
-
-    @include mx(box, compact) {
-        @extend %form-group-display--no-margin-compact !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--box-compact !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-compact !optional;
-        }
-    }
-
-    @include mx(disabled, box) {
-        @include e(bundle) {
-            @extend %form-group-bundle--box-disabled !optional;
-        }
-    }
-
-    @include m(border) {
-        @extend %form-group-display--no-margin !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--border !optional;
+            @extend %form-group-bundle !optional;
 
             &:hover {
-                @extend %form-group-bundle-border--hover !optional;
+                @extend %form-group-bundle--hover !optional;
             }
         }
 
         @include e(bundle-main) {
-            @extend %form-group-bundle-main--box !optional;
+            @extend %form-group-bundle-main !optional;
         }
 
-        @include e(border) {
-            @extend %form-group-border--hidden !optional;
+        @include e(label) {
+            @extend %form-group-label !optional;
         }
 
         @include e(input) {
-            @extend %form-group-input--border !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-input--border !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--border !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-helper--box !optional;
-        }
-    }
-
-    @include mx(border, filled) {
-        @include e(label) {
-            @extend %form-group-label--float-border !optional;
-        }
-    }
-
-    @include mx(border, file) {
-        @include e(label) {
-            @extend %form-group-label--float-border !optional;
-        }
-    }
-
-    @include mx(border, focused) {
-        @include e(label) {
-            @extend %form-group-label--float-border !optional;
-        }
-    }
-
-    @include mx(border, placeholder) {
-        @include e(label) {
-            @extend %form-group-label--float-border !optional;
-        }
-    }
-
-    @include mx(border, cosy) {
-        @extend %form-group-display--no-margin-cosy !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--border-cosy !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-cosy !optional;
-        }
-    }
-
-    @include mx(border, cosy, filled) {
-        @include e(label) {
-            @extend %form-group-label--float-border-cosy !optional;
-        }
-    }
-
-    @include mx(border, cosy, file) {
-        @include e(label) {
-            @extend %form-group-label--float-border-cosy !optional;
-        }
-    }
-
-    @include mx(border, cosy, focused) {
-        @include e(label) {
-            @extend %form-group-label--float-border-cosy !optional;
-        }
-    }
-
-    @include mx(border, cosy, placeholder) {
-        @include e(label) {
-            @extend %form-group-label--float-border-cosy !optional;
-        }
-    }
-
-    @include mx(border, compact) {
-        @extend %form-group-display--no-margin-compact !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--border-compact !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-compact !optional;
-        }
-    }
-
-    @include mx(border, compact, filled) {
-        @include e(label) {
-            @extend %form-group-label--float-border-compact !optional;
-        }
-    }
-
-    @include mx(border, compact, file) {
-        @include e(label) {
-            @extend %form-group-label--float-border-compact !optional;
-        }
-    }
-
-    @include mx(border, compact, focused) {
-        @include e(label) {
-            @extend %form-group-label--float-border-compact !optional;
-        }
-    }
-
-    @include mx(border, compact, placeholder) {
-        @include e(label) {
-            @extend %form-group-label--float-border-compact !optional;
-        }
-    }
-
-    @include mx(valid, border) {
-        @include e(bundle) {
-            @extend %form-group-bundle-border--success !optional;
-        }
-    }
-
-    @include mx(invalid, border) {
-        @include e(bundle) {
-            @extend %form-group-bundle-border--error !optional;
-        }
-    }
-
-    @include mx(focused, border) {
-        @include e(bundle) {
-            @extend %form-group-bundle-border--focus !optional;
-        }
-    }
-
-    @include mx(disabled, border) {
-        @include e(bundle) {
-            @extend %form-group-bundle-border--disabled !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--float-border-disabled !optional;
-        }
-    }
-
-    // Fluent Theme Start //
-    @include m(fluent) {
-        @extend %igx-input-group-fluent !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--fluent !optional;
+            @extend %form-group-input !optional;
+            @extend %chrome-autofill-fix !optional;
+            @extend %edge-clear-icon-fix !optional;
 
             &:hover {
-                @extend %form-group-bundle--fluent--hover !optional;
-            }
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--fluent !optional;
-        }
-
-        @include e(input) {
-            @extend %fluent-input !optional;
-        }
-
-        @include e(file-input) {
-            @extend %fluent-input !optional;
-        }
-
-        @include e(label) {
-            @extend %fluent-label !optional;
-        }
-
-        @include e(textarea) {
-            @extend %fluent-textarea !optional;
-        }
-    }
-
-    @include mx(placeholder, fluent) {
-        @include e(label) {
-            @extend %fluent-placeholder-label !optional;
-        }
-    }
-
-    @include mx(cosy, fluent) {
-        @extend %igx-input-group-fluent--cosy !optional;
-    }
-
-    @include mx(compact, fluent) {
-        @extend %igx-input-group-fluent--compact !optional;
-    }
-
-    @include mx(disabled, fluent) {
-        @include e(bundle) {
-            @extend %form-group-bundle--fluent-disabled !optional;
-
-            &:hover {
-                @extend %form-group-bundle--fluent--hover-disabled !optional;
-            }
-        }
-
-        @include e(input) {
-            @extend %fluent-input-disabled !optional;
-
-            &:hover {
-                @extend %fluent-input-disabled !optional
+                @extend %form-group-input--hover !optional;
             }
 
             &:focus {
-                @extend %fluent-input-disabled !optional
+                @extend %form-group-input--focus !optional;
             }
         }
 
         @include e(file-input) {
-            @extend %fluent-input-disabled !optional;
+            @extend %form-group-file-input !optional;
 
             &:hover {
-                @extend %fluent-input-disabled !optional
+                @extend %form-group-input--hover !optional;
             }
 
             &:focus {
-                @extend %fluent-input-disabled !optional
+                @extend %form-group-input--focus !optional;
             }
         }
 
-        @include e(label) {
-            @extend %fluent-label-disabled !optional;
-        }
-    }
-
-    @include mx(filled, fluent) {
-        @include e(label) {
-            @extend %fluent-label-filled !optional;
-        }
-    }
-
-    @include mx(file, fluent) {
-        @include e(label) {
-            @extend %fluent-label-filled !optional;
-        }
-    }
-
-    @include mx(focused, fluent) {
-        @include e(bundle) {
-            @extend %form-group-bundle--focus !optional;
-
-            &:hover {
-                @extend %form-group-bundle--fluent--focus !optional;
-            }
+        @include e(clear-icon) {
+            @extend %form-group-clear-icon !optional;
         }
 
-        @include e(label) {
-            @extend %fluent-label-focused !optional;
-        }
-    }
-
-    @include mx(required, fluent) {
-        @include e(bundle) {
-            @extend %form-group-bundle-required--fluent !optional;
-        }
-    }
-
-    @include mx(valid, fluent) {
-        @include e(bundle) {
-            @extend %form-group-bundle-success--fluent !optional;
-
-            &:hover {
-                @extend %form-group-bundle-success--fluent--hover !optional;
-            }
-        }
-
-        @include e(label) {
-            @extend %fluent-label-success !optional;
-        }
-    }
-
-    @include mx(invalid, fluent) {
-        @include e(bundle) {
-            @extend %form-group-bundle-error--fluent !optional;
-
-            &:hover {
-                @extend %form-group-bundle-error--fluent--hover !optional;
-            }
-        }
-
-        @include e(label) {
-            @extend %fluent-label-error !optional;
-        }
-    }
-    // Fluent Theme End //
-
-    // Indigo Theme Start //
-    @include m(indigo) {
-        @extend %form-group-display--no-margin !optional;
-
-        @include e(wrapper) {
-            @extend %form-group-box-wrapper !optional;
-        }
-
-        @include e(bundle) {
-            @extend %form-group-bundle--indigo !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--indigo !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-input--indigo !optional;
-        }
-
-        @include e(label) {
-            @extend %fluent-label !optional;
+        @include e(upload-button) {
+            @extend %form-group-upload-button !optional;
         }
 
         @include e(textarea) {
-            @extend %form-group-textarea--indigo !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-helper--box !optional;
-        }
-    }
-
-    @include mx(indigo, cosy) {
-        @extend %form-group-display--no-margin-cosy !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--box-cosy !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-cosy !optional;
-        }
-
-        @include e(textarea) {
-            @extend %form-group-textarea--indigo-cosy !optional;
-        }
-    }
-
-    @include mx(indigo, compact) {
-        @extend %form-group-display--no-margin-compact !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--box-compact !optional;
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-compact !optional;
-        }
-
-        @include e(textarea) {
-            @extend %form-group-textarea--indigo-compact !optional;
-        }
-    }
-
-    @include mx(indigo, focused) {
-        @include e(bundle) {
-            @extend %indigo--box-focused !optional;
-        }
-    }
-
-    @include mx(indigo, valid) {
-        @include e(bundle) {
-            @extend %form-group-bundle-success--indigo !optional;
-        }
-    }
-
-    @include mx(indigo, invalid) {
-        @include e(bundle) {
-            @extend %form-group-bundle-error--indigo !optional;
+            @extend %form-group-input !optional;
+            @extend %form-group-textarea !optional;
 
             &:hover {
-                @extend %form-group-bundle-error--fluent--hover !optional;
+                @extend %form-group-input--hover !optional;
             }
-        }
-    }
 
-    @include mx(indigo, disabled) {
-        @include e(bundle) {
-            @extend %form-group-bundle--box-disabled !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--disabled !optional;
-        }
-
-        @include e(file-input) {
-            @extend %form-group-input--disabled !optional;
-        }
-
-        @include e(hint) {
-            @extend %form-group-helper--indigo--disabled !optional;
-        }
-    }
-    // Indigo Theme End //
-
-    // Bootstrap Theme Start //
-    @include m(bootstrap) {
-        @extend %form-group-display--bootstrap !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--bootstrap !optional;
-
-            &:hover {
-                @extend %form-group-bundle--bootstrap-hover !optional;
+            &:focus {
+                @extend %form-group-input--focus !optional;
             }
-        }
-
-        @include e(label) {
-            @extend %bootstrap-label !optional;
-        }
-
-        @include e(input) {
-            @extend %bootstrap-input !optional;
-        }
-
-        @include e(file-input) {
-            @extend %bootstrap-file-input !optional;
-        }
-
-        @include e(textarea) {
-            @extend %bootstrap-input !optional;
-        }
-    }
-
-    @include mx(focused, bootstrap) {
-        @include e(input) {
-            @extend %bootstrap-input--focus !optional;
-        }
-
-        @include e(file-input) {
-            @extend %bootstrap-input--focus !optional;
-        }
-
-        @include e(label) {
-            @extend %bootstrap-label !optional;
-        }
-
-
-        @include e(textarea) {
-            @extend %bootstrap-input--focus !optional;
-        }
-    }
-
-    @include mx(valid, bootstrap) {
-        @include e(input) {
-            @extend %bootstrap-input--success !optional;
-
-            &:hover {
-                @extend %bootstrap-input--success !optional;
-            }
-        }
-
-        @include e(file-input) {
-            @extend %bootstrap-input--success !optional;
-
-            &:hover {
-                @extend %bootstrap-input--success !optional;
-            }
-        }
-
-        @include e(label) {
-            @extend %bootstrap-label !optional;
-        }
-
-
-        @include e(textarea) {
-            @extend %bootstrap-input--success !optional;
-
-            &:hover {
-                @extend %bootstrap-input--success !optional;
-            }
-        }
-    }
-
-    @include mx(invalid, bootstrap) {
-        @include e(input) {
-            @extend %bootstrap-input--error !optional;
-
-            &:hover {
-                @extend %bootstrap-input--error !optional;
-            }
-        }
-
-        @include e(file-input) {
-            @extend %bootstrap-input--error !optional;
-
-            &:hover {
-                @extend %bootstrap-input--error !optional;
-            }
-        }
-
-        @include e(label) {
-            @extend %bootstrap-label !optional;
-        }
-
-        @include e(textarea) {
-            @extend %bootstrap-input--error !optional;
-
-            &:hover {
-                @extend %bootstrap-input--error !optional;
-            }
-        }
-    }
-
-    @include mx(search, bootstrap) {
-        @include e(input) {
-            @extend %bootstrap-input--search !optional;
-        }
-    }
-
-    @include mx(disabled, bootstrap) {
-        @include e(bundle) {
-            @extend %form-group-display--disabled-bootstrap !optional;
-        }
-
-        @include e(label) {
-            @extend %bootstrap-label--disabled !optional;
-        }
-
-        @include e(input) {
-            @extend %bootstrap-input--disabled !optional;
-        }
-
-        @include e(file-input) {
-            @extend %bootstrap-input--disabled !optional;
-        }
-
-        @include e(textarea) {
-            @extend %bootstrap-input--disabled !optional;
-        }
-    }
-
-    @include mx(cosy, bootstrap) {
-        @extend %form-group-display--cosy-bootstrap !optional;
-
-        @include e(label) {
-            @extend %bootstrap-label--cosy !optional;
-        }
-
-        @include e(input) {
-            @extend %bootstrap-input--cosy !optional;
-        }
-
-        @include e(textarea) {
-            @extend %bootstrap-input--cosy !optional;
-        }
-    }
-
-    @include mx(compact, bootstrap) {
-        @extend %form-group-display--compact-bootstrap !optional;
-
-        @include e(label) {
-            @extend %bootstrap-label--compact !optional;
-        }
-
-        @include e(input) {
-            @extend %bootstrap-input--compact !optional;
-        }
-
-        @include e(textarea) {
-            @extend %bootstrap-input--compact !optional;
-        }
-    }
-    // Bootstrap Theme End //
-
-    @include m(search) {
-        @extend %form-group-display--no-margin !optional;
-
-        @include e(bundle) {
-            @extend %form-group-bundle--search !optional;
-
-            &:hover {
-                @extend %form-group-bundle-search--hover !optional;
-            }
-        }
-
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box !optional;
         }
 
         @include e(border) {
-            @extend %form-group-border--hidden !optional;
-        }
-
-        @include e(input) {
-            @extend %form-group-input--search !optional;
-        }
-
-        @include e(label) {
-            @extend %form-group-label--search !optional;
+            @extend %form-group-border !optional;
         }
 
         @include e(hint) {
-            @extend %form-group-helper--box !optional;
-        }
-    }
-
-    @include mx(search, cosy) {
-        @extend %form-group-display--no-margin-cosy !optional;
-
-        @include b(bundle) {
-            @extend %form-group-bundle--search-cosy !optional;
+            @extend %form-group-helper !optional;
         }
 
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-cosy !optional;
-        }
-    }
-
-    @include mx(search, compact) {
-        @extend %form-group-display--no-margin-compact !optional;
-
-        @include b(bundle) {
-            @extend %form-group-bundle--search-compact !optional;
+        @include e(hint-item, $m: start) {
+            @extend %form-group-helper-item !optional;
+            @extend %form-group-helper-item--start !optional;
         }
 
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--box-compact !optional;
+        @include e(hint-item, $m: end) {
+            @extend %form-group-helper-item !optional;
+            @extend %form-group-helper-item--end !optional;
         }
-    }
 
-    @include mx(focused, search) {
-        @include e(bundle) {
-            @extend %form-group-bundle-search--focus !optional;
-        }
-    }
+        @include m(focused) {
+            @extend %form-group-display !optional;
 
-    @include mx(disabled, search) {
-        @include e(bundle) {
-            @extend %form-group-bundle-search--disabled !optional;
-        }
-    }
+            @include e(bundle) {
+                @extend %form-group-bundle--focus	!optional;
+            }
 
-    @include mx(search, fluent) {
-        @extend %igx-input-group-fluent-search !optional;
+            @include e(label) {
+                @extend %form-group-label--float !optional;
+                @extend %form-group-label--focus !optional;
+            }
 
-        @include e(bundle) {
-            @extend %form-group-bundle--fluent !optional;
-
-            &:hover {
-                @extend %form-group-bundle--fluent--hover !optional;
+            @include e(border) {
+                @extend %form-group-border--focus !optional;
             }
         }
 
-        @include e(bundle-main) {
-            @extend %form-group-bundle-main--fluent !optional;
+        @include m(placeholder) {
+            @include e(label) {
+                @extend %form-group-label--float !optional;
+                @extend %form-group-label--fixed !optional;
+            }
         }
 
-        @include e(input) {
-            @extend %fluent-input !optional;
+        @include m(filled) {
+            @include e(label) {
+                @extend %form-group-label--float !optional;
+            }
         }
 
-        @include e(label) {
-            @extend %fluent-label !optional;
+        @include m(file) {
+            @include e(label) {
+                @extend %form-group-label--float !optional;
+            }
         }
 
-        @include e(hint) {
-            @extend %form-group-helper--box !optional;
+        @include m(required) {
+            @include e(label) {
+                @extend %form-group-label--required !optional;
+            }
         }
-    }
 
-    @include mx(fluent, search, cosy) {
-        @extend %igx-input-group-fluent-search--cosy !optional;
-    }
+        @include m(invalid) {
+            @extend %form-group-display--error !optional;
 
-    @include mx(fluent, search, compact) {
-        @extend %igx-input-group-fluent-search--compact !optional;
-    }
+            @include e(label) {
+                @extend %form-group-label--error !optional;
+            }
 
-    @include mx(focused, fluent, search) {
-        @extend %igx-input-group-fluent-search--focused !optional;
-    }
+            @include e(border) {
+                @extend %form-group-border--error !optional;
+            }
 
-    @include mx(disabled, fluent, search) {
-        @include e(bundle) {
-            @extend %form-group-bundle-search--disabled !optional;
+            @include e(hint) {
+                @extend %form-group-helper--error !optional;
+            }
+
+            @include e(bundle) {
+                @extend %form-group-bundle--error !optional;
+            }
+        }
+
+        @include m(valid) {
+            @include e(label) {
+                @extend %form-group-label--success !optional;
+            }
+
+            @include e(border) {
+                @extend %form-group-border--success !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--success !optional;
+            }
+
+            @include e(bundle) {
+                @extend %form-group-bundle--success !optional;
+            }
+        }
+
+        @include m(disabled) {
+            @extend %form-group-display--disabled !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--disabled !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--fixed !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--disabled !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--disabled !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-input--disabled !optional;
+            }
+        }
+
+        @include mx(disabled, required) {
+            @extend %form-group-display--disabled !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--disabled !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--fixed !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--disabled !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--disabled !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-input--disabled !optional;
+            }
+        }
+
+        @include m(cosy) {
+            @extend %form-group-display--cosy !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--cosy !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--cosy !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--cosy !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-file-input--cosy !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--cosy !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-hint--cosy !optional;
+            }
+        }
+
+        @include m(compact) {
+            @extend %form-group-display--compact !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--compact !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--compact !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--compact !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-file-input--compact !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--compact !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-hint--compact !optional;
+            }
+        }
+
+        @include m(box) {
+            @extend %form-group-display--no-margin !optional;
+
+            @include e(wrapper) {
+                @extend %form-group-box-wrapper !optional;
+            }
+
+            @include e(bundle) {
+                @extend %form-group-bundle--box !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--box !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-file-input--box !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--box !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--box !optional;
+            }
+        }
+
+        @include mx(box, cosy) {
+            @extend %form-group-display--no-margin-cosy !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--box-cosy !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-cosy !optional;
+            }
+        }
+
+        @include mx(box, compact) {
+            @extend %form-group-display--no-margin-compact !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--box-compact !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-compact !optional;
+            }
+        }
+
+        @include mx(disabled, box) {
+            @include e(bundle) {
+                @extend %form-group-bundle--box-disabled !optional;
+            }
+        }
+
+        @include m(border) {
+            @extend %form-group-display--no-margin !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--border !optional;
+
+                &:hover {
+                    @extend %form-group-bundle-border--hover !optional;
+                }
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box !optional;
+            }
+
+            @include e(border) {
+                @extend %form-group-border--hidden !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--border !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-input--border !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--border !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--box !optional;
+            }
+        }
+
+        @include mx(border, filled) {
+            @include e(label) {
+                @extend %form-group-label--float-border !optional;
+            }
+        }
+
+        @include mx(border, file) {
+            @include e(label) {
+                @extend %form-group-label--float-border !optional;
+            }
+        }
+
+        @include mx(border, focused) {
+            @include e(label) {
+                @extend %form-group-label--float-border !optional;
+            }
+        }
+
+        @include mx(border, placeholder) {
+            @include e(label) {
+                @extend %form-group-label--float-border !optional;
+            }
+        }
+
+        @include mx(border, cosy) {
+            @extend %form-group-display--no-margin-cosy !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--border-cosy !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-cosy !optional;
+            }
+        }
+
+        @include mx(border, cosy, filled) {
+            @include e(label) {
+                @extend %form-group-label--float-border-cosy !optional;
+            }
+        }
+
+        @include mx(border, cosy, file) {
+            @include e(label) {
+                @extend %form-group-label--float-border-cosy !optional;
+            }
+        }
+
+        @include mx(border, cosy, focused) {
+            @include e(label) {
+                @extend %form-group-label--float-border-cosy !optional;
+            }
+        }
+
+        @include mx(border, cosy, placeholder) {
+            @include e(label) {
+                @extend %form-group-label--float-border-cosy !optional;
+            }
+        }
+
+        @include mx(border, compact) {
+            @extend %form-group-display--no-margin-compact !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--border-compact !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-compact !optional;
+            }
+        }
+
+        @include mx(border, compact, filled) {
+            @include e(label) {
+                @extend %form-group-label--float-border-compact !optional;
+            }
+        }
+
+        @include mx(border, compact, file) {
+            @include e(label) {
+                @extend %form-group-label--float-border-compact !optional;
+            }
+        }
+
+        @include mx(border, compact, focused) {
+            @include e(label) {
+                @extend %form-group-label--float-border-compact !optional;
+            }
+        }
+
+        @include mx(border, compact, placeholder) {
+            @include e(label) {
+                @extend %form-group-label--float-border-compact !optional;
+            }
+        }
+
+        @include mx(valid, border) {
+            @include e(bundle) {
+                @extend %form-group-bundle-border--success !optional;
+            }
+        }
+
+        @include mx(invalid, border) {
+            @include e(bundle) {
+                @extend %form-group-bundle-border--error !optional;
+            }
+        }
+
+        @include mx(focused, border) {
+            @include e(bundle) {
+                @extend %form-group-bundle-border--focus !optional;
+            }
+        }
+
+        @include mx(disabled, border) {
+            @include e(bundle) {
+                @extend %form-group-bundle-border--disabled !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--float-border-disabled !optional;
+            }
+        }
+
+        // Fluent Theme Start //
+        @include m(fluent) {
+            @extend %igx-input-group-fluent !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--fluent !optional;
+
+                &:hover {
+                    @extend %form-group-bundle--fluent--hover !optional;
+                }
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--fluent !optional;
+            }
+
+            @include e(input) {
+                @extend %fluent-input !optional;
+            }
+
+            @include e(file-input) {
+                @extend %fluent-input !optional;
+            }
+
+            @include e(label) {
+                @extend %fluent-label !optional;
+            }
+
+            @include e(textarea) {
+                @extend %fluent-textarea !optional;
+            }
+        }
+
+        @include mx(placeholder, fluent) {
+            @include e(label) {
+                @extend %fluent-placeholder-label !optional;
+            }
+        }
+
+        @include mx(cosy, fluent) {
+            @extend %igx-input-group-fluent--cosy !optional;
+        }
+
+        @include mx(compact, fluent) {
+            @extend %igx-input-group-fluent--compact !optional;
+        }
+
+        @include mx(disabled, fluent) {
+            @include e(bundle) {
+                @extend %form-group-bundle--fluent-disabled !optional;
+
+                &:hover {
+                    @extend %form-group-bundle--fluent--hover-disabled !optional;
+                }
+            }
+
+            @include e(input) {
+                @extend %fluent-input-disabled !optional;
+
+                &:hover {
+                    @extend %fluent-input-disabled !optional
+            }
+
+                &:focus {
+                    @extend %fluent-input-disabled !optional
+            }
+            }
+
+            @include e(file-input) {
+                @extend %fluent-input-disabled !optional;
+
+                &:hover {
+                    @extend %fluent-input-disabled !optional
+            }
+
+                &:focus {
+                    @extend %fluent-input-disabled !optional
+            }
+            }
+
+            @include e(label) {
+                @extend %fluent-label-disabled !optional;
+            }
+        }
+
+        @include mx(filled, fluent) {
+            @include e(label) {
+                @extend %fluent-label-filled !optional;
+            }
+        }
+
+        @include mx(file, fluent) {
+            @include e(label) {
+                @extend %fluent-label-filled !optional;
+            }
+        }
+
+        @include mx(focused, fluent) {
+            @include e(bundle) {
+                @extend %form-group-bundle--focus !optional;
+
+                &:hover {
+                    @extend %form-group-bundle--fluent--focus !optional;
+                }
+            }
+
+            @include e(label) {
+                @extend %fluent-label-focused !optional;
+            }
+        }
+
+        @include mx(required, fluent) {
+            @include e(bundle) {
+                @extend %form-group-bundle-required--fluent !optional;
+            }
+        }
+
+        @include mx(valid, fluent) {
+            @include e(bundle) {
+                @extend %form-group-bundle-success--fluent !optional;
+
+                &:hover {
+                    @extend %form-group-bundle-success--fluent--hover !optional;
+                }
+            }
+
+            @include e(label) {
+                @extend %fluent-label-success !optional;
+            }
+        }
+
+        @include mx(invalid, fluent) {
+            @include e(bundle) {
+                @extend %form-group-bundle-error--fluent !optional;
+
+                &:hover {
+                    @extend %form-group-bundle-error--fluent--hover !optional;
+                }
+            }
+
+            @include e(label) {
+                @extend %fluent-label-error !optional;
+            }
+        }
+        // Fluent Theme End //
+
+        // Indigo Theme Start //
+        @include m(indigo) {
+            @extend %form-group-display--no-margin !optional;
+
+            @include e(wrapper) {
+                @extend %form-group-box-wrapper !optional;
+            }
+
+            @include e(bundle) {
+                @extend %form-group-bundle--indigo !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--indigo !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-input--indigo !optional;
+            }
+
+            @include e(label) {
+                @extend %fluent-label !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--indigo !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--box !optional;
+            }
+        }
+
+        @include mx(indigo, cosy) {
+            @extend %form-group-display--no-margin-cosy !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--box-cosy !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-cosy !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--indigo-cosy !optional;
+            }
+        }
+
+        @include mx(indigo, compact) {
+            @extend %form-group-display--no-margin-compact !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--box-compact !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-compact !optional;
+            }
+
+            @include e(textarea) {
+                @extend %form-group-textarea--indigo-compact !optional;
+            }
+        }
+
+        @include mx(indigo, focused) {
+            @include e(bundle) {
+                @extend %indigo--box-focused !optional;
+            }
+        }
+
+        @include mx(indigo, valid) {
+            @include e(bundle) {
+                @extend %form-group-bundle-success--indigo !optional;
+            }
+        }
+
+        @include mx(indigo, invalid) {
+            @include e(bundle) {
+                @extend %form-group-bundle-error--indigo !optional;
+
+                &:hover {
+                    @extend %form-group-bundle-error--fluent--hover !optional;
+                }
+            }
+        }
+
+        @include mx(indigo, disabled) {
+            @include e(bundle) {
+                @extend %form-group-bundle--box-disabled !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--disabled !optional;
+            }
+
+            @include e(file-input) {
+                @extend %form-group-input--disabled !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--indigo--disabled !optional;
+            }
+        }
+        // Indigo Theme End //
+
+        // Bootstrap Theme Start //
+        @include m(bootstrap) {
+            @extend %form-group-display--bootstrap !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--bootstrap !optional;
+
+                &:hover {
+                    @extend %form-group-bundle--bootstrap-hover !optional;
+                }
+            }
+
+            @include e(label) {
+                @extend %bootstrap-label !optional;
+            }
+
+            @include e(input) {
+                @extend %bootstrap-input !optional;
+            }
+
+            @include e(file-input) {
+                @extend %bootstrap-file-input !optional;
+            }
+
+            @include e(textarea) {
+                @extend %bootstrap-input !optional;
+            }
+        }
+
+        @include mx(focused, bootstrap) {
+            @include e(input) {
+                @extend %bootstrap-input--focus !optional;
+            }
+
+            @include e(file-input) {
+                @extend %bootstrap-input--focus !optional;
+            }
+
+            @include e(label) {
+                @extend %bootstrap-label !optional;
+            }
+
+
+            @include e(textarea) {
+                @extend %bootstrap-input--focus !optional;
+            }
+        }
+
+        @include mx(valid, bootstrap) {
+            @include e(input) {
+                @extend %bootstrap-input--success !optional;
+
+                &:hover {
+                    @extend %bootstrap-input--success !optional;
+                }
+            }
+
+            @include e(file-input) {
+                @extend %bootstrap-input--success !optional;
+
+                &:hover {
+                    @extend %bootstrap-input--success !optional;
+                }
+            }
+
+            @include e(label) {
+                @extend %bootstrap-label !optional;
+            }
+
+
+            @include e(textarea) {
+                @extend %bootstrap-input--success !optional;
+
+                &:hover {
+                    @extend %bootstrap-input--success !optional;
+                }
+            }
+        }
+
+        @include mx(invalid, bootstrap) {
+            @include e(input) {
+                @extend %bootstrap-input--error !optional;
+
+                &:hover {
+                    @extend %bootstrap-input--error !optional;
+                }
+            }
+
+            @include e(file-input) {
+                @extend %bootstrap-input--error !optional;
+
+                &:hover {
+                    @extend %bootstrap-input--error !optional;
+                }
+            }
+
+            @include e(label) {
+                @extend %bootstrap-label !optional;
+            }
+
+            @include e(textarea) {
+                @extend %bootstrap-input--error !optional;
+
+                &:hover {
+                    @extend %bootstrap-input--error !optional;
+                }
+            }
+        }
+
+        @include mx(search, bootstrap) {
+            @include e(input) {
+                @extend %bootstrap-input--search !optional;
+            }
+        }
+
+        @include mx(disabled, bootstrap) {
+            @include e(bundle) {
+                @extend %form-group-display--disabled-bootstrap !optional;
+            }
+
+            @include e(label) {
+                @extend %bootstrap-label--disabled !optional;
+            }
+
+            @include e(input) {
+                @extend %bootstrap-input--disabled !optional;
+            }
+
+            @include e(file-input) {
+                @extend %bootstrap-input--disabled !optional;
+            }
+
+            @include e(textarea) {
+                @extend %bootstrap-input--disabled !optional;
+            }
+        }
+
+        @include mx(cosy, bootstrap) {
+            @extend %form-group-display--cosy-bootstrap !optional;
+
+            @include e(label) {
+                @extend %bootstrap-label--cosy !optional;
+            }
+
+            @include e(input) {
+                @extend %bootstrap-input--cosy !optional;
+            }
+
+            @include e(textarea) {
+                @extend %bootstrap-input--cosy !optional;
+            }
+        }
+
+        @include mx(compact, bootstrap) {
+            @extend %form-group-display--compact-bootstrap !optional;
+
+            @include e(label) {
+                @extend %bootstrap-label--compact !optional;
+            }
+
+            @include e(input) {
+                @extend %bootstrap-input--compact !optional;
+            }
+
+            @include e(textarea) {
+                @extend %bootstrap-input--compact !optional;
+            }
+        }
+        // Bootstrap Theme End //
+
+        @include m(search) {
+            @extend %form-group-display--no-margin !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--search !optional;
+
+                &:hover {
+                    @extend %form-group-bundle-search--hover !optional;
+                }
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box !optional;
+            }
+
+            @include e(border) {
+                @extend %form-group-border--hidden !optional;
+            }
+
+            @include e(input) {
+                @extend %form-group-input--search !optional;
+            }
+
+            @include e(label) {
+                @extend %form-group-label--search !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--box !optional;
+            }
+        }
+
+        @include mx(search, cosy) {
+            @extend %form-group-display--no-margin-cosy !optional;
+
+            @include b(bundle) {
+                @extend %form-group-bundle--search-cosy !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-cosy !optional;
+            }
+        }
+
+        @include mx(search, compact) {
+            @extend %form-group-display--no-margin-compact !optional;
+
+            @include b(bundle) {
+                @extend %form-group-bundle--search-compact !optional;
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--box-compact !optional;
+            }
+        }
+
+        @include mx(focused, search) {
+            @include e(bundle) {
+                @extend %form-group-bundle-search--focus !optional;
+            }
+        }
+
+        @include mx(disabled, search) {
+            @include e(bundle) {
+                @extend %form-group-bundle-search--disabled !optional;
+            }
+        }
+
+        @include mx(search, fluent) {
+            @extend %igx-input-group-fluent-search !optional;
+
+            @include e(bundle) {
+                @extend %form-group-bundle--fluent !optional;
+
+                &:hover {
+                    @extend %form-group-bundle--fluent--hover !optional;
+                }
+            }
+
+            @include e(bundle-main) {
+                @extend %form-group-bundle-main--fluent !optional;
+            }
+
+            @include e(input) {
+                @extend %fluent-input !optional;
+            }
+
+            @include e(label) {
+                @extend %fluent-label !optional;
+            }
+
+            @include e(hint) {
+                @extend %form-group-helper--box !optional;
+            }
+        }
+
+        @include mx(fluent, search, cosy) {
+            @extend %igx-input-group-fluent-search--cosy !optional;
+        }
+
+        @include mx(fluent, search, compact) {
+            @extend %igx-input-group-fluent-search--compact !optional;
+        }
+
+        @include mx(focused, fluent, search) {
+            @extend %igx-input-group-fluent-search--focused !optional;
+        }
+
+        @include mx(disabled, fluent, search) {
+            @include e(bundle) {
+                @extend %form-group-bundle-search--disabled !optional;
+            }
         }
     }
 }
-

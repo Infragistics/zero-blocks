@@ -1,4 +1,5 @@
-@import '../light/avatar';
+@use '../light/avatar' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -7,25 +8,24 @@
 
 /// Generates a dark avatar schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-avatar
+/// @requires $light-avatar
 /// @see $default-palette
-$_dark-avatar: extend($_light-avatar);
+$dark-avatar: $light-avatar;
 
 /// Generates a dark fluent avatar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-avatar
-$_dark-fluent-avatar: extend($_fluent-avatar);
+/// @requires $fluent-avatar
+$dark-fluent-avatar: $fluent-avatar;
 
 /// Generates a dark bootstrap avatar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-avatar
-$_dark-bootstrap-avatar: extend($_bootstrap-avatar);
+/// @requires $bootstrap-avatar
+$dark-bootstrap-avatar: $bootstrap-avatar;
 
 /// Generates a dark indigo avatar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-avatar
-$_dark-indigo-avatar: extend($_indigo-avatar);
+/// @requires $indigo-avatar
+$dark-indigo-avatar: $indigo-avatar;

@@ -1,4 +1,5 @@
-@import '../light/switch';
+@use '../../../base' as *;
+@use '../light/switch' as *;
 
 ////
 /// @group schemas
@@ -10,31 +11,31 @@
 /// @type {Map}
 /// @prop {Map} thumb-disabled-color [igx-color: ('grays', 400), to-opaque: #000] - The color of the thumb when the switch is disabled.
 /// @see $default-palette
-$_base-dark-switch: (
+$base-dark-switch: (
     thumb-disabled-color: (
         igx-color: ('grays', 400),
         to-opaque: #000
     )
 );
 
-/// Generates a dark switch schema based on a mix of $_light-switch and $_base-dark-switch.
+/// Generates a dark switch schema based on a mix of $light-switch and $base-dark-switch.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-switch
-/// @requires $_base-dark-switch
+/// @requires $light-switch
+/// @requires $base-dark-switch
 /// @see $default-palette
-$_dark-switch: extend($_light-switch, $_base-dark-switch);
+$dark-switch: extend($light-switch, $base-dark-switch);
 
-/// Generates a dark fluent switch schema based on a mix of $_fluent-switch and $_base-dark-switch.
+/// Generates a dark fluent switch schema based on a mix of $fluent-switch and $base-dark-switch.
 /// @type {Map}
 /// @property {Map} border-color [igx-color: ('grays', 500)] - The border color of the switch.
 /// @property {Map} border-hover-color [igx-color: ('grays', 800)] - The border color of the switch on hover.
 /// @property {Map} border-disabled-color [igx-color: ('grays', 200)] - The border color of the disabled switch.
 /// @property {Map} track-disabled-color [igx-color: ('grays', 200)] - The color of the track when the switch is disabled.
 /// @requires {function} extend
-/// @requires $_fluent-switch
-/// @requires $_base-dark-switch
-$_dark-fluent-switch: extend($_fluent-switch, $_base-dark-switch, (
+/// @requires $fluent-switch
+/// @requires $base-dark-switch
+$dark-fluent-switch: extend($fluent-switch, $base-dark-switch, (
     border-color: (
         igx-color: ('grays', 500)
     ),
@@ -52,14 +53,14 @@ $_dark-fluent-switch: extend($_fluent-switch, $_base-dark-switch, (
     )
 ));
 
-/// Generates a dark bootstrap switch schema based on a mix of $_bootstrap-switch and $_base-dark-switch.
+/// Generates a dark bootstrap switch schema based on a mix of $bootstrap-switch and $base-dark-switch.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-switch
-/// @requires $_base-dark-switch
-$_dark-bootstrap-switch: extend(
-    $_bootstrap-switch,
-    $_base-dark-switch
+/// @requires $bootstrap-switch
+/// @requires $base-dark-switch
+$dark-bootstrap-switch: extend(
+    $bootstrap-switch,
+    $base-dark-switch
 );
 
 /// Generates a dark indigo switch schema.
@@ -76,9 +77,9 @@ $_dark-bootstrap-switch: extend(
 /// @property {Color} border-on-hover-color [#fff] - The border color of the  on-switch.
 /// @property {Map} label-disabled-color [igx-color: ('grays', 400)] - The color of the switch label when the switch is disabled
 /// @requires {function} extend
-/// @requires $_indigo-switch
-$_dark-indigo-switch: extend(
-    $_indigo-switch,
+/// @requires $indigo-switch
+$dark-indigo-switch: extend(
+    $indigo-switch,
     (
         border-color: (
             igx-color: ('grays', 700)

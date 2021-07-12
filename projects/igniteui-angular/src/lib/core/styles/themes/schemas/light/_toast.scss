@@ -1,5 +1,6 @@
-@import '../shape/toast';
-@import '../elevation/toast';
+@use '../../../base' as *;
+@use '../shape/toast' as *;
+@use '../elevation/toast' as *;
 
 ////
 /// @group schemas
@@ -16,12 +17,12 @@
 /// @prop {Number} border-radius [1] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-toast
-/// @requires {Map} $_default-elevation-toast
+/// @requires {Map} $default-shape-toast
+/// @requires {Map} $default-elevation-toast
 /// @see $default-palette
-$_light-toast: extend(
-    $_default-shape-toast,
-    $_default-elevation-toast,
+$light-toast: extend(
+    $default-shape-toast,
+    $default-elevation-toast,
     (
         variant: 'material',
 
@@ -39,11 +40,11 @@ $_light-toast: extend(
 /// @type {Map}
 /// @prop {Number} border-radius [2px] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_light-toast
-/// @requires $_fluent-shape-toast
-$_fluent-toast: extend(
-    $_light-toast,
-    $_fluent-shape-toast,
+/// @requires $light-toast
+/// @requires $fluent-shape-toast
+$fluent-toast: extend(
+    $light-toast,
+    $fluent-shape-toast,
     (
         variant: 'fluent',
     )
@@ -56,13 +57,13 @@ $_fluent-toast: extend(
 /// @prop {Number} elevation [10] - The elevation level, between 0-24, to be used for the toast.
 /// @prop {Number} border-radius [4px] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-toast
-/// @requires {Map} $_bootstrap-shape-toast
-/// @requires {Map} $_bootstrap-elevation-toast
-$_bootstrap-toast: extend(
-    $_light-toast,
-    $_bootstrap-shape-toast,
-    $_bootstrap-elevation-toast,
+/// @requires {Map} $light-toast
+/// @requires {Map} $bootstrap-shape-toast
+/// @requires {Map} $bootstrap-elevation-toast
+$bootstrap-toast: extend(
+    $light-toast,
+    $bootstrap-shape-toast,
+    $bootstrap-elevation-toast,
     (
         variant: 'bootstrap',
 
@@ -81,11 +82,11 @@ $_bootstrap-toast: extend(
 /// @prop {Number} border-radius [24px] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-toast
-/// @requires {Map} $_indigo-shape-toast
-$_indigo-toast: extend(
-    $_light-toast,
-    $_indigo-shape-toast,
+/// @requires {Map} $light-toast
+/// @requires {Map} $indigo-shape-toast
+$indigo-toast: extend(
+    $light-toast,
+    $indigo-shape-toast,
     (
         variant: 'indigo-design',
 

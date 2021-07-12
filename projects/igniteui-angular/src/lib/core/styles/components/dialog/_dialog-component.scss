@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Dialog
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,33 +8,41 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-dialog) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-dialog-display !optional;
+@mixin component {
+    @include b(igx-dialog) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button,
+            )
+        );
 
-    @include e(window) {
-        @extend %igx-dialog-window !optional;
-    }
+        @extend %igx-dialog-display !optional;
 
-    @include e(window-title) {
-        @extend %igx-dialog-title !optional;
-    }
+        @include e(window) {
+            @extend %igx-dialog-window !optional;
+        }
 
-    @include e(window-content) {
-        @extend %igx-dialog-content !optional;
-    }
+        @include e(window-title) {
+            @extend %igx-dialog-title !optional;
+        }
 
-    @include e(window-message) {
-        @extend %igx-dialog-message !optional;
-    }
+        @include e(window-content) {
+            @extend %igx-dialog-content !optional;
+        }
 
-    @include e(window-actions) {
-        @extend %igx-dialog-actions !optional;
-    }
+        @include e(window-message) {
+            @extend %igx-dialog-message !optional;
+        }
 
-    @include m(hidden) {
-        @extend %igx-dialog--hidden !optional;
+        @include e(window-actions) {
+            @extend %igx-dialog-actions !optional;
+        }
+
+        @include m(hidden) {
+            @extend %igx-dialog--hidden !optional;
+        }
     }
 }

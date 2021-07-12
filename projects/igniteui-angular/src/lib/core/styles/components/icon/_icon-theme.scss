@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -32,8 +36,8 @@
     $name: 'igx-icon';
     $icon-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $icon-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $icon-schema: map.get($schema, $name);
     } @else {
         $icon-schema: $schema;
     }
@@ -51,18 +55,18 @@
 
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
-/// @requires --var
+/// @requires var-get
 @mixin igx-icon($theme) {
     @include igx-css-vars($theme);
 
-    $igx-icon-font-size: --var($theme, 'size');
+    $igx-icon-font-size: var-get($theme, 'size');
 
     %igx-icon-display {
         display: inline-flex;
         width: $igx-icon-font-size;
         height: $igx-icon-font-size;
         font-size: $igx-icon-font-size;
-        color: --var($theme, 'color');
+        color: var-get($theme, 'color');
 
         svg {
             width: inherit;
@@ -76,15 +80,15 @@
     }
 
     %igx-icon--success {
-        color: igx-color(map-get($theme, 'palette'), 'success');
+        color: igx-color(map.get($theme, 'palette'), 'success');
     }
 
     %igx-icon--error {
-        color: igx-color(map-get($theme, 'palette'), 'error');
+        color: igx-color(map.get($theme, 'palette'), 'error');
     }
 
     %igx-icon--inactive {
-        color: --var($theme, 'disabled-color') !important;
+        color: var-get($theme, 'disabled-color') !important;
         opacity: .54;
     }
 }

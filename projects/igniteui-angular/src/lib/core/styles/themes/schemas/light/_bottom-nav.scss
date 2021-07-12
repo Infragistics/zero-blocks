@@ -1,4 +1,5 @@
-@import '../elevation/bottom-nav';
+@use '../../../base' as *;
+@use '../elevation/bottom-nav' as *;
 
 ////
 /// @group schemas
@@ -13,10 +14,10 @@
 /// @prop {Map} active-item-color [igx-color: ('primary', 500)] - The text-color used for the active color.
 /// @prop {Number} elevation [8] - The elevation level, between 0-24, to be used for the bottom nav.
 /// @requires {function} extend
-/// @requires {Map} $_default-elevation-bottom-nav
+/// @requires {Map} $default-elevation-bottom-nav
 /// @see $default-palette
-$_light-bottom-nav: extend(
-    $_default-elevation-bottom-nav,
+$light-bottom-nav: extend(
+    $default-elevation-bottom-nav,
     (
         background: #fff,
 
@@ -34,20 +35,20 @@ $_light-bottom-nav: extend(
 /// @type {Map}
 /// @prop {Number} elevation [1] - The elevation level, between 0-24, to be used for the bottom nav.
 /// @requires {function} extend
-/// @requires {Map} $_light-bottom-nav
-/// @requires {Map} $_fluent-elevation-bottom-nav
-$_fluent-bottom-nav: extend($_light-bottom-nav, $_fluent-elevation-bottom-nav);
+/// @requires {Map} $light-bottom-nav
+/// @requires {Map} $fluent-elevation-bottom-nav
+$fluent-bottom-nav: extend($light-bottom-nav, $fluent-elevation-bottom-nav);
 
 /// Generates a bootstrap bottom navigation schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-bottom-nav
-$_bootstrap-bottom-nav: extend($_light-bottom-nav);
+/// @requires {Map} $light-bottom-nav
+$bootstrap-bottom-nav: $light-bottom-nav;
 
 /// Generates an indigo bottom navigation schema.
 /// @type {Map}
 /// @prop {Number} elevation [4] - The elevation level, between 0-24, to be used for the bottom nav.
 /// @requires {function} extend
-/// @requires {Map} $_light-bottom-nav
-/// @requires {Map} $_indigo-elevation-bottom-nav
-$_indigo-bottom-nav: extend($_light-bottom-nav, $_indigo-elevation-bottom-nav);
+/// @requires {Map} $light-bottom-nav
+/// @requires {Map} $indigo-elevation-bottom-nav
+$indigo-bottom-nav: extend($light-bottom-nav, $indigo-elevation-bottom-nav);

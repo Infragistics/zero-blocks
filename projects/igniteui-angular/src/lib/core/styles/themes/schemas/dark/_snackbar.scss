@@ -1,4 +1,5 @@
-@import '../light/snackbar';
+@use '../../../base' as *;
+@use '../light/snackbar' as *;
 
 ////
 /// @group schemas
@@ -8,22 +9,19 @@
 
 /// Generates a dark snackbar schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-snackbar
+/// @requires $light-snackbar
 /// @see $default-palette
-$_dark-snackbar: extend($_light-snackbar);
+$dark-snackbar: $light-snackbar;
 
 /// Generates a dark fluent snackbar schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-snackbar
-$_dark-fluent-snackbar: extend($_fluent-snackbar);
+/// @requires $fluent-snackbar
+$dark-fluent-snackbar: $fluent-snackbar;
 
 /// Generates a dark bootstrap snackbar schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-snackbar
-$_dark-bootstrap-snackbar: extend($_bootstrap-snackbar);
+/// @requires $bootstrap-snackbar
+$dark-bootstrap-snackbar: $bootstrap-snackbar;
 
 /// Generates a dark indigo snackbar schema.
 /// @type {Map}
@@ -31,9 +29,9 @@ $_dark-bootstrap-snackbar: extend($_bootstrap-snackbar);
 /// @property {Map} text-color [#fff] - The text color used in the snackbar.
 /// @property {Map} button-color [#fff] - The button color used in the snackbar.
 /// @requires {function} extend
-/// @requires $_indigo-snackbar
-$_dark-indigo-snackbar: extend(
-    $_indigo-snackbar,
+/// @requires $indigo-snackbar
+$dark-indigo-snackbar: extend(
+    $indigo-snackbar,
     (
         background: (
             igx-color: ('grays', 400)

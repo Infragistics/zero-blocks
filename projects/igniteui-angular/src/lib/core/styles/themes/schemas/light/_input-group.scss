@@ -1,5 +1,6 @@
-@import '../shape/input-group';
-@import '../elevation/input-group';
+@use '../../../base' as *;
+@use '../shape/input-group' as *;
+@use '../elevation/input-group' as *;
 
 ////
 /// @group schemas
@@ -62,12 +63,12 @@
 /// @prop {Color} label-floated-disabled-background [igx-color: surface] - The background color of the label when floated for input group of type border in its disabled state.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-input-group
-/// @requires {Map} $_default-elevation-input-group
+/// @requires {Map} $default-shape-input-group
+/// @requires {Map} $default-elevation-input-group
 /// @see $default-palette
-$_light-input-group: extend(
-    $_default-shape-input-group,
-    $_default-elevation-input-group,
+$light-input-group: extend(
+    $default-shape-input-group,
+    $default-elevation-input-group,
     (
         variant: 'material',
 
@@ -221,13 +222,13 @@ $_light-input-group: extend(
 /// @prop {Number} search-border-radius [2px] - The border radius used for search input. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-input-group
-/// @requires {Map} $_fluent-shape-input-group
-/// @requires {Map} $_fluent-elevation-input-group
-$_fluent-input-group: extend(
-    $_light-input-group,
-    $_fluent-shape-input-group,
-    $_fluent-elevation-input-group,
+/// @requires {Map} $light-input-group
+/// @requires {Map} $fluent-shape-input-group
+/// @requires {Map} $fluent-elevation-input-group
+$fluent-input-group: extend(
+    $light-input-group,
+    $fluent-shape-input-group,
+    $fluent-elevation-input-group,
     (
         variant: 'fluent',
 
@@ -280,11 +281,11 @@ $_fluent-input-group: extend(
 /// @prop {Number} border-border-radius [.2] - The border radius used for border input. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} search-border-radius [.2] - The border radius used for search input. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-input-group
-/// @requires {Map} $_bootstrap-shape-input-group
-$_bootstrap-input-group: extend(
-    $_light-input-group,
-    $_bootstrap-shape-input-group,
+/// @requires {Map} $light-input-group
+/// @requires {Map} $bootstrap-shape-input-group
+$bootstrap-input-group: extend(
+    $light-input-group,
+    $bootstrap-shape-input-group,
     (
         variant: 'bootstrap',
 
@@ -338,13 +339,13 @@ $_bootstrap-input-group: extend(
 /// @prop {Number} border-border-radius [0] - The border radius used for border input. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} search-border-radius [2px] - The border radius used for search input. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-input-group
-/// @requires {Map} $_indigo-shape-input-group
-/// @requires {Map} $_indigo-elevation-input-group
-$_indigo-input-group: extend(
-    $_light-input-group,
-    $_indigo-shape-input-group,
-    $_indigo-elevation-input-group,
+/// @requires {Map} $light-input-group
+/// @requires {Map} $indigo-shape-input-group
+/// @requires {Map} $indigo-elevation-input-group
+$indigo-input-group: extend(
+    $light-input-group,
+    $indigo-shape-input-group,
+    $indigo-elevation-input-group,
     (
         variant: 'indigo-design',
 

@@ -6,24 +6,24 @@
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-carousel: (
+$default-shape-carousel: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-carousel: (
+$round-shape-carousel: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-carousel: (
+$square-shape-carousel: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for carousel. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-carousel: (
+$bootstrap-shape-carousel: (
     border-radius: 4px
 );

@@ -48,73 +48,71 @@
 /// @property {Color} y-axis-title-color [null] - Sets color of title on the Y-axis.
 /// @property {List} y-axis-title-margin [null] - Sets the margin around the title on the Y-axis.
 /// @see $default-palette
-$_light-shape-chart: extend(
-    (
-        'margin': null,
-        'title-alignment': null,
+$light-shape-chart: (
+    'margin': null,
+    'title-alignment': null,
 
-        'title-text-color': (
-            igx-color: ('grays', 900)
-        ),
-        'title-margin': null,
-        'subtitle-alignment': null,
+    'title-text-color': (
+        igx-color: ('grays', 900)
+    ),
+    'title-margin': null,
+    'subtitle-alignment': null,
 
-        'subtitle-text-color': (
-            igx-color: ('grays', 600)
-        ),
+    'subtitle-text-color': (
+        igx-color: ('grays', 600)
+    ),
 
-        'subtitle-margin': null,
-        'brushes': series,
-        'marker-brushes': series,
-        'outlines': series,
-        'marker-outlines': series,
-        'thickness': null,
-        'trend-line-brushes': series,
-        'trend-line-thickness': null,
-        'x-axis-label-margin': null,
-        'x-axis-label-text-color': null,
-        'x-axis-label-vertical-alignment': null,
-        'x-axis-major-stroke': null,
-        'x-axis-major-stroke-thickness': null,
-        'x-axis-minor-stroke': null,
-        'x-axis-minor-stroke-thickness': null,
-        'x-axis-strip': null,
-        'x-axis-stroke': null,
-        'x-axis-stroke-thickness': null,
-        'x-axis-title-alignment': null,
-        'x-axis-title-color': null,
-        'x-axis-title-margin': null,
-        'y-axis-label-margin': null,
-        'y-axis-label-text-color': null,
-        'y-axis-label-vertical-alignment': null,
-        'y-axis-major-stroke': null,
-        'y-axis-major-stroke-thickness': null,
-        'y-axis-minor-stroke': null,
-        'y-axis-minor-stroke-thickness': null,
-        'y-axis-strip': null,
-        'y-axis-stroke': null,
-        'y-axis-stroke-thickness': null,
-        'y-axis-title-alignment': null,
-        'y-axis-title-color': null,
-        'y-axis-title-margin': null,
-    )
+    'subtitle-margin': null,
+    'brushes': series,
+    'marker-brushes': series,
+    'outlines': series,
+    'marker-outlines': series,
+    'thickness': null,
+    'trend-line-brushes': series,
+    'trend-line-thickness': null,
+    'x-axis-label-margin': null,
+    'x-axis-label-text-color': null,
+    'x-axis-label-vertical-alignment': null,
+    'x-axis-major-stroke': null,
+    'x-axis-major-stroke-thickness': null,
+    'x-axis-minor-stroke': null,
+    'x-axis-minor-stroke-thickness': null,
+    'x-axis-strip': null,
+    'x-axis-stroke': null,
+    'x-axis-stroke-thickness': null,
+    'x-axis-title-alignment': null,
+    'x-axis-title-color': null,
+    'x-axis-title-margin': null,
+    'y-axis-label-margin': null,
+    'y-axis-label-text-color': null,
+    'y-axis-label-vertical-alignment': null,
+    'y-axis-major-stroke': null,
+    'y-axis-major-stroke-thickness': null,
+    'y-axis-minor-stroke': null,
+    'y-axis-minor-stroke-thickness': null,
+    'y-axis-strip': null,
+    'y-axis-stroke': null,
+    'y-axis-stroke-thickness': null,
+    'y-axis-title-alignment': null,
+    'y-axis-title-color': null,
+    'y-axis-title-margin': null,
 );
 
 /// Generates a fluent shaep-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-shape-chart
-$_fluent-shape-chart: extend($_light-shape-chart);
+/// @requires {Map} $light-shape-chart
+$fluent-shape-chart: $light-shape-chart;
 
 /// Generates a bootstrap shape-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-shape-chart
-$_bootstrap-shape-chart: extend($_light-shape-chart);
+/// @requires {Map} $light-shape-chart
+$bootstrap-shape-chart: $light-shape-chart;
 
 /// Generates an indigo shape-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-shape-chart
-$_indigo-shape-chart: extend($_light-shape-chart);
+/// @requires {Map} $light-shape-chart
+$indigo-shape-chart: $light-shape-chart;
 

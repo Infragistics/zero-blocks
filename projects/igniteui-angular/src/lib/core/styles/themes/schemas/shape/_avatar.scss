@@ -6,13 +6,13 @@
 
 ///@type Map
 /// @prop {Number} border-radius [1] - The border radius used for square avatar. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-avatar: (
+$round-shape-avatar: (
     border-radius: 1,
 );
 
 ///@type Map
 /// @prop {Number} border-radius [0] - The border radius used for square avatar. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-avatar: (
+$square-shape-avatar: (
     border-radius: 0,
 );
 
@@ -20,6 +20,6 @@ $_square-shape-avatar: (
 /// @prop {Number} border-radius [.25] - The border radius used for square avatar. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
 /// @requires {Map} $_round-shape-avatar
-$_bootstrap-shape-avatar: (
+$bootstrap-shape-avatar: (
     border-radius: .25
 );

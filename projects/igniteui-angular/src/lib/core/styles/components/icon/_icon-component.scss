@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Icon
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,29 +8,35 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-icon) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-icon-display !optional;
+@mixin component {
+    @include b(igx-icon) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @include m(inactive) {
-        @extend %igx-icon--inactive !optional;
+        @extend %igx-icon-display !optional;
+
+        @include m(inactive) {
+            @extend %igx-icon--inactive !optional;
+        }
+
+        @include m(success) {
+            @extend %igx-icon--success !optional;
+        }
+
+        @include m(error) {
+            @extend %igx-icon--error !optional;
+        }
     }
 
-    @include m(success) {
-        @extend %igx-icon--success !optional;
+    @include b(igx-svg-container) {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+        font-size: 0;
+        overflow: hidden;
     }
-
-    @include m(error) {
-        @extend %igx-icon--error !optional;
-    }
-}
-
-@include b(igx-svg-container) {
-    visibility: hidden;
-    width: 0;
-    height: 0;
-    font-size: 0;
-    overflow: hidden;
 }

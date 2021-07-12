@@ -1,38 +1,38 @@
-// Easing Functions 
-@import 'easings';
+// Easing Functions
+@forward 'easings';
 
 // Generic Animations
-@import 'generic/flip';
-@import 'generic/rotate';
-@import 'generic/scale';
-@import 'generic/shadows';
-@import 'generic/slide';
-@import 'generic/swing';
+@forward 'generic/flip';
+@forward 'generic/rotate';
+@forward 'generic/scale';
+@forward 'generic/shadows';
+@forward 'generic/slide';
+@forward 'generic/swing';
 
 // Entrance Animations
-@import 'entrances/bounce';
-@import 'entrances/fade';
-@import 'entrances/flicker';
-@import 'entrances/flip';
-@import 'entrances/puff';
-@import 'entrances/roll';
-@import 'entrances/rotate';
-@import 'entrances/scale';
-@import 'entrances/slide';
-@import 'entrances/slit';
-@import 'entrances/swing';
-@import 'entrances/swirl';
+@forward 'entrances/bounce';
+@forward 'entrances/fade';
+@forward 'entrances/flicker';
+@forward 'entrances/flip';
+@forward 'entrances/puff';
+@forward 'entrances/roll';
+@forward 'entrances/rotate';
+@forward 'entrances/scale';
+@forward 'entrances/slide';
+@forward 'entrances/slit';
+@forward 'entrances/swing';
+@forward 'entrances/swirl';
 
 // Exit Animations
-@import 'exits/bounce';
-@import 'exits/fade';
-@import 'exits/flicker';
-@import 'exits/flip';
-@import 'exits/puff';
-@import 'exits/roll';
-@import 'exits/rotate';
-@import 'exits/scale';
-@import 'exits/slide';
-@import 'exits/slit';
-@import 'exits/swing';
-@import 'exits/swirl';
+@forward 'exits/bounce';
+@forward 'exits/fade';
+@forward 'exits/flicker';
+@forward 'exits/flip';
+@forward 'exits/puff';
+@forward 'exits/roll';
+@forward 'exits/rotate';
+@forward 'exits/scale';
+@forward 'exits/slide';
+@forward 'exits/slit';
+@forward 'exits/swing';
+@forward 'exits/swirl';

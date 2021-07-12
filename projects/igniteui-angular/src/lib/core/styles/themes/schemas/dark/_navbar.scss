@@ -1,4 +1,4 @@
-@import '../light/navbar';
+@use '../light/navbar' as *;
 
 ////
 /// @group schemas
@@ -9,25 +9,25 @@
 /// Generates a dark navbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-navbar
+/// @requires $light-navbar
 /// @see $default-palette
-$_dark-navbar: extend($_light-navbar);
+$dark-navbar: $light-navbar;
 
 /// Generates a dark fluent navbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-navbar
-$_dark-fluent-navbar: extend($_fluent-navbar);
+/// @requires $fluent-navbar
+$dark-fluent-navbar: $fluent-navbar;
 
 /// Generates a dark bootstrap navbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-navbar
-$_dark-bootstrap-navbar: extend($_bootstrap-navbar);
+/// @requires $bootstrap-navbar
+$dark-bootstrap-navbar: $bootstrap-navbar;
 
 /// Generates a dark indigo navbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-navbar
-$_dark-indigo-navbar: extend($_indigo-navbar);
+/// @requires $indigo-navbar
+$dark-indigo-navbar: $indigo-navbar;
 

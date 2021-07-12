@@ -6,12 +6,12 @@
 
 /// @type Map
 /// @prop {Number} elevation [4] - The elevation level, between 0-24, to be used in the snackbar.
-$_default-elevation-snackbar: (
+$default-elevation-snackbar: (
     elevation: 4
 );
 
 /// @type Map
 /// @prop {Number} elevation [10] - The elevation level, between 0-24, to be used in the snackbar.
-$_bootstrap-elevation-snackbar: (
+$bootstrap-elevation-snackbar: (
     elevation: 10
 );

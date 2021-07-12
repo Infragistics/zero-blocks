@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -46,8 +52,8 @@
     $name: 'igx-tree';
     $tree-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $tree-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $tree-schema: map.get($schema, $name);
     } @else {
         $tree-schema: $schema;
     }
@@ -72,7 +78,7 @@
 
     @return extend($theme, (
         name: $name,
-        palette: $default-palette,
+        palette: $palette,
         background: $background,
         foreground: $foreground,
         background-selected: $background-selected,
@@ -90,14 +96,14 @@
 
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
-/// @requires --var
+/// @requires var-get
 @mixin igx-tree($theme) {
     @include igx-css-vars($theme);
 
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $indigo-theme: $variant == 'indigo-design';
 
     $node-indent: (
@@ -116,9 +122,9 @@
     $icon-space: rem(8px);
 
     $drop-indicator-width: (
-        comfortable: calc(100% - ((#{map-get($node-indent, 'comfortable')} * 2) + (#{$icon-size} + #{$icon-space}))),
-        cosy: calc(100% - ((#{map-get($node-indent, 'cosy')} * 2) + (#{$icon-size} + #{$icon-space}))),
-        compact: calc(100% - ((#{map-get($node-indent, 'compact')} * 2) + (#{$icon-size} + #{$icon-space})))
+        comfortable: calc(100% - ((#{map.get($node-indent, 'comfortable')} * 2) + (#{$icon-size} + #{$icon-space}))),
+        cosy: calc(100% - ((#{map.get($node-indent, 'cosy')} * 2) + (#{$icon-size} + #{$icon-space}))),
+        compact: calc(100% - ((#{map.get($node-indent, 'compact')} * 2) + (#{$icon-size} + #{$icon-space})))
     );
 
     %tree-display {
@@ -160,11 +166,11 @@
     }
 
     %node-wrapper {
-        min-height: map-get($node-height, 'comfortable');
-        padding: 0 map-get($node-indent, 'comfortable');
+        min-height: map.get($node-height, 'comfortable');
+        padding: 0 map.get($node-indent, 'comfortable');
         position: relative;
-        background: --var($theme, 'background');
-        color: --var($theme, 'foreground');
+        background: var-get($theme, 'background');
+        color: var-get($theme, 'foreground');
 
         // We need this here, since we count on it to calculate the width of the tree drop indicator
         igx-icon {
@@ -186,7 +192,7 @@
 
         &:hover {
             &::after {
-                background: --var($theme, 'hover-color');
+                background: var-get($theme, 'hover-color');
             }
         }
 
@@ -200,16 +206,16 @@
         }
 
         &--cosy {
-            min-height: map-get($node-height, 'cosy');
-            padding: 0 map-get($node-indent, 'cosy');
+            min-height: map.get($node-height, 'cosy');
+            padding: 0 map.get($node-indent, 'cosy');
 
             %node-spacer {
-                width: map-get($node-indent, 'cosy')
+                width: map.get($node-indent, 'cosy')
             }
 
             %node-drop-indicator {
-                #{$right}: map-get($node-indent, 'cosy');
-                width: map-get($drop-indicator-width, 'cosy');
+                #{$right}: map.get($node-indent, 'cosy');
+                width: map.get($drop-indicator-width, 'cosy');
             }
 
             igx-circular-bar {
@@ -219,16 +225,16 @@
         }
 
         &--compact {
-            min-height: map-get($node-height, 'compact');
-            padding: 0 map-get($node-indent, 'compact');
+            min-height: map.get($node-height, 'compact');
+            padding: 0 map.get($node-indent, 'compact');
 
             %node-spacer {
-                width: map-get($node-indent, 'compact')
+                width: map.get($node-indent, 'compact')
             }
 
             %node-drop-indicator {
-                #{$right}: map-get($node-indent, 'compact');
-                width: map-get($drop-indicator-width, 'compact');
+                #{$right}: map.get($node-indent, 'compact');
+                width: map.get($drop-indicator-width, 'compact');
             }
 
             igx-circular-bar {
@@ -239,20 +245,20 @@
     }
 
     %node-wrapper--selected {
-        background: --var($theme, 'background-selected');
-        color: --var($theme, 'foreground-selected');
+        background: var-get($theme, 'background-selected');
+        color: var-get($theme, 'foreground-selected');
     }
 
     %node-wrapper--active {
-        background: --var($theme, 'background-active');
-        color: --var($theme, 'foreground-active');
+        background: var-get($theme, 'background-active');
+        color: var-get($theme, 'foreground-active');
     }
 
     %indigo-opacity {
-        $bg-active: map-get($theme, 'background-active');
+        $bg-active: map.get($theme, 'background-active');
 
         @if ($indigo-theme) {
-            @if type-of($bg-active) == 'color' and lightness($bg-active) < 50 {
+            @if meta.type-of($bg-active) == 'color' and lightness($bg-active) < 50 {
                 opacity: .8;
             } @else {
                 opacity: .3;
@@ -261,17 +267,17 @@
     }
 
     %node-wrapper--active-selected {
-        background: --var($theme, 'background-active-selected');
-        color: --var($theme, 'foreground-active-selected');
+        background: var-get($theme, 'background-active-selected');
+        color: var-get($theme, 'foreground-active-selected');
     }
 
     %node-wrapper--focused {
-        box-shadow: inset 0 0 0 1px --var($theme, 'border-color');
+        box-shadow: inset 0 0 0 1px var-get($theme, 'border-color');
     }
 
     %node-wrapper--disabled {
-        background: --var($theme, 'background-disabled') !important;
-        color: --var($theme, 'foreground-disabled') !important;
+        background: var-get($theme, 'background-disabled') !important;
+        color: var-get($theme, 'foreground-disabled') !important;
 
         box-shadow: none !important;
 
@@ -282,13 +288,13 @@
         }
 
         %node-toggle-button {
-            color: --var($theme, 'foreground-disabled') !important;
+            color: var-get($theme, 'foreground-disabled') !important;
         }
     }
 
     %node-spacer {
         display: inline-block;
-        width: map-get($node-indent, 'comfortable');
+        width: map.get($node-indent, 'comfortable');
     }
 
     %node-content {
@@ -309,14 +315,14 @@
         display: flex;
         visibility: hidden;
         position: absolute;
-        #{$right}: map-get($node-indent, 'comfortable');
+        #{$right}: map.get($node-indent, 'comfortable');
         bottom: 0;
-        width: map-get($drop-indicator-width, 'comfortable');
+        width: map.get($drop-indicator-width, 'comfortable');
 
         > div {
             flex: 1;
             height: rem(1px);
-            background: --var($theme, 'drop-area-color');
+            background: var-get($theme, 'drop-area-color');
         }
     }
 
@@ -335,7 +341,7 @@
     $type-scale,
     $categories: (label: 'body-2')
 ) {
-    $text: map-get($categories, 'label');
+    $text: map.get($categories, 'label');
 
     %node-content {
         @include igx-type-style($type-scale, $text)

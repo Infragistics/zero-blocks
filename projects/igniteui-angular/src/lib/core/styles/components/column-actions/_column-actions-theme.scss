@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -35,8 +40,8 @@
     $name: 'igx-column-actions';
     $column-actions-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $column-actions-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $column-actions-schema: map.get($schema, $name);
     } @else {
         $column-actions-schema: $schema;
     }
@@ -59,22 +64,22 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-column-actions($theme) {
     @include igx-css-vars($theme);
 
     %column-actions-display {
         display: flex;
         flex-flow: column nowrap;
-        background: --var($theme, 'background-color');
-        box-shadow: igx-elevation(map-get($theme, 'elevations'), 8);
+        background: var-get($theme, 'background-color');
+        box-shadow: igx-elevation(map.get($theme, 'elevations'), 8);
         width: 100%;
         flex: 1 1 auto;
         min-width: rem(180px);
     }
 
     %column-actions-title {
-        color: --var($theme, 'title-color');
+        color: var-get($theme, 'title-color');
         margin: 0;
         padding: rem(16px) rem(16px) rem(8px);
     }
@@ -112,7 +117,7 @@
 /// @param {Map} $categories [(title: 'subtitle-1')] - The categories from the typographic scale used for type styles.
 /// @requires {mixin} igx-type-style
 @mixin igx-column-actions-typography($type-scale, $categories: (title: 'subtitle-1')) {
-    $title: map-get($categories, 'title');
+    $title: map.get($categories, 'title');
 
     %column-actions-title {
         @include igx-type-style($type-scale, $title) {

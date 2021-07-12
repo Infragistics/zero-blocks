@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -41,7 +43,7 @@
 /// @prop {Color} tab-text-active [null] - Sets the text color for active tabs.
 /// @prop {Color} text-color [igx-color: ('grays', 800)] - Sets the text color for most elements in the dock manager. Used as the default joystick icon color.
 /// @see $default-palette
-$_light-dock-manager: (
+$light-dock-manager: (
     accent-color: null,
     active-color: (
         igx-color: primary,
@@ -135,9 +137,9 @@ $_light-dock-manager: (
 /// @prop {Color} tab-text-active [igx-color: 'surface'] - Sets the text color for active tabs.
 /// @prop {Color} tab-text [igx-color: ('grays', 700)] - Sets the text color for tabs.
 /// @requires {function} extend
-/// @requires {Map} $_light-dock-manager
-$_fluent-dock-manager: extend(
-    $_light-dock-manager,
+/// @requires {Map} $light-dock-manager
+$fluent-dock-manager: extend(
+    $light-dock-manager,
     (
         background-color: (
             igx-color: ('grays', 50),
@@ -243,9 +245,9 @@ $_fluent-dock-manager: extend(
 /// @prop {Color} tab-text-active [igx-color: ('grays', 800)] - Sets the text color for active tabs.
 /// @prop {Color} tab-text [igx-color: 'primary'] - Sets the text color for tabs.
 /// @requires {function} extend
-/// @requires {Map} $_light-dock-manager
-$_bootstrap-dock-manager: extend(
-    $_light-dock-manager,
+/// @requires {Map} $light-dock-manager
+$bootstrap-dock-manager: extend(
+    $light-dock-manager,
     (
         background-color: (
             igx-color: ('grays', 100),
@@ -343,9 +345,9 @@ $_bootstrap-dock-manager: extend(
 /// @prop {Color} tab-text [igx-color: ('grays', 700)] - Sets the text color for tabs.
 /// @prop {Color} text-color [igx-color: ('grays', 900)] - Sets the text color for most elements in the dock manager. Used as the default joystick icon color.
 /// @requires {function} extend
-/// @requires {Map} $_light-dock-manager
-$_indigo-dock-manager: extend(
-    $_light-dock-manager,
+/// @requires {Map} $light-dock-manager
+$indigo-dock-manager: extend(
+    $light-dock-manager,
     (
         background-color: (
             igx-color: ('grays', 100),

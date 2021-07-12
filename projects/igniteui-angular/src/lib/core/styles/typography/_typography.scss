@@ -1,3 +1,8 @@
+@use 'sass:map';
+@use 'sass:string';
+@use '../base' as *;
+@use 'base' as *;
+
 ////
 /// @group typography
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,50 +10,53 @@
 
 // Import the typography mixins from component themes
 // with typography support.
-@import '../components/bottom-nav/bottom-nav-theme';
-@import '../components/button/button-theme';
-@import '../components/calendar/calendar-theme';
-@import '../components/card/card-theme';
-@import '../components/charts/category-chart-theme';
-@import '../components/charts/data-chart-theme';
-@import '../components/charts/financial-chart-theme';
-@import '../components/charts/funnel-chart-theme';
-@import '../components/charts/gauge-theme';
-@import '../components/charts/graph-theme';
-@import '../components/charts/shape-chart-theme';
-@import '../components/checkbox/checkbox-theme';
-@import '../components/chip/chip-theme';
-@import '../components/column-actions/column-actions-theme';
-@import '../components/date-range-picker/date-range-picker-theme';
-@import '../components/dialog/dialog-theme';
-@import '../components/dock-manager/dock-manager-theme';
-@import '../components/drop-down/drop-down-theme';
-@import '../components/expansion-panel/expansion-panel-theme';
-@import '../components/grid/excel-filtering-theme';
-@import '../components/input/input-group-theme';
-@import '../components/list/list-theme';
-@import '../components/navbar/navbar-theme';
-@import '../components/navdrawer/navdrawer-theme';
-@import '../components/radio/radio-theme';
-@import '../components/slider/slider-theme';
-@import '../components/snackbar/snackbar-theme';
-@import '../components/switch/switch-theme';
-@import '../components/tabs/tabs-theme';
-@import '../components/time-picker/time-picker-theme';
-@import '../components/toast/toast-theme';
-@import '../components/tooltip/tooltip-theme';
+@use '../components/banner/banner-theme' as *;
+@use '../components/bottom-nav/bottom-nav-theme' as *;
+@use '../components/button/button-theme' as *;
+@use '../components/calendar/calendar-theme' as *;
+@use '../components/card/card-theme' as *;
+@use '../components/charts/category-chart-theme' as *;
+@use '../components/charts/data-chart-theme' as *;
+@use '../components/charts/financial-chart-theme' as *;
+@use '../components/charts/funnel-chart-theme' as *;
+@use '../components/charts/gauge-theme' as *;
+@use '../components/charts/graph-theme' as *;
+@use '../components/charts/shape-chart-theme' as *;
+@use '../components/checkbox/checkbox-theme' as *;
+@use '../components/chip/chip-theme' as *;
+@use '../components/column-actions/column-actions-theme' as *;
+@use '../components/date-range-picker/date-range-picker-theme' as *;
+@use '../components/dialog/dialog-theme' as *;
+@use '../components/dock-manager/dock-manager-theme' as *;
+@use '../components/drop-down/drop-down-theme' as *;
+@use '../components/expansion-panel/expansion-panel-theme' as *;
+@use '../components/grid/excel-filtering-theme' as *;
+@use '../components/input/input-group-theme' as *;
+@use '../components/list/list-theme' as *;
+@use '../components/navbar/navbar-theme' as *;
+@use '../components/navdrawer/navdrawer-theme' as *;
+@use '../components/radio/radio-theme' as *;
+@use '../components/slider/slider-theme' as *;
+@use '../components/snackbar/snackbar-theme' as *;
+@use '../components/switch/switch-theme' as *;
+@use '../components/tabs/tabs-theme' as *;
+@use '../components/time-picker/time-picker-theme' as *;
+@use '../components/toast/toast-theme' as *;
+@use '../components/tooltip/tooltip-theme' as *;
+@use '../components/tree/tree-theme' as *;
 
 /// @access private
 @mixin _igx-typography-styles($font-family, $type-scale) {
-    $_variant: map-get(map-get($type-scale, '_meta'), 'variant');
+    $_variant: map.get(map.get($type-scale, '_meta'), 'variant');
 
-    font-family: unquote($font-family);
+    // TODO: Replace string.unquote with meta.inspect
+    font-family: string.unquote($font-family);
     font-size: $browser-context;
     line-height: $browser-line-height;
     font-size-adjust: 100%;
 
     // Call the individual component styles with the type scale
-    @include _excel-filtering-typography($type-scale);
+    @include excel-filtering-typography($type-scale);
     @include igx-banner-typography($type-scale);
     @include igx-bottom-nav-typography($type-scale);
     @include igx-button-typography($type-scale);
@@ -88,7 +96,7 @@
     }
 
     @if ($_variant == 'bootstrap') {
-        $calendar-labels: map-get($type-scale, 'calendar-labels');
+        $calendar-labels: map.get($type-scale, 'calendar-labels');
 
         @include igx-calendar-typography($type-scale, $categories: (
             header-year: 'subtitle-1',
@@ -178,7 +186,7 @@
                 @if $category != _meta {
                     // Get the native element that uses typographic styles directly
                     // as mapped in the $category-element-map
-                    $e: map-get($category-element-map, $category);
+                    $e: map.get($category-element-map, $category);
 
                     // Create a placeholder selector with styles for each
                     // typographic style to be able to easily extend it

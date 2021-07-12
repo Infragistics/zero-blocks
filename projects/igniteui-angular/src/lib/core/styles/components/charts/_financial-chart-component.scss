@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @access private
@@ -6,8 +9,11 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(financial-chart) {
-    // Register the component in the component registry
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+
+@mixin component {
+    @include b(financial-chart) {
+        // Register the component in the component registry
+        $this: bem--selector-to-string(&);
+        @include register-component(string.slice($this, 2, -1));
+    }
 }

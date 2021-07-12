@@ -1,4 +1,6 @@
-@import '../light/carousel';
+@use '../../../base' as *;
+@use '../light/carousel' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -12,7 +14,7 @@
 /// @prop {Color} button-hover-background [#222] - The previous/next buttons hover background color.
 /// @prop {Map} button-disabled-background [igx-color: ('grays', 100), to-opaque: (#222)] - The previous/next buttons disabled background color.
 /// @prop {Map} button-disabled-arrow-color [igx-color: ('grays' 400), to-opaque: (#222)] - The previous/next buttons disabled color.
-$_base-dark-carousel: (
+$base-dark-carousel: (
     slide-background: #222,
     button-background: #222,
     button-hover-background: #222,
@@ -26,29 +28,29 @@ $_base-dark-carousel: (
     ),
 );
 
-/// Generates a dark carousel schema based on a mix of $_light-carousel and $_base-dark-carousel
+/// Generates a dark carousel schema based on a mix of $light-carousel and $base-dark-carousel
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-carousel
-/// @requires $_base-dark-carousel
+/// @requires $light-carousel
+/// @requires $base-dark-carousel
 /// @see $default-palette
-$_dark-carousel: extend($_light-carousel, $_base-dark-carousel);
+$dark-carousel: extend($light-carousel, $base-dark-carousel);
 
-/// Generates a dark fluent carousel schema based on a mix of $_fluent-carousel and $_base-dark-carousel
+/// Generates a dark fluent carousel schema based on a mix of $fluent-carousel and $base-dark-carousel
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-carousel
-/// @requires $_base-dark-carousel
-$_dark-fluent-carousel: extend($_fluent-carousel, $_base-dark-carousel);
+/// @requires $fluent-carousel
+/// @requires $base-dark-carousel
+$dark-fluent-carousel: extend($fluent-carousel, $base-dark-carousel);
 
-/// Generates a dark bootstrap carousel schema based on a mix of $_bootstrap-carousel and $_base-dark-carousel
+/// Generates a dark bootstrap carousel schema based on a mix of $bootstrap-carousel and $base-dark-carousel
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-carousel
-/// @requires $_base-dark-carousel
-$_dark-bootstrap-carousel: extend($_bootstrap-carousel, $_base-dark-carousel);
+/// @requires $bootstrap-carousel
+/// @requires $base-dark-carousel
+$dark-bootstrap-carousel: extend($bootstrap-carousel, $base-dark-carousel);
 
-/// Generates a dark indigo carousel schema based on a mix of $_indigo-carousel and $_base-dark-carousel
+/// Generates a dark indigo carousel schema based on a mix of $indigo-carousel and $base-dark-carousel
 /// @type {Map}
 /// @prop {Color} slide-background [#222] - The slide background color.
 /// @prop {Map} button-background [igx-color: ('grays', 400)] - The previous/next buttons idle background color.
@@ -58,8 +60,8 @@ $_dark-bootstrap-carousel: extend($_bootstrap-carousel, $_base-dark-carousel);
 /// @prop {Map} indicator-dot-color [igx-color: ('grays', 600)] - The idle indicator dot color.
 /// @prop {Map} indicator-active-dot-color [igx-color: ('grays', 900)] - The active indicator dot color.
 /// @requires {function} extend
-/// @requires $_indigo-carousel
-$_dark-indigo-carousel: extend($_indigo-carousel, (
+/// @requires $indigo-carousel
+$dark-indigo-carousel: extend($indigo-carousel, (
     slide-background: #222,
 
     button-background: (

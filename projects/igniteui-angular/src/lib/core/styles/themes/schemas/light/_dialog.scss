@@ -1,5 +1,6 @@
-@import '../shape/dialog';
-@import '../elevation/dialog';
+@use '../../../base' as *;
+@use '../shape/dialog' as *;
+@use '../elevation/dialog' as *;
 
 ////
 /// @group schemas
@@ -19,11 +20,11 @@
 ///
 /// @see $default-palette
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-dialog
-/// @requires {Map} $_default-elevation-dialog
-$_light-dialog: extend(
-    $_default-shape-dialog,
-    $_default-elevation-dialog,
+/// @requires {Map} $default-shape-dialog
+/// @requires {Map} $default-elevation-dialog
+$light-dialog: extend(
+    $default-shape-dialog,
+    $default-elevation-dialog,
     (
         variant: 'material',
         background: (
@@ -51,11 +52,11 @@ $_light-dialog: extend(
 /// @prop {Number} border-radius [2px] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-dialog
-/// @requires {Map} $_fluent-shape-dialog
-$_fluent-dialog: extend(
-    $_light-dialog,
-    $_fluent-shape-dialog,
+/// @requires {Map} $light-dialog
+/// @requires {Map} $fluent-shape-dialog
+$fluent-dialog: extend(
+    $light-dialog,
+    $fluent-shape-dialog,
     (
         variant: 'fluent',
     )
@@ -67,13 +68,13 @@ $_fluent-dialog: extend(
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the dialog.
 /// @prop {Number} border-radius [4px] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-dialog
-/// @requires {Map} $_bootstrap-shape-dialog
-/// @requires {Map} $_bootstrap-elevation-dialog
-$_bootstrap-dialog: extend(
-    $_light-dialog,
-    $_bootstrap-shape-dialog,
-    $_bootstrap-elevation-dialog,
+/// @requires {Map} $light-dialog
+/// @requires {Map} $bootstrap-shape-dialog
+/// @requires {Map} $bootstrap-elevation-dialog
+$bootstrap-dialog: extend(
+    $light-dialog,
+    $bootstrap-shape-dialog,
+    $bootstrap-elevation-dialog,
     (
         variant: 'bootstrap',
         border-color: (
@@ -88,11 +89,11 @@ $_bootstrap-dialog: extend(
 /// @prop {Map} message-color [igx-color: ('grays', 700)] - The dialog message text color.
 /// @prop {Number} border-radius [2px] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-dialog
-/// @requires {Map} $_indigo-shape-dialog
-$_indigo-dialog: extend(
-    $_light-dialog,
-    $_indigo-shape-dialog,
+/// @requires {Map} $light-dialog
+/// @requires {Map} $indigo-shape-dialog
+$indigo-dialog: extend(
+    $light-dialog,
+    $indigo-shape-dialog,
     (
         variant: 'indigo-design',
 

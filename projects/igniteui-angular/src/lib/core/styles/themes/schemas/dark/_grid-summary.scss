@@ -1,4 +1,5 @@
-@import '../light/grid-summary';
+@use '../../../base' as *;
+@use '../light/grid-summary' as *;
 
 ////
 /// @group schemas
@@ -8,35 +9,32 @@
 
 /// Generates a dark grid-summary schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-grid-summary
+/// @requires $light-grid-summary
 /// @see $default-palette
-$_dark-grid-summary: extend($_light-grid-summary);
+$dark-grid-summary: $light-grid-summary;
 
 /// Generates a dark fluent grid-summary schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-grid-summary
-$_dark-fluent-grid-summary: extend($_fluent-grid-summary);
+/// @requires $fluent-grid-summary
+$dark-fluent-grid-summary: $fluent-grid-summary;
 
 /// Generates a dark bootstrap grid-summary schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-grid-summary
-$_dark-bootstrap-grid-summary: extend($_bootstrap-grid-summary);
+/// @requires $bootstrap-grid-summary
+$dark-bootstrap-grid-summary: $bootstrap-grid-summary;
 
 /// Generates a dark indigo grid-summary schema.
 /// @type {Map}
-/// @property {Color} background-color [igx-color: 'surface'] - The summaries background color is inherited form igx-grid__tfoot.
+/// @property {Color} background-color [igx-color: 'surface'] - The summaries background color is inherited form igx-grid footer.
 /// @property {Map} focus-background-color [igx-color: ('grays', 100)] - The background color when a summary item is on focus.
 /// @property {Map} label-color [igx-color: ('primary', 200)] - The summaries label color.
 /// @property {map} label-hover-color [igx-color: ('primary', 100)] - The summaries hover label color.
 /// @property {Color} result-color [igx-color: 'surface'] - The summaries value/result color.
 /// @property {Map} pinned-border-color [igx-color: ('primary', 200)] - The border color of the summary panel.
 /// @requires {function} extend
-/// @requires $_indigo-grid-summary
-$_dark-indigo-grid-summary: extend(
-    $_indigo-grid-summary,
+/// @requires $indigo-grid-summary
+$dark-indigo-grid-summary: extend(
+    $indigo-grid-summary,
     (
         background-color: (
             igx-color: 'surface',

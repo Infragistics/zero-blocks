@@ -1,4 +1,4 @@
-@import '../light/sparkline';
+@use '../light/sparkline' as *;
 
 ////
 /// @group schemas
@@ -8,26 +8,22 @@
 
 /// Generates a dark sparkline schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-sparkline
+/// @requires $light-sparkline
 /// @see $default-palette
-$_dark-sparkline: extend($_light-sparkline);
+$dark-sparkline: $light-sparkline;
 
 /// Generates a dark fluent sparkline schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-sparkline
-$_dark-fluent-sparkline: extend($_fluent-sparkline);
+/// @requires $fluent-sparkline
+$dark-fluent-sparkline: $fluent-sparkline;
 
 /// Generates a dark bootstrap sparkline schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-sparkline
-$_dark-bootstrap-sparkline: extend($_bootstrap-sparkline);
+/// @requires $bootstrap-sparkline
+$dark-bootstrap-sparkline: $bootstrap-sparkline;
 
 /// Generates a dark indigo sparkline schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-sparkline
-$_dark-indigo-sparkline: extend($_indigo-sparkline);
+/// @requires $indigo-sparkline
+$dark-indigo-sparkline: $indigo-sparkline;
 

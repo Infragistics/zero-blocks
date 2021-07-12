@@ -1,5 +1,6 @@
-@import '../shape/drop-down';
-@import '../elevation/drop-down';
+@use '../../../base' as *;
+@use '../shape/drop-down' as *;
+@use '../elevation/drop-down' as *;
 
 ////
 /// @group schemas
@@ -30,12 +31,12 @@
 /// @prop {Number} border-radius [.2] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-drop-down
-/// @requires {Map} $_default-elevation-drop-down
+/// @requires {Map} $default-shape-drop-down
+/// @requires {Map} $default-elevation-drop-down
 /// @see $default-palette
-$_light-drop-down: extend(
-    $_default-shape-drop-down,
-    $_default-elevation-drop-down,
+$light-drop-down: extend(
+    $default-shape-drop-down,
+    $default-elevation-drop-down,
     (
         background-color: (
             igx-color: 'surface'
@@ -127,13 +128,13 @@ $_light-drop-down: extend(
 /// @prop {Number} border-radius [2px] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-drop-down
-/// @requires {Map} $_fluent-shape-drop-down
-/// @requires {Map} $_fluent-elevation-drop-down
-$_fluent-drop-down: extend(
-    $_light-drop-down,
-    $_fluent-shape-drop-down,
-    $_fluent-elevation-drop-down,
+/// @requires {Map} $light-drop-down
+/// @requires {Map} $fluent-shape-drop-down
+/// @requires {Map} $fluent-elevation-drop-down
+$fluent-drop-down: extend(
+    $light-drop-down,
+    $fluent-shape-drop-down,
+    $fluent-elevation-drop-down,
     (
         selected-item-background: (
             igx-color: ('grays', 100)
@@ -181,13 +182,13 @@ $_fluent-drop-down: extend(
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} border-width [1px] - The border width used for drop-down component.
 /// @requires {function} extend
-/// @requires {Map} $_light-drop-down
-/// @requires {Map} $_bootstrap-shape-drop-down
-/// @requires {Map} $_bootstrap-elevation-drop-down
-$_bootstrap-drop-down: extend(
-    $_light-drop-down,
-    $_bootstrap-shape-drop-down,
-    $_bootstrap-elevation-drop-down,
+/// @requires {Map} $light-drop-down
+/// @requires {Map} $bootstrap-shape-drop-down
+/// @requires {Map} $bootstrap-elevation-drop-down
+$bootstrap-drop-down: extend(
+    $light-drop-down,
+    $bootstrap-shape-drop-down,
+    $bootstrap-elevation-drop-down,
     (
         header-text-color: (
             igx-color: ('grays', 700)
@@ -251,13 +252,13 @@ $_bootstrap-drop-down: extend(
 /// @prop {Number} border-radius [2px] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [2px] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires {Map} $_light-drop-down
-/// @requires {Map} $_indigo-shape-drop-down
-/// @requires {Map} $_indigo-elevation-drop-down
-$_indigo-drop-down: extend(
-    $_light-drop-down,
-    $_indigo-shape-drop-down,
-    $_indigo-elevation-drop-down,
+/// @requires {Map} $light-drop-down
+/// @requires {Map} $indigo-shape-drop-down
+/// @requires {Map} $indigo-elevation-drop-down
+$indigo-drop-down: extend(
+    $light-drop-down,
+    $indigo-shape-drop-down,
+    $indigo-elevation-drop-down,
     (
         variant: 'indigo-design',
 

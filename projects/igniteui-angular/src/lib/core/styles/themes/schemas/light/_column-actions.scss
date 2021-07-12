@@ -9,7 +9,7 @@
 /// @prop {Map} title-color [igx-color: ('primary', 500)]- The text color used for the title of the list.
 /// @prop {Color} background-color [#fff] - The background color of the panel.
 /// @see $default-palette
-$_light-column-actions: (
+$light-column-actions: (
     background-color: #fff,
 
     title-color: (
@@ -19,18 +19,15 @@ $_light-column-actions: (
 
 /// Generates a fluent column actions schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {map} $_light-column-actions
-$_fluent-column-actions: extend($_light-column-actions);
+/// @requires {map} $light-column-actions
+$fluent-column-actions: $light-column-actions;
 
 /// Generates a bootstrap column actions schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {map} $_light-column-actions
-$_bootstrap-column-actions: extend($_light-column-actions);
+/// @requires {map} $light-column-actions
+$bootstrap-column-actions: $light-column-actions;
 
 /// Generates an indigo column actions schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {map} $_light-column-actions
-$_indigo-column-actions: extend($_light-column-actions);
+/// @requires {map} $light-column-actions
+$indigo-column-actions: $light-column-actions;

@@ -1,4 +1,3 @@
-@import 'functions.spec';
-@import 'mixins.spec';
-@import 'elevations.spec';
-
+@use 'functions.spec' as *;
+@use 'mixins.spec' as *;
+@use 'elevations.spec' as *;

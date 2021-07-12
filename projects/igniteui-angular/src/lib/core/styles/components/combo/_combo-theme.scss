@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -25,8 +29,8 @@
     $name: 'igx-combo';
     $combo-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $combo-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $combo-schema: map.get($schema, $name);
     } @else {
         $combo-schema: $schema;
     }
@@ -45,7 +49,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-combo($theme) {
     @include igx-css-vars($theme);
 
@@ -74,7 +78,7 @@
         padding: rem(8px) rem(16px);
         margin: 0 !important;
         z-index: 26;
-        border-bottom: 1px dashed --var($theme, 'search-separator-border-color');
+        border-bottom: 1px dashed var-get($theme, 'search-separator-border-color');
     }
 
     %igx-combo__content {
@@ -93,7 +97,7 @@
         align-items: center;
         position: relative;
         padding: rem(16px);
-        background: --var($theme, 'empty-list-background');
+        background: var-get($theme, 'empty-list-background');
     }
 
     %igx-combo__empty {
@@ -101,7 +105,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        color: --var($theme, 'empty-list-placeholder-color');
+        color: var-get($theme, 'empty-list-placeholder-color');
         padding: 0 rem(24px);
         font-size: rem(13px);
     }

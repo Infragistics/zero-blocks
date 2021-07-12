@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -20,63 +22,61 @@
 /// @prop {Map} border-color [igx-color: ('secondary')] - The outline shadow color used for tree node in focus state.
 /// @requires {function} extend
 /// @see $default-palette
-$_light-tree: extend(
-    (
-        variant: 'material',
+$light-tree: (
+    variant: 'material',
 
-        background: (
-            igx-color: ('surface')
-        ),
+    background: (
+        igx-color: ('surface')
+    ),
 
-        foreground: (
-            igx-contrast-color: ('surface')
-        ),
+    foreground: (
+        igx-contrast-color: ('surface')
+    ),
 
-        background-selected: (
-            igx-color: ('secondary', 200)
-        ),
+    background-selected: (
+        igx-color: ('secondary', 200)
+    ),
 
-        foreground-selected: (
-            igx-contrast-color: ('secondary', 200)
-        ),
+    foreground-selected: (
+        igx-contrast-color: ('secondary', 200)
+    ),
 
-        background-active: (
-            igx-color: ('grays', 200),
-        ),
+    background-active: (
+        igx-color: ('grays', 200),
+    ),
 
-        foreground-active: (
-            igx-contrast-color: ('grays', 200),
-        ),
+    foreground-active: (
+        igx-contrast-color: ('grays', 200),
+    ),
 
-        background-active-selected: (
-            igx-color: ('secondary', 300)
-        ),
+    background-active-selected: (
+        igx-color: ('secondary', 300)
+    ),
 
-        foreground-active-selected: (
-            igx-contrast-color: ('secondary', 300),
-        ),
+    foreground-active-selected: (
+        igx-contrast-color: ('secondary', 300),
+    ),
 
-        border-color: (
-            igx-color: ('secondary')
-        ),
+    border-color: (
+        igx-color: ('secondary')
+    ),
 
-        // Same for all themes
+    // Same for all themes
 
-        background-disabled: (
-            igx-color: ('surface')
-        ),
+    background-disabled: (
+        igx-color: ('surface')
+    ),
 
-        foreground-disabled: (
-            igx-color: ('grays', 500)
-        ),
+    foreground-disabled: (
+        igx-color: ('grays', 500)
+    ),
 
-        drop-area-color: (
-            igx-color: ('secondary')
-        ),
+    drop-area-color: (
+        igx-color: ('secondary')
+    ),
 
-        hover-color: (
-            igx-color: ('grays', 200)
-        )
+    hover-color: (
+        igx-color: ('grays', 200)
     )
 );
 
@@ -92,9 +92,9 @@ $_light-tree: extend(
 /// @prop {Map} foreground-active-selected [igx-contrast-color: ('grays', 200)] - The color used for the content of the active selected tree node.
 /// @prop {Map} border-color [igx-color: ('grays', 800)] - The outline shadow color used for tree node in focus state.
 /// @requires {function} extend
-/// @requires {Map} $_light-tree
-$_fluent-tree: extend(
-    $_light-tree,
+/// @requires {Map} $light-tree
+$fluent-tree: extend(
+    $light-tree,
     (
         variant: 'fluent',
 
@@ -146,9 +146,9 @@ $_fluent-tree: extend(
 /// @prop {Map} foreground-active-selected [igx-contrast-color: ('primary', 600)] - The color used for the content of the active selected tree node.
 /// @prop {Map} border-color [igx-color: ('primary', 200)] - The outline shadow color used for tree node in focus state.
 /// @requires {function} extend
-/// @requires $_light-tree
-$_bootstrap-tree: extend(
-    $_light-tree,
+/// @requires $light-tree
+$bootstrap-tree: extend(
+    $light-tree,
     (
         variant: 'bootstrap',
 
@@ -196,9 +196,9 @@ $_bootstrap-tree: extend(
 /// @prop {Map} foreground-active-selected [igx-contrast-color: ('primary', 400)] - The color used for the content of the active selected tree node.
 /// @prop {Map} border-color [igx-color: ('primary', 300)] - The outline shadow color used for tree node in focus state.
 /// @requires {function} extend
-/// @requires {Map} $_light-tree
-$_indigo-tree: extend(
-    $_light-tree,
+/// @requires {Map} $light-tree
+$indigo-tree: extend(
+    $light-tree,
     (
         variant: 'indigo-design',
 

@@ -1,4 +1,5 @@
-@import '../light/combo';
+@use '../../../base' as *;
+@use '../light/combo' as *;
 
 ////
 /// @group schemas
@@ -9,23 +10,23 @@
 /// Generates a dark combo schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-combo
+/// @requires $light-combo
 /// @see $default-palette
-$_dark-combo: extend($_light-combo);
+$dark-combo: $light-combo;
 
 /// Generates a dark fluent combo schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-combo
-$_dark-fluent-combo: extend($_fluent-combo);
+/// @requires $fluent-combo
+$dark-fluent-combo: $fluent-combo;
 
 /// Generates a dark bootstrap combo schema.
 /// @type {Map}
 /// @prop {Color} empty-list-background [#222] - The combo list background color.
 /// @requires {function} extend
-/// @requires $_bootstrap-combo
-$_dark-bootstrap-combo: extend(
-    $_bootstrap-combo,
+/// @requires $bootstrap-combo
+$dark-bootstrap-combo: extend(
+    $bootstrap-combo,
     (
         empty-list-background: #222,
     )
@@ -34,5 +35,5 @@ $_dark-bootstrap-combo: extend(
 /// Generates a dark indigo combo schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-combo
-$_dark-indigo-combo: extend($_indigo-combo);
+/// @requires $indigo-combo
+$dark-indigo-combo: $indigo-combo;

@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,65 +8,71 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-button) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-button-display !optional;
+@mixin component {
+    @include b(igx-button) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @include m(cosy) {
-        @extend %igx-button-display--cosy !optional;
-    }
+        @extend %igx-button-display !optional;
 
-    @include m(compact) {
-        @extend %igx-button-display--compact !optional;
-    }
+        @include m(cosy) {
+            @extend %igx-button-display--cosy !optional;
+        }
 
-    // FLAT BUTTON
-    @include m(flat) {
-        @extend %igx-button--flat !optional;
-    }
+        @include m(compact) {
+            @extend %igx-button-display--compact !optional;
+        }
 
-    // RAISED BUTTON
-    @include m(raised) {
-        @extend %igx-button--raised !optional;
-    }
+        // FLAT BUTTON
+        @include m(flat) {
+            @extend %igx-button--flat !optional;
+        }
 
-    // OUTLINED BUTTON
-    @include m(outlined) {
-        @extend %igx-button--outlined !optional;
-    }
+        // RAISED BUTTON
+        @include m(raised) {
+            @extend %igx-button--raised !optional;
+        }
 
-    @include mx(cosy, outlined) {
-        @extend %igx-button--outlined-cosy !optional;
-    }
+        // OUTLINED BUTTON
+        @include m(outlined) {
+            @extend %igx-button--outlined !optional;
+        }
 
-    @include mx(compact, outlined) {
-        @extend %igx-button--outlined-compact !optional;
-    }
+        @include mx(cosy, outlined) {
+            @extend %igx-button--outlined-cosy !optional;
+        }
 
-    // FAB BUTTON
-    @include m(fab) {
-        @extend %igx-button--round !optional;
-        @extend %igx-button--fab !optional;
-    }
+        @include mx(compact, outlined) {
+            @extend %igx-button--outlined-compact !optional;
+        }
 
-    @include mx(cosy, fab) {
-        @extend %igx-button--fab-cosy !optional;
-    }
+        // FAB BUTTON
+        @include m(fab) {
+            @extend %igx-button--round !optional;
+            @extend %igx-button--fab !optional;
+        }
 
-    @include mx(compact, fab) {
-        @extend %igx-button--fab-compact !optional;
-    }
+        @include mx(cosy, fab) {
+            @extend %igx-button--fab-cosy !optional;
+        }
 
-    // ICON BUTTON
-    @include m(icon) {
-        @extend %igx-button--round !optional;
-        @extend %igx-button--icon !optional;
-    }
+        @include mx(compact, fab) {
+            @extend %igx-button--fab-compact !optional;
+        }
 
-    // DISABLED BUTTON
-    @include m(disabled) {
-        @extend %igx-button--disabled !optional;
+        // ICON BUTTON
+        @include m(icon) {
+            @extend %igx-button--round !optional;
+            @extend %igx-button--icon !optional;
+        }
+
+        // DISABLED BUTTON
+        @include m(disabled) {
+            @extend %igx-button--disabled !optional;
+        }
     }
 }

@@ -1,3 +1,6 @@
+@use '../base' as *;
+@use '../../base' as *;
+
 $fluent_h1: igx-type-style(
     $font-size: rem(68px),
     $font-weight: 700,

@@ -1,4 +1,5 @@
-@import '../light/grid-filtering';
+@use '../light/grid-filtering' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -7,25 +8,21 @@
 
 /// Generates a dark grid-filtering schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-grid-filtering
+/// @requires $light-grid-filtering
 /// @see $default-palette
-$_dark-grid-filtering: extend($_light-grid-filtering);
+$dark-grid-filtering: $light-grid-filtering;
 
 /// Generates a dark fluent grid-filtering schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-grid-filtering
-$_dark-fluent-grid-filtering: extend($_fluent-grid-filtering);
+/// @requires $fluent-grid-filtering
+$dark-fluent-grid-filtering: $fluent-grid-filtering;
 
 /// Generates a dark bootstrap grid-filtering schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-grid-filtering
-$_dark-bootstrap-grid-filtering: extend($_bootstrap-grid-filtering);
+/// @requires $bootstrap-grid-filtering
+$dark-bootstrap-grid-filtering: $bootstrap-grid-filtering;
 
 /// Generates a dark indigo grid-filtering schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-grid-filtering
-$_dark-indigo-grid-filtering: extend($_indigo-grid-filtering);
+/// @requires $indigo-grid-filtering
+$dark-indigo-grid-filtering: $indigo-grid-filtering;

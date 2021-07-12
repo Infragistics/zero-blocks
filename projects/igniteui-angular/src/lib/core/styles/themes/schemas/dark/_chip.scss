@@ -1,4 +1,6 @@
-@import '../light/chip';
+@use '../../../base' as *;
+@use '../light/chip' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -8,46 +10,46 @@
 /// Generates the base dark chip schema.
 /// @type {Map}
 /// @prop {Map} ghost-background [igx-color: ('grays', 400), to-opaque: #000] - The chip ghost background color.
-$_base-dark-chip: (
+$base-dark-chip: (
     ghost-background: (
         igx-color: ('grays', 400),
         to-opaque: #000
     )
 );
 
-/// Generates a dark chip schema based on a mix of $_light-chip and $_base-dark-chip.
+/// Generates a dark chip schema based on a mix of $light-chip and $base-dark-chip.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-chip
-/// @requires $_base-dark-chip
+/// @requires $light-chip
+/// @requires $base-dark-chip
 /// @see $default-palette
-$_dark-chip: extend($_light-chip, $_base-dark-chip);
+$dark-chip: extend($light-chip, $base-dark-chip);
 
-/// Generates a dark fluent chip schema based on a mix of $_fluent-chip and $_base-dark-chip.
+/// Generates a dark fluent chip schema based on a mix of $fluent-chip and $base-dark-chip.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-chip
-/// @requires $_base-dark-chip
-$_dark-fluent-chip: extend($_fluent-chip, $_base-dark-chip);
+/// @requires $fluent-chip
+/// @requires $base-dark-chip
+$dark-fluent-chip: extend($fluent-chip, $base-dark-chip);
 
-/// Generates a dark bootstrap chip schema based on a mix of $_bootstrap-chip and $_base-dark-chip.
+/// Generates a dark bootstrap chip schema based on a mix of $bootstrap-chip and $ase-dark-chip.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-chip
-/// @requires $_base-dark-chip
-$_dark-bootstrap-chip: extend($_bootstrap-chip, $_base-dark-chip);
+/// @requires $bootstrap-chip
+/// @requires $base-dark-chip
+$dark-bootstrap-chip: extend($bootstrap-chip, $base-dark-chip);
 
-/// Generates a dark indigo chip schema based on a mix of $_indigo-chip and $_base-dark-chip.
+/// Generates a dark indigo chip schema based on a mix of $indigo-chip and $base-dark-chip.
 /// @type {Map}
 /// @prop {Color} background [igx-color: ('surface')] - The chip background color.
 /// @prop {Color} ghost-background igx-color: ('surface'), to-opaque: (igx-color: 'surface',)), to-opaque: (igx-color: 'surface')] - The chip ghost background color.
 /// @prop {Map} hover-background [igx-color: ('grays', 300)] - The chip hover background color.
 /// @prop {Color} focus-background [igx-color: ('surface')] The focused chip background color.
 /// @requires {function} extend
-/// @requires $_indigo-chip
-/// @requires $_base-dark-chip
-$_dark-indigo-chip: extend(
-    $_indigo-chip,
+/// @requires $indigo-chip
+/// @requires $base-dark-chip
+$dark-indigo-chip: extend(
+    $indigo-chip,
     (
         background: (
             igx-color: ('surface')

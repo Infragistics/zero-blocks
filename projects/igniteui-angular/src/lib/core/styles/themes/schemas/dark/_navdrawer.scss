@@ -1,4 +1,5 @@
-@import '../light/navdrawer';
+@use '../../../base' as *;
+@use '../light/navdrawer' as *;
 
 ////
 /// @group schemas
@@ -8,10 +9,9 @@
 
 /// Generates a dark navdrawer schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-navdrawer
+/// @requires $light-navdrawer
 /// @see $default-palette
-$_dark-navdrawer: extend($_light-navdrawer);
+$dark-navdrawer: $light-navdrawer;
 
 /// Generates a dark fluent navdrawer schema.
 /// @type {Map}
@@ -19,9 +19,9 @@ $_dark-navdrawer: extend($_light-navdrawer);
 /// @prop {Map} item-active-icon-color [igx-color: ('primary', 100)] - The item's icon active color.
 /// @prop {Map} item-active-background [igx-color: ('primary', 400), rgba: .12] - The item's active background color.
 /// @requires {function} extend
-/// @requires $_fluent-navdrawer
-$_dark-fluent-navdrawer: extend(
-    $_fluent-navdrawer,
+/// @requires $fluent-navdrawer
+$dark-fluent-navdrawer: extend(
+    $fluent-navdrawer,
     (
         item-active-text-color: (
             igx-color: ('primary', 200)
@@ -40,11 +40,8 @@ $_dark-fluent-navdrawer: extend(
 
 /// Generates a dark bootstrap navdrawer schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-navdrawer
-$_dark-bootstrap-navdrawer: extend(
-    $_bootstrap-navdrawer,
-);
+/// @requires $bootstrap-navdrawer
+$dark-bootstrap-navdrawer: $bootstrap-navdrawer;
 
 
 /// Generates a dark indigo navdrawer schema.
@@ -59,9 +56,9 @@ $_dark-bootstrap-navdrawer: extend(
 /// @prop {Map} item-hover-text-color [igx-contrast-color: ('grays', 800)] - The item's hover text color.
 /// @prop {Map} item-hover-icon-color [igx-contrast-color: ('grays', 800)] - The item's hover icon color.
 /// @requires {function} extend
-/// @requires $_indigo-navdrawer
-$_dark-indigo-navdrawer: extend(
-    $_indigo-navdrawer,
+/// @requires $indigo-navdrawer
+$dark-indigo-navdrawer: extend(
+    $indigo-navdrawer,
     (
         background: (
             igx-color: ('grays', 800),

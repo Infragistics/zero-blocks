@@ -1,13 +1,14 @@
+@use 'sass:map';
 @use 'node_modules/sass-true' as *;
-@import '../base/index';
-@import '../themes/index';
+@use '../base' as *;
+@use '../components' as *;
 
 @include describe('Register Component') {
     $components: () !default;
 
     @include it('should add new component inside components list') {
         @include register-component('my-component');
-        @include assert-true(map-has-key($components, 'my-component'));
+        @include assert-true(map.has-key($components, 'my-component'));
     }
 }
 
@@ -43,7 +44,7 @@
             }
 
             @include contains() {
-                --igc-active-color: var(--igc-dockmanager-#{$key}, #{map-get($theme, #{$key})});
+                --igc-active-color: var(--igc-dockmanager-#{$key}, #{map.get($theme, #{$key})});
             }
         }
     }
@@ -132,7 +133,7 @@
 
         @include assert() {
             @include output() {
-                @include  if-rtl() {
+                @include if-rtl() {
                     margin: 1px;
                 }
             }
@@ -142,6 +143,7 @@
             }
         }
     }
+
     @include it('should return styles only when the global direction is LTR') {
         $direction: 'ltr' !global;
 
@@ -179,7 +181,7 @@
     $keyframes: () !default;
     @include it('should registers a keyframe animation in the global keyframes registry list') {
         @include keyframes('my-keyframe');
-        @include assert-true(map-has-key($keyframes, 'my-keyframe'));
+        @include assert-true(map.has-key($keyframes, 'my-keyframe'));
     }
 
     /* stylelint-disable max-nesting-depth */

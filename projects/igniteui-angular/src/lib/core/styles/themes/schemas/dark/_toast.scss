@@ -1,4 +1,5 @@
-@import '../light/toast';
+@use '../../../base' as *;
+@use '../light/toast' as *;
 
 ////
 /// @group schemas
@@ -8,24 +9,22 @@
 
 /// Generates a dark toast schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-toast
+/// @requires $light-toast
 /// @see $default-palette
-$_dark-toast: extend($_light-toast);
+$dark-toast: $light-toast;
 
 /// Generates a dark fluent toast schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-toast
-$_dark-fluent-toast: extend($_fluent-toast);
+/// @requires $fluent-toast
+$dark-fluent-toast: $fluent-toast;
 
 /// Generates a dark bootstrap toast schema.
 /// @type {Map}
 /// @prop {Map} text-color [igx-contrast-color: ('grays', 600)] - The text-color used for the toast.
 /// @requires {function} extend
-/// @requires $_bootstrap-toast
-$_dark-bootstrap-toast: extend(
-    $_bootstrap-toast, (
+/// @requires $bootstrap-toast
+$dark-bootstrap-toast: extend(
+    $bootstrap-toast, (
         text-color: (
             igx-contrast-color: ('grays', 600)
         )
@@ -36,9 +35,9 @@ $_dark-bootstrap-toast: extend(
 /// @type {Map}
 /// @prop {Map} background [igx-color: ('grays', 400)] - The background color used for the toast.
 /// @requires {function} extend
-/// @requires $_indigo-toast
-$_dark-indigo-toast: extend(
-    $_indigo-toast, (
+/// @requires $indigo-toast
+$dark-indigo-toast: extend(
+    $indigo-toast, (
         background: (
             igx-color: ('grays', 400)
         )

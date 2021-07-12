@@ -7,7 +7,7 @@
 /// @type Map
 /// @prop {Number} border-radius [.2] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-drop-down: (
+$default-shape-drop-down: (
     border-radius: .2,
     item-border-radius: 0,
 );
@@ -15,7 +15,7 @@ $_default-shape-drop-down: (
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-drop-down: (
+$round-shape-drop-down: (
     border-radius: 1,
     item-border-radius: 0,
 );
@@ -23,7 +23,7 @@ $_round-shape-drop-down: (
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-drop-down: (
+$square-shape-drop-down: (
     border-radius: 0,
     item-border-radius: 0,
 );
@@ -31,7 +31,7 @@ $_square-shape-drop-down: (
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-drop-down: (
+$fluent-shape-drop-down: (
     border-radius: 2px,
     item-border-radius: 0,
 );
@@ -39,7 +39,7 @@ $_fluent-shape-drop-down: (
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-drop-down: (
+$bootstrap-shape-drop-down: (
     border-radius: 4px,
     item-border-radius: 0,
 );
@@ -47,7 +47,7 @@ $_bootstrap-shape-drop-down: (
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for drop-down component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [2px] - The border radius used for the drop-down items. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-drop-down: (
+$indigo-shape-drop-down: (
     border-radius: 2px,
     item-border-radius: 2px,
 );

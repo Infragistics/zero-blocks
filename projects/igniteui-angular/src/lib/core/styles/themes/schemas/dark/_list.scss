@@ -1,4 +1,5 @@
-@import '../light/list';
+@use '../../../base' as *;
+@use '../light/list' as *;
 
 ////
 /// @group schemas
@@ -10,7 +11,7 @@
 /// @type {Map}
 /// @property {Map} item-background-hover [igx-color: ('grays', 400),  to-opaque: (#000)] - The list item hover background.
 /// @property {Map} item-background-active [igx-color: ('grays', 400),  to-opaque: (#000)] - The active list item background color.
-$_base-dark-list: (
+$base-dark-list: (
     item-background-hover: (
         igx-color: ('grays', 400),
         to-opaque: (#000)
@@ -22,32 +23,32 @@ $_base-dark-list: (
     ),
 );
 
-/// Generates a base dark list schema based on a mix of $_light-list and $_base-dark-list.
+/// Generates a base dark list schema based on a mix of $light-list and $base-dark-list.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-list
-/// @requires $_base-dark-list
+/// @requires $light-list
+/// @requires $base-dark-list
 /// @see $default-palette
-$_dark-list: extend($_light-list, $_base-dark-list);
+$dark-list: extend($light-list, $base-dark-list);
 
-/// Generates a base dark fluent list schema based on a mix of $_fluent-list and $_base-dark-list..
+/// Generates a base dark fluent list schema based on a mix of $fluent-list and $base-dark-list..
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-list
-/// @requires $_base-dark-list
-$_dark-fluent-list: extend($_fluent-list, $_base-dark-list);
+/// @requires $fluent-list
+/// @requires $base-dark-list
+$dark-fluent-list: extend($fluent-list, $base-dark-list);
 
-/// Generates a base dark bootstrap list schema based on a mix of $_bootstrap-list and $_base-dark-list..
+/// Generates a base dark bootstrap list schema based on a mix of $bootstrap-list and $base-dark-list..
 /// @type {Map}
 /// @requires {function} extend
 /// @property {Map} background [#222] - The list background color.
 /// @property {Map} item-background [#222] - The list item background color.
 /// @property {Map} header-background [#222] - The list header background color.
-/// @requires $_bootstrap-list
-/// @requires $_base-dark-list
-$_dark-bootstrap-list: extend(
-    $_bootstrap-list,
-    $_base-dark-list,
+/// @requires $bootstrap-list
+/// @requires $base-dark-list
+$dark-bootstrap-list: extend(
+    $bootstrap-list,
+    $base-dark-list,
     (
         background: #222,
         item-background: #222,
@@ -61,9 +62,9 @@ $_dark-bootstrap-list: extend(
 /// @property {Map} item-background-hover [igx-color: ('primary', 500), rgba: .5, to-opaque: (igx-color: 'surface')] - The list item hover background.
 /// @property {Map} item-background-active [igx-color: ('primary', 500), rgba: .5, to-opaque: (igx-color: 'surface')] - The active list item background color.
 /// @requires {function} extend
-/// @requires $_indigo-list
-$_dark-indigo-list: extend(
-    $_indigo-list,
+/// @requires $indigo-list
+$dark-indigo-list: extend(
+    $indigo-list,
     (
         header-text-color: (
             igx-contrast-color: 'surface'

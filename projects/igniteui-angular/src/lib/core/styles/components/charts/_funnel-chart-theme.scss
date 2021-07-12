@@ -1,10 +1,15 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access private
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
 ////
 
-/// @param {Map} $palette [$default-palette] - The palette used as basis for styling the component.
+/// @param {Map} $palette [null] - The palette used as basis for styling the component.
 /// @param {Map} $schema [$light-schema] - The schema used as basis for styling the component.
 ///
 /// @param {List} $brushes [null] - Defines the palette from which automatically assigned series colors are selected.
@@ -15,7 +20,6 @@
 /// @param {Number} $outline-thickness [null] - Sets the thickness of outline around slices.
 /// @param {Color} $text-color - [null] Sets the Color used for the inner labels.
 ///
-/// @requires $default-palette
 /// @requires $light-schema
 /// @requires apply-palette
 /// @requires extend
@@ -25,7 +29,7 @@
 ///   // Pass the theme to the igx-css-vars mixin
 ///   @include igx-css-vars($my-chart-theme);
 @function igx-funnel-chart-theme(
-    $palette: $default-palette,
+    $palette: null,
     $schema: $light-schema,
 
     $brushes: null,
@@ -40,8 +44,8 @@
     $selector: 'igx-funnel-chart';
     $chart-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $chart-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $chart-schema: map.get($schema, $name);
     } @else {
         $chart-schema: $schema;
     }
@@ -66,8 +70,8 @@
     text-style: 'subtitle-1',
 )) {
     $name: 'funnel-chart';
-    $outer-label-text-style: map-get($categories, 'outer-label-text-style');
-    $text-style: map-get($categories, 'text-style');
+    $outer-label-text-style: map.get($categories, 'outer-label-text-style');
+    $text-style: map.get($categories, 'text-style');
 
     $outer-label: igx-type-scale-category($type-scale, $outer-label-text-style);
     $text: igx-type-scale-category($type-scale, $text-style);

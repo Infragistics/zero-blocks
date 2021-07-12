@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 /// @author <a href="https://github.com/simeonoff" target="_blank">Maya Kirova</a>
@@ -6,53 +9,57 @@
 /// @requires {mixin} bem-mod
 ////
 
-@include b(igx-splitter) {
-    // Register the component in the component registry
-    $this: str-slice(bem--selector-to-string(&), 2, -1);
-    @include register-component($this);
+@mixin component {
+    @include b(igx-splitter) {
+        // Register the component in the component registry
+        $this: string.slice(bem--selector-to-string(&), 2, -1);
+        @include register-component(
+            $name: $this,
+            $deps: ()
+        );
 
-    @include b(#{$this}-bar-host) {
-        &:focus {
-            @extend %igx-splitter-bar--focus !optional;
-        }
-    }
-
-    @include b(#{$this}-bar) {
-        @extend %igx-splitter-bar !optional;
-
-        @include e(handle) {
-            @extend %igx-splitter-handle !optional;
-            @extend %igx-splitter-handle--horizontal !optional;
+        @include b(#{$this}-bar-host) {
+            &:focus {
+                @extend %igx-splitter-bar--focus !optional;
+            }
         }
 
-        @include e(expander, 'start') {
-            @extend %igx-splitter-expander !optional;
-            @extend %igx-splitter-expander--start !optional;
-        }
-
-        @include e(expander, 'end') {
-            @extend %igx-splitter-expander !optional;
-            @extend %igx-splitter-expander--end !optional;
-        }
-
-        @include m('vertical') {
-            @extend %igx-splitter-bar--vertical !optional;
+        @include b(#{$this}-bar) {
+            @extend %igx-splitter-bar !optional;
 
             @include e(handle) {
                 @extend %igx-splitter-handle !optional;
-                @extend %igx-splitter-handle--vertical !optional;
+                @extend %igx-splitter-handle--horizontal !optional;
             }
 
             @include e(expander, 'start') {
                 @extend %igx-splitter-expander !optional;
-                @extend %igx-splitter-expander--start-vertical !optional;
+                @extend %igx-splitter-expander--start !optional;
             }
 
             @include e(expander, 'end') {
                 @extend %igx-splitter-expander !optional;
-                @extend %igx-splitter-expander--end-vertical !optional;
+                @extend %igx-splitter-expander--end !optional;
+            }
+
+            @include m('vertical') {
+                @extend %igx-splitter-bar--vertical !optional;
+
+                @include e(handle) {
+                    @extend %igx-splitter-handle !optional;
+                    @extend %igx-splitter-handle--vertical !optional;
+                }
+
+                @include e(expander, 'start') {
+                    @extend %igx-splitter-expander !optional;
+                    @extend %igx-splitter-expander--start-vertical !optional;
+                }
+
+                @include e(expander, 'end') {
+                    @extend %igx-splitter-expander !optional;
+                    @extend %igx-splitter-expander--end-vertical !optional;
+                }
             }
         }
     }
 }
-

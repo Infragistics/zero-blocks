@@ -1,50 +1,51 @@
+@use '../../base' as *;
+
 /// @group themes
 /// @access private
-@mixin igx-vhelper {
-    $left: if-ltr(left, right);
-    $right: if-ltr(right, left);
+$_right: if-ltr(right, left);
 
-    %vhelper-display {
-        display: block;
-        overflow: auto;
-        z-index: 10001;
-    }
-
-    %vhelper--vertical {
-        position: absolute;
-        top: 0;
-        #{$right}: 0;
-    }
-
-    %vhelper--horizontal {
-        width: 100%;
-    }
-
-    %vhelper-content--vertical {
-        width: 1px;
-    }
-
-    %vhelper-content--horizontal {
-        height: 1px;
-    }
+%vhelper-display {
+    display: block;
+    overflow: auto;
+    z-index: 10001;
 }
 
-@include b(igx-vhelper) {
-    @include m(vertical) {
-        @extend %vhelper-display !optional;
-        @extend %vhelper--vertical !optional;
+%vhelper--vertical {
+    position: absolute;
+    top: 0;
+    #{$_right}: 0;
+}
 
-        @include e(placeholder-content) {
-            @extend %vhelper-content--vertical !optional;
+%vhelper--horizontal {
+    width: 100%;
+}
+
+%vhelper-content--vertical {
+    width: 1px;
+}
+
+%vhelper-content--horizontal {
+    height: 1px;
+}
+
+@mixin component {
+    @include b(igx-vhelper) {
+        @include m(vertical) {
+            @extend %vhelper-display !optional;
+            @extend %vhelper--vertical !optional;
+
+            @include e(placeholder-content) {
+                @extend %vhelper-content--vertical !optional;
+            }
         }
-    }
 
-    @include m(horizontal) {
-        @extend %vhelper-display !optional;
-        @extend %vhelper--horizontal !optional;
+        @include m(horizontal) {
+            @extend %vhelper-display !optional;
+            @extend %vhelper--horizontal !optional;
 
-        @include e(placeholder-content) {
-            @extend %vhelper-content--horizontal !optional;
+            @include e(placeholder-content) {
+                @extend %vhelper-content--horizontal !optional;
+            }
         }
     }
 }

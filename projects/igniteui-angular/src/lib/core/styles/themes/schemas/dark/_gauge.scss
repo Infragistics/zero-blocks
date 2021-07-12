@@ -1,4 +1,4 @@
-@import '../light/gauge';
+@use '../light/gauge' as *;
 
 ////
 /// @group schemas
@@ -8,49 +8,41 @@
 
 /// Generates dark gauge schemas.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-linear-gauge
-$_dark-linear-gauge: extend($_light-linear-gauge);
+/// @requires $light-linear-gauge
+$dark-linear-gauge: $light-linear-gauge;
 
 /// Generates dark gauge schemas.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-radial-gauge
-$_dark-radial-gauge: extend($_light-radial-gauge);
+/// @requires $light-radial-gauge
+$dark-radial-gauge: $light-radial-gauge;
 
 /// Generates a dark fluent gauge schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-linear-gauge
-$_dark-fluent-linear-gauge: extend($_fluent-linear-gauge);
+/// @requires $fluent-linear-gauge
+$dark-fluent-linear-gauge: $fluent-linear-gauge;
 
 /// Generates a dark fluent gauge schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-radial-gauge
-$_dark-fluent-radial-gauge: extend($_fluent-radial-gauge);
+/// @requires $fluent-radial-gauge
+$dark-fluent-radial-gauge: $fluent-radial-gauge;
 
 /// Generates a dark bootstrap gauge schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-linear-gauge
-$_dark-bootstrap-linear-gauge: extend($_bootstrap-linear-gauge);
+/// @requires $bootstrap-linear-gauge
+$dark-bootstrap-linear-gauge: $bootstrap-linear-gauge;
 
 /// Generates a dark bootstrap gauge schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-radial-gauge
-$_dark-bootstrap-radial-gauge: extend($_bootstrap-radial-gauge);
+/// @requires $bootstrap-radial-gauge
+$dark-bootstrap-radial-gauge: $bootstrap-radial-gauge;
 
 /// Generates a dark indigo gauge schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-linear-gauge
-$_dark-indigo-linear-gauge: extend($_indigo-linear-gauge);
+/// @requires $indigo-linear-gauge
+$dark-indigo-linear-gauge: $indigo-linear-gauge;
 
 /// Generates a dark indigo gauge schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-radial-gauge
-$_dark-indigo-radial-gauge: extend($_indigo-radial-gauge);
+/// @requires $indigo-radial-gauge
+$dark-indigo-radial-gauge: $indigo-radial-gauge;
 

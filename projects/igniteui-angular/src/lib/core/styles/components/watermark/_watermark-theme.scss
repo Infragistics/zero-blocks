@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access privet
@@ -36,8 +40,8 @@
     $name: 'igx-watermark';
     $watermark-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $watermark-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $watermark-schema: map.get($schema, $name);
     } @else {
         $watermark-schema: $schema;
     }
@@ -45,7 +49,7 @@
     $theme: apply-palette($watermark-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($watermark-schema, 'border-radius')), 0, 16px
+        if($border-radius, $border-radius, map.get($watermark-schema, 'border-radius')), 0, 16px
     );
 
     @if not($color) and $link-background {
@@ -54,7 +58,7 @@
 
     @return extend($theme, (
         name: $name,
-        palette: $default-palette,
+        palette: $palette,
         background-image: $background-image,
         link-background: $link-background,
         border-radius: $border-radius,
@@ -65,7 +69,7 @@
 
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
-/// @requires --var
+/// @requires var-get
 @mixin igx-watermark($theme) {
     @include igx-css-vars($theme);
 
@@ -89,11 +93,11 @@
         font-size: rem(14px);
         padding: rem(2px) rem(4px);
         line-height: normal;
-        border-radius: --var($theme, 'border-radius');
-        border: 1px solid --var($theme, 'border-color');
-        color: --var($theme, 'color');
+        border-radius: var-get($theme, 'border-radius');
+        border: 1px solid var-get($theme, 'border-color');
+        color: var-get($theme, 'color');
         z-index: 10002;
-        background-color: --var($theme, 'link-background');
+        background-color: var-get($theme, 'link-background');
         pointer-events: all;
         text-decoration: none;
     }
@@ -106,7 +110,7 @@
         left: 0;
         z-index: 10001;
         pointer-events: none;
-        background-image: --var($theme, 'background-image');
+        background-image: var-get($theme, 'background-image');
         background-repeat: repeat;
         background-position: rem(16px) rem(16px);
         // Target only IE 10,11.

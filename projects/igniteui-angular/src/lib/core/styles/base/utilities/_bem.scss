@@ -1,3 +1,8 @@
+@use 'sass:string';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:selector';
+
 ////
 /// @group bem
 /// @author <a href="https://github.com/runningskull" target="_blank">Juan Patten</a>
@@ -5,11 +10,11 @@
 ////
 
 /// @type String - The Element separator used. Default '__'.
-$bem--sep-elem: if(variable-exists(bem--sep-elem), $bem--sep-elem, '__');
+$bem--sep-elem: if(meta.variable-exists(bem--sep-elem), $bem--sep-elem, '__');
 /// @type String - The Modifier separator used. Default '--'.
-$bem--sep-mod: if(variable-exists(bem--sep-mod), $bem--sep-mod, '--');
+$bem--sep-mod: if(meta.variable-exists(bem--sep-mod), $bem--sep-mod, '--');
 /// @type String - The Modifier Value separator used. Default '-'.
-$bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-');
+$bem--sep-mod-val: if(meta.variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-');
 
 /// Converts a passed selector value into plain string.
 /// @access private
@@ -19,15 +24,8 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
     @if $s == null {
         @return '';
     }
-    //cast to string
-    $s: inspect($s);
-    @if str-index($s, '(') {
-        // ruby sass => "(selector,)"
-        @return str-slice($s, 2, -3);
-    } @else {
-        // libsass => "selector"
-        @return str-slice($s, 1, -1);
-    }
+
+    @return string.slice(meta.inspect($s), 2, -3);
 }
 
 /// Prepends a dot to the passed BEM selector.
@@ -37,8 +35,8 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// @example scss - Returns
 ///   .#{$x}
 @function bem--with-dot($x) {
-    $first: str-slice($x, 0, 1);
-    @return if($first=='.', $x, '.'+$x);
+    $first: string.slice($x, 0, 1);
+    @return if($first == '.', $x, string.insert($x, '.', -100));
 }
 
 /// Converts a key-value map into a modifier string.
@@ -46,9 +44,9 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// @param {List} $m - The modifier list to get converted.
 /// @returns {String}
 @function bem--mod-str($m) {
-    @if type-of($m) == 'map' {
-        $mm: nth($m, 1);
-        @return nth($mm, 1) + $bem--sep-mod-val + nth($mm, 2);
+    @if meta.type-of($m) == 'map' {
+        $mm: list.nth($m, 1);
+        @return list.nth($mm, 1) + $bem--sep-mod-val + list.nth($mm, 2);
     } @else {
         @return $m;
     }
@@ -87,7 +85,7 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// or null if the element separator name is not part of the passed string.
 @function bem--contains-elem($x) {
     // if you set the separators to common strings, this could fail
-    @return str-index($x, $bem--sep-elem);
+    @return string.index($x, $bem--sep-elem);
 }
 
 /// Checks if the modifier separator string is part of the passed string.
@@ -97,7 +95,7 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// or null if the modifier separator string is not part of the passed string.
 @function bem--contains-mod($x) {
     // if you set the separators to common strings, this could fail
-    @return str-index($x, $bem--sep-mod);
+    @return string.index($x, $bem--sep-mod);
 }
 
 /// Checks if the passed selector string contains a colon.
@@ -106,7 +104,7 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// @returns {number|null} Will return the index of the occurance,
 /// or null if the string does not contain any colons.
 @function bem--contains-pseudo($x) {
-    @return str-index($x, ':');
+    @return string.index($x, ':');
 }
 
 /// Returns the BEM block-name that generated `$x`. Does not include leading ".".
@@ -114,11 +112,11 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// @param {String} $x - The block name.
 @function bem--extract-block($x) {
     @if bem--contains-mod($x) {
-        @return str-slice($x, 1, str-index($x, $bem--sep-mod)-1);
+        @return string.slice($x, 1, string.index($x, $bem--sep-mod)-1);
     } @else if bem--contains-elem($x) {
-        @return str-slice($x, 1, str-index($x, $bem--sep-elem)-1);
+        @return string.slice($x, 1, string.index($x, $bem--sep-elem)-1);
     } @else if bem--contains-pseudo($x) {
-        @return str-slice($x, 1, str-index($x, ':')-1);
+        @return string.slice($x, 1, string.index($x, ':')-1);
     }
     @return $x;
 }
@@ -128,8 +126,8 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
 /// @param {String} $x - The selector to search for.
 /// @returns {String}
 @function bem--extract-first-selector($x) {
-    $eow: str-index($x, ' ') or -1;
-    @return str-slice($x, 1, $eow);
+    $eow: string.index($x, ' ') or -1;
+    @return string.slice($x, 1, $eow);
 }
 
 /// Generates a full BEM selector.
@@ -160,26 +158,26 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
     }
     @if $elem {
         // User passed an element-specific modifier
-        @if (type-of($elem) == list) and nth($elem, 2) {
+        @if (meta.type-of($elem) == list) and list.nth($elem, 2) {
             // For now we don't support multiple elem-mods at once
-            @if type-of(nth($elem, 2)) == list {
+            @if meta.type-of(list.nth($elem, 2)) == 'list' {
                 @error 'Only one element-modifier allowed.';
             }
-            $elem: str-slice(bem-selector(nth($elem, 1), $m: nth($elem, 2)), 2);
+            $elem: string.slice(bem-selector(list.nth($elem, 1), $m: list.nth($elem, 2)), 2);
         }
         $elem: bem--elem-str($block, $elem);
     }
     @if not $mods {
         @return bem--with-dot($elem);
     }
-    @if type-of($mods) != list {
+    @if meta.type-of($mods) != 'list' {
         $mods: ($mods, );
     }
     $bemcls: '';
-    @for $i from 1 to length($mods) {
-        $bemcls: $bemcls + bem--bem-str($block, $elem, nth($mods, $i)) + ', ';
+    @for $i from 1 to list.length($mods) {
+        $bemcls: $bemcls + bem--bem-str($block, $elem, list.nth($mods, $i)) + ', ';
     }
-    $bemcls: $bemcls + bem--bem-str($block, $elem, nth($mods, -1));
+    $bemcls: $bemcls + bem--bem-str($block, $elem, list.nth($mods, -1));
     @return $bemcls;
 }
 
@@ -221,9 +219,9 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
         @error 'Detected a multi-level nested Element (#{$this} #{$elem})! Bemerald doesn\'t support nested ' + 'elements because they do not have BEM nature (www.getbem.com/faq/#css-nested-elements). ' + 'If you must do it, use a hardcoded selector like &__subsubelem ';
     }
 
-    @if $mods != null and type-of($mods) == 'list' {
+    @if $mods != null and meta.type-of($mods) == 'list' {
         @each $i in $mods {
-            $mx: append($mx, #{bem-selector($block, $e: ($elem, $i))})
+            $mx: list.append($mx, #{bem-selector($block, $e: ($elem, $i))})
         }
     }
 
@@ -236,7 +234,7 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
                     @content;
                 }
             } @else {
-                #{selector-append($mx...)} {
+                #{selector.append($mx...)} {
                     @content;
                 }
             }
@@ -253,7 +251,7 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
                     @content;
                 }
             } @else {
-                #{$first} #{selector-append($mx...)} {
+                #{$first} #{selector.append($mx...)} {
                     @content;
                 }
             }
@@ -304,10 +302,10 @@ $bem--sep-mod-val: if(variable-exists(bem--sep-mod-val), $bem--sep-mod-val, '-')
         @if (bem--contains-pseudo($this)) {
             @error 'Nesting a Modifier inside a pseudo-selector is not supported: #{$this} #{$mod}';
         }
-        $mod-classes: append($mod-classes, #{bem-selector($block: $this, $m: $mod)})
+        $mod-classes: list.append($mod-classes, #{bem-selector($block: $this, $m: $mod)})
     }
     @at-root {
-        #{selector-append($mod-classes...)} {
+        #{selector.append($mod-classes...)} {
             @content;
         }
     }

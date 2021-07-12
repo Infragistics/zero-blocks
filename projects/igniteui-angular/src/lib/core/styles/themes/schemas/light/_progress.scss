@@ -1,4 +1,5 @@
-@import '../shape/progress';
+@use '../../../base' as *;
+@use '../shape/progress' as *;
 
 ////
 /// @group schemas
@@ -20,10 +21,10 @@
 /// @prop {Number} track-border-radius [0] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-progress
+/// @requires {Map} $default-shape-progress
 /// @see $default-palette
-$_light-progress-linear: extend(
-    $_default-shape-progress,
+$light-progress-linear: extend(
+    $default-shape-progress,
     (
         variant: 'material',
 
@@ -63,11 +64,11 @@ $_light-progress-linear: extend(
 /// @type {Map}
 /// @prop {Number} track-border-radius [0] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_light-progress-linear
-/// @requires $_fluent-shape-progress
-$_fluent-progress-linear: extend(
-    $_light-progress-linear,
-    $_fluent-shape-progress,
+/// @requires $light-progress-linear
+/// @requires $fluent-shape-progress
+$fluent-progress-linear: extend(
+    $light-progress-linear,
+    $fluent-shape-progress,
     (
         variant: 'fluent',
     )
@@ -81,11 +82,11 @@ $_fluent-progress-linear: extend(
 /// @prop {Number} track-border-radius [4px] - The border radius used for the progress bar track. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires $_light-progress-linear
-/// @requires $_bootstrap-shape-progress
-$_bootstrap-progress-linear: extend(
-    $_light-progress-linear,
-    $_bootstrap-shape-progress,
+/// @requires $light-progress-linear
+/// @requires $bootstrap-shape-progress
+$bootstrap-progress-linear: extend(
+    $light-progress-linear,
+    $bootstrap-shape-progress,
     (
         variant: 'bootstrap',
         track-color: (
@@ -100,9 +101,9 @@ $_bootstrap-progress-linear: extend(
 /// @property {Map} track-color [igx-color: ('grays', 300)] - The main track color.
 /// @property {Color} stripes-color [rgba(#fff, .45)] - The track stripes color.
 /// @requires {function} extend
-/// @requires $_light-progress-linear
-$_indigo-progress-linear: extend(
-    $_light-progress-linear,
+/// @requires $light-progress-linear
+$indigo-progress-linear: extend(
+    $light-progress-linear,
     (
         variant: 'indigo-design',
 
@@ -122,8 +123,8 @@ $_indigo-progress-linear: extend(
 /// @property {Map} text-color [igx-color: ('grays', 700)] - The value text color.
 ///
 /// @see $default-palette
-$_light-progress-circular: extend(
-    $_default-shape-progress,
+$light-progress-circular: extend(
+    $default-shape-progress,
     (
         variant: 'material',
 
@@ -144,9 +145,9 @@ $_light-progress-circular: extend(
 /// Generates a fluent progress-circular schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-progress-circular
-$_fluent-progress-circular: extend(
-    $_light-progress-circular,(
+/// @requires {Map} $light-progress-circular
+$fluent-progress-circular: extend(
+    $light-progress-circular,(
         variant: 'fluent',
     )
 );
@@ -156,9 +157,9 @@ $_fluent-progress-circular: extend(
 /// @property {Map} track-color [igx-color: ('grays', 200)] - The main track color.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-progress-circular
-$_bootstrap-progress-circular: extend(
-    $_light-progress-circular,
+/// @requires {Map} $light-progress-circular
+$bootstrap-progress-circular: extend(
+    $light-progress-circular,
     (
         variant: 'bootstrap',
 
@@ -172,9 +173,9 @@ $_bootstrap-progress-circular: extend(
 /// @type {Map}
 /// @property {Map} track-color [igx-color: ('grays', 300)] - The main track color.
 /// @requires {function} extend
-/// @requires {Map} $_light-progress-circular
-$_indigo-progress-circular: extend(
-    $_light-progress-circular,
+/// @requires {Map} $light-progress-circular
+$indigo-progress-circular: extend(
+    $light-progress-circular,
     (
         variant: 'indigo-design',
 

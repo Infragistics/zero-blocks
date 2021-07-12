@@ -1,4 +1,3 @@
-@import 'functions';
-@import 'mixins';
-@import 'bem';
-@import 'quirks';
+@forward 'bem';
+@forward 'functions';
+@forward 'mixins';

@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -8,144 +11,149 @@
 
 $_igx-slider-thumbs: 'from' 'to';
 
-/// Slider
-@include b(igx-slider) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    /// Slider
+    @include b(igx-slider) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @extend %igx-slider-display !optional;
-
-    @include e(track) {
-        @extend %igx-slider-track !optional;
-    }
-
-    @include e(track-fill) {
-        @extend %igx-slider-track-fill !optional;
-    }
-
-    @include e(ticks) {
-        @extend %igx-slider__ticks !optional;
-    }
-
-    @include e(ticks, $m: tall) {
-        @extend %igx-slider__ticks--tall !optional;
-    }
-
-    @include e(ticks, $m: top) {
-        @extend %igx-slider__ticks--top !optional;
-    }
-
-    @include e(ticks-label) {
-        @extend %igx-slider__tick-label !optional;
-    }
-
-    @include e(tick-label, $m: hidden) {
-        @extend %igx-slider__tick-label--hidden !optional;
-    }
-
-    @include e(tick-labels, $m: top-bottom) {
-        @extend %igx-slider__tick-labels--top-bottom !optional;
-    }
-
-    @include e(tick-labels, $m: bottom-top) {
-        @extend %igx-slider__tick-labels--bottom-top !optional;
-    }
-
-    @include e(ticks-group) {
-        @extend %igx-slider__ticks-group !optional;
-    }
-
-    @include e(ticks-group, $m: tall) {
-        @extend %igx-slider__ticks-group--tall !optional;
-    }
-
-    @include e(ticks-tick) {
-        @extend %igx-slider__ticks-tick !optional;
-    }
-
-    @include e(ticks-label) {
-        @extend %igx-slider__ticks-label !optional;
-    }
-
-    @include e(thumbs) {
-        @extend %igx-slider-thumbs-container !optional;
-    }
-
-
-    @include e(track-steps) {
-        @extend %igx-slider-track-steps !optional;
-    }
-
-    @include m(disabled) {
-        @extend %igx-slider-disabled !optional;
+        @extend %igx-slider-display !optional;
 
         @include e(track) {
-            @extend %igx-slider-track--disabled !optional;
-        }
-
-        @include e(track-steps) {
-            @extend %igx-slider-track-steps--disabled !optional;
+            @extend %igx-slider-track !optional;
         }
 
         @include e(track-fill) {
-            @extend %igx-slider-track-fill--disabled !optional;
+            @extend %igx-slider-track-fill !optional;
         }
 
-        @include e(ticks-tick) {
-            @extend %igx-slider__tick--disabled !optional;
+        @include e(ticks) {
+            @extend %igx-slider__ticks !optional;
+        }
+
+        @include e(ticks, $m: tall) {
+            @extend %igx-slider__ticks--tall !optional;
+        }
+
+        @include e(ticks, $m: top) {
+            @extend %igx-slider__ticks--top !optional;
         }
 
         @include e(ticks-label) {
-            @extend %igx-slider__ticks-labels--disabled !optional;
-        }
-    }
-}
-
-@each $t in $_igx-slider-thumbs {
-    @include b(igx-slider-thumb-#{$t}) {
-        @extend %igx-thumb-display !optional;
-
-        @include e(dot) {
-            @extend %igx-slider-thumb__dot !optional;
+            @extend %igx-slider__tick-label !optional;
         }
 
-        @include m(pressed) {
-            @include e(dot){
-                @extend %igx-slider-thumb__dot--pressed !optional;
-            }
+        @include e(tick-label, $m: hidden) {
+            @extend %igx-slider__tick-label--hidden !optional;
         }
 
-        @include m(active) {
-            @include e(dot){
-                @extend %igx-slider-thumb__dot--active !optional;
-            }
+        @include e(tick-labels, $m: top-bottom) {
+            @extend %igx-slider__tick-labels--top-bottom !optional;
+        }
+
+        @include e(tick-labels, $m: bottom-top) {
+            @extend %igx-slider__tick-labels--bottom-top !optional;
+        }
+
+        @include e(ticks-group) {
+            @extend %igx-slider__ticks-group !optional;
+        }
+
+        @include e(ticks-group, $m: tall) {
+            @extend %igx-slider__ticks-group--tall !optional;
+        }
+
+        @include e(ticks-tick) {
+            @extend %igx-slider__ticks-tick !optional;
+        }
+
+        @include e(ticks-label) {
+            @extend %igx-slider__ticks-label !optional;
+        }
+
+        @include e(thumbs) {
+            @extend %igx-slider-thumbs-container !optional;
+        }
+
+
+        @include e(track-steps) {
+            @extend %igx-slider-track-steps !optional;
         }
 
         @include m(disabled) {
-            @extend %igx-thumb--disabled !optional;
+            @extend %igx-slider-disabled !optional;
 
-            @include e(dot){
-                @extend %igx-slider-thumb__dot--disabled !optional;
+            @include e(track) {
+                @extend %igx-slider-track--disabled !optional;
+            }
+
+            @include e(track-steps) {
+                @extend %igx-slider-track-steps--disabled !optional;
+            }
+
+            @include e(track-fill) {
+                @extend %igx-slider-track-fill--disabled !optional;
+            }
+
+            @include e(ticks-tick) {
+                @extend %igx-slider__tick--disabled !optional;
+            }
+
+            @include e(ticks-label) {
+                @extend %igx-slider__ticks-labels--disabled !optional;
             }
         }
     }
 
-    @include b(igx-slider-thumb-label-#{$t}) {
-        @extend %igx-label-display !optional;
+    @each $t in $_igx-slider-thumbs {
+        @include b(igx-slider-thumb-#{$t}) {
+            @extend %igx-thumb-display !optional;
 
-        @include e(container) {
-            @extend %igx-slider-thumb-label__container !optional;
-        }
+            @include e(dot) {
+                @extend %igx-slider-thumb__dot !optional;
+            }
 
-        @include m(pressed) {
-            @include e(container){
-                @extend %igx-slider-thumb-label__container--pressed !optional;
+            @include m(pressed) {
+                @include e(dot){
+                    @extend %igx-slider-thumb__dot--pressed !optional;
+                }
+            }
+
+            @include m(active) {
+                @include e(dot){
+                    @extend %igx-slider-thumb__dot--active !optional;
+                }
+            }
+
+            @include m(disabled) {
+                @extend %igx-thumb--disabled !optional;
+
+                @include e(dot){
+                    @extend %igx-slider-thumb__dot--disabled !optional;
+                }
             }
         }
 
-        @include m(active) {
-            @include e(container){
-                @extend %igx-slider-thumb-label__container--active !optional;
+        @include b(igx-slider-thumb-label-#{$t}) {
+            @extend %igx-label-display !optional;
+
+            @include e(container) {
+                @extend %igx-slider-thumb-label__container !optional;
+            }
+
+            @include m(pressed) {
+                @include e(container){
+                    @extend %igx-slider-thumb-label__container--pressed !optional;
+                }
+            }
+
+            @include m(active) {
+                @include e(container){
+                    @extend %igx-slider-thumb-label__container--active !optional;
+                }
             }
         }
     }

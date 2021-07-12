@@ -6,36 +6,36 @@
 
 /// @type Map
 /// @prop {Number} border-radius [.1] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-dialog: (
+$default-shape-dialog: (
     border-radius: .1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-dialog: (
+$round-shape-dialog: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-dialog: (
+$square-shape-dialog: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-dialog: (
+$fluent-shape-dialog: (
     border-radius: 2px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-dialog: (
+$bootstrap-shape-dialog: (
     border-radius: 4px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for dialog. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-dialog: (
+$indigo-shape-dialog: (
     border-radius: 2px,
 );

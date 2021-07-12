@@ -1,10 +1,19 @@
+@use '../variables' as *;
+@use 'functions' as *;
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+
 ////
 /// @group Utilities
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 ////
 
 /// @access private
-@mixin _icon-w-margin($margin, $left) {
+@mixin icon-w-margin($margin, $left) {
     > * {
         margin-#{$left}: $margin;
 
@@ -56,11 +65,11 @@
 /// @group animations
 /// @param {String} $name - The name of the keyframes animation.
 @mixin keyframes($name) {
-    $keyframe: map-get($keyframes, $name);
+    $keyframe: map.get($keyframes, $name);
 
     @if $keyframe == null {
-        $keyframe: unique-id();
-        $keyframes: map-merge($keyframes, (#{$name}: $keyframe)) !global;
+        $keyframe: string.unique-id();
+        $keyframes: map.merge($keyframes, (#{$name}: $keyframe)) !global;
 
         @at-root {
             @keyframes #{$name} {
@@ -73,11 +82,30 @@
 /// Registers a component to the list of known components.
 /// @access private
 /// @param {String} $name - The component name to register.
-@mixin register-component($name) {
-    $component: map-get($components, $name);
+@mixin register-component($name, $deps: ()) {
+    $component: map.get($components, $name);
+
     @if $component == null {
-        $component: unique-id();
-        $components: map-merge($components, (#{$name}: $component)) !global;
+        $components: map.merge($components, (
+            #{$name}: (
+                usedBy: ()
+            ),
+        )) !global;
+    }
+
+    @each $dep in $deps {
+        @include register-component($dep);
+
+        @if map.has-key($components, $dep) {
+            $component: map.get($components, $dep);
+            $usedBy: map.get($component, 'usedBy');
+
+            $components: map.merge($components, (
+                #{$dep}: map.merge($component, (
+                    usedBy: list.append($usedBy, $name, $separator: comma)
+                ))
+            )) !global;
+        }
     }
 }
 
@@ -92,10 +120,10 @@
 ///     @include animation('fade-in' .3s ease-out);
 ///  }
 @mixin animation($animate...) {
-    $max: length($animate);
+    $max: list.length($animate);
     $animations: '';
     @for $i from 1 through $max {
-        $animations: #{$animations + nth($animate, $i)};
+        $animations: #{$animations + list.nth($animate, $i)};
         @if $i < $max {
             $animations: #{$animations + ', '};
         }
@@ -149,7 +177,7 @@
 @mixin gen-color-classes($prop, $prefix, $suffix, $palette: $default-palette) {
     @each $name, $color in $palette {
         @each $variant, $value in $color {
-            @if type-of($value) != 'map' {
+            @if meta.type-of($value) != 'map' {
                 @include gen-color-class($name, $variant, $prefix, $suffix) {
                     @if legacy() {
                         #{$prop}: igx-color($palette, $color: $name, $variant: $variant);
@@ -172,29 +200,29 @@
 ///
 @mixin igx-palette-vars($palette, $contrast: true) {
     $scope: if(is-root(), ':root', '&');
-    $_meta: map-get($palette, '_meta');
-    $theme: if($_meta, map-get($_meta, 'variant'), null);
+    $_meta: map.get($palette, '_meta');
+    $theme: if($_meta, map.get($_meta, 'variant'), null);
 
     #{$scope} {
         @each $name, $color in $palette {
             @each $variant, $value in $color {
-                $_valid-base: type-of(map-get($color, 500)) == 'color' and $theme;
-                $_valid-variant: not(str-index(#{$variant}, 'contrast')) and not(str-index(#{$variant}, 'variant')) and $theme;
+                $_valid-base: meta.type-of(map.get($color, 500)) == 'color' and $theme;
+                $_valid-variant: not(string.index(#{$variant}, 'contrast')) and not(string.index(#{$variant}, 'variant')) and $theme;
 
                 @if $_valid-base and $variant == 500 {
-                    --igx-#{$name}-h: #{round(hue($value))};
-                    --igx-#{$name}-s: #{round(saturation($value))};
-                    --igx-#{$name}-l: #{round(lightness($value))};
+                    --igx-#{$name}-h: #{math.round(color.hue($value))};
+                    --igx-#{$name}-s: #{math.round(color.saturation($value))};
+                    --igx-#{$name}-l: #{math.round(color.lightness($value))};
 
                     @if $name != 'grays' {
-                        --igx-#{$name}-a: #{alpha($value)};
+                        --igx-#{$name}-a: #{color.alpha($value)};
                     } @else {
                         --igx-#{$name}-a: 1;
                     }
                 }
 
                 @if $_valid-base and $_valid-variant {
-                    --igx-#{$name}-#{$variant}: #{_gen-hsla-color($name, $variant, $theme)};
+                    --igx-#{$name}-#{$variant}: #{gen-hsla-color($name, $variant, $theme)};
                 } @else if $name != '_meta' {
                     --igx-#{$name}-#{$variant}: #{$value};
                 }
@@ -252,30 +280,30 @@
 ///     @include css-vars-from-theme($my-theme);
 ///   }
 @mixin css-vars-from-theme($theme, $prefix: null) {
-    $name: map-get($theme, 'name');
+    $name: map.get($theme, 'name');
     $ignore: ('name', 'palette', 'variant', 'selector');
     $webc-prefix: 'igc';
-    $webc: nth(str-split($name, '-'), 1) == $webc-prefix;
-    $themes: map-get($theme, 'themes');
+    $webc: list.nth(str-split($name, '-'), 1) == $webc-prefix;
+    $themes: map.get($theme, 'themes');
 
     @if not($prefix) and $webc {
         $prefix: $webc-prefix;
     }
 
-    @if not($name) or str-length($name) == 0 {
+    @if not($name) or string.length($name) == 0 {
         @error 'Theme should have a non-null or empty name property. Example: my-theme: (name: my-theme)';
     }
 
-    @if $themes and type-of($themes) == 'map' {
+    @if $themes and meta.type-of($themes) == 'map' {
         @each $theme in $themes {
-            @include igx-css-vars(nth($theme, 2));
+            @include igx-css-vars(list.nth($theme, 2));
         }
     }
 
     @each $key, $value in $theme {
-        $elevation: str-index($key, 'elevation');
+        $elevation: string.index($key, 'elevation');
 
-        @if not(index($ignore, $key) or $elevation) and type-of($value) != 'map' {
+        @if not(list.index($ignore, $key) or $elevation) and meta.type-of($value) != 'map' {
             @if $prefix {
                 --#{$prefix}-#{$key}: var(--#{$name}-#{$key}, #{$value});
             } @else {
@@ -290,8 +318,8 @@
 /// @param {map} $theme - The component theme to be used
 /// @requires {mixin} css-vars-from-theme
 @mixin igx-css-vars($theme, $scope: null, $prefix: null) {
-    $s: map-get($theme, 'selector');
-    $n: map-get($theme, 'name');
+    $s: map.get($theme, 'selector');
+    $n: map.get($theme, 'name');
     $name: if($scope, $scope, $s or $n);
 
     @if not(legacy()) {
@@ -330,12 +358,12 @@
 ///    // }
 @mixin igx-scope($parent) {
     @each $selector in & {
-        $len: length($selector);
+        $len: list.length($selector);
         @if $len == null {
             $parent: $parent;
         } @else {
             @for $i from 1 through $len {
-                $parent: append($parent, nth($selector, $i));
+                $parent: list.append($parent, list.nth($selector, $i));
             }
         }
 
@@ -352,7 +380,7 @@
 ///      margin-right: 8px;
 ///    }
 @mixin if-ltr {
-    $dir: if(global-variable-exists('direction'), $direction, 'ltr');
+    $dir: if(meta.global-variable-exists('direction'), $direction, 'ltr');
 
     @if $dir != 'rtl' {
         @content;
@@ -366,7 +394,7 @@
 ///      margin-left: 8px;
 ///    }
 @mixin if-rtl {
-    $dir: if(global-variable-exists('direction'), $direction, 'ltr');
+    $dir: if(meta.global-variable-exists('direction'), $direction, 'ltr');
 
     @if $dir == 'rtl' {
         @content;

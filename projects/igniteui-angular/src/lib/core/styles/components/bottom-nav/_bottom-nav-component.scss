@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,63 +8,71 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-bottom-nav) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @include e(panel) {
-        @extend %igx-bottom-nav-panel !optional;
-    }
+@mixin component {
+    @include b(igx-bottom-nav) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+            )
+        );
 
-    @include e(menu) {
-        @extend %igx-bottom-nav-menu !optional;
-    }
-
-    @include e(menu, $m: top) {
-        @extend %igx-bottom-nav-menu--top !optional;
-    }
-
-    @include e(menu, $m: bottom) {
-        @extend %igx-bottom-nav-menu--bottom !optional;
-    }
-
-    @include e(menu-item) {
-        @extend %igx-bottom-nav-menu-item !optional;
-
-        [igxBottomNavHeaderIcon] {
-            @extend %igx-tab-icon !optional;
+        @include e(panel) {
+            @extend %igx-bottom-nav-panel !optional;
         }
 
-        [igxBottomNavHeaderLabel] {
-            @extend %igx-tab-label !optional;
-        }
-    }
-
-    @include e(menu-item, $m: selected) {
-        @extend %igx-bottom-nav-menu-item !optional;
-        @extend %igx-bottom-nav-menu-item--selected !optional;
-
-        [igxBottomNavHeaderIcon] {
-            @extend %igx-tab-icon !optional;
-            @extend %igx-tab-icon--selected !optional;
+        @include e(menu) {
+            @extend %igx-bottom-nav-menu !optional;
         }
 
-        [igxBottomNavHeaderLabel] {
-            @extend %igx-tab-label !optional;
-            @extend %igx-tab-label--selected !optional;
-        }
-    }
-
-    @include e(menu-item, $m: disabled) {
-        @extend %igx-bottom-nav-menu-item !optional;
-        @extend %igx-bottom-nav-menu-item--disabled !optional;
-
-        [igxBottomNavHeaderIcon] {
-            @extend %igx-tab-icon !optional;
+        @include e(menu, $m: top) {
+            @extend %igx-bottom-nav-menu--top !optional;
         }
 
-        [igxBottomNavHeaderLabel] {
-            @extend %igx-tab-label !optional;
+        @include e(menu, $m: bottom) {
+            @extend %igx-bottom-nav-menu--bottom !optional;
+        }
+
+        @include e(menu-item) {
+            @extend %igx-bottom-nav-menu-item !optional;
+
+            [igxBottomNavHeaderIcon] {
+                @extend %igx-tab-icon !optional;
+            }
+
+            [igxBottomNavHeaderLabel] {
+                @extend %igx-tab-label !optional;
+            }
+        }
+
+        @include e(menu-item, $m: selected) {
+            @extend %igx-bottom-nav-menu-item !optional;
+            @extend %igx-bottom-nav-menu-item--selected !optional;
+
+            [igxBottomNavHeaderIcon] {
+                @extend %igx-tab-icon !optional;
+                @extend %igx-tab-icon--selected !optional;
+            }
+
+            [igxBottomNavHeaderLabel] {
+                @extend %igx-tab-label !optional;
+                @extend %igx-tab-label--selected !optional;
+            }
+        }
+
+        @include e(menu-item, $m: disabled) {
+            @extend %igx-bottom-nav-menu-item !optional;
+            @extend %igx-bottom-nav-menu-item--disabled !optional;
+
+            [igxBottomNavHeaderIcon] {
+                @extend %igx-tab-icon !optional;
+            }
+
+            [igxBottomNavHeaderLabel] {
+                @extend %igx-tab-label !optional;
+            }
         }
     }
 }

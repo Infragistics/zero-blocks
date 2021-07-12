@@ -1,4 +1,6 @@
-@import '../light/drop-down';
+@use '../../../base' as *;
+@use '../light/drop-down' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -8,9 +10,9 @@
 /// Generates a dark drop-down schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-drop-down
+/// @requires $light-drop-down
 /// @see $default-palette
-$_dark-drop-down: extend($_light-drop-down);
+$dark-drop-down: $light-drop-down;
 
 /// Generates a dark fluent drop-down schema.
 /// @type {Map}
@@ -18,9 +20,9 @@ $_dark-drop-down: extend($_light-drop-down);
 /// @prop {Color} selected-hover-item-text-color [#fff] - The drop-down selected item hover text color.
 /// @prop {Color} selected-focus-item-text-color [#fff] - The drop-down selected item focus text color.
 /// @requires {function} extend
-/// @requires $_fluent-drop-down
-$_dark-fluent-drop-down: extend(
-    $_fluent-drop-down,
+/// @requires $fluent-drop-down
+$dark-fluent-drop-down: extend(
+    $fluent-drop-down,
     (
         selected-item-text-color: #fff,
 
@@ -36,9 +38,9 @@ $_dark-fluent-drop-down: extend(
 /// @prop {Map} item-text-color [#fff] - The drop-down text color.
 /// @prop {Map} hover-item-text-color [#fff] - The drop-down hover text color.
 /// @requires {function} extend
-/// @requires $_bootstrap-drop-down
-$_dark-bootstrap-drop-down: extend(
-    $_bootstrap-drop-down,
+/// @requires $bootstrap-drop-down
+$dark-bootstrap-drop-down: extend(
+    $bootstrap-drop-down,
     (
         background-color: #222,
         item-text-color: #fff,
@@ -50,9 +52,9 @@ $_dark-bootstrap-drop-down: extend(
 /// @type {Map}
 /// @prop {Map} header-text-color [igx-contrast-color: 'surface'] - The drop-down header text color.
 /// @requires {function} extend
-/// @requires $_indigo-drop-down
-$_dark-indigo-drop-down: extend(
-    $_indigo-drop-down,
+/// @requires $indigo-drop-down
+$dark-indigo-drop-down: extend(
+    $indigo-drop-down,
     (
         header-text-color: (
             igx-contrast-color: 'surface'

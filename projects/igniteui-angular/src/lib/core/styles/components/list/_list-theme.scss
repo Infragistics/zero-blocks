@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -87,8 +93,8 @@
     $name: 'igx-list';
     $list-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $list-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $list-schema: map.get($schema, $name);
     } @else {
         $list-schema: $schema;
     }
@@ -96,11 +102,11 @@
     $theme: apply-palette($list-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($list-schema, 'border-radius')), 0, 24px
+        if($border-radius, $border-radius, map.get($list-schema, 'border-radius')), 0, 24px
     );
 
     $item-border-radius: round-borders(
-        if($item-border-radius, $item-border-radius, map-get($list-schema, 'item-border-radius')), 0, 24px
+        if($item-border-radius, $item-border-radius, map.get($list-schema, 'item-border-radius')), 0, 24px
     );
 
     @if not($header-background) and $background {
@@ -120,7 +126,7 @@
     }
 
     @if not($item-background-hover) and $item-background {
-        @if type-of($item-background) == 'color' and luminance($item-background) < .5 {
+        @if meta.type-of($item-background) == 'color' and luminance($item-background) < .5 {
             $item-background-hover: lighten-color($item-background, 8%);
         } @else {
             $item-background-hover: darken-color($item-background, 8%);
@@ -128,7 +134,7 @@
     }
 
     @if not($item-background-active) and $item-background {
-        @if type-of($item-background) == 'color' and luminance($item-background) < .5 {
+        @if meta.type-of($item-background) == 'color' and luminance($item-background) < .5 {
             $item-background-active: lighten-color($item-background, 8%);
         } @else {
             $item-background-active: darken-color($item-background, 8%);
@@ -156,7 +162,7 @@
     }
 
     @if not($item-subtitle-color) and $item-background {
-        @if type-of($item-background) == 'color' {
+        @if meta.type-of($item-background) == 'color' {
             $item-subtitle-color: rgba(text-contrast($item-background), .74);
         }
     }
@@ -182,7 +188,7 @@
     }
 
     @if not($item-subtitle-color-hover) and $item-background-hover {
-        @if type-of($item-background-hover) == 'color' {
+        @if meta.type-of($item-background-hover) == 'color' {
             $item-subtitle-color-hover: rgba(text-contrast($item-background-hover), .74);
         }
     }
@@ -208,7 +214,7 @@
     }
 
     @if not($item-subtitle-color-active) and $item-background-active {
-        @if type-of($item-background-active) == 'color' {
+        @if meta.type-of($item-background-active) == 'color' {
             $item-subtitle-color-active: rgba(text-contrast($item-background-active), .74);
         }
     }
@@ -251,11 +257,11 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires em
-/// @requires --var
+/// @requires var-get
 @mixin igx-list($theme) {
     @include igx-css-vars($theme);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
 
     $left: if-ltr(left, right);
@@ -301,14 +307,14 @@
         position: relative;
         display: flex;
         flex-flow: column nowrap;
-        background: --var($theme, 'background');
+        background: var-get($theme, 'background');
         height: 100%;
         overflow: hidden;
         z-index: 0;
-        border-radius: --var($theme, 'border-radius');
+        border-radius: var-get($theme, 'border-radius');
 
         @if $bootstrap-theme {
-            border: --var($theme, 'border-width') solid --var($theme, 'border-color');
+            border: var-get($theme, 'border-width') solid var-get($theme, 'border-color');
         }
     }
 
@@ -319,65 +325,65 @@
 
     %igx-list__message--empty {
         text-align: center;
-        color: --var($theme, 'item-text-color');
-        padding: map-get($list-empty-padding, 'comfortable');
+        color: var-get($theme, 'item-text-color');
+        padding: map.get($list-empty-padding, 'comfortable');
         z-index: 1;
     }
 
     %igx-list-header {
         display: flex;
         align-items: center;
-        color: --var($theme, 'header-text-color');
-        background: --var($theme, 'header-background');
-        padding: map-get($list-item-padding, 'comfortable');
+        color: var-get($theme, 'header-text-color');
+        background: var-get($theme, 'header-background');
+        padding: map.get($list-item-padding, 'comfortable');
         user-select: none;
     }
 
     %igx-list-header--cosy {
-        padding: map-get($list-item-padding, 'cosy');
+        padding: map.get($list-item-padding, 'cosy');
     }
 
     %igx-list-header--compact {
-        padding: map-get($list-item-padding, 'compact');
+        padding: map.get($list-item-padding, 'compact');
     }
 
     %igx-list-item-base {
         display: flex;
         flex-flow: column wrap;
         justify-content: center;
-        border-radius: --var($theme, 'item-border-radius');
-        color: --var($theme, 'item-text-color');
-        background: --var($theme, 'item-background');
+        border-radius: var-get($theme, 'item-border-radius');
+        color: var-get($theme, 'item-text-color');
+        background: var-get($theme, 'item-background');
 
         &:hover {
-            color: --var($theme, 'item-text-color-hover');
-            background: --var($theme, 'item-background-hover');
+            color: var-get($theme, 'item-text-color-hover');
+            background: var-get($theme, 'item-background-hover');
 
             %igx-list__item-lines {
                 color: currentColor;
             }
 
             %igx-list__item-line-title {
-                color: --var($theme, 'item-title-color-hover');
+                color: var-get($theme, 'item-title-color-hover');
             }
 
             %igx-list__item-line-subtitle {
-                color: --var($theme, 'item-subtitle-color-hover');
+                color: var-get($theme, 'item-subtitle-color-hover');
             }
 
             %igx-list__item-actions {
-                color: --var($theme, 'item-action-color-hover');
+                color: var-get($theme, 'item-action-color-hover');
 
                 igx-icon {
-                    color: --var($theme, 'item-action-color-hover')
+                    color: var-get($theme, 'item-action-color-hover')
                 }
             }
 
             %igx-list__item-thumbnail {
-                color: --var($theme, 'item-thumbnail-color-hover');
+                color: var-get($theme, 'item-thumbnail-color-hover');
 
                 igx-icon {
-                    color: --var($theme, 'item-thumbnail-color-hover')
+                    color: var-get($theme, 'item-thumbnail-color-hover')
                 }
             }
         }
@@ -402,19 +408,19 @@
     }
 
     %igx-list__item-line-subtitle {
-        color: --var($theme, 'item-subtitle-color');
+        color: var-get($theme, 'item-subtitle-color');
         opacity: .74
     }
 
     %igx-list__item-line-title {
-        color: --var($theme, 'item-title-color');
+        color: var-get($theme, 'item-title-color');
     }
 
     %igx-list__item-actions {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: --var($theme, 'item-action-color');
+        color: var-get($theme, 'item-action-color');
 
         > * {
             margin-#{$left}: rem(8px);
@@ -425,7 +431,7 @@
         }
 
         igx-icon {
-            color: --var($theme, 'item-action-color')
+            color: var-get($theme, 'item-action-color')
         }
     }
 
@@ -433,18 +439,18 @@
         display: flex;
         align-items: center;
         position: relative;
-        padding: map-get($list-item-padding, 'comfortable');
-        border-radius: --var($theme, 'item-border-radius');
+        padding: map.get($list-item-padding, 'comfortable');
+        border-radius: var-get($theme, 'item-border-radius');
         background: inherit;
         z-index: 2;
     }
 
     %igx-list-item-content--compact {
-        padding: map-get($list-item-padding, 'compact');
+        padding: map.get($list-item-padding, 'compact');
     }
 
     %igx-list-item-content--cosy {
-        padding: map-get($list-item-padding, 'cosy');
+        padding: map.get($list-item-padding, 'cosy');
     }
 
     %igx-list__item-thumbnail {
@@ -453,15 +459,15 @@
         justify-content: center;
         align-self: flex-start;
         padding: 0;
-        color: --var($theme, 'item-thumbnail-color');
+        color: var-get($theme, 'item-thumbnail-color');
 
         > igx-icon {
             @include if-ltr() {
-                margin: map-get($list-icon-margin, 'comfortable');
+                margin: map.get($list-icon-margin, 'comfortable');
             }
 
             @include if-rtl() {
-                margin: map-get($list-icon-margin-rtl, 'comfortable');
+                margin: map.get($list-icon-margin-rtl, 'comfortable');
             }
         }
 
@@ -478,44 +484,44 @@
 
     %igx-list__item-thumbnail:not(:empty) + %igx-list__item-lines {
         @include if-ltr() {
-            margin: map-get($list-line-margin, 'comfortable');
+            margin: map.get($list-line-margin, 'comfortable');
         }
 
         @include if-rtl() {
-            margin: map-get($list-line-margin-rtl, 'comfortable');
+            margin: map.get($list-line-margin-rtl, 'comfortable');
         }
     }
 
     %igx-list__item-thumbnail--cosy:not(:empty) + %igx-list__item-lines {
         @include if-ltr() {
-            margin: map-get($list-line-margin, 'cosy');
+            margin: map.get($list-line-margin, 'cosy');
         }
 
         @include if-rtl() {
-            margin: map-get($list-line-margin-rtl, 'cosy');
+            margin: map.get($list-line-margin-rtl, 'cosy');
         }
     }
 
     %igx-list__item-thumbnail--compact:not(:empty) + %igx-list__item-lines {
         @include if-ltr() {
-            margin: map-get($list-line-margin, 'compact');
+            margin: map.get($list-line-margin, 'compact');
         }
 
         @include if-rtl() {
-            margin: map-get($list-line-margin-rtl, 'compact');
+            margin: map.get($list-line-margin-rtl, 'compact');
         }
     }
 
     %igx-list__item-thumbnail--cosy {
         @include if-ltr() {
             > igx-icon {
-                margin: map-get($list-icon-margin, 'cosy');
+                margin: map.get($list-icon-margin, 'cosy');
             }
         }
 
         @include if-rtl() {
             > igx-icon {
-                margin: map-get($list-icon-margin-rtl, 'cosy');
+                margin: map.get($list-icon-margin-rtl, 'cosy');
             }
         }
     }
@@ -523,13 +529,13 @@
     %igx-list__item-thumbnail--compact {
         @include if-ltr() {
             > igx-icon {
-                margin: map-get($list-icon-margin, 'compact');
+                margin: map.get($list-icon-margin, 'compact');
             }
         }
 
         @include if-rtl() {
             > igx-icon {
-                margin: map-get($list-icon-margin-rtl, 'compact');
+                margin: map.get($list-icon-margin-rtl, 'compact');
             }
         }
     }
@@ -552,31 +558,31 @@
 
     %igx-list-item-content--active {
         %igx-list__item-line-title {
-            color: --var($theme, 'item-title-color-active')
+            color: var-get($theme, 'item-title-color-active')
         }
 
         %igx-list__item-line-subtitle {
-            color: --var($theme, 'item-subtitle-color-active')
+            color: var-get($theme, 'item-subtitle-color-active')
         }
 
         %igx-list__item-actions {
-            color: --var($theme, 'item-action-color-active');
+            color: var-get($theme, 'item-action-color-active');
 
             igx-icon {
-                color: --var($theme, 'item-action-color-active')
+                color: var-get($theme, 'item-action-color-active')
             }
         }
 
         %igx-list__item-thumbnail {
-            color: --var($theme, 'item-thumbnail-color-active');
+            color: var-get($theme, 'item-thumbnail-color-active');
 
             igx-icon {
-                color: --var($theme, 'item-thumbnail-color-active')
+                color: var-get($theme, 'item-thumbnail-color-active')
             }
         }
 
-        color: --var($theme, 'item-text-color-active');
-        background: --var($theme, 'item-background-active');
+        color: var-get($theme, 'item-text-color-active');
+        background: var-get($theme, 'item-background-active');
         z-index: 3;
     }
 
@@ -601,10 +607,10 @@
         subtitle: 'caption'
     )
 ) {
-    $header: map-get($categories, 'header');
-    $item: map-get($categories, 'item');
-    $title: map-get($categories, 'title');
-    $subtitle: map-get($categories, 'subtitle');
+    $header: map.get($categories, 'header');
+    $item: map.get($categories, 'item');
+    $title: map.get($categories, 'title');
+    $subtitle: map.get($categories, 'subtitle');
 
     %igx-list-header {
         @include igx-type-style($type-scale, $header) {

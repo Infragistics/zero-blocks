@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -63,8 +68,8 @@
     $name: 'igx-carousel';
     $carousel-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $carousel-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $carousel-schema: map.get($schema, $name);
     } @else {
         $carousel-schema: $schema;
     }
@@ -72,11 +77,11 @@
     $theme: apply-palette($carousel-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($carousel-schema, 'border-radius')),0 ,36px
+        if($border-radius, $border-radius, map.get($carousel-schema, 'border-radius')),0 ,36px
     );
 
     @if not($button-shadow) {
-        $button-elevation: map-get($carousel-schema, 'button-elevation');
+        $button-elevation: map.get($carousel-schema, 'button-elevation');
         $button-shadow: igx-elevation($elevations, $button-elevation);
     }
 
@@ -89,7 +94,7 @@
     }
 
     @if not($button-disabled-arrow-color) and $button-disabled-background {
-        @if type-of($button-disabled-background) == 'color' {
+        @if meta.type-of($button-disabled-background) == 'color' {
             $button-disabled-arrow-color: rgba(text-contrast($button-disabled-background), .3);
         }
     }
@@ -124,7 +129,7 @@
 /// @requires {mixin} animation
 /// @requires {mixin} scale-in-center
 /// @requires {mixin} scale-out-center
-/// @requires --var
+/// @requires var-get
 @mixin igx-carousel($theme) {
     @include igx-css-vars($theme);
 
@@ -140,7 +145,7 @@
     $carousel-indicator-margin: 0 5px;
     $indicator-border-style: 2px solid;
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $not-bootstrap-theme: $variant != 'bootstrap';
 
     %igx-carousel-display {
@@ -163,19 +168,19 @@
         @if $not-bootstrap-theme {
             border-radius: 50%;
         } @else {
-            border-radius: --var($theme, 'border-radius');
+            border-radius: var-get($theme, 'border-radius');
         }
 
         outline-style: none;
         transition: all .15s ease-in-out;
-        color: --var($theme, 'button-arrow-color');
-        background: --var($theme, 'button-background');
-        box-shadow: --var($theme, 'button-shadow');
+        color: var-get($theme, 'button-arrow-color');
+        background: var-get($theme, 'button-background');
+        box-shadow: var-get($theme, 'button-shadow');
     }
 
     %igx-nav-arrow--disabled {
-        background: --var($theme, 'button-disabled-background');
-        color: --var($theme, 'button-disabled-arrow-color');
+        background: var-get($theme, 'button-disabled-background');
+        color: var-get($theme, 'button-disabled-arrow-color');
         pointer-events: none;
         box-shadow: none;
 
@@ -185,8 +190,8 @@
     }
 
     %igx-nav-arrow--hover {
-        color: --var($theme, 'button-hover-arrow-color');
-        background: --var($theme, 'button-hover-background');
+        color: var-get($theme, 'button-hover-arrow-color');
+        background: var-get($theme, 'button-hover-background');
     }
 
     %igx-carousel-arrow {
@@ -266,7 +271,7 @@
 
         @if $variant != 'indigo-design' {
             border: $indicator-border-style;
-            border-color: --var($theme, 'indicator-border-color');
+            border-color: var-get($theme, 'indicator-border-color');
             box-shadow: igx-elevation($elevation: 1);
             opacity: .7;
         }
@@ -292,7 +297,7 @@
                 #{$right}: 0;
             }
             border-radius: inherit;
-            background: --var($theme, 'indicator-dot-color');
+            background: var-get($theme, 'indicator-dot-color');
         }
 
         &:hover {
@@ -303,13 +308,13 @@
     %igx-nav-dot--active {
         @if $variant != 'indigo-design' {
             border: $indicator-border-style;
-            border-color: --var($theme, 'indicator-active-border-color');
+            border-color: var-get($theme, 'indicator-active-border-color');
         }
 
         opacity: 1;
 
         &::after {
-            background: --var($theme, 'indicator-active-dot-color');
+            background: var-get($theme, 'indicator-active-dot-color');
             @if $variant != 'indigo-design' {
                 @include animation('scale-in-center' .15s $ease-out-quad forwards);
             }
@@ -322,7 +327,7 @@
         height: inherit;
         overflow: hidden;
         outline-style: none;
-        border-radius: --var($theme, 'border-radius');
+        border-radius: var-get($theme, 'border-radius');
         min-height: 300px;
         min-width: 300px;
     }
@@ -336,7 +341,7 @@
         right: 0;
         bottom: 0;
         z-index: -1;
-        background: --var($theme, 'slide-background');
+        background: var-get($theme, 'slide-background');
         visibility: hidden;
     }
 

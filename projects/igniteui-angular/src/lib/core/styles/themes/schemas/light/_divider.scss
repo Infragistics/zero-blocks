@@ -8,7 +8,7 @@
 /// @type {Map}
 /// @property {Map} color [igx-color: ('grays', 300)] - The color used for the divider.
 /// @see $default-palette
-$_light-divider: (
+$light-divider: (
     color: (
         igx-color: ('grays', 300)
     )
@@ -16,19 +16,16 @@ $_light-divider: (
 
 /// Generates a fluent divider schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-divider
-$_fluent-divider: extend($_light-divider);
+/// @requires {Map} $light-divider
+$fluent-divider: $light-divider;
 
 /// Generates a bootstrap divider schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-divider
-$_bootstrap-divider: extend($_light-divider);
+$bootstrap-divider: $light-divider;
 
 /// Generates an indigo divider schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-divider
-$_indigo-divider: extend($_light-divider);
+$indigo-divider: $light-divider;
 

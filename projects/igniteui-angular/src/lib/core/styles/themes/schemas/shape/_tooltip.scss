@@ -6,37 +6,37 @@
 
 /// @type Map
 /// @prop {Number} border-radius [.25] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-tooltip: (
+$default-shape-tooltip: (
     border-radius: .25,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-tooltip: (
+$round-shape-tooltip: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-tooltip: (
+$square-shape-tooltip: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-tooltip: (
+$fluent-shape-tooltip: (
     border-radius: 2px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-tooltip: (
+$bootstrap-shape-tooltip: (
     border-radius: 4px,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [3px] - The border radius used for tooltip. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-tooltip: (
+$indigo-shape-tooltip: (
     border-radius: 3px
 );
 

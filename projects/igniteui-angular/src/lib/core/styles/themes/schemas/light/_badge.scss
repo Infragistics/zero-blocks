@@ -1,5 +1,6 @@
-@import '../shape/badge';
-@import '../elevation/badge';
+@use '../../../base' as *;
+@use '../shape/badge' as *;
+@use '../elevation/badge' as *;
 
 ////
 /// @group schemas
@@ -20,9 +21,9 @@
 /// @requires {Map} $_default-shape-badge
 /// @requires {Map} $_default-elevation-badge
 /// @see $default-palette
-$_light-badge: extend(
-    $_default-shape-badge,
-    $_default-elevation-badge,
+$light-badge: extend(
+    $default-shape-badge,
+    $default-elevation-badge,
     (
         icon-color: (
             igx-contrast-color: ('primary', 500)
@@ -45,7 +46,7 @@ $_light-badge: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-badge
-$_fluent-badge: extend($_light-badge);
+$fluent-badge: $light-badge;
 
 /// Generates a bootstrap badge schema.
 /// @type {Map}
@@ -55,10 +56,10 @@ $_fluent-badge: extend($_light-badge);
 /// @requires {Map} $_light-badge
 /// @requires {Map} $_bootstrap-shape-badge
 /// @requires {Map} $_bootstrap-elevation-badge
-$_bootstrap-badge: extend(
-    $_light-badge,
-    $_bootstrap-shape-badge,
-    $_bootstrap-elevation-badge,
+$bootstrap-badge: extend(
+    $light-badge,
+    $bootstrap-shape-badge,
+    $bootstrap-elevation-badge,
     (
         border-width: 1px
     )
@@ -68,7 +69,5 @@ $_bootstrap-badge: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-badge
-$_indigo-badge: extend(
-    $_light-badge
-);
+$indigo-badge: $light-badge;
 

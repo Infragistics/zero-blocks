@@ -1,4 +1,4 @@
-@import '../light/funnel-chart';
+@use '../light/funnel-chart' as *;
 
 ////
 /// @group schemas
@@ -8,26 +8,22 @@
 
 /// Generates a dark funnel chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-funnel-chart
+/// @requires $light-funnel-chart
 /// @see $default-palette
-$_dark-funnel-chart: extend($_light-funnel-chart);
+$dark-funnel-chart: $light-funnel-chart;
 
 /// Generates a dark fluent funnel-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-funnel-chart
-$_dark-fluent-funnel-chart: extend($_fluent-funnel-chart);
+/// @requires $fluent-funnel-chart
+$dark-fluent-funnel-chart: $fluent-funnel-chart;
 
 /// Generates a dark bootstrap funnel-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-funnel-chart
-$_dark-bootstrap-funnel-chart: extend($_bootstrap-funnel-chart);
+/// @requires $bootstrap-funnel-chart
+$dark-bootstrap-funnel-chart: $bootstrap-funnel-chart;
 
 /// Generates a dark indigo funnel-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-funnel-chart
-$_dark-indigo-funnel-chart: extend($_indigo-funnel-chart);
+/// @requires $ndigo-funnel-chart
+$dark-indigo-funnel-chart: $indigo-funnel-chart;
 

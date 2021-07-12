@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,114 +8,119 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-switch) {
-    $block: bem--selector-to-string(&);
-    @include register-component(igx-switch);
+@mixin component {
+    @include b(igx-switch) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @extend %switch-display !optional;
-
-    &:hover {
-        @include e(ripple) {
-            @extend %switch-ripple--hover !optional;
-            @extend %switch-ripple--hover-unchecked !optional;
-        }
-    }
-
-    &:active {
-        @include e(ripple) {
-            @extend %switch-ripple--hover !optional;
-            @extend %switch-ripple--hover-unchecked !optional;
-            @extend %switch-ripple--pressed !optional;
-        }
-    }
-
-    @include e(input) {
-        @extend %switch-input !optional;
-    }
-
-    @include e(composite) {
-        @extend %switch-composite !optional;
-    }
-
-    @include e(composite-thumb) {
-        @extend %switch-composite-thumb !optional;
-    }
-
-    @include e(ripple) {
-        @extend %switch-ripple !optional;
-    }
-
-    @include e(label) {
-        @extend %switch-label !optional;
-        @extend %switch-label--after !optional;
-    }
-
-    @include e(label, $m: before) {
-        @extend %switch-label !optional;
-        @extend %switch-label--before !optional;
-    }
-
-    @include m(focused) {
-        @extend  %igx-switch--focused !optional;
-
-        @include e(ripple) {
-            @extend %switch-ripple--focused !optional;
-        }
-    }
-
-    @include mx(focused, checked) {
-        @extend  %igx-switch--focused-checked !optional;
-    }
-
-    @include m(checked) {
-        @include e(composite) {
-            @extend %switch-composite--x !optional;
-        }
-
-        @include e(composite-thumb) {
-            @extend %switch-composite-thumb--x !optional;
-        }
+        @extend %switch-display !optional;
 
         &:hover {
             @include e(ripple) {
                 @extend %switch-ripple--hover !optional;
-                @extend %switch-ripple--hover-checked !optional;
+                @extend %switch-ripple--hover-unchecked !optional;
             }
         }
 
         &:active {
             @include e(ripple) {
                 @extend %switch-ripple--hover !optional;
-                @extend %switch-ripple--hover-checked !optional;
+                @extend %switch-ripple--hover-unchecked !optional;
                 @extend %switch-ripple--pressed !optional;
             }
         }
-    }
 
-    @include m(disabled) {
-        @extend %switch-display--disabled !optional;
+        @include e(input) {
+            @extend %switch-input !optional;
+        }
 
         @include e(composite) {
-            @extend %switch-composite--disabled !optional;
+            @extend %switch-composite !optional;
         }
 
         @include e(composite-thumb) {
-            @extend %switch-composite-thumb--disabled !optional;
+            @extend %switch-composite-thumb !optional;
+        }
+
+        @include e(ripple) {
+            @extend %switch-ripple !optional;
         }
 
         @include e(label) {
-            @extend %switch-label--disabled !optional;
+            @extend %switch-label !optional;
+            @extend %switch-label--after !optional;
         }
 
         @include e(label, $m: before) {
-            @extend %switch-label--disabled !optional;
+            @extend %switch-label !optional;
+            @extend %switch-label--before !optional;
         }
-    }
 
-    @include mx(focused, checked) {
-        @include e(ripple) {
-            @extend %switch-ripple--focused !optional;
-            @extend %switch-ripple--focused-checked !optional;
+        @include m(focused) {
+            @extend  %igx-switch--focused !optional;
+
+            @include e(ripple) {
+                @extend %switch-ripple--focused !optional;
+            }
+        }
+
+        @include mx(focused, checked) {
+            @extend  %igx-switch--focused-checked !optional;
+        }
+
+        @include m(checked) {
+            @include e(composite) {
+                @extend %switch-composite--x !optional;
+            }
+
+            @include e(composite-thumb) {
+                @extend %switch-composite-thumb--x !optional;
+            }
+
+            &:hover {
+                @include e(ripple) {
+                    @extend %switch-ripple--hover !optional;
+                    @extend %switch-ripple--hover-checked !optional;
+                }
+            }
+
+            &:active {
+                @include e(ripple) {
+                    @extend %switch-ripple--hover !optional;
+                    @extend %switch-ripple--hover-checked !optional;
+                    @extend %switch-ripple--pressed !optional;
+                }
+            }
+        }
+
+        @include m(disabled) {
+            @extend %switch-display--disabled !optional;
+
+            @include e(composite) {
+                @extend %switch-composite--disabled !optional;
+            }
+
+            @include e(composite-thumb) {
+                @extend %switch-composite-thumb--disabled !optional;
+            }
+
+            @include e(label) {
+                @extend %switch-label--disabled !optional;
+            }
+
+            @include e(label, $m: before) {
+                @extend %switch-label--disabled !optional;
+            }
+        }
+
+        @include mx(focused, checked) {
+            @include e(ripple) {
+                @extend %switch-ripple--focused !optional;
+                @extend %switch-ripple--focused-checked !optional;
+            }
         }
     }
 }

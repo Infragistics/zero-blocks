@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,53 +8,59 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-overlay) {
-    $block: bem--selector-to-string(&);
-    @include register-component(igx-overlay);
 
-    @extend %overlay-display !optional;
+@mixin component {
+    @include b(igx-overlay) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @include e(wrapper) {
-        @extend %overlay-wrapper !optional;
+        @extend %overlay-display !optional;
+
+        @include e(wrapper) {
+            @extend %overlay-wrapper !optional;
+        }
+
+        @include e(wrapper, $m: modal) {
+            @extend %overlay-wrapper !optional;
+            @extend %overlay-wrapper--modal !optional;
+        }
+
+        @include e(wrapper, $m: flex) {
+            @extend %overlay-wrapper !optional;
+            @extend %overlay-wrapper--flex !optional;
+        }
+
+        @include e(wrapper, $m: flex-container) {
+            @extend %overlay-wrapper !optional;
+            @extend %overlay-wrapper--flex-container !optional;
+        }
+
+        @include e(content) {
+            @extend %overlay-content !optional;
+        }
+
+        @include e(content, $m: modal) {
+            @extend %overlay-content !optional;
+            @extend %overlay-content--modal !optional;
+        }
+
+        @include e(content, $m: elastic) {
+            @extend %overlay-content !optional;
+            @extend %overlay-content--elastic !optional;
+        }
+
+        @include e(content, $m: relative) {
+            @extend %overlay-content !optional;
+            @extend %overlay-content--relative !optional;
+        }
     }
 
-    @include e(wrapper, $m: modal) {
-        @extend %overlay-wrapper !optional;
-        @extend %overlay-wrapper--modal !optional;
-    }
-
-    @include e(wrapper, $m: flex) {
-        @extend %overlay-wrapper !optional;
-        @extend %overlay-wrapper--flex !optional;
-    }
-
-    @include e(wrapper, $m: flex-container) {
-        @extend %overlay-wrapper !optional;
-        @extend %overlay-wrapper--flex-container !optional;
-    }
-
-    @include e(content) {
-        @extend %overlay-content !optional;
-    }
-
-    @include e(content, $m: modal) {
-        @extend %overlay-content !optional;
-        @extend %overlay-content--modal !optional;
-    }
-
-    @include e(content, $m: elastic) {
-        @extend %overlay-content !optional;
-        @extend %overlay-content--elastic !optional;
-    }
-
-    @include e(content, $m: relative) {
-        @extend %overlay-content !optional;
-        @extend %overlay-content--relative !optional;
-    }
-}
-
-@include b(igx-toggle) {
-    @include m(hidden) {
-        @extend %igx-toggle--hidden !optional;
+    @include b(igx-toggle) {
+        @include m(hidden) {
+            @extend %igx-toggle--hidden !optional;
+        }
     }
 }

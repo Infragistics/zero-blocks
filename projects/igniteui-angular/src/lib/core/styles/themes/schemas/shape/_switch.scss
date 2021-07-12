@@ -8,7 +8,7 @@
 /// @property {Number} border-radius-track [1] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-thumb [1] - The border radius used for switch thumb. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-ripple [1] - The border radius used for switch ripple. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-switch: (
+$default-shape-switch: (
     border-radius-track: 1,
     border-radius-thumb: 1,
     border-radius-ripple: 1
@@ -18,7 +18,7 @@ $_default-shape-switch: (
 /// @property {Number} border-radius-track [1] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-thumb [1] - The border radius used for switch thumb. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-ripple [1] - The border radius used for switch ripple. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-switch: (
+$round-shape-switch: (
     border-radius-track: 1,
     border-radius-thumb: 1,
     border-radius-ripple: 1
@@ -28,7 +28,7 @@ $_round-shape-switch: (
 /// @property {Number} border-radius-track [0] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-thumb [0] - The border radius used for switch thumb. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-ripple [0] - The border radius used for switch ripple. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-switch: (
+$square-shape-switch: (
     border-radius-track: 0,
     border-radius-thumb: 0,
     border-radius-ripple: 0
@@ -36,14 +36,14 @@ $_square-shape-switch: (
 
 /// @type Map
 /// @property {Number} border-radius-track [10px] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-switch: (
+$fluent-shape-switch: (
     border-radius-track: 10px,
 );
 
 /// @type Map
 /// @property {Number} border-radius-track [4px] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-thumb [2px] - The border radius used for switch thumb. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-switch: (
+$bootstrap-shape-switch: (
     border-radius-track: 4px,
     border-radius-thumb: 2px,
 );
@@ -51,7 +51,7 @@ $_bootstrap-shape-switch: (
 /// @type Map
 /// @property {Number} border-radius-track [8px] - The border radius used for switch track. Can be a fraction between 0 and 1, pixels, or percent.
 /// @property {Number} border-radius-thumb [1] - The border radius used for switch thumb. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-switch: (
+$indigo-shape-switch: (
     border-radius-track: 8px,
     border-radius-thumb: 1
 );

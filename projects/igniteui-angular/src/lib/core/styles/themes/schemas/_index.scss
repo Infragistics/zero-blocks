@@ -1,4 +1,4 @@
-@import './light/index';
-@import './square-light/index';
-@import './round-light/index';
-@import './dark/index';
+@forward 'light';
+@forward 'dark';
+@forward 'square-light';
+@forward 'round-light';

@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -49,8 +54,8 @@
     $selector: '.igx-grid-summary';
     $grid-summary-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $grid-summary-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $grid-summary-schema: map.get($schema, $name);
     } @else {
         $grid-summary-schema: $schema;
     }
@@ -93,7 +98,7 @@
 /// @requires {mixin} igx-css-vars
 /// @requires {mixin} ellipsis
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-grid-summary($theme) {
     @include igx-css-vars($theme);
 
@@ -101,8 +106,8 @@
     $right: if-ltr(right, left);
 
     $cell-pin: (
-        style: --var($theme, 'pinned-border-width') --var($theme, 'pinned-border-style'),
-        color: --var($theme, 'pinned-border-color')
+        style: var-get($theme, 'pinned-border-width') var-get($theme, 'pinned-border-style'),
+        color: var-get($theme, 'pinned-border-color')
     );
 
     $item-padding: (
@@ -122,8 +127,8 @@
         display: flex;
         flex-direction: column;
         flex: 1 1 0%;
-        padding: map-get($summary-padding, 'comfortable');
-        background: --var($theme, 'background-color', inherit);
+        padding: map.get($summary-padding, 'comfortable');
+        background: var-get($theme, 'background-color', inherit);
         overflow: hidden;
         outline-style: none;
 
@@ -136,16 +141,16 @@
         }
 
         &:focus::after {
-            background: --var($theme, 'focus-background-color');
+            background: var-get($theme, 'focus-background-color');
         }
     }
 
     %igx-grid-summary--cosy {
-        padding: map-get($summary-padding, 'cosy');
+        padding: map.get($summary-padding, 'cosy');
     }
 
     %igx-grid-summary--compact {
-        padding: map-get($summary-padding, 'compact');
+        padding: map.get($summary-padding, 'compact');
     }
 
     %igx-grid-summary--pinned {
@@ -158,47 +163,47 @@
     }
 
     %igx-grid-summary--pinned-last {
-        border-#{$right}: map-get($cell-pin, 'style') map-get($cell-pin, 'color');
+        border-#{$right}: map.get($cell-pin, 'style') map.get($cell-pin, 'color');
         @media print {
-            border-right: map-get($cell-pin, 'style') #999;
+            border-right: map.get($cell-pin, 'style') #999;
         }
     }
 
     %igx-grid-summary--pinned-first {
-        border-#{$left}: map-get($cell-pin, 'style') map-get($cell-pin, 'color');
+        border-#{$left}: map.get($cell-pin, 'style') map.get($cell-pin, 'color');
         @media print {
-            border-left: map-get($cell-pin, 'style') #999;
+            border-left: map.get($cell-pin, 'style') #999;
         }
     }
 
     %igx-grid-summary__item {
         display: flex;
         align-items: center;
-        padding: map-get($item-padding, 'comfortable');
+        padding: map.get($item-padding, 'comfortable');
         font-size: rem(12px);
         position: relative;
     }
 
     %igx-grid-summary__item--cosy {
-        padding: map-get($item-padding, 'cosy');
+        padding: map.get($item-padding, 'cosy');
     }
 
     %igx-grid-summary__item--compact {
-        padding: map-get($item-padding, 'compact');
+        padding: map.get($item-padding, 'compact');
     }
 
     %igx-grid-summary__label {
-        color: --var($theme, 'label-color');
+        color: var-get($theme, 'label-color');
         min-width: rem(30px);
         margin-#{$right}: rem(3px);
 
         &:hover {
-            color: --var($theme, 'label-hover-color');
+            color: var-get($theme, 'label-hover-color');
         }
     }
 
     %igx-grid-summary__result {
-        color: --var($theme, 'result-color');
+        color: var-get($theme, 'result-color');
         font-weight: 600;
         flex: 1 1 auto;
         text-align: #{$right};

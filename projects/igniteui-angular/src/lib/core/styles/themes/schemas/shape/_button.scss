@@ -6,35 +6,35 @@
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for icon button. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-button: (
+$round-shape-button: (
     border-radius: 1
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for icon button. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-button: (
+$square-shape-button: (
     border-radius: 0
 );
 
 /// @type Map
 /// @prop {Number} border-radius [.2] - The border radius used for icon button. Can be a fraction between 0 and 1, pixels, or percent.
-$_material-shape-button: (
+$material-shape-button: (
     border-radius: .2
 );
 
 /// @type Map
 /// @prop {Number} border-radius [.1] - The border radius used for icon button. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-button: (
+$fluent-shape-button: (
     border-radius: .1
 );
 
 /// @type Map
 /// @prop {Number} border-radius [.2] - The border radius used for icon button. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-button: (
+$bootstrap-shape-button: (
     border-radius: .2
 );
 
 /// @type Map
 /// @see $_round-shape-button
 /// @requires $_round-shape-button
-$_indigo-shape-button: $_round-shape-button;
+$indigo-shape-button: $round-shape-button;

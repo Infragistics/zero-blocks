@@ -1,4 +1,5 @@
-@import '../light/scrollbar';
+@use '../../../base' as *;
+@use '../light/scrollbar' as *;
 
 ////
 /// @group schemas
@@ -12,10 +13,10 @@
 /// @property {Color} track-background [igx-color: 'surface', lighten: 5%] - The background color used for the track.
 /// @property {String | Number} size [16px] - The size of the track.
 /// @requires {function} extend
-/// @requires $_light-scrollbar
+/// @requires $light-scrollbar
 /// @see $default-palette
-$_dark-scrollbar: extend(
-    $_light-scrollbar,
+$dark-scrollbar: extend(
+    $light-scrollbar,
     (
         thumb-background: (
             igx-color: 'surface',
@@ -27,9 +28,9 @@ $_dark-scrollbar: extend(
 /// Generates a dark fluent scrollbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_dark-scrollbar
-$_dark-fluent-scrollbar: extend(
-    $_dark-scrollbar,
+/// @requires $dark-scrollbar
+$dark-fluent-scrollbar: extend(
+    $dark-scrollbar,
     (
         variant: 'fluent',
     )
@@ -38,9 +39,9 @@ $_dark-fluent-scrollbar: extend(
 /// Generates a dark bootstrap scrollbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-scrollbar
-$_dark-bootstrap-scrollbar: extend(
-    $_light-scrollbar,
+/// @requires $light-scrollbar
+$dark-bootstrap-scrollbar: extend(
+    $light-scrollbar,
     (
         variant: 'bootstrap',
     )
@@ -49,9 +50,9 @@ $_dark-bootstrap-scrollbar: extend(
 /// Generates a dark indigo scrollbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-scrollbar
-$_dark-indigo-scrollbar: extend(
-    $_indigo-scrollbar,
+/// @requires $indigo-scrollbar
+$dark-indigo-scrollbar: extend(
+    $indigo-scrollbar,
     (
         variant: 'indigo-design',
     )

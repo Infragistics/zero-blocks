@@ -6,13 +6,13 @@
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for splitter. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-splitter: (
+$round-shape-splitter: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for splitter. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-splitter: (
+$square-shape-splitter: (
     border-radius: 0,
 );
 

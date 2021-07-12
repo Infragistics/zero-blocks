@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -5,87 +8,93 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-nav-drawer) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %navdrawer-display !optional;
+@mixin component {
+    @include b(igx-nav-drawer) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    // Main aside element
-    @include e(aside) {
-        @extend %aside !optional;
+        @extend %navdrawer-display !optional;
 
-        &.panning {
-            @extend %aside-panning !optional;
-        }
-    }
+        // Main aside element
+        @include e(aside) {
+            @extend %aside !optional;
 
-    @include e(aside, collapsed) {
-        @extend %aside--collapsed !optional;
-
-        &.igx-nav-drawer__aside--right {
-            @extend %aside--collapsed--right !optional;
-        }
-    }
-
-
-    @include e(aside, right) {
-        @extend %aside--right !optional;
-    }
-
-    @include e(aside, mini) {
-        @extend %aside--mini !optional;
-    }
-
-    @include e(aside, normal) {
-        @extend %aside--normal !optional;
-    }
-
-    @include e(aside, pinned) {
-        @extend %aside--pinned !optional;
-
-        &.igx-nav-drawer__aside--collapsed {
-            @extend %igx-nav-drawer__aside--collapsed !optional;
-        }
-    }
-
-    // Overlay
-    @include e(overlay) {
-        @extend %overlay !optional;
-
-        &.panning {
-            @extend %overlay-panning !optional;
-
-            &.igx-nav-drawer__overlay--hidden {
-                @extend %overlay-panning--hidden !optional;
+            &.panning {
+                @extend %aside-panning !optional;
             }
         }
-    }
 
-    @include e(overlay, hidden) {
-        @extend %overlay--hidden !optional;
-    }
+        @include e(aside, collapsed) {
+            @extend %aside--collapsed !optional;
 
-    // Style Dummy(hidden) used for measures
-    @include e(style-dummy) {
-        @extend %style-dummy !optional;
-    }
+            &.igx-nav-drawer__aside--right {
+                @extend %aside--collapsed--right !optional;
+            }
+        }
 
-    // igxDrawerItem Items
-    @include e(item) {
-        @extend %item !optional;
-    }
 
-    @include e(item, active) {
-        @extend %item !optional;
-        @extend %item--active !optional;
-    }
+        @include e(aside, right) {
+            @extend %aside--right !optional;
+        }
 
-    @include e(item, header) {
-        @extend %item--header !optional;
-    }
+        @include e(aside, mini) {
+            @extend %aside--mini !optional;
+        }
 
-    @include m(disable-animation) {
-        @extend %disable-animation !optional;
+        @include e(aside, normal) {
+            @extend %aside--normal !optional;
+        }
+
+        @include e(aside, pinned) {
+            @extend %aside--pinned !optional;
+
+            &.igx-nav-drawer__aside--collapsed {
+                @extend %igx-nav-drawer__aside--collapsed !optional;
+            }
+        }
+
+        // Overlay
+        @include e(overlay) {
+            @extend %overlay !optional;
+
+            &.panning {
+                @extend %overlay-panning !optional;
+
+                &.igx-nav-drawer__overlay--hidden {
+                    @extend %overlay-panning--hidden !optional;
+                }
+            }
+        }
+
+        @include e(overlay, hidden) {
+            @extend %overlay--hidden !optional;
+        }
+
+        // Style Dummy(hidden) used for measures
+        @include e(style-dummy) {
+            @extend %style-dummy !optional;
+        }
+
+        // igxDrawerItem Items
+        @include e(item) {
+            @extend %item !optional;
+        }
+
+        @include e(item, active) {
+            @extend %item !optional;
+            @extend %item--active !optional;
+        }
+
+        @include e(item, header) {
+            @extend %item--header !optional;
+        }
+
+        @include m(disable-animation) {
+            @extend %disable-animation !optional;
+        }
     }
 }

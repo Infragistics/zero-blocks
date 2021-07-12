@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -11,7 +13,7 @@
 /// @property {Map} banner-border-color [igx-color: ('grays', 400)] - The border color used banner border.
 /// @property {Map} banner-illustration-color [igx-color: 'surface', text-contrast: (), rgba: .87] - The color used banner illustration.
 /// @see $default-palette
-$_light-banner: (
+$light-banner: (
     banner-background: (
         igx-color: 'surface'
     ),
@@ -36,8 +38,8 @@ $_light-banner: (
 /// Generates a fluent banner schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-banner
-$_fluent-banner: extend($_light-banner);
+/// @requires {Map} $light-banner
+$fluent-banner: $light-banner;
 
 /// Generates a bootstrap banner schema.
 /// @type {Map}
@@ -45,9 +47,9 @@ $_fluent-banner: extend($_light-banner);
 /// @property {Map} banner-message-color [igx-color: ('grays', 800)]- The color used for banner label.
 /// @property {Map} banner-illustration-color [igx-color: ('grays', 800)] - The color used banner illustration.
 /// @requires {function} extend
-/// @requires {Map} $_light-banner
-$_bootstrap-banner: extend(
-    $_light-banner,
+/// @requires {Map} $light-banner
+$bootstrap-banner: extend(
+    $light-banner,
     (
         banner-background: #fff,
 
@@ -66,9 +68,9 @@ $_bootstrap-banner: extend(
 /// @property {Map} banner-message-color [igx-color: ('grays', 900)]- The color used for banner label.
 /// @property {Map} banner-illustration-color [igx-color: ('grays', 600)] - The color used banner illustration.
 /// @requires {function} extend
-/// @requires {Map} $_light-banner
-$_indigo-banner: extend(
-    $_light-banner,
+/// @requires {Map} $light-banner
+$indigo-banner: extend(
+    $light-banner,
     (
         banner-message-color: (
             igx-color: ('grays', 900)

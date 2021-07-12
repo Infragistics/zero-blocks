@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -6,51 +9,60 @@
 /// @requires {mixin} bem-mod
 ////
 
-@include b(igx-banner) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-banner) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button,
+                igx-expansion-panel,
+                igx-icon,
+            )
+        );
 
-    @extend %igx-banner !optional;
-
-    @include e(message) {
-        @extend %igx-banner__message !optional;
-    }
-
-    @include e(illustration) {
-        @extend %igx-banner__illustration !optional;
-    }
-
-    @include e(border-top) {
-        @extend %igx-banner__border-top !optional;
-    }
-
-    @include e(border-bottom) {
-        @extend %igx-banner__border-bottom !optional;
-    }
-
-    @include e(text) {
-        @extend %igx-banner__text !optional;
-    }
-
-    @include e(actions) {
-        @extend %igx-banner__actions !optional;
-    }
-
-    @include m(vertical) {
-        @extend %igx-banner--vertical !optional;
-    }
-
-    @include e(banner__row) {
-        @extend %igx-banner__row !optional;
-    }
-
-    @include m(cosy) {
         @extend %igx-banner !optional;
-        @extend %igx-banner--cosy !optional
+
+        @include e(message) {
+            @extend %igx-banner__message !optional;
+        }
+
+        @include e(illustration) {
+            @extend %igx-banner__illustration !optional;
+        }
+
+        @include e(border-top) {
+            @extend %igx-banner__border-top !optional;
+        }
+
+        @include e(border-bottom) {
+            @extend %igx-banner__border-bottom !optional;
+        }
+
+        @include e(text) {
+            @extend %igx-banner__text !optional;
+        }
+
+        @include e(actions) {
+            @extend %igx-banner__actions !optional;
+        }
+
+        @include m(vertical) {
+            @extend %igx-banner--vertical !optional;
+        }
+
+        @include e(banner__row) {
+            @extend %igx-banner__row !optional;
+        }
+
+        @include m(cosy) {
+            @extend %igx-banner !optional;
+            @extend %igx-banner--cosy !optional
     }
 
-    @include m(compact) {
-        @extend %igx-banner !optional;
-        @extend %igx-banner--compact !optional;
+        @include m(compact) {
+            @extend %igx-banner !optional;
+            @extend %igx-banner--compact !optional;
+        }
     }
 }

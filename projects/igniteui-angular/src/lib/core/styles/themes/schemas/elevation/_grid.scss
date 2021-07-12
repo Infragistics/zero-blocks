@@ -7,7 +7,7 @@
 /// @type Map
 /// @prop {number} grid-elevation [2] - The elevation level, between 0-24, to be used for the grid.
 /// @prop {number} drag-elevation [5] - The elevation level, between 0-24, to be used for movable elements (ex. column header).
-$_default-elevation-grid: (
+$default-elevation-grid: (
     grid-elevation: 2,
     drag-elevation: 5,
 );
@@ -15,7 +15,7 @@ $_default-elevation-grid: (
 /// @type Map
 /// @prop {number} grid-elevation [0] - The elevation level, between 0-24, to be used for the grid.
 /// @prop {number} drag-elevation [1] - The elevation level, between 0-24, to be used for movable elements (ex. column header).
-$_fluent-elevation-grid: (
+$fluent-elevation-grid: (
     grid-elevation: 0,
     drag-elevation: 1,
 );

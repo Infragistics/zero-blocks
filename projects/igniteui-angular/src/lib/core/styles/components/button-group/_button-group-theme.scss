@@ -1,3 +1,8 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -77,24 +82,24 @@
 
     $button-group-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $button-group-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $button-group-schema: map.get($schema, $name);
     } @else {
         $button-group-schema: $schema;
     }
 
     $theme: apply-palette($button-group-schema, $palette);
 
-    $border: 1px solid map-get($theme, 'item-selected-border-color');
+    $border: 1px solid map.get($theme, 'item-selected-border-color');
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($button-group-schema, 'border-radius')), 0, 20px
+        if($border-radius, $border-radius, map.get($button-group-schema, 'border-radius')), 0, 20px
     );
 
     $shadow-color: null;
 
-    @if map-get($theme, 'variant') == 'bootstrap' {
-        $shadow-color: rgba(map-get($theme, 'item-background'), .5);
+    @if map.get($theme, 'variant') == 'bootstrap' {
+        $shadow-color: rgba(map.get($theme, 'item-background'), .5);
 
         @if $item-background {
             $shadow-color: rgba($item-background, .5);
@@ -106,41 +111,41 @@
     }
 
     @if not($item-text-color) and $item-background {
-        @if type-of($item-background) == 'color' {
+        @if meta.type-of($item-background) == 'color' {
             $item-text-color: text-contrast($item-background);
         }
     }
 
     @if not($item-hover-text-color) and $item-hover-background {
-        @if type-of($item-hover-background) == 'color' {
+        @if meta.type-of($item-hover-background) == 'color' {
             $item-hover-text-color: text-contrast($item-hover-background);
         }
     }
 
     @if not($item-selected-background) and $item-background {
-        @if type-of($item-background) == 'color' {
+        @if meta.type-of($item-background) == 'color' {
             $item-selected-text-color: text-contrast($item-background);
         }
     }
 
     @if not($item-selected-text-color) and $item-selected-background {
-        @if type-of($item-selected-background) == 'color' {
+        @if meta.type-of($item-selected-background) == 'color' {
             $item-selected-text-color: text-contrast($item-selected-background);
         }
     }
 
     @if not($disabled-text-color) and $disabled-background-color {
-        @if type-of($disabled-background-color) == 'color' {
+        @if meta.type-of($disabled-background-color) == 'color' {
             $disabled-text-color: rgba(text-contrast($item-background), .3);
         }
     }
 
-    @if map-get($button-group-schema, 'elevation') > 0 {
+    @if map.get($button-group-schema, 'elevation') > 0 {
         $border: none;
     }
 
     @if not($shadow) {
-        $elevation: map-get($button-group-schema, 'elevation');
+        $elevation: map.get($button-group-schema, 'elevation');
         $shadow: igx-elevation($elevations, $elevation);
     }
 
@@ -172,27 +177,27 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires igx-color
-/// @requires --var
+/// @requires var-get
 @mixin igx-button-group($theme) {
     @include igx-css-vars($theme);
     $group-item-min-width: 24px;
     $group-item-border-thickness: 1px;
     $group-items-margin: rem(10px, 16px);
     $transition: all 140ms $ease-in-out-quad;
-    $palette: map-get($theme, 'palette');
+    $palette: map.get($theme, 'palette');
 
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
 
-    $variant: map-get($theme, 'variant');
+    $variant: map.get($theme, 'variant');
     $bootstrap-theme: $variant == 'bootstrap';
     $indigo-theme: $variant == 'indigo-design';
 
     %igx-group-display {
         display: flex;
-        box-shadow: --var($theme, 'shadow');
+        box-shadow: var-get($theme, 'shadow');
         transition: $transition;
-        border-radius: --var($theme, 'border-radius');
+        border-radius: var-get($theme, 'border-radius');
 
         button {
             // The margin here is required to fix a bug in Safari #7858
@@ -203,9 +208,9 @@
     }
 
     %igx-group-item {
-        border: $group-item-border-thickness solid --var($theme, 'item-border-color');
-        color: --var($theme, 'item-text-color');
-        background: --var($theme, 'item-background');
+        border: $group-item-border-thickness solid var-get($theme, 'item-border-color');
+        color: var-get($theme, 'item-text-color');
+        background: var-get($theme, 'item-background');
         min-width: $group-item-min-width;
         display: flex;
         flex: 1 0 0%;
@@ -227,31 +232,31 @@
         }
 
         &:first-of-type {
-            border-top-#{$left}-radius: --var($theme, 'border-radius');
-            border-bottom-#{$left}-radius: --var($theme, 'border-radius');
+            border-top-#{$left}-radius: var-get($theme, 'border-radius');
+            border-bottom-#{$left}-radius: var-get($theme, 'border-radius');
         }
 
         &:last-of-type {
-            border-top-#{$right}-radius: --var($theme, 'border-radius');
-            border-bottom-#{$right}-radius: --var($theme, 'border-radius');
+            border-top-#{$right}-radius: var-get($theme, 'border-radius');
+            border-bottom-#{$right}-radius: var-get($theme, 'border-radius');
         }
 
         &[igxButton][disabled='true'] {
-            color: --var($theme, 'disabled-text-color');
-            background: --var($theme, 'disabled-background-color');
-            border-color: --var($theme, 'item-disabled-border');
+            color: var-get($theme, 'disabled-text-color');
+            background: var-get($theme, 'disabled-background-color');
+            border-color: var-get($theme, 'item-disabled-border');
         }
 
         &:hover,
         &:focus {
-            color: --var($theme, 'item-hover-text-color');
-            background: --var($theme, 'item-hover-background');
+            color: var-get($theme, 'item-hover-text-color');
+            background: var-get($theme, 'item-hover-background');
             z-index: 2;
         }
 
         &:focus {
             @if $bootstrap-theme or $indigo-theme {
-                box-shadow: 0 0 0 rem(3px) --var($theme, 'shadow-color');
+                box-shadow: 0 0 0 rem(3px) var-get($theme, 'shadow-color');
             }
         }
     }
@@ -263,8 +268,8 @@
         }
 
         &:first-of-type {
-            border-top-#{$left}-radius: --var($theme, 'border-radius');
-            border-top-#{$right}-radius: --var($theme, 'border-radius');
+            border-top-#{$left}-radius: var-get($theme, 'border-radius');
+            border-top-#{$right}-radius: var-get($theme, 'border-radius');
             border-bottom-#{$left}-radius: 0;
             border-bottom-#{$right}-radius: 0;
         }
@@ -272,27 +277,27 @@
         &:last-of-type {
             border-top-#{$left}-radius: 0;
             border-top-#{$right}-radius: 0;
-            border-bottom-#{$left}-radius: --var($theme, 'border-radius');
-            border-bottom-#{$right}-radius: --var($theme, 'border-radius');
+            border-bottom-#{$left}-radius: var-get($theme, 'border-radius');
+            border-bottom-#{$right}-radius: var-get($theme, 'border-radius');
         }
     }
 
     %igx-group-item-selected {
-        color: --var($theme, 'item-selected-text-color');
-        background: --var($theme, 'item-selected-background');
-        border-color: --var($theme, 'item-selected-border-color');
+        color: var-get($theme, 'item-selected-text-color');
+        background: var-get($theme, 'item-selected-background');
+        border-color: var-get($theme, 'item-selected-border-color');
         position: relative;
         z-index: 1;
 
         &:hover,
         &:focus {
-            color: --var($theme, 'item-selected-text-color');
-            background: --var($theme, 'item-selected-hover-background');
+            color: var-get($theme, 'item-selected-text-color');
+            background: var-get($theme, 'item-selected-hover-background');
         }
 
         @if $indigo-theme {
             &:focus {
-                box-shadow: 0 0 0 rem(3px) --var($theme, 'selected-shadow-color');
+                box-shadow: 0 0 0 rem(3px) var-get($theme, 'selected-shadow-color');
             }
         }
 

@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -37,8 +41,8 @@
     $name: 'igx-action-strip';
     $action-strip-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $action-strip-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $action-strip-schema: map.get($schema, $name);
     } @else {
         $action-strip-schema: $schema;
     }
@@ -46,7 +50,7 @@
     $theme: apply-palette($action-strip-schema, $palette);
 
     $actions-border-radius: round-borders(
-        if($actions-border-radius, $actions-border-radius, map-get($action-strip-schema, 'actions-border-radius')), 0, 24px
+        if($actions-border-radius, $actions-border-radius, map.get($action-strip-schema, 'actions-border-radius')), 0, 24px
     );
 
     @if not($icon-color) and $actions-background {
@@ -67,7 +71,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-action-strip($theme) {
     @include igx-css-vars($theme);
 
@@ -77,7 +81,7 @@
         compact: 0 rem(12px)
     );
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
 
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
@@ -92,9 +96,9 @@
         pointer-events: none;
         top: 0;
         #{$left}: 0;
-        background: --var($theme, 'background');
+        background: var-get($theme, 'background');
         color: inherit;
-        padding: map-get($padding, 'comfortable');
+        padding: map.get($padding, 'comfortable');
         z-index: 9999;
     }
 
@@ -113,12 +117,12 @@
 
     %igx-action-strip--cosy {
         @extend %action-icons-density;
-        padding: map-get($padding, 'cosy');
+        padding: map.get($padding, 'cosy');
     }
 
     %igx-action-strip--compact {
         @extend %action-icons-density;
-        padding: map-get($padding, 'compact');
+        padding: map.get($padding, 'compact');
     }
 
     %igx-action-strip__editing-actions,
@@ -157,10 +161,10 @@
     }
 
     %igx-action-strip__menu-item--danger {
-        color: igx-color(map-get($theme, 'palette'), 'error');
+        color: igx-color(map.get($theme, 'palette'), 'error');
 
         &:hover {
-            color: igx-color(map-get($theme, 'palette'), 'error');
+            color: igx-color(map.get($theme, 'palette'), 'error');
         }
     }
 
@@ -175,9 +179,9 @@
         justify-content: center;
         pointer-events: all;
         position: relative;
-        color: --var($theme, 'icon-color');
-        border-radius: --var($theme, 'actions-border-radius');
-        background: --var($theme, 'actions-background');
+        color: var-get($theme, 'icon-color');
+        border-radius: var-get($theme, 'actions-border-radius');
+        background: var-get($theme, 'actions-background');
         max-height: 36px;
 
         &:last-child {
@@ -185,16 +189,16 @@
         }
 
         igx-icon {
-            color: --var($theme, 'icon-color');
+            color: var-get($theme, 'icon-color');
         }
 
         [igxButton='icon'] {
             igx-icon {
-                color: --var($theme, 'icon-color');
+                color: var-get($theme, 'icon-color');
             }
 
             @if $variant == 'indigo-design' {
-                border-radius: --var($theme, 'actions-border-radius');
+                border-radius: var-get($theme, 'actions-border-radius');
             }
         }
     }
@@ -211,7 +215,7 @@
 
     %igx-action-strip__delete {
         igx-icon {
-            color: --var($theme, 'delete-action');
+            color: var-get($theme, 'delete-action');
         }
     }
 }

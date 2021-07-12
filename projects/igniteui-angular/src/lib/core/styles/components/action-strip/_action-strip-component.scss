@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,47 +8,57 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-action-strip) {
-    // Register the component in the component registry
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-action-strip-display !optional;
+@mixin component {
+    @include b(igx-action-strip) {
+        // Register the component in the component registry
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button,
+                igx-drop-down,
+                igx-icon,
+            )
+        );
 
-    @include m(cosy) {
-        @extend %igx-action-strip--cosy !optional;
-    }
+        @extend %igx-action-strip-display !optional;
 
-    @include m(compact) {
-        @extend %igx-action-strip--compact !optional;
-    }
+        @include m(cosy) {
+            @extend %igx-action-strip--cosy !optional;
+        }
 
-    @include e(actions) {
-        @extend %igx-action-strip__actions !optional;
-    }
+        @include m(compact) {
+            @extend %igx-action-strip--compact !optional;
+        }
 
-    @include e(delete) {
-        @extend %igx-action-strip__delete !optional;
-    }
+        @include e(actions) {
+            @extend %igx-action-strip__actions !optional;
+        }
 
-    @include e(editing-actions) {
-        @extend %igx-action-strip__editing-actions !optional;
-    }
+        @include e(delete) {
+            @extend %igx-action-strip__delete !optional;
+        }
 
-    @include e(pinning-actions) {
-        @extend %igx-action-strip__pinning-actions !optional;
-    }
+        @include e(editing-actions) {
+            @extend %igx-action-strip__editing-actions !optional;
+        }
 
-    @include e(menu-item) {
-        @extend %igx-action-strip__menu-item !optional;
-    }
+        @include e(pinning-actions) {
+            @extend %igx-action-strip__pinning-actions !optional;
+        }
 
-    @include e(menu-item, $m: 'danger') {
-        @extend %igx-action-strip__menu-item !optional;
-        @extend %igx-action-strip__menu-item--danger !optional;
-    }
+        @include e(menu-item) {
+            @extend %igx-action-strip__menu-item !optional;
+        }
 
-    @include e(menu-button) {
-        @extend %igx-action-strip__menu-button !optional;
+        @include e(menu-item, $m: 'danger') {
+            @extend %igx-action-strip__menu-item !optional;
+            @extend %igx-action-strip__menu-item--danger !optional;
+        }
+
+        @include e(menu-button) {
+            @extend %igx-action-strip__menu-button !optional;
+        }
     }
 }

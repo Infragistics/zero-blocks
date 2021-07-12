@@ -1,3 +1,9 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
 ////
 /// @group themes
 /// @access public
@@ -46,8 +52,8 @@
 
     $dialog-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $dialog-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $dialog-schema: map.get($schema, $name);
     } @else {
         $dialog-schema: $schema;
     }
@@ -55,7 +61,7 @@
     $theme: apply-palette($dialog-schema, $palette);
 
     $border-radius: round-borders(
-        if($border-radius, $border-radius, map-get($dialog-schema, 'border-radius')), 0 , 36px
+        if($border-radius, $border-radius, map.get($dialog-schema, 'border-radius')), 0 , 36px
     );
 
     @if not($title-color) and $background{
@@ -63,13 +69,13 @@
     }
 
     @if not($message-color) and $background{
-        @if type-of($background) == 'color' {
+        @if meta.type-of($background) == 'color' {
             $message-color: rgba(text-contrast($background), .8);
         }
     }
 
     @if not($shadow) {
-        $elevation: map-get($dialog-schema, 'elevation');
+        $elevation: map.get($dialog-schema, 'elevation');
         $shadow: igx-elevation($elevations, $elevation);
     }
 
@@ -89,42 +95,42 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-dialog($theme) {
     @include igx-css-vars($theme);
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
 
-    $dialog-min-width: map-get((
+    $dialog-min-width: map.get((
         material: rem(280px),
         fluent: rem(288px),
         bootstrap: rem(288px),
     ), $variant);
 
-    $dialog-title-padding: map-get((
+    $dialog-title-padding: map.get((
         material: rem(24px) rem(24px) rem(12px) rem(24px),
         fluent: rem(16px) rem(24px) rem(24px) rem(24px),
         bootstrap: rem(16px),
         indigo-design: rem(16px) rem(24px),
     ), $variant);
 
-    $dialog-message-padding: map-get((
+    $dialog-message-padding: map.get((
         material: rem(12px) rem(24px),
         fluent: 0 rem(24px) rem(20px) rem(24px),
         bootstrap: rem(16px),
         indigo-design: 0 rem(24px) rem(8px) rem(24px),
     ), $variant);
 
-    $dialog-actions-padding: map-get((
+    $dialog-actions-padding: map.get((
         material: rem(8px),
         fluent: 0 rem(24px) rem(24px) rem(24px),
         bootstrap: rem(16px),
         indigo-design: rem(8px),
     ), $variant);
 
-    $bootstrap-theme: map-get($theme, variant) == 'bootstrap';
+    $bootstrap-theme: map.get($theme, variant) == 'bootstrap';
 
     %igx-dialog-display {
         outline-style: none;
@@ -137,10 +143,10 @@
     %igx-dialog-window {
         position: relative;
         min-width: $dialog-min-width;
-        border: 1px solid --var($theme, 'border-color');
-        border-radius: --var($theme, 'border-radius');
-        background: --var($theme, 'background');
-        box-shadow: --var($theme, 'shadow');
+        border: 1px solid var-get($theme, 'border-color');
+        border-radius: var-get($theme, 'border-radius');
+        background: var-get($theme, 'background');
+        box-shadow: var-get($theme, 'shadow');
         overflow: hidden;
 
         .igx-calendar {
@@ -154,16 +160,16 @@
 
     %igx-dialog-title {
         display: flex;
-        color: --var($theme, 'title-color');
+        color: var-get($theme, 'title-color');
         padding: $dialog-title-padding;
 
         @if $bootstrap-theme {
-            border-bottom: 1px solid --var($theme, 'border-color');
+            border-bottom: 1px solid var-get($theme, 'border-color');
         }
     }
 
     %igx-dialog-content {
-        color: --var($theme, 'message-color');
+        color: var-get($theme, 'message-color');
         padding: $dialog-message-padding;
     }
 
@@ -173,7 +179,7 @@
 
         @media all and (-ms-high-contrast: none)
         {
-            max-width: map-get((
+            max-width: map.get((
                 material: 62ch,
                 fluent: 48ch,
                 bootstrap: 60ch,
@@ -189,7 +195,7 @@
         padding: $dialog-actions-padding;
 
         @if $bootstrap-theme {
-            border-top: 1px solid --var($theme, 'border-color');
+            border-top: 1px solid var-get($theme, 'border-color');
         }
 
         button + button {
@@ -208,8 +214,8 @@
     title: 'h6',
     content: 'body-1')
 ) {
-    $title: map-get($categories, 'title');
-    $content: map-get($categories, 'content');
+    $title: map.get($categories, 'title');
+    $content: map.get($categories, 'content');
 
     %igx-dialog-title {
         @include igx-type-style($type-scale, $title) {

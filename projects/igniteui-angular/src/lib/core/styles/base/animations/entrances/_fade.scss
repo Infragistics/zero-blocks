@@ -1,3 +1,5 @@
+@use '../../utilities' as *;
+
 ////
 /// @group animations
 /// @access public
@@ -79,7 +81,6 @@
     }
 }
 
-
 /// @requires {mixin} keyframes
 @mixin fade-in-left {
     @include keyframes(fade-in-left) {
@@ -109,7 +110,6 @@
         }
     }
 }
-
 
 /// @requires {mixin} keyframes
 @mixin fade-in-tl {
@@ -164,157 +164,6 @@
         }
 
         100% {
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-fwd {
-    @include keyframes(fade-in-fwd) {
-        0% {
-            transform: translateZ(-80px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateZ(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-bck {
-    @include keyframes(fade-in-bck) {
-        0% {
-            transform: translateZ(80px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateZ(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-top {
-    @include keyframes(fade-in-top) {
-        0% {
-            transform: translateY(-50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-tr {
-    @include keyframes(fade-in-tr) {
-        0% {
-            transform: translateX(50px) translateY(-50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-right {
-    @include keyframes(fade-in-right) {
-        0% {
-            transform: translateX(50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-br {
-    @include keyframes(fade-in-br) {
-        0% {
-            transform: translateX(50px) translateY(50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-        }
-    }
-}
-
-
-/// @requires {mixin} keyframes
-@mixin fade-in-bottom {
-    @include keyframes(fade-in-bottom) {
-        0% {
-            transform: translateY(50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-bl {
-    @include keyframes(fade-in-bl) {
-        0% {
-            transform: translateX(-50px) translateY(50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-left {
-    @include keyframes(fade-in-left) {
-        0% {
-            transform: translateX(-50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-}
-
-/// @requires {mixin} keyframes
-@mixin fade-in-tl {
-    @include keyframes(fade-in-tl) {
-        0% {
-            transform: translateX(-50px) translateY(-50px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateX(0) translateY(0);
             opacity: 1;
         }
     }

@@ -1,4 +1,5 @@
-@import '../shape/avatar';
+@use '../../../base' as *;
+@use '../shape/avatar' as *;
 
 ////
 /// @group schemas
@@ -15,8 +16,8 @@
 /// @requires {function} extend
 /// @requires {Map} $_square-shape-avatar
 /// @see $default-palette
-$_light-avatar: extend(
-    $_square-shape-avatar,
+$light-avatar: extend(
+    $square-shape-avatar,
     (
         background: (
             igx-color: ('grays', 400)
@@ -32,8 +33,8 @@ $_light-avatar: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-avatar
-$_fluent-avatar: extend(
-    $_light-avatar,
+$fluent-avatar: extend(
+    $light-avatar,
     (
         variant: 'fluent',
     )
@@ -45,9 +46,9 @@ $_fluent-avatar: extend(
 /// @requires {function} extend
 /// @requires {Map} $_light-avatar
 /// @requires {Map} $_bootstrap-shape-avatar
-$_bootstrap-avatar: extend(
-    $_light-avatar,
-    $_bootstrap-shape-avatar,
+$bootstrap-avatar: extend(
+    $light-avatar,
+    $bootstrap-shape-avatar,
     (
         variant: 'bootstrap',
     )
@@ -57,8 +58,8 @@ $_bootstrap-avatar: extend(
 /// @type {Map}
 /// @requires {function} extend
 /// @requires {Map} $_light-avatar
-$_indigo-avatar: extend(
-    $_light-avatar,
+$indigo-avatar: extend(
+    $light-avatar,
     (
         variant: 'indigo-design',
     )

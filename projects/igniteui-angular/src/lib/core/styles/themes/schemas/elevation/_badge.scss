@@ -6,13 +6,13 @@
 
 /// @type Map
 /// @prop {Number} elevation [1] - The elevation level, between 0-24, to be used for the badge shadow.
-$_default-elevation-badge: (
+$default-elevation-badge: (
     elevation: 1
 );
 
 /// @type Map
 /// @prop {Number} elevation [0] - The elevation level, between 0-24, to be used for the badge shadow.
-$_bootstrap-elevation-badge: (
+$bootstrap-elevation-badge: (
     elevation: 0
 );
 

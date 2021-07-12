@@ -6,37 +6,37 @@
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-toast: (
+$default-shape-toast: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-toast: (
+$round-shape-toast: (
     border-radius: 1,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-toast: (
+$square-shape-toast: (
     border-radius: 0,
 );
 
 /// @type Map
 /// @prop {Number} border-radius [2px] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
-$_fluent-shape-toast: (
+$fluent-shape-toast: (
     border-radius: 2px
 );
 
 /// @type Map
 /// @prop {Number} border-radius [4px] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
-$_bootstrap-shape-toast: (
+$bootstrap-shape-toast: (
     border-radius: 4px
 );
 
 /// @type Map
 /// @prop {Number} border-radius [24px] - The border radius used for toast. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-toast: (
+$indigo-shape-toast: (
     border-radius: 24px
 );
 

@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,220 +8,228 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-calendar) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %cal-display !optional;
+@mixin component {
+    @include b(igx-calendar) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+            )
+        );
 
-    @include e(header) {
-        @extend %cal-header-display !optional;
-    }
-
-    @include e(aria-off-screen) {
-        @extend %calendar__aria-off-screen !optional;
-    }
-
-    @include e(header-year) {
-        @extend %cal-header-year !optional;
-    }
-
-    @include e(header-date) {
-        @extend %cal-header-date !optional;
-    }
-
-    @include e(body) {
-        @extend %cal-body-display !optional;
-    }
-
-    @include e(body-row) {
-        @extend %cal-row-display !optional;
-    }
-
-    @include e(body-row, 'wrap') {
-        @extend %cal-row-display--wrap !optional;
-    }
-
-    @include e(body-column) {
-        @extend %cal-column-year !optional;
-    }
-
-    @include e(label) {
-        @extend %cal-value !optional;
-        @extend %cal-value--label !optional;
-    }
-
-    @include e(label, 'week-number') {
-        @extend %label--week-number !optional;
-    }
-
-    @include e(date) {
-        @extend %cal-value !optional;
-
-        &:hover,
-        &:focus {
-            @extend %cal-value--hover !optional;
-        }
-    }
-
-    @include e(date, 'week-number') {
-        @extend %cal-value-date--week-number !optional;
-    }
-
-    @include e(date, 'inactive') {
-        @extend %cal-value--inactive !optional;
-    }
-
-    @include e(date, $mods: ('inactive', 'single')) {
-        &:hover {
-            @extend %cal-value--inactive--single--hover !optional;
-        }
-    }
-
-    @include e(date, 'selected') {
-        @extend %cal-value--selected !optional;
-
-        &:hover,
-        &:focus {
-            @extend %cal-value--selected--hover !optional;
-        }
-    }
-
-    @include e(date, 'current') {
-        @extend %cal-value--current !optional;
-    }
-
-    @include e(date, 'hidden') {
-        @extend %cal-value--hidden !optional;
-    }
-
-    @include e(date, 'range') {
-        @extend %cal-value--range !optional;
-    }
-
-    @include e(date, $mods: ('selected', 'current')) {
-        @extend %cal-value--current--selected !optional;
-    }
-
-    @include e(date, 'weekend') {
-        @extend %cal-value--weekend !optional;
-
-        &:hover,
-        &:focus {
-            @extend %cal-value--hover !optional;
-        }
-    }
-
-    @include e(date, 'special') {
-        @extend %cal-value--special !optional;
-    }
-
-    @include e(date, 'disabled') {
-        @extend %cal-value--disabled !optional;
-    }
-
-    @include e(date, 'single') {
-        @extend %cal-value--single !optional;
-    }
-
-    @include e(date, $mods: ('selected', 'first')) {
-        @extend %cal-value--first !optional;
-    }
-
-    @include e(date, $mods: ('selected', 'last')) {
-        @extend %cal-value--last !optional;
-    }
-
-    @include e(date, $mods: ('selected', 'first', 'last')) {
-        @extend %cal-value--single !optional;
-    }
-
-    @include e(date, $mods: ('disabled', 'inactive')) {
-        @extend %cal-value--disabled !optional;
-    }
-
-    @include e(date, $mods: ('disabled', 'range')) {
-        @extend %cal-value--disabled-range !optional;
-    }
-
-    // This is added due to a bug in JavaScript
-    // where the selected dates collection also includes
-    // disabled dates.
-    @include e(date, $mods: ('selected', 'disabled', 'range')) {
-        @extend %cal-value--disabled-range !optional;
-    }
-
-    @include e(date-content) {
-        @extend %cal-value-content !optional;
-    }
-
-    @include e(date-content, 'week-number') {
-        @extend %cal-value-content--week-number !optional;
-    }
-
-    @include e(year) {
-        @extend %cal-value !optional;
-        @extend %cal-value--year !optional;
-
-        &:hover,
-        &:focus {
-            @extend %cal-value--year-hover !optional;
-        }
-    }
-
-    @include e(year, 'current') {
-        @extend %cal-value--year !optional;
-        @extend %cal-value--year-current !optional;
-    }
-
-    @include e(month) {
-        @extend %cal-value--month !optional;
-
-        &:hover,
-        &:focus {
-            @extend %cal-value--month-hover !optional;
-        }
-    }
-
-    @include e(month, 'current') {
-        @extend %cal-value--month-current !optional;
-
-        &:hover,
-        &:focus {
-            @extend %cal-value--month-hover !optional;
-            @extend %cal-value--month-current-hover !optional;
-        }
-    }
-
-    @include m(vertical) {
         @extend %cal-display !optional;
-        @extend %cal-display--vertical !optional;
+
+        @include e(header) {
+            @extend %cal-header-display !optional;
+        }
+
+        @include e(aria-off-screen) {
+            @extend %calendar__aria-off-screen !optional;
+        }
+
+        @include e(header-year) {
+            @extend %cal-header-year !optional;
+        }
 
         @include e(header-date) {
             @extend %cal-header-date !optional;
-            @extend %cal-header-date--vertical !optional;
+        }
+
+        @include e(body) {
+            @extend %cal-body-display !optional;
+        }
+
+        @include e(body-row) {
+            @extend %cal-row-display !optional;
+        }
+
+        @include e(body-row, 'wrap') {
+            @extend %cal-row-display--wrap !optional;
+        }
+
+        @include e(body-column) {
+            @extend %cal-column-year !optional;
+        }
+
+        @include e(label) {
+            @extend %cal-value !optional;
+            @extend %cal-value--label !optional;
+        }
+
+        @include e(label, 'week-number') {
+            @extend %label--week-number !optional;
+        }
+
+        @include e(date) {
+            @extend %cal-value !optional;
+
+            &:hover,
+            &:focus {
+                @extend %cal-value--hover !optional;
+            }
+        }
+
+        @include e(date, 'week-number') {
+            @extend %cal-value-date--week-number !optional;
+        }
+
+        @include e(date, 'inactive') {
+            @extend %cal-value--inactive !optional;
+        }
+
+        @include e(date, $mods: ('inactive', 'single')) {
+            &:hover {
+                @extend %cal-value--inactive--single--hover !optional;
+            }
+        }
+
+        @include e(date, 'selected') {
+            @extend %cal-value--selected !optional;
+
+            &:hover,
+            &:focus {
+                @extend %cal-value--selected--hover !optional;
+            }
+        }
+
+        @include e(date, 'current') {
+            @extend %cal-value--current !optional;
+        }
+
+        @include e(date, 'hidden') {
+            @extend %cal-value--hidden !optional;
+        }
+
+        @include e(date, 'range') {
+            @extend %cal-value--range !optional;
+        }
+
+        @include e(date, $mods: ('selected', 'current')) {
+            @extend %cal-value--current--selected !optional;
+        }
+
+        @include e(date, 'weekend') {
+            @extend %cal-value--weekend !optional;
+
+            &:hover,
+            &:focus {
+                @extend %cal-value--hover !optional;
+            }
+        }
+
+        @include e(date, 'special') {
+            @extend %cal-value--special !optional;
+        }
+
+        @include e(date, 'disabled') {
+            @extend %cal-value--disabled !optional;
+        }
+
+        @include e(date, 'single') {
+            @extend %cal-value--single !optional;
+        }
+
+        @include e(date, $mods: ('selected', 'first')) {
+            @extend %cal-value--first !optional;
+        }
+
+        @include e(date, $mods: ('selected', 'last')) {
+            @extend %cal-value--last !optional;
+        }
+
+        @include e(date, $mods: ('selected', 'first', 'last')) {
+            @extend %cal-value--single !optional;
+        }
+
+        @include e(date, $mods: ('disabled', 'inactive')) {
+            @extend %cal-value--disabled !optional;
+        }
+
+        @include e(date, $mods: ('disabled', 'range')) {
+            @extend %cal-value--disabled-range !optional;
+        }
+
+        // This is added due to a bug in JavaScript
+        // where the selected dates collection also includes
+        // disabled dates.
+        @include e(date, $mods: ('selected', 'disabled', 'range')) {
+            @extend %cal-value--disabled-range !optional;
+        }
+
+        @include e(date-content) {
+            @extend %cal-value-content !optional;
+        }
+
+        @include e(date-content, 'week-number') {
+            @extend %cal-value-content--week-number !optional;
+        }
+
+        @include e(year) {
+            @extend %cal-value !optional;
+            @extend %cal-value--year !optional;
+
+            &:hover,
+            &:focus {
+                @extend %cal-value--year-hover !optional;
+            }
+        }
+
+        @include e(year, 'current') {
+            @extend %cal-value--year !optional;
+            @extend %cal-value--year-current !optional;
+        }
+
+        @include e(month) {
+            @extend %cal-value--month !optional;
+
+            &:hover,
+            &:focus {
+                @extend %cal-value--month-hover !optional;
+            }
+        }
+
+        @include e(month, 'current') {
+            @extend %cal-value--month-current !optional;
+
+            &:hover,
+            &:focus {
+                @extend %cal-value--month-hover !optional;
+                @extend %cal-value--month-current-hover !optional;
+            }
+        }
+
+        @include m(vertical) {
+            @extend %cal-display !optional;
+            @extend %cal-display--vertical !optional;
+
+            @include e(header-date) {
+                @extend %cal-header-date !optional;
+                @extend %cal-header-date--vertical !optional;
+            }
         }
     }
-}
 
-@include b(igx-calendar-picker) {
-    @extend %cal-picker-display !optional;
+    @include b(igx-calendar-picker) {
+        @extend %cal-picker-display !optional;
 
-    @include e(dates) {
-        @extend %cal-picker-dates !optional;
-    }
+        @include e(dates) {
+            @extend %cal-picker-dates !optional;
+        }
 
-    @include e(date) {
-        @extend %cal-picker-date !optional;
-    }
+        @include e(date) {
+            @extend %cal-picker-date !optional;
+        }
 
-    @include e(prev) {
-        @extend %cal-picker-arrow !optional;
-        @extend %cal-picker-arrow__prev !optional;
-    }
+        @include e(prev) {
+            @extend %cal-picker-arrow !optional;
+            @extend %cal-picker-arrow__prev !optional;
+        }
 
-    @include e(next) {
-        @extend %cal-picker-arrow !optional;
-        @extend %cal-picker-arrow__next !optional;
+        @include e(next) {
+            @extend %cal-picker-arrow !optional;
+            @extend %cal-picker-arrow__next !optional;
+        }
     }
 }

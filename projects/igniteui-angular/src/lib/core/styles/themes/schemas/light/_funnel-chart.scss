@@ -16,35 +16,33 @@
 /// @property {Color} text-color [null] - Sets the Color used for the inner labels.
 /// @property {String} text-style [null] - Sets the text style for inner labels.
 /// @see $default-palette
-$_light-funnel-chart: extend(
-    (
-        'brushes': series,
-        'outlines': series,
-        'outer-label-alignment': null,
-        'outer-label-text-color': null,
-        'outer-label-text-style': null,
-        'outer-label-visibility': null,
-        'outline-thickness': null,
-        'text-color': null,
-        'text-style': null,
-    )
+$light-funnel-chart: (
+    'brushes': series,
+    'outlines': series,
+    'outer-label-alignment': null,
+    'outer-label-text-color': null,
+    'outer-label-text-style': null,
+    'outer-label-visibility': null,
+    'outline-thickness': null,
+    'text-color': null,
+    'text-style': null,
 );
 
 /// Generates a fluent funnel-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-funnel-chart
-$_fluent-funnel-chart: extend($_light-funnel-chart);
+/// @requires {Map} $light-funnel-chart
+$fluent-funnel-chart: $light-funnel-chart;
 
 /// Generates a bootstrap funnel-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-funnel-chart
-$_bootstrap-funnel-chart: extend($_light-funnel-chart);
+/// @requires {Map} $light-funnel-chart
+$bootstrap-funnel-chart: $light-funnel-chart;
 
 /// Generates an indigo funnel-chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-funnel-chart
-$_indigo-funnel-chart: extend($_light-funnel-chart);
+/// @requires {Map} $light-funnel-chart
+$indigo-funnel-chart: $light-funnel-chart;
 

@@ -1,42 +1,54 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Combo
 /// @group components
-
 /// @requires {mixin} bem-block
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-combo) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-combo !optional;
+@mixin component {
+    @include b(igx-combo) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-checkbox,
+                igx-drop-down,
+                igx-input-group,
+                igx-icon
+            )
+        );
 
-    @include e(drop-down) {
-        @extend %igx-combo__drop-down !optional;
-    }
+        @extend %igx-combo !optional;
 
-    @include e(search) {
-        @extend %igx-combo__search !optional;
-    }
+        @include e(drop-down) {
+            @extend %igx-combo__drop-down !optional;
+        }
 
-    @include e(checkbox) {
-        @extend %igx-combo__checkbox !optional;
-    }
+        @include e(search) {
+            @extend %igx-combo__search !optional;
+        }
 
-    @include e(content) {
-        @extend %igx-combo__content !optional;
-    }
+        @include e(checkbox) {
+            @extend %igx-combo__checkbox !optional;
+        }
 
-    @include e(add) {
-        @extend %igx-combo__add !optional;
-    }
+        @include e(content) {
+            @extend %igx-combo__content !optional;
+        }
 
-    @include e(empty) {
-        @extend %igx-combo__empty !optional;
-    }
+        @include e(add) {
+            @extend %igx-combo__add !optional;
+        }
 
-    @include e(add-item) {
-        @extend %igx-combo__add-item !optional;
+        @include e(empty) {
+            @extend %igx-combo__empty !optional;
+        }
+
+        @include e(add-item) {
+            @extend %igx-combo__add-item !optional;
+        }
     }
 }
-

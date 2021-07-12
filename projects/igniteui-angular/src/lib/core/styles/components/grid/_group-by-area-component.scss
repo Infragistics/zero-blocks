@@ -1,3 +1,5 @@
+@use '../../base' as *;
+
 ////
 /// @access private
 /// @group components
@@ -6,7 +8,7 @@
 /// @requires {mixin} bem-mod
 ////
 
-@mixin _group-by-area {
+@mixin group-by-area {
     @include b(igx-grid-grouparea) {
         @extend %igx-grid-grouparea !optional;
 

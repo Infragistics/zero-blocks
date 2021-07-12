@@ -1,4 +1,5 @@
-@import '../light/dialog';
+@use '../light/dialog' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -7,25 +8,21 @@
 
 /// Generates a dark dialog schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-dialog
+/// @requires $light-dialog
 /// @see $default-palette
-$_dark-dialog: extend($_light-dialog);
+$dark-dialog: $light-dialog;
 
 /// Generates a dark fluent dialog schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-dialog
-$_dark-fluent-dialog: extend($_fluent-dialog);
+/// @requires $luent-dialog
+$dark-fluent-dialog: $fluent-dialog;
 
 /// Generates a dark bootstrap dialog schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-dialog
-$_dark-bootstrap-dialog: extend($_bootstrap-dialog);
+/// @requires $bootstrap-dialog
+$dark-bootstrap-dialog: $bootstrap-dialog;
 
 /// Generates a dark indigo dialog schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-dialog
-$_dark-indigo-dialog: extend($_indigo-dialog);
+/// @requires $indigo-dialog
+$dark-indigo-dialog: $indigo-dialog;

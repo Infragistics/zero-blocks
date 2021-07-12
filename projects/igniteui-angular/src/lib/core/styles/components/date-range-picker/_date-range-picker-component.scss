@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Range Picker
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -5,37 +8,44 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-date-range-picker) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-date-range-picker !optional;
+@mixin component {
+    @include b(igx-date-range-picker) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-calendar,
+                igx-input-group,
+            )
+        );
 
-    @include e(label) {
-        @extend %igx-date-range-picker__label !optional;
-    }
-
-    @include e(start) {
-        @extend %igx-date-range-picker__start !optional;
-    }
-
-    @include e(end) {
-        @extend %igx-date-range-picker__end !optional;
-    }
-
-    @include m(cosy){
         @extend %igx-date-range-picker !optional;
-        @extend %igx-date-range-picker--cosy !optional;
+
+        @include e(label) {
+            @extend %igx-date-range-picker__label !optional;
+        }
+
+        @include e(start) {
+            @extend %igx-date-range-picker__start !optional;
+        }
+
+        @include e(end) {
+            @extend %igx-date-range-picker__end !optional;
+        }
+
+        @include m(cosy){
+            @extend %igx-date-range-picker !optional;
+            @extend %igx-date-range-picker--cosy !optional;
+        }
+
+        @include m(compact){
+            @extend %igx-date-range-picker !optional;
+            @extend %igx-date-range-picker--compact !optional;
+        }
     }
 
-
-    @include m(compact){
-        @extend %igx-date-range-picker !optional;
-        @extend %igx-date-range-picker--compact !optional;
+    @include b(igx-date-range-picker-buttons) {
+        @extend %igx-date-range-picker-buttons !optional;
     }
 }
-
-@include b(igx-date-range-picker-buttons) {
-    @extend %igx-date-range-picker-buttons !optional;
-}
-

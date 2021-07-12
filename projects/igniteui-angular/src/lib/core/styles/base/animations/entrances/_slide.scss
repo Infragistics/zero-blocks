@@ -1,3 +1,5 @@
+@use '../../utilities' as *;
+
 ////
 /// @group animations
 /// @access public
@@ -5,7 +7,7 @@
 ////
 
 /// @requires {mixin} keyframes
-@mixin scale-in-top {
+@mixin slide-in-top {
     @include keyframes(slide-in-top) {
         0% {
             transform: translateY(-1000px);

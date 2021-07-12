@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -10,7 +12,7 @@
 /// @property {Color} track-background [igx-color: 'surface', darken: 5%] - The background color used for the track.
 /// @property {String | Number} size [16px] - The size of the track.
 /// @see $default-palette
-$_light-scrollbar: extend(
+$light-scrollbar: extend(
     (
         size: 16px,
 
@@ -29,9 +31,9 @@ $_light-scrollbar: extend(
 /// Generates a fluent scrollbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-scrollbar
-$_fluent-scrollbar: extend(
-    $_light-scrollbar,
+/// @requires {Map} $light-scrollbar
+$fluent-scrollbar: extend(
+    $light-scrollbar,
     (
         variant: 'fluent',
     )
@@ -40,9 +42,9 @@ $_fluent-scrollbar: extend(
 /// Generates a bootstrap scrollbar schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-scrollbar
-$_bootstrap-scrollbar: extend(
-    $_light-scrollbar,
+/// @requires {Map} $light-scrollbar
+$bootstrap-scrollbar: extend(
+    $light-scrollbar,
     (
         variant: 'bootstrap',
     )
@@ -52,9 +54,9 @@ $_bootstrap-scrollbar: extend(
 /// @type {Map}
 /// @property {Map} thumb-background [igx-color: ('grays', 300)] - The background color used for the thumb.
 /// @requires {function} extend
-/// @requires {Map} $_light-scrollbar
-$_indigo-scrollbar: extend(
-    $_light-scrollbar,
+/// @requires {Map} $light-scrollbar
+$indigo-scrollbar: extend(
+    $light-scrollbar,
     (
         variant: 'indigo-design',
 

@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,17 +8,25 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-snackbar) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-snackbar-display !optional;
+@mixin component {
+    @include b(igx-snackbar) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button
+            )
+        );
 
-    @include e(message) {
-        @extend %igx-snackbar-message !optional;
-    }
+        @extend %igx-snackbar-display !optional;
 
-    @include e(button) {
-        @extend %igx-snackbar-button !optional;
+        @include e(message) {
+            @extend %igx-snackbar-message !optional;
+        }
+
+        @include e(button) {
+            @extend %igx-snackbar-button !optional;
+        }
     }
 }

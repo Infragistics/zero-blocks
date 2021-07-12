@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -6,54 +9,61 @@
 /// @requires {mixin} bem-mod
 ////
 
-@include b(igx-expansion-panel) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-expansion-panel) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+            )
+        );
 
-    @extend %igx-expansion-panel !optional;
+        @extend %igx-expansion-panel !optional;
 
-    @include e(title-wrapper) {
-        @extend %igx-expansion-panel__title-wrapper !optional;
+        @include e(title-wrapper) {
+            @extend %igx-expansion-panel__title-wrapper !optional;
+        }
+
+        @include e(header-inner) {
+            @extend %igx-expansion-panel__header-inner !optional;
+        }
+
+        @include e(header-title) {
+            @extend %igx-expansion-panel__header-title !optional;
+        }
+
+        @include e(header-description) {
+            @extend %igx-expansion-panel__header-description !optional;
+        }
+
+        @include e(header-icon, $m: start) {
+            @extend %igx-expansion-panel__header-icon--start !optional;
+        }
+
+        @include e(header-icon, $m: end) {
+            @extend %igx-expansion-panel__header-icon--end !optional;
+        }
+
+        @include e(header-icon, $m: none) {
+            @extend %igx-expansion-panel__header-icon--none !optional;
+        }
+
+        @include e(body) {
+            @extend %igx-expansion-panel__body !optional;
+        }
+
+        @include  m(disabled) {
+            @extend %igx-expansion-panel--disabled !optional;
+        }
+
+        @include m(expanded) {
+            @extend %igx-expansion-panel--expanded !optional;
+        }
     }
 
-    @include e(header-inner) {
-        @extend %igx-expansion-panel__header-inner !optional;
+    @include b(igx-accordion) {
+        @extend %igx-title--no-ellipsis !optional;
+        @extend %igx-expanded-panel-margin !optional;
     }
-
-    @include e(header-title) {
-        @extend %igx-expansion-panel__header-title !optional;
-    }
-
-    @include e(header-description) {
-        @extend %igx-expansion-panel__header-description !optional;
-    }
-
-    @include e(header-icon, $m: start) {
-        @extend %igx-expansion-panel__header-icon--start !optional;
-    }
-
-    @include e(header-icon, $m: end) {
-        @extend %igx-expansion-panel__header-icon--end !optional;
-    }
-
-    @include e(header-icon, $m: none) {
-        @extend %igx-expansion-panel__header-icon--none !optional;
-    }
-
-    @include e(body) {
-        @extend %igx-expansion-panel__body !optional;
-    }
-
-    @include m(disabled) {
-        @extend %igx-expansion-panel--disabled !optional;
-    }
-
-    @include m(expanded) {
-        @extend %igx-expansion-panel--expanded !optional;
-    }
-}
-
-@include b(igx-accordion) {
-    @extend %igx-title--no-ellipsis !optional;
-    @extend %igx-expanded-panel-margin !optional;
 }

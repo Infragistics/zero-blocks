@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,112 +8,118 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-list) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-list !optional;
+@mixin component {
+    @include b(igx-list) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    // css class 'igx-list__header'
-    @include e(header) {
-        @extend %igx-list-header !optional;
-    }
+        @extend %igx-list !optional;
 
-    // css class 'igx-list__item-base'
-    @include e(item-base) {
-        @extend %igx-list-item-base !optional;
-    }
+        // css class 'igx-list__header'
+        @include e(header) {
+            @extend %igx-list-header !optional;
+        }
 
-    // css class 'igx-list__item-right' applied to the panning container shown when the list item is panned left
-    @include e(item-right) {
-        @extend %igx-list-item-pan !optional;
-    }
+        // css class 'igx-list__item-base'
+        @include e(item-base) {
+            @extend %igx-list-item-base !optional;
+        }
 
-    // css class 'igx-list__item-left' applied to the panning container shown when the list item in panned right
-    @include e(item-left) {
-        @extend %igx-list-item-pan !optional;
-    }
+        // css class 'igx-list__item-right' applied to the panning container shown when the list item is panned left
+        @include e(item-right) {
+            @extend %igx-list-item-pan !optional;
+        }
 
-    // css class 'igx-list__item-content'
-    @include e(item-content) {
-        @extend %igx-list-item-content !optional;
+        // css class 'igx-list__item-left' applied to the panning container shown when the list item in panned right
+        @include e(item-left) {
+            @extend %igx-list-item-pan !optional;
+        }
 
-        &:active {
+        // css class 'igx-list__item-content'
+        @include e(item-content) {
             @extend %igx-list-item-content !optional;
-            @extend %igx-list-item-content--active !optional;
+
+            &:active {
+                @extend %igx-list-item-content !optional;
+                @extend %igx-list-item-content--active !optional;
+            }
+
+            &:not(:active) {
+                @extend %igx-list-item-content--inactive !optional;
+            }
         }
-
-        &:not(:active) {
-            @extend %igx-list-item-content--inactive !optional;
-        }
-    }
-
-    @include e(item-thumbnail) {
-        @extend %igx-list__item-thumbnail !optional;
-    }
-
-    @include e(item-actions) {
-        @extend %igx-list__item-actions !optional;
-    }
-
-    @include e(item-lines) {
-        @extend %igx-list__item-lines !optional;
-    }
-
-    @include e(item-line-title) {
-        @extend %igx-list__item-line-title !optional;
-    }
-
-    @include e(item-line-subtitle) {
-        @extend %igx-list__item-line-subtitle !optional;
-    }
-
-    @include m(empty) {
-        @extend %igx-list !optional;
-        @extend %igx-list--empty !optional;
-
-        @include e(message) {
-            @extend %igx-list__message--empty !optional;
-        }
-    }
-
-    @include m(compact) {
-        @extend %igx-list !optional;
 
         @include e(item-thumbnail) {
-            @extend %igx-list__item-thumbnail--compact !optional;
+            @extend %igx-list__item-thumbnail !optional;
         }
 
         @include e(item-actions) {
-            @extend %igx-list__item-actions--compact !optional;
+            @extend %igx-list__item-actions !optional;
         }
 
-        @include e(item-content) {
-            @extend %igx-list-item-content--compact !optional;
+        @include e(item-lines) {
+            @extend %igx-list__item-lines !optional;
         }
 
-        @include e(header) {
-            @extend %igx-list-header--compact !optional;
-        }
-    }
-
-    @include m(cosy) {
-        @extend %igx-list !optional;
-
-        @include e(item-thumbnail) {
-            @extend %igx-list__item-thumbnail--cosy !optional;
+        @include e(item-line-title) {
+            @extend %igx-list__item-line-title !optional;
         }
 
-        @include e(item-actions) {
-            @extend %igx-list__item-actions--cosy !optional;
+        @include e(item-line-subtitle) {
+            @extend %igx-list__item-line-subtitle !optional;
         }
 
-        @include e(item-content) {
-            @extend %igx-list-item-content--cosy !optional;
+        @include m(empty) {
+            @extend %igx-list !optional;
+            @extend %igx-list--empty !optional;
+
+            @include e(message) {
+                @extend %igx-list__message--empty !optional;
+            }
         }
 
-        @include e(header) {
-            @extend %igx-list-header--cosy !optional;
+        @include m(compact) {
+            @extend %igx-list !optional;
+
+            @include e(item-thumbnail) {
+                @extend %igx-list__item-thumbnail--compact !optional;
+            }
+
+            @include e(item-actions) {
+                @extend %igx-list__item-actions--compact !optional;
+            }
+
+            @include e(item-content) {
+                @extend %igx-list-item-content--compact !optional;
+            }
+
+            @include e(header) {
+                @extend %igx-list-header--compact !optional;
+            }
+        }
+
+        @include m(cosy) {
+            @extend %igx-list !optional;
+
+            @include e(item-thumbnail) {
+                @extend %igx-list__item-thumbnail--cosy !optional;
+            }
+
+            @include e(item-actions) {
+                @extend %igx-list__item-actions--cosy !optional;
+            }
+
+            @include e(item-content) {
+                @extend %igx-list-item-content--cosy !optional;
+            }
+
+            @include e(header) {
+                @extend %igx-list-header--cosy !optional;
+            }
         }
     }
 }

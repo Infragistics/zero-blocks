@@ -1,4 +1,4 @@
-@import '../base/index';
-@import '../typography/index';
-@import './schemas/index';
-@import './palettes';
+@forward '../base';
+@forward '../typography';
+@forward 'schemas';
+@forward 'palettes';

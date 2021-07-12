@@ -8,29 +8,27 @@
 /// @type {Map}
 /// @prop {String} plot-area-background [null]- Gets or sets the brush used as the background for the current Map object's plot area.
 /// @see $default-palette
-$_light-geo-map: extend(
-    (
-        'plot-area-background': (
-            igx-color: 'surface'
-        )
+$light-geo-map: (
+    'plot-area-background': (
+        igx-color: 'surface'
     )
 );
 
 /// Generates a fluent geo map schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-geo-map
-$_fluent-geo-map: extend($_light-geo-map);
+/// @requires {Map} $light-geo-map
+$fluent-geo-map: $light-geo-map;
 
 /// Generates a bootstrap geo map schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-geo-map
-$_bootstrap-geo-map: extend($_light-geo-map);
+/// @requires {Map} $light-geo-map
+$bootstrap-geo-map: $light-geo-map;
 
 /// Generates an indigo geo map schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires {Map} $_light-geo-map
-$_indigo-geo-map: extend($_light-geo-map);
+/// @requires {Map} $light-geo-map
+$indigo-geo-map: $light-geo-map;
 

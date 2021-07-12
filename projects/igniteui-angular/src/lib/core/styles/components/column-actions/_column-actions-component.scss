@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -6,33 +9,39 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-column-actions) {
-    $block: bem--selector-to-string(&);
-    @include register-component('igx-column-actions');
 
-    @extend %column-actions-display !optional;
+@mixin component {
+    @include b(igx-column-actions) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: ()
+        );
 
-    @include e(header) {
-        @extend %column-actions-header !optional;
-    }
+        @extend %column-actions-display !optional;
 
-    @include e(header-title) {
-        @extend %column-actions-title !optional;
-    }
+        @include e(header) {
+            @extend %column-actions-header !optional;
+        }
 
-    @include e(header-input) {
-        @extend %column-actions-input !optional;
-    }
+        @include e(header-title) {
+            @extend %column-actions-title !optional;
+        }
 
-    @include e(columns) {
-        @extend %column-actions-columns !optional;
-    }
+        @include e(header-input) {
+            @extend %column-actions-input !optional;
+        }
 
-    @include e(columns-item) {
-        @extend %column-actions-item !optional;
-    }
+        @include e(columns) {
+            @extend %column-actions-columns !optional;
+        }
 
-    @include e(buttons) {
-        @extend %column-actions-buttons !optional;
+        @include e(columns-item) {
+            @extend %column-actions-item !optional;
+        }
+
+        @include e(buttons) {
+            @extend %column-actions-buttons !optional;
+        }
     }
 }

@@ -1,4 +1,5 @@
-@import '../shape/action-strip';
+@use '../../../base' as *;
+@use '../shape/action-strip' as *;
 
 ////
 /// @group schemas
@@ -16,8 +17,8 @@
 /// @requires {function} extend
 /// @requires {Map} $_default-shape-action-strip
 /// @see $default-palette
-$_light-action-strip: extend(
-    $_default-shape-action-strip,
+$light-action-strip: extend(
+    $default-shape-action-strip,
     (
         variant: 'material',
 
@@ -45,9 +46,9 @@ $_light-action-strip: extend(
 /// @requires {function} extend
 /// @requires {Map} $_light-action-strip
 /// @requires {Map} $_fluent-shape-action-strip
-$_fluent-action-strip: extend(
-    $_light-action-strip,
-    $_fluent-shape-action-strip,
+$fluent-action-strip: extend(
+    $light-action-strip,
+    $fluent-shape-action-strip,
     (
         variant: 'fluent',
     )
@@ -59,9 +60,9 @@ $_fluent-action-strip: extend(
 /// @requires {function} extend
 /// @requires {Map} $_light-action-strip
 /// @requires {Map} $_bootstrap-shape-action-strip
-$_bootstrap-action-strip: extend(
-    $_light-action-strip,
-    $_bootstrap-shape-action-strip,
+$bootstrap-action-strip: extend(
+    $light-action-strip,
+    $bootstrap-shape-action-strip,
     (
         variant: 'bootstrap',
     )
@@ -75,9 +76,9 @@ $_bootstrap-action-strip: extend(
 /// @requires {function} extend
 /// @requires {Map} $_light-action-strip
 /// @requires {Map} $_indigo-shape-action-strip
-$_indigo-action-strip: extend(
-    $_light-action-strip,
-    $_indigo-shape-action-strip,
+$indigo-action-strip: extend(
+    $light-action-strip,
+    $indigo-shape-action-strip,
     (
         variant: 'indigo-design',
 

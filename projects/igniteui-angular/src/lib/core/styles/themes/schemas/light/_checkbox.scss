@@ -1,4 +1,5 @@
-@import '../shape/checkbox';
+@use '../../../base' as *;
+@use '../shape/checkbox' as *;
 
 ////
 /// @group schemas
@@ -18,10 +19,10 @@
 /// @prop {Number} border-radius-ripple [1] - The border radius used for checkbox ripple. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-checkbox
+/// @requires {Map} $default-shape-checkbox
 /// @see $default-palette
-$_light-checkbox: extend(
-    $_default-shape-checkbox,
+$light-checkbox: extend(
+    $default-shape-checkbox,
     (
         variant: 'material',
         tick-color: #fff,
@@ -58,11 +59,11 @@ $_light-checkbox: extend(
 /// @property {Map} focus-outline-color [igx-color: ('grays', 800)] - The focus outlined color.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-checkbox
-/// @requires {Map} $_fluent-shape-checkbox
-$_fluent-checkbox: extend(
-    $_light-checkbox,
-    $_fluent-shape-checkbox,
+/// @requires {Map} $light-checkbox
+/// @requires {Map} $fluent-shape-checkbox
+$fluent-checkbox: extend(
+    $light-checkbox,
+    $fluent-shape-checkbox,
     (
         variant: 'fluent',
 
@@ -94,11 +95,11 @@ $_fluent-checkbox: extend(
 /// @property {Map} focus-outline-color [igx-color: ('primary', 200)] - The focus outlined color.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-checkbox
-/// @requires {Map} $_bootstrap-shape-checkbox
-$_bootstrap-checkbox: extend(
-    $_light-checkbox,
-    $_bootstrap-shape-checkbox,
+/// @requires {Map} $light-checkbox
+/// @requires {Map} $bootstrap-shape-checkbox
+$bootstrap-checkbox: extend(
+    $light-checkbox,
+    $bootstrap-shape-checkbox,
     (
         variant: 'bootstrap',
 
@@ -134,11 +135,11 @@ $_bootstrap-checkbox: extend(
 /// @property {Map} focus-outline-color-focused [igx-color: ('primary', 200)] - The focus outlined color for focused state.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-checkbox
-/// @requires {Map} $_indigo-shape-checkbox
-$_indigo-checkbox: extend(
-    $_light-checkbox,
-    $_indigo-shape-checkbox,
+/// @requires {Map} $light-checkbox
+/// @requires {Map} $indigo-shape-checkbox
+$indigo-checkbox: extend(
+    $light-checkbox,
+    $indigo-shape-checkbox,
     (
         variant: 'indigo-design',
 

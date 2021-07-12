@@ -1,3 +1,7 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
@@ -34,8 +38,8 @@
     $name: 'igx-paginator';
     $grid-paginator-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $grid-paginator-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $grid-paginator-schema: map.get($schema, $name);
     } @else {
         $grid-paginator-schema: $schema;
     }
@@ -59,7 +63,7 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-paginator($theme) {
     @include igx-css-vars($theme);
 
@@ -82,14 +86,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        color: --var($theme, 'text-color');
-        background: --var($theme, 'background-color');
+        color: var-get($theme, 'text-color');
+        background: var-get($theme, 'background-color');
         grid-row: 7;
         font-size: 12px;
-        border-top: 1px solid --var($theme, 'border-color');
+        border-top: 1px solid var-get($theme, 'border-color');
         z-index: 1;
-        padding: map-get($paginator-padding, 'comfortable');
-        height: map-get($paginator-height, 'comfortable');
+        padding: map.get($paginator-padding, 'comfortable');
+        height: map.get($paginator-height, 'comfortable');
         width: 100%;
 
         &:empty {
@@ -98,13 +102,13 @@
     }
 
     %igx-paginator--cosy {
-        padding: map-get($paginator-padding, 'cosy');
-        height: map-get($paginator-height, 'cosy');
+        padding: map.get($paginator-padding, 'cosy');
+        height: map.get($paginator-height, 'cosy');
     }
 
     %igx-paginator--compact {
-        padding: map-get($paginator-padding, 'compact');
-        height: map-get($paginator-height, 'compact');
+        padding: map.get($paginator-padding, 'compact');
+        height: map.get($paginator-height, 'compact');
     }
 
     %igx-paginator-content {

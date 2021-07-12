@@ -1,4 +1,4 @@
-@import '../light/financial-chart';
+@use '../light/financial-chart' as *;
 
 ////
 /// @group schemas
@@ -8,25 +8,21 @@
 
 /// Generates a dark financial chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-financial-chart
+/// @requires $light-financial-chart
 /// @see $default-palette
-$_dark-financial-chart: extend($_light-financial-chart);
+$dark-financial-chart: $light-financial-chart;
 
 /// Generates a dark fluent financial-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_fluent-financial-chart
-$_dark-fluent-financial-chart: extend($_fluent-financial-chart);
+/// @requires $fluent-financial-chart
+$dark-fluent-financial-chart: $fluent-financial-chart;
 
 /// Generates a dark bootstrap financial-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-financial-chart
-$_dark-bootstrap-financial-chart: extend($_bootstrap-financial-chart);
+/// @requires $bootstrap-financial-chart
+$dark-bootstrap-financial-chart: $bootstrap-financial-chart;
 
 /// Generates a dark indigo financial-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-financial-chart
-$_dark-indigo-financial-chart: extend($_indigo-financial-chart);
+/// @requires $indigo-financial-chart
+$dark-indigo-financial-chart: $indigo-financial-chart;

@@ -1,5 +1,6 @@
-@import '../shape/time-picker';
-@import '../elevation/time-picker';
+@use '../../../base' as *;
+@use '../shape/time-picker' as *;
+@use '../elevation/time-picker' as *;
 
 ////
 /// @group schemas
@@ -26,12 +27,12 @@
 /// @prop {Number} active-item-border-radius [.75] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_default-shape-time-picker
-/// @requires {Map} $_default-elevation-time-picker
+/// @requires {Map} $default-shape-time-picker
+/// @requires {Map} $default-elevation-time-picker
 /// @see $default-palette
-$_light-time-picker: extend(
-    $_default-shape-time-picker,
-    $_default-elevation-time-picker,
+$light-time-picker: extend(
+    $default-shape-time-picker,
+    $default-elevation-time-picker,
     (
         variant: 'material',
 
@@ -86,11 +87,11 @@ $_light-time-picker: extend(
 /// @prop {Number} border-radius [2px] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [2px] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_light-time-picker
-/// @requires $_fluent-shape-time-picker
-$_fluent-time-picker: extend(
-    $_light-time-picker,
-    $_fluent-shape-time-picker,
+/// @requires $light-time-picker
+/// @requires $fluent-shape-time-picker
+$fluent-time-picker: extend(
+    $light-time-picker,
+    $fluent-shape-time-picker,
     (
         variant: 'fluent',
     )
@@ -104,11 +105,11 @@ $_fluent-time-picker: extend(
 /// @prop {Number} border-radius [4px] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [4px] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_light-time-picker
-/// @requires $_bootstrap-shape-time-picker
-$_bootstrap-time-picker: extend(
-    $_light-time-picker,
-    $_bootstrap-shape-time-picker,
+/// @requires $light-time-picker
+/// @requires $bootstrap-shape-time-picker
+$bootstrap-time-picker: extend(
+    $light-time-picker,
+    $bootstrap-shape-time-picker,
     (
         variant: 'bootstrap',
 
@@ -137,11 +138,11 @@ $_bootstrap-time-picker: extend(
 /// @prop {Number} border-radius [3px] - The border radius used for the overall shape of the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} active-item-border-radius [20px] - The border radius used for the highlight of the active item in the time-picker. Can be a fraction between 0 and 1, pixels, or percent.
 /// @requires {function} extend
-/// @requires $_light-time-picker
-/// @requires $_indigo-shape-time-picker
-$_indigo-time-picker: extend(
-    $_light-time-picker,
-    $_indigo-shape-time-picker,
+/// @requires $light-time-picker
+/// @requires $indigo-shape-time-picker
+$indigo-time-picker: extend(
+    $light-time-picker,
+    $indigo-shape-time-picker,
     (
         variant: 'indigo-design',
 

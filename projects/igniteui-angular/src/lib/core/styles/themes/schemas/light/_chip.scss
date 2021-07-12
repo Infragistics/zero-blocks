@@ -1,5 +1,6 @@
-@import '../elevation/chip';
-@import '../shape/chip';
+@use '../../../base' as *;
+@use '../elevation/chip' as *;
+@use '../shape/chip' as *;
 
 ////
 /// @group schemas
@@ -34,12 +35,12 @@
 /// @prop {Map} remove-icon-color-focus [igx-color: ('error')] - The remove icon color on focus for the chip.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_round-shape-chip
-/// @requires {Map} $_default-elevation-chip
+/// @requires {Map} $round-shape-chip
+/// @requires {Map} $default-elevation-chip
 /// @see $default-palette
-$_light-chip: extend(
-    $_round-shape-chip,
-    $_default-elevation-chip,
+$light-chip: extend(
+    $round-shape-chip,
+    $default-elevation-chip,
     (
         variant:'material',
 
@@ -137,13 +138,13 @@ $_light-chip: extend(
 /// @prop {Number} border-radius [1] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-chip
-/// @requires {Map} $_round-shape-chip
-/// @requires {Map} $_fluent-elevation-chip
-$_fluent-chip: extend(
-    $_light-chip,
-    $_round-shape-chip,
-    $_fluent-elevation-chip,
+/// @requires {Map} $light-chip
+/// @requires {Map} $round-shape-chip
+/// @requires {Map} $fluent-elevation-chip
+$fluent-chip: extend(
+    $light-chip,
+    $round-shape-chip,
+    $fluent-elevation-chip,
     (
         variant:'fluent',
 
@@ -198,13 +199,13 @@ $_fluent-chip: extend(
 /// @prop {Number} border-radius [.25] - The border radius used for chip. Can be a fraction between 0 and 1, pixels, or percent.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-chip
-/// @requires {Map} $_bootstrap-shape-chip
-/// @requires {Map} $_bootstrap-elevation-chip
-$_bootstrap-chip: extend(
-    $_light-chip,
-    $_bootstrap-shape-chip,
-    $_bootstrap-elevation-chip,
+/// @requires {Map} $light-chip
+/// @requires {Map} $bootstrap-shape-chip
+/// @requires {Map} $bootstrap-elevation-chip
+$bootstrap-chip: extend(
+    $light-chip,
+    $bootstrap-shape-chip,
+    $bootstrap-elevation-chip,
     (
         variant: 'bootstrap',
     )
@@ -234,13 +235,13 @@ $_bootstrap-chip: extend(
 /// @prop {Map} hover-border-color [igx-color: ('grays', 400)] - The chip hover border color.
 /// @prop {Map} focus-border-color [igx-color: ('grays', 400)] - The chip focus border color.
 /// @requires {function} extend
-/// @requires {Map} $_light-chip
-/// @requires {Map} $_indigo-shape-chip
-/// @requires {Map} $_indigo-elevation-chip
-$_indigo-chip: extend(
-    $_light-chip,
-    $_indigo-shape-chip,
-    $_indigo-elevation-chip,
+/// @requires {Map} $light-chip
+/// @requires {Map} $indigo-shape-chip
+/// @requires {Map} $indigo-elevation-chip
+$indigo-chip: extend(
+    $light-chip,
+    $indigo-shape-chip,
+    $indigo-elevation-chip,
     (
         variant: 'indigo-design',
 

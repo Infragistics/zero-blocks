@@ -1,4 +1,4 @@
-@import '../light/pie-chart';
+@use '../light/pie-chart' as *;
 
 ////
 /// @group schemas
@@ -9,28 +9,28 @@
 /// Generates a dark base pie chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-pie-chart
-/// @see $_light-pie-chart
-$_dark-pie-chart: extend($_light-pie-chart);
+/// @requires $light-pie-chart
+/// @see $light-pie-chart
+$dark-pie-chart: $light-pie-chart;
 
 /// Generates a dark fluent pie chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-pie-chart
-/// @see $_fluent-pie-chart
-$_dark-fluent-pie-chart: extend($_fluent-pie-chart);
+/// @requires $fluent-pie-chart
+/// @see $fluent-pie-chart
+$dark-fluent-pie-chart: $fluent-pie-chart;
 
 /// Generates a dark bootstrap pie chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-pie-chart
-/// @see $_bootstrap-pie-chart
-$_dark-bootstrap-pie-chart: extend($_bootstrap-pie-chart);
+/// @requires $bootstrap-pie-chart
+/// @see $bootstrap-pie-chart
+$dark-bootstrap-pie-chart: $bootstrap-pie-chart;
 
 /// Generates a dark indigo pie chart schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-pie-chart
-/// @see $_indigo-pie-chart
-$_dark-indigo-pie-chart: extend($_indigo-pie-chart);
+/// @requires $indigo-pie-chart
+/// @see $indigo-pie-chart
+$dark-indigo-pie-chart: $indigo-pie-chart;
 

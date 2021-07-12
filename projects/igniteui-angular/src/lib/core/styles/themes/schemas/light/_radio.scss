@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -15,7 +17,7 @@
 /// @property {Map} fill-color-hover [igx-color: ('secondary', 500)] - The checked border and dot colors on hover.
 /// @property {Map} disabled-color [igx-color: ('grays', 400)] - The disabled border and dot colors.
 /// @see $default-palette
-$_light-radio: (
+$light-radio: (
     variant: 'material',
     name: 'igx-radio',
 
@@ -57,9 +59,9 @@ $_light-radio: (
 /// @property {Map} focus-outline-color [igx-color: ('grays', 800)] - The focus outlined color.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-radio
-$_fluent-radio: extend(
-    $_light-radio,
+/// @requires {Map} $light-radio
+$fluent-radio: extend(
+    $light-radio,
     (
         variant: 'fluent',
 
@@ -97,9 +99,9 @@ $_fluent-radio: extend(
 /// @property {Color} fill-color-hover [#fff] - The checked border and dot colors on hover.
 /// @property {Map} focus-outline-color [igx-color: ('primary', 200)] - The focus outlined color.
 /// @requires {function} extend
-/// @requires {Map} $_light-radio
-$_bootstrap-radio: extend(
-    $_light-radio,
+/// @requires {Map} $light-radio
+$bootstrap-radio: extend(
+    $light-radio,
     (
         variant: 'bootstrap',
 
@@ -133,9 +135,9 @@ $_bootstrap-radio: extend(
 /// @property {Map} focus-outline-color [igx-color: ('grays', 300)] - The focus outlined color.
 /// @property {Map} focus-outline-color-focused [igx-color: ('primary', 200)] - The focus outlined color for focused state.
 /// @requires {function} extend
-/// @requires {Map} $_light-radio
-$_indigo-radio: extend(
-    $_light-radio,
+/// @requires {Map} $light-radio
+$indigo-radio: extend(
+    $light-radio,
     (
         variant: 'indigo-design',
 

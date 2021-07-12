@@ -1,4 +1,5 @@
-@import '../light/input-group';
+@use '../../../base' as *;
+@use '../light/input-group' as *;
 
 ////
 /// @group schemas
@@ -9,28 +10,28 @@
 /// Generates a base dark input-group schema.
 /// @type {Map}
 /// @prop {Color} search-background [#222] - The background color of an input group of type search.
-$_base-dark-input-group: (
+$base-dark-input-group: (
     search-background: #222
 );
 
-/// Generates a dark input-group schema based on a mix of $_light-input-group and $_base-dark-input-group..
+/// Generates a dark input-group schema based on a mix of $light-input-group and $base-dark-input-group..
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-input-group
-/// @requires $_base-dark-input-group
+/// @requires $light-input-group
+/// @requires $base-dark-input-group
 /// @see $default-palette
-$_dark-input-group: extend($_light-input-group, $_base-dark-input-group);
+$dark-input-group: extend($light-input-group, $base-dark-input-group);
 
-/// Generates a dark fluent input-group schema based on a mix of $_fluent-input-group and $_base-dark-input-group.
+/// Generates a dark fluent input-group schema based on a mix of $fluent-input-group and $base-dark-input-group.
 /// @type {Map}
 /// @prop {Map} input-prefix-background [igx-color: ('grays', 100), to-opaque: #222] - The background color of an input prefix of type line, box and border.
 /// @prop {Map} input-suffix-background [igx-color: ('grays', 100), to-opaque: #222] - The background color of an input sufix of type line, box and border.
 /// @requires {function} extend
-/// @requires $_fluent-input-group
-/// @requires $_base-dark-input-group
-$_dark-fluent-input-group: extend(
-    $_fluent-input-group,
-    $_base-dark-input-group,
+/// @requires $fluent-input-group
+/// @requires $base-dark-input-group
+$dark-fluent-input-group: extend(
+    $fluent-input-group,
+    $base-dark-input-group,
     (
         input-prefix-background: (
             igx-color: ('grays', 100),
@@ -44,14 +45,14 @@ $_dark-fluent-input-group: extend(
     )
 );
 
-/// Generates a dark bootstrap input-group schema based on a mix of $_bootstrap-input-group and $_base-dark-input-group.
+/// Generates a dark bootstrap input-group schema based on a mix of $bootstrap-input-group and $base-dark-input-group.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-input-group
-/// @requires $_base-dark-input-group
-$_dark-bootstrap-input-group: extend(
-    $_bootstrap-input-group,
-    $_base-dark-input-group
+/// @requires $bootstrap-input-group
+/// @requires $base-dark-input-group
+$dark-bootstrap-input-group: extend(
+    $bootstrap-input-group,
+    $base-dark-input-group
 );
 
 /// Generates an dark indigo input-group schema
@@ -64,10 +65,10 @@ $_dark-bootstrap-input-group: extend(
 /// @prop {Map} $focused-secondary-color [igx-contrast-color: ('surface')] - The label color in the focused state.
 /// @prop {Map} focused-bottom-line-color [igx-contrast-color: ('surface'), rgba: .38] - The bottom line and border colors in the focused state.
 /// @requires {function} extend
-/// @requires $_indigo-input-group
+/// @requires $indigo-input-group
 /// @see $default-palette
-$_dark-indigo-input-group: extend(
-    $_indigo-input-group,
+$dark-indigo-input-group: extend(
+    $indigo-input-group,
     (
         search-background: transparent,
 

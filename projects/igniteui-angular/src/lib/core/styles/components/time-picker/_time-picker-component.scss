@@ -1,84 +1,102 @@
-@include b(igx-time-picker) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@use '../../base' as *;
+@use 'sass:string';
 
-    @extend %time-picker-display !optional;
+////
+/// @group components
+/// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
+/// @requires {mixin} bem-block
+/// @requires {mixin} bem-elem
+/// @requires {mixin} bem-mod
+////
 
-    @include e(header) {
-        @extend %time-picker__header !optional;
-    }
+@mixin component {
+    @include b(igx-time-picker) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+                igx-input-group,
+            )
+        );
 
-    @include e(header-ampm) {
-        @extend %time-picker__header-ampm !optional;
-    }
-
-    @include e(header-hour){
-        @extend %time-picker__header-hour !optional;
-    }
-
-    @include e(main) {
-        @extend %time-picker__main !optional;
-    }
-
-    // COLUMN
-    @include e(column) {
-        @extend %time-picker__column !optional;
-    }
-
-    @include e(item) {
-        @extend %time-picker__item !optional;
-    }
-
-    @include e(item, $m: selected) {
-        @extend %time-picker__item--selected !optional;
-    }
-
-    @include e(item, $m: active) {
-        @extend %time-picker__item--active !optional;
-    }
-
-    @include e(item, $m: disabled) {
-        @extend %time-picker__item--disabled !optional;
-    }
-
-    // HOUR
-    @include e(hourList) {
-        @extend %time-picker__hourList !optional;
-    }
-
-    // MINUTE
-    @include e(minuteList) {
-        @extend %time-picker__minuteList !optional;
-    }
-
-    // SECONDS
-    @include e(secondsList) {
-        @extend %time-picker__secondsList !optional;
-    }
-
-    // AM PM
-    @include e(ampmList) {
-        @extend %time-picker__ampmList !optional;
-    }
-
-    @include e(body) {
-        @extend %time-picker__body !optional;
-    }
-
-    @include e(buttons) {
-        @extend %time-picker__buttons !optional;
-    }
-
-    @include m(dropdown) {
-        @extend %time-picker--dropdown !optional;
-    }
-
-    @include m(vertical) {
-        @extend %time-picker-display--vertical !optional;
+        @extend %time-picker-display !optional;
 
         @include e(header) {
-            @extend %time-picker__header--vertical !optional;
+            @extend %time-picker__header !optional;
+        }
+
+        @include e(header-ampm) {
+            @extend %time-picker__header-ampm !optional;
+        }
+
+        @include e(header-hour){
+            @extend %time-picker__header-hour !optional;
+        }
+
+        @include e(main) {
+            @extend %time-picker__main !optional;
+        }
+
+        // COLUMN
+        @include e(column) {
+            @extend %time-picker__column !optional;
+        }
+
+        @include e(item) {
+            @extend %time-picker__item !optional;
+        }
+
+        @include e(item, $m: selected) {
+            @extend %time-picker__item--selected !optional;
+        }
+
+        @include e(item, $m: active) {
+            @extend %time-picker__item--active !optional;
+        }
+
+        @include e(item, $m: disabled) {
+            @extend %time-picker__item--disabled !optional;
+        }
+
+        // HOUR
+        @include e(hourList) {
+            @extend %time-picker__hourList !optional;
+        }
+
+        // MINUTE
+        @include e(minuteList) {
+            @extend %time-picker__minuteList !optional;
+        }
+
+        // SECONDS
+        @include e(secondsList) {
+            @extend %time-picker__secondsList !optional;
+        }
+
+        // AM PM
+        @include e(ampmList) {
+            @extend %time-picker__ampmList !optional;
+        }
+
+        @include e(body) {
+            @extend %time-picker__body !optional;
+        }
+
+        @include e(buttons) {
+            @extend %time-picker__buttons !optional;
+        }
+
+        @include m(dropdown) {
+            @extend %time-picker--dropdown !optional;
+        }
+
+        @include m(vertical) {
+            @extend %time-picker-display--vertical !optional;
+
+            @include e(header) {
+                @extend %time-picker__header--vertical !optional;
+            }
         }
     }
 }
-

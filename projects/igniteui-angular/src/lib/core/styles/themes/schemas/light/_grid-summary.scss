@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -18,7 +20,7 @@
 /// @property {map} pinned-border-color [igx-color: ('grays', 400)] - The border color of the summary panel.
 ///
 /// @see $default-palette
-$_light-grid-summary: (
+$light-grid-summary: (
     background-color: inherit,
 
     focus-background-color: (
@@ -54,9 +56,9 @@ $_light-grid-summary: (
 /// @property {map} pinned-border-color [igx-color: ('grays', 300), to-opaque: #fff] - The border color of the summary panel.
 ///
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-summary
-$_fluent-grid-summary: extend(
-    $_light-grid-summary,
+/// @requires {Map} $light-grid-summary
+$fluent-grid-summary: extend(
+    $light-grid-summary,
     (
         background-color: (
             igx-color: ('surface')
@@ -75,9 +77,8 @@ $_fluent-grid-summary: extend(
 
 /// Generates a bootstrap grid-summary schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-grid-summary
-$_bootstrap-grid-summary: extend($_light-grid-summary);
+/// @requires {Map} $light-grid-summary
+$bootstrap-grid-summary: $light-grid-summary;
 
 /// Generates an indigo grid-summary schema.
 /// @type {Map}
@@ -86,9 +87,9 @@ $_bootstrap-grid-summary: extend($_light-grid-summary);
 /// @property {map} border-color [igx-color: ('primary', 50)] - The summaries border color.
 /// @property {map} pinned-border-color [igx-color: ('primary', 200)] - The border color of the summary panel.
 /// @requires {function} extend
-/// @requires {Map} $_light-grid-summary
-$_indigo-grid-summary: extend(
-    $_light-grid-summary,
+/// @requires {Map} $light-grid-summary
+$indigo-grid-summary: extend(
+    $light-grid-summary,
     (
         variant: 'indigo-design',
 

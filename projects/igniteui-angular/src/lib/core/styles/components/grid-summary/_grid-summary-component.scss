@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/desig9stein" target="_blank">Marin Popov</a>
@@ -5,60 +8,68 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-grid-summary) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-grid-summary !optional;
+@mixin component {
+    @include b(igx-grid-summary) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-icon,
+            )
+        );
 
-    @include e(item) {
-        @extend %igx-grid-summary__item !optional;
-    }
-
-    @include e(label) {
-        @extend %igx-grid-summary__label !optional;
-    }
-
-    @include e(result) {
-        @extend %igx-grid-summary__result !optional;
-    }
-
-    @include m(pinned) {
-        @extend %igx-grid-summary--pinned !optional;
-    }
-
-    @include m(pinned-last) {
-        @extend %igx-grid-summary--pinned-last !optional;
-    }
-
-    @include m(pinned-first) {
-        @extend %igx-grid-summary--pinned-first !optional;
-    }
-
-    // TODO check if we need to implement styling for .igx-grid-summary--empty selector
-    @include m(empty) {
-        @extend %igx-grid-summary--empty !optional;
-    }
-
-    @include m(fw) {
-        @extend %grid-summary--fixed-width !optional;
-    }
-
-    @include m(cosy) {
         @extend %igx-grid-summary !optional;
-        @extend %igx-grid-summary--cosy !optional;
 
         @include e(item) {
-            @extend %igx-grid-summary__item--cosy !optional;
+            @extend %igx-grid-summary__item !optional;
         }
-    }
 
-    @include m(compact) {
-        @extend %igx-grid-summary !optional;
-        @extend %igx-grid-summary--compact !optional;
+        @include e(label) {
+            @extend %igx-grid-summary__label !optional;
+        }
 
-        @include e(item) {
-            @extend %igx-grid-summary__item--compact !optional;
+        @include e(result) {
+            @extend %igx-grid-summary__result !optional;
+        }
+
+        @include m(pinned) {
+            @extend %igx-grid-summary--pinned !optional;
+        }
+
+        @include m(pinned-last) {
+            @extend %igx-grid-summary--pinned-last !optional;
+        }
+
+        @include m(pinned-first) {
+            @extend %igx-grid-summary--pinned-first !optional;
+        }
+
+        // TODO check if we need to implement styling for .igx-grid-summary--empty selector
+        @include m(empty) {
+            @extend %igx-grid-summary--empty !optional;
+        }
+
+        @include m(fw) {
+            @extend %grid-summary--fixed-width !optional;
+        }
+
+        @include m(cosy) {
+            @extend %igx-grid-summary !optional;
+            @extend %igx-grid-summary--cosy !optional;
+
+            @include e(item) {
+                @extend %igx-grid-summary__item--cosy !optional;
+            }
+        }
+
+        @include m(compact) {
+            @extend %igx-grid-summary !optional;
+            @extend %igx-grid-summary--compact !optional;
+
+            @include e(item) {
+                @extend %igx-grid-summary__item--compact !optional;
+            }
         }
     }
 }

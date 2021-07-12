@@ -1,45 +1,57 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 ////
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 ////
 
-@include b(igx-paginator) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
+@mixin component {
+    @include b(igx-paginator) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button,
+                igx-icon,
+                igx-input-group,
+            )
+        );
 
-    @extend %igx-paginator !optional;
-
-    @include m(cosy) {
         @extend %igx-paginator !optional;
-        @extend %igx-paginator--cosy !optional;
+
+        @include m(cosy) {
+            @extend %igx-paginator !optional;
+            @extend %igx-paginator--cosy !optional;
+        }
+
+        @include m(compact) {
+            @extend %igx-paginator !optional;
+            @extend %igx-paginator--compact !optional;
+        }
     }
 
-    @include m(compact) {
-        @extend %igx-paginator !optional;
-        @extend %igx-paginator--compact !optional;
-    }
-}
+    @include b(igx-page-nav) {
+        @extend %igx-page-nav !optional;
 
-@include b(igx-page-nav) {
-    @extend %igx-page-nav !optional;
-
-    @include e(text) {
-        @extend %igx-page-nav__text !optional;
-    }
-}
-
-@include b(igx-page-size) {
-    @extend %igx-page-size !optional;
-
-    @include e(label) {
-        @extend %igx-page-size__label !optional;
+        @include e(text) {
+            @extend %igx-page-nav__text !optional;
+        }
     }
 
-    @include e(select) {
-        @extend %igx-page-size__select !optional;
-    }
-}
+    @include b(igx-page-size) {
+        @extend %igx-page-size !optional;
 
-@include b(igx-paginator-content) {
-    @extend %igx-paginator-content !optional;
+        @include e(label) {
+            @extend %igx-page-size__label !optional;
+        }
+
+        @include e(select) {
+            @extend %igx-page-size__select !optional;
+        }
+    }
+
+    @include b(igx-paginator-content) {
+        @extend %igx-paginator-content !optional;
+    }
 }

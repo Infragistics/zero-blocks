@@ -1,3 +1,5 @@
+@use '../../../base' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -65,81 +67,76 @@
 /// @prop {String} zoom-slider-x-axis-major-stroke [null] - Gets or sets stroke brush of major gridlines on x-axis of the zoom slider pane.
 /// @prop {Number} zoom-slider-x-axis-major-stroke-thickness [null] - Gets or sets thickness of major gridlines on x-axis of the zoom slider pane.
 /// @see $default-palette
-$_light-financial-chart: extend(
-    (
-        'margin': null,
-        'title-alignment': null,
-        'title-text-color': null,
-        'title-margin': null,
-        'subtitle-text-color': null,
-        'subtitle-margin': null,
-        'subtitle-alignment': null,
-        'brushes': series,
-        'outlines': series,
-        'marker-brushes': series,
-        'marker-outlines': series,
-        'plot-area-background': null,
-        'indicator-brushes': series,
-        'indicator-negative-brushes': series,
-        'indicator-thickness': null,
-        'negative-brushes': series,
-        'negative-outlines': series,
-        'overlay-brushes': series,
-        'overlay-outlines': series,
-        'overlay-thickness': series,
-        'thickness': null,
-        'toolbar-height': null,
-        'trend-line-brushes': series,
-        'trend-line-thickness': null,
-        'volume-brushes': series,
-        'volume-outlines': series,
-        'volume-thickness': null,
-        'x-axis-label-margin': null,
-        'x-axis-label-text-color': null,
-        'x-axis-label-vertical-alignment': null,
-        'x-axis-major-stroke': null,
-        'x-axis-major-stroke-thickness': null,
-        'x-axis-minor-stroke': null,
-        'x-axis-minor-stroke-thickness': null,
-        'x-axis-strip': null,
-        'x-axis-stroke': null,
-        'x-axis-stroke-thickness': null,
-        'x-axis-title-alignment': null,
-        'x-axis-title-margin': null,
-        'x-axis-title-text-color': null,
-        'y-axis-label-margin': null,
-        'y-axis-label-text-color': null,
-        'y-axis-label-vertical-alignment': null,
-        'y-axis-major-stroke': null,
-        'y-axis-major-stroke-thickness': null,
-        'y-axis-minor-stroke': null,
-        'y-axis-minor-stroke-thickness': null,
-        'y-axis-strip': null,
-        'y-axis-stroke': null,
-        'y-axis-stroke-thickness': null,
-        'y-axis-title-alignment': null,
-        'y-axis-title-margin': null,
-        'y-axis-title-text-color': null,
-        'zoom-slider-x-axis-major-stroke': null,
-        'zoom-slider-x-axis-major-stroke-thickness': null
-    )
+$light-financial-chart: (
+    'margin': null,
+    'title-alignment': null,
+    'title-text-color': null,
+    'title-margin': null,
+    'subtitle-text-color': null,
+    'subtitle-margin': null,
+    'subtitle-alignment': null,
+    'brushes': series,
+    'outlines': series,
+    'marker-brushes': series,
+    'marker-outlines': series,
+    'plot-area-background': null,
+    'indicator-brushes': series,
+    'indicator-negative-brushes': series,
+    'indicator-thickness': null,
+    'negative-brushes': series,
+    'negative-outlines': series,
+    'overlay-brushes': series,
+    'overlay-outlines': series,
+    'overlay-thickness': series,
+    'thickness': null,
+    'toolbar-height': null,
+    'trend-line-brushes': series,
+    'trend-line-thickness': null,
+    'volume-brushes': series,
+    'volume-outlines': series,
+    'volume-thickness': null,
+    'x-axis-label-margin': null,
+    'x-axis-label-text-color': null,
+    'x-axis-label-vertical-alignment': null,
+    'x-axis-major-stroke': null,
+    'x-axis-major-stroke-thickness': null,
+    'x-axis-minor-stroke': null,
+    'x-axis-minor-stroke-thickness': null,
+    'x-axis-strip': null,
+    'x-axis-stroke': null,
+    'x-axis-stroke-thickness': null,
+    'x-axis-title-alignment': null,
+    'x-axis-title-margin': null,
+    'x-axis-title-text-color': null,
+    'y-axis-label-margin': null,
+    'y-axis-label-text-color': null,
+    'y-axis-label-vertical-alignment': null,
+    'y-axis-major-stroke': null,
+    'y-axis-major-stroke-thickness': null,
+    'y-axis-minor-stroke': null,
+    'y-axis-minor-stroke-thickness': null,
+    'y-axis-strip': null,
+    'y-axis-stroke': null,
+    'y-axis-stroke-thickness': null,
+    'y-axis-title-alignment': null,
+    'y-axis-title-margin': null,
+    'y-axis-title-text-color': null,
+    'zoom-slider-x-axis-major-stroke': null,
+    'zoom-slider-x-axis-major-stroke-thickness': null
 );
 
 /// Generates a fluent financial-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-financial-chart
-$_fluent-financial-chart: extend($_light-financial-chart);
+/// @requires {Map} $light-financial-chart
+$fluent-financial-chart: $light-financial-chart;
 
 /// Generates a bootstrap financial-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-financial-chart
-$_bootstrap-financial-chart: extend($_light-financial-chart);
+/// @requires {Map} $light-financial-chart
+$bootstrap-financial-chart: $light-financial-chart;
 
 /// Generates an indigo financial-chart schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires {Map} $_light-financial-chart
-$_indigo-financial-chart: extend($_light-financial-chart);
+/// @requires {Map} $light-financial-chart
+$indigo-financial-chart: $light-financial-chart;
 

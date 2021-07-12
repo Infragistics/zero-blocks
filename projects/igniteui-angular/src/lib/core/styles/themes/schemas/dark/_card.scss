@@ -1,4 +1,6 @@
-@import '../light/card';
+@use '../../../base' as *;
+@use '../light/card' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -8,23 +10,23 @@
 /// Generates a dark card schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-card
+/// @requires $light-card
 /// @see $default-palette
-$_dark-card: extend($_light-card);
+$dark-card: extend($light-card);
 
 /// Generates a dark fluent card schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-card
-$_dark-fluent-card: extend($_fluent-card);
+/// @requires $fluent-card
+$dark-fluent-card: extend($fluent-card);
 
 /// Generates a dark bootstrap card schema.
 /// @type {Map}
 /// @prop {Map} background [#222]- The card background color.
 /// @requires {function} extend
-/// @requires $_bootstrap-card
-$_dark-bootstrap-card: extend(
-    $_bootstrap-card,
+/// @requires $bootstrap-card
+$dark-bootstrap-card: extend(
+    $bootstrap-card,
     (
         background: #222,
     )
@@ -34,9 +36,9 @@ $_dark-bootstrap-card: extend(
 /// @type {Map}
 /// @prop {Map} outline-color [igx-color: ('grays', 200)] - The outline color of an outlined type card.
 /// @requires {function} extend
-/// @requires $_indigo-card
-$_dark-indigo-card: extend(
-    $_indigo-card,
+/// @requires $ndigo-card
+$dark-indigo-card: extend(
+    $indigo-card,
     (
         outline-color: (
             igx-color: ('grays', 200)

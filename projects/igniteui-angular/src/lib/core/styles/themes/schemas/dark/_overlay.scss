@@ -1,4 +1,5 @@
-@import '../light/overlay';
+@use '../../../base' as *;
+@use '../light/overlay' as *;
 
 ////
 /// @group schemas
@@ -8,18 +9,17 @@
 
 /// Generates a dark overlay schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_light-overlay
+/// @requires $light-overlay
 /// @see $default-palette
-$_dark-overlay: extend($_light-overlay);
+$dark-overlay: $light-overlay;
 
 /// Generates a dark fluent overlay schema.
 /// @type {Map}
 /// @property {Color} background-color [rgba(0, 0, 0, .4)] - The background color used for modal overlays.
 /// @requires {function} extend
-/// @requires $_fluent-overlay
-$_dark-fluent-overlay: extend(
-    $_fluent-overlay,
+/// @requires $fluent-overlay
+$dark-fluent-overlay: extend(
+    $fluent-overlay,
     (
         background-color: rgba(0, 0, 0, .4)
     )
@@ -27,12 +27,10 @@ $_dark-fluent-overlay: extend(
 
 /// Generates a dark bootstrap overlay schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_bootstrap-overlay
-$_dark-bootstrap-overlay: extend($_bootstrap-overlay);
+/// @requires $bootstrap-overlay
+$dark-bootstrap-overlay: $bootstrap-overlay;
 
 /// Generates a dark indigo overlay schema.
 /// @type {Map}
-/// @requires {function} extend
-/// @requires $_indigo-overlay
-$_dark-indigo-overlay: extend($_indigo-overlay);
+/// @requires $indigo-overlay
+$dark-indigo-overlay: $indigo-overlay;

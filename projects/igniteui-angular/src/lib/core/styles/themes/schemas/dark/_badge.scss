@@ -1,4 +1,4 @@
-@import '../light/badge';
+@use '../light/badge' as *;
 
 ////
 /// @group schemas
@@ -9,24 +9,24 @@
 /// Generates a dark badge schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-badge
+/// @requires $light-badge
 /// @see $default-palette
-$_dark-badge: extend($_light-badge);
+$dark-badge: $light-badge;
 
 /// Generates a dark fluent badge schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-badge
-$_dark-fluent-badge: extend($_fluent-badge);
+/// @requires $fluent-badge
+$dark-fluent-badge: $fluent-badge;
 
 /// Generates a dark bootstrap badge schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-badge
-$_dark-bootstrap-badge: extend($_bootstrap-badge);
+/// @requires $bootstrap-badge
+$dark-bootstrap-badge: $bootstrap-badge;
 
 /// Generates a dark indigo badge schema.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_indigo-badge
-$_dark-indigo-badge: extend($_indigo-badge);
+/// @requires $indigo-badge
+$dark-indigo-badge: $indigo-badge;

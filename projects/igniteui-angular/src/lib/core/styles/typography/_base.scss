@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use '../base' as *;
+
 ////
 /// @group typography
 /// @access public
@@ -207,20 +210,20 @@
     );
 
     @return (
-        h1: extend(map-get($default-scale, 'h1'), $h1),
-        h2: extend(map-get($default-scale, 'h2'), $h2),
-        h3: extend(map-get($default-scale, 'h3'), $h3),
-        h4: extend(map-get($default-scale, 'h4'), $h4),
-        h5: extend(map-get($default-scale, 'h5'), $h5),
-        h6: extend(map-get($default-scale, 'h6'), $h6),
-        subtitle-1: extend(map-get($default-scale, 'subtitle-1'), $subtitle-1),
-        subtitle-2: extend(map-get($default-scale, 'subtitle-2'), $subtitle-2),
-        body-1: extend(map-get($default-scale, 'body-1'), $body-1),
-        body-2: extend(map-get($default-scale, 'body-2'), $body-2),
-        button: extend(map-get($default-scale, 'button'), $button),
-        caption: extend(map-get($default-scale, 'caption'), $caption),
-        overline: extend(map-get($default-scale, 'overline'), $overline),
-        _meta: extend(map-get($default-scale, '_meta'), $_meta)
+        h1: extend(map.get($default-scale, 'h1'), $h1),
+        h2: extend(map.get($default-scale, 'h2'), $h2),
+        h3: extend(map.get($default-scale, 'h3'), $h3),
+        h4: extend(map.get($default-scale, 'h4'), $h4),
+        h5: extend(map.get($default-scale, 'h5'), $h5),
+        h6: extend(map.get($default-scale, 'h6'), $h6),
+        subtitle-1: extend(map.get($default-scale, 'subtitle-1'), $subtitle-1),
+        subtitle-2: extend(map.get($default-scale, 'subtitle-2'), $subtitle-2),
+        body-1: extend(map.get($default-scale, 'body-1'), $body-1),
+        body-2: extend(map.get($default-scale, 'body-2'), $body-2),
+        button: extend(map.get($default-scale, 'button'), $button),
+        caption: extend(map.get($default-scale, 'caption'), $caption),
+        overline: extend(map.get($default-scale, 'overline'), $overline),
+        _meta: extend(map.get($default-scale, '_meta'), $_meta)
     );
 }
 
@@ -231,7 +234,7 @@
 ///   $h1-type-scale: igx-type-scale-category($default-type-scale, 'h1');
 /// @returns {Map} - The config map for the selected category in the type scale.
 @function igx-type-scale-category($scale, $category) {
-    @return map-get($scale, $category);
+    @return map.get($scale, $category);
 }
 
 /// Assigns type scale category config properties
@@ -245,7 +248,7 @@
 ///      color: mediumvioletred;
 ///   }
 @mixin igx-type-style($scale, $category) {
-    $type-category: map-get($scale, $category);
+    $type-category: map.get($scale, $category);
     @each $key, $value in $type-category {
         #{$key}: #{$value};
     }
@@ -260,16 +263,16 @@
 ///   $h1-style: igx-type-scale-category($type-scale, 'h1');
 ///   @include igx-font-var('h1-font', $h1-style);
 @mixin igx-font-var($name, $type-style, $prefix: null) {
-    $fs: map-get($type-style, 'font-style');
-    $fz: map-get($type-style, 'font-size');
-    $fw: map-get($type-style, 'font-weight');
-    $lh: map-get($type-style, 'line-height');
+    $fs: map.get($type-style, 'font-style');
+    $fz: map.get($type-style, 'font-size');
+    $fw: map.get($type-style, 'font-weight');
+    $lh: map.get($type-style, 'line-height');
 
     // unused for now
-    $tt: map-get($type-style, 'text-transform');
-    $ls: map-get($type-style, 'letter-spacing');
-    $mt: map-get($type-style, 'margin-top');
-    $mb: map-get($type-style, 'margin-bottom');
+    $tt: map.get($type-style, 'text-transform');
+    $ls: map.get($type-style, 'letter-spacing');
+    $mt: map.get($type-style, 'margin-top');
+    $mb: map.get($type-style, 'margin-bottom');
 
     @include igx-css-vars((
         'name': $prefix,

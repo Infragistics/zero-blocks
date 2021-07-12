@@ -7,7 +7,7 @@
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for the navdrawer component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [.16667] - The border radius used for the navdrawer items. Can be a fraction between 0 and 1, pixels, or percent.
-$_default-shape-navdrawer: (
+$default-shape-navdrawer: (
     border-radius: 0,
     item-border-radius: .16667,
 );
@@ -15,7 +15,7 @@ $_default-shape-navdrawer: (
 /// @type Map
 /// @prop {Number} border-radius [1] - The border radius used for the navdrawer component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [1] - The border radius used for the navdrawer items. Can be a fraction between 0 and 1, pixels, or percent.
-$_round-shape-navdrawer: (
+$round-shape-navdrawer: (
     border-radius: 1,
     item-border-radius: 1,
 );
@@ -23,7 +23,7 @@ $_round-shape-navdrawer: (
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for the navdrawer component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [0] - The border radius used for the navdrawer items. Can be a fraction between 0 and 1, pixels, or percent.
-$_square-shape-navdrawer: (
+$square-shape-navdrawer: (
     border-radius: 0,
     item-border-radius: 0
 );
@@ -31,7 +31,7 @@ $_square-shape-navdrawer: (
 /// @type Map
 /// @prop {Number} border-radius [0] - The border radius used for the navdrawer component. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Number} item-border-radius [1] - The border radius used for the navdrawer items. Can be a fraction between 0 and 1, pixels, or percent.
-$_indigo-shape-navdrawer: (
+$indigo-shape-navdrawer: (
     border-radius: 0,
     item-border-radius: 1,
 );

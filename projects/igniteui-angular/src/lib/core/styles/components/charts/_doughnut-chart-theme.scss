@@ -1,10 +1,15 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use '../../typography/base' as *;
+@use 'sass:map';
+
 ////
 /// @group themes
 /// @access public
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
 ////
 
-/// @param {Map} $palette [$default-palette] - The palette used as basis for styling the component.
+/// @param {Map} $palette [null] - The palette used as basis for styling the component.
 /// @param {Map} $schema [$light-schema] - The schema used as basis for styling the component.
 /// @param {Color} $others-category-fill [null] - Sets the fill color for others category.
 /// @param {Number} $others-category-opacity [null] - Sets the opacity for others category.
@@ -14,7 +19,6 @@
 /// @param {Number} $selected-slice-opacity [null] - Sets the opacity of the selected slice.
 /// @param {Color} $selected-slice-stroke [null] - Sets the stroke color of the selected slice.
 /// @param {Number} $selected-slice-stroke-thickness [null] - Sets the stroke thickness of the selected slice.
-/// @requires $default-palette
 /// @requires $light-schema
 /// @requires apply-palette
 /// @requires extend
@@ -24,7 +28,7 @@
 ///   // Pass the theme to the igx-css-vars mixin
 ///   @include igx-css-vars($my-chart-theme);
 @function igx-doughnut-chart-theme(
-    $palette: $default-palette,
+    $palette: null,
     $schema: $light-schema,
 
     $brushes: null,
@@ -42,8 +46,8 @@
     $selector: 'igx-doughnut-chart';
     $chart-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $chart-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $chart-schema: map.get($schema, $name);
     } @else {
         $chart-schema: $schema;
     }

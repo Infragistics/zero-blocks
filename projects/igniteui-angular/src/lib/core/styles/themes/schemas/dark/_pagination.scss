@@ -1,4 +1,6 @@
-@import '../light/pagination';
+@use '../../../base' as *;
+@use '../light/pagination' as *;
+
 ////
 /// @group schemas
 /// @access public
@@ -7,43 +9,42 @@
 
 /// Generates a base dark pagination schema.
 /// @type {Map}
-/// @requires {function} extend
 /// @prop {Map} background-color [#222] - The background color of the paging panel.
-/// @requires $_light-pagination
+/// @requires $light-pagination
 /// @see $default-palette
-$_base-dark-pagination: (
+$base-dark-pagination: (
     background-color: #222
 );
 
-/// Generates a dark pagination schema based on a mix of $_light-pagination and $_base-dark-pagination.
+/// Generates a dark pagination schema based on a mix of $light-pagination and $base-dark-pagination.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_light-pagination
-/// @requires $_base-dark-pagination
+/// @requires $light-pagination
+/// @requires $base-dark-pagination
 /// @see $default-palette
-$_dark-pagination: extend($_light-pagination, $_base-dark-pagination);
+$dark-pagination: extend($light-pagination, $base-dark-pagination);
 
-/// Generates a dark fluent pagination schema based on a mix of $_fluent-pagination and $_base-dark-pagination.
+/// Generates a dark fluent pagination schema based on a mix of $fluent-pagination and $base-dark-pagination.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_fluent-pagination
-/// @requires $_base-dark-pagination
-$_dark-fluent-pagination: extend($_fluent-pagination, $_base-dark-pagination);
+/// @requires $fluent-pagination
+/// @requires $base-dark-pagination
+$dark-fluent-pagination: extend($fluent-pagination, $base-dark-pagination);
 
-/// Generates a dark bootstrap pagination schema based on a mix of $_bootstrap-pagination and $_base-dark-pagination.
+/// Generates a dark bootstrap pagination schema based on a mix of $bootstrap-pagination and $base-dark-pagination.
 /// @type {Map}
 /// @requires {function} extend
-/// @requires $_bootstrap-pagination
-/// @requires $_base-dark-pagination
-$_dark-bootstrap-pagination: extend($_bootstrap-pagination, $_base-dark-pagination);
+/// @requires $bootstrap-pagination
+/// @requires $base-dark-pagination
+$dark-bootstrap-pagination: extend($bootstrap-pagination, $base-dark-pagination);
 
 /// Generates a dark indigo pagination schema.
 /// @type {Map}
 /// @prop {Map} background-color [igx-color: ('surface', 500)] - The background color of the paging panel.
 /// @requires {function} extend
-/// @requires $_dark-pagination
-$_dark-indigo-pagination: extend(
-    $_indigo-pagination,
+/// @requires $dark-pagination
+$dark-indigo-pagination: extend(
+    $indigo-pagination,
     (
         background-color: (
             igx-color: ('surface', 500)

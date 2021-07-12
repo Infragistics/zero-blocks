@@ -1,4 +1,6 @@
-@import '../light/column-actions';
+@use '../../../base' as *;
+@use '../light/column-actions' as *;
+
 ////
 /// @group schemas
 /// @access private
@@ -8,34 +10,34 @@
 /// Generates a base dark column actions schema.
 /// @type {Map}
 /// @prop {Color} background-color [#222] - The background color of the panel.
-$_base-dark-column-actions: (
+$base-dark-column-actions: (
     background-color: #222
 );
 
-/// Generates a dark column actions schema based on a mix of $_light-column-actions and $_base-dark-column-actions.
+/// Generates a dark column actions schema based on a mix of $light-column-actions and $base-dark-column-actions.
 /// @type {Map}
 /// @requires extend
-/// @requires $_light-column-actions
-/// @requires $_base-dark-column-actions
+/// @requires $light-column-actions
+/// @requires $base-dark-column-actions
 /// @see $default-palette
-$_dark-column-actions: extend($_light-column-actions, $_base-dark-column-actions);
+$dark-column-actions: extend($light-column-actions, $base-dark-column-actions);
 
-/// Generates a dark fluent column actions schema based on a mix of $_fluent-column-actions and $_base-dark-column-actions.
+/// Generates a dark fluent column actions schema based on a mix of $luent-column-actions and $base-dark-column-actions.
 /// @type {Map}
 /// @requires extend
-/// @requires $_fluent-column-actions
-/// @requires $_base-dark-column-actions
-$_dark-fluent-column-actions: extend($_fluent-column-actions, $_base-dark-column-actions);
+/// @requires $fluent-column-actions
+/// @requires $base-dark-column-actions
+$dark-fluent-column-actions: extend($fluent-column-actions, $base-dark-column-actions);
 
-/// Generates a dark bootstrap column actions schema based on a mix of $_bootstrap-column-actions and $_base-dark-column-actions.
+/// Generates a dark bootstrap column actions schema based on a mix of $bootstrap-column-actions and $base-dark-column-actions.
 /// @type {Map}
 /// @requires extend
-/// @requires $_bootstrap-column-actions
-/// @requires $_base-dark-column-actions
-$_dark-bootstrap-column-actions: extend($_bootstrap-column-actions, $_base-dark-column-actions);
+/// @requires $bootstrap-column-actions
+/// @requires $base-dark-column-actions
+$dark-bootstrap-column-actions: extend($bootstrap-column-actions, $base-dark-column-actions);
 
-/// Generates a dark indigo column actions schema based on a mix of $_indigo-column-actions and $_base-dark-column-actions.
+/// Generates a dark indigo column actions schema based on a mix of $indigo-column-actions and $base-dark-column-actions.
 /// @type {Map}
 /// @requires extend
-/// @requires $_indigo-column-actions
-$_dark-indigo-column-actions: extend($_indigo-column-actions, $_base-dark-column-actions);
+/// @requires $indigo-column-actions
+$dark-indigo-column-actions: extend($indigo-column-actions, $base-dark-column-actions);

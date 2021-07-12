@@ -1,3 +1,3 @@
-@import './bootstrap';
-@import './fluent';
-@import './indigo';
+@forward 'bootstrap';
+@forward 'fluent';
+@forward 'indigo';

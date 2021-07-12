@@ -1,6 +1,11 @@
+@use '../../base' as *;
+@use '../../themes/schemas' as *;
+@use './excel-filtering-theme' as *;
+@use './advanced-filtering-theme' as *;
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:color';
 @use 'sass:math';
-@import './excel-filtering-theme';
-@import './advanced-filtering-theme';
 
 ////
 /// @group themes
@@ -231,8 +236,8 @@
     $selector: 'igx-grid, igx-hierarchical-grid, igx-tree-grid, igx-advanced-filtering-dialog, igx-grid-excel-style-filtering, .igx-excel-filter__secondary';
     $grid-schema: ();
 
-    @if map-has-key($schema, $name) {
-        $grid-schema: map-get($schema, $name);
+    @if map.has-key($schema, $name) {
+        $grid-schema: map.get($schema, $name);
     } @else {
         $grid-schema: $schema;
     }
@@ -240,18 +245,18 @@
     $theme: apply-palette($grid-schema, $palette);
 
     $drop-area-border-radius: round-borders(
-        if($drop-area-border-radius, $drop-area-border-radius, map-get($grid-schema, 'drop-area-border-radius')), 0, 16px
+        if($drop-area-border-radius, $drop-area-border-radius, map.get($grid-schema, 'drop-area-border-radius')), 0, 16px
     );
 
-    $tree-selected-filtered-row-text-color: rgba(text-contrast(map-get($theme, 'row-selected-background')), .5);
-    $tree-selected-filtered-cell-text-color: rgba(text-contrast(map-get($theme, 'cell-selected-background')), .5);
+    $tree-selected-filtered-row-text-color: rgba(text-contrast(map.get($theme, 'row-selected-background')), .5);
+    $tree-selected-filtered-cell-text-color: rgba(text-contrast(map.get($theme, 'cell-selected-background')), .5);
 
     @if not($cell-selected-within-text-color) and $cell-selected-within-background {
         $cell-selected-within-text-color: text-contrast($cell-selected-within-background);
     }
 
     @if not($ghost-header-icon-color) and $ghost-header-background {
-        @if type-of($ghost-header-background) == 'color' {
+        @if meta.type-of($ghost-header-background) == 'color' {
             $ghost-header-icon-color: rgba(text-contrast($ghost-header-background), .07);
         }
     }
@@ -260,7 +265,7 @@
         $ghost-header-text-color: text-contrast($ghost-header-background);
     }
 
-    @if $header-background and type-of($header-background) == 'color' {
+    @if $header-background and meta.type-of($header-background) == 'color' {
         $header-background: to-opaque($header-background, igx-color($palette, 'surface'));
     }
 
@@ -273,7 +278,7 @@
     }
 
     @if not($header-border-color) and $header-background {
-        @if type-of($header-background) == 'color' {
+        @if meta.type-of($header-background) == 'color' {
             $header-border-color: rgba(text-contrast($header-background), .24);
         }
     }
@@ -286,8 +291,8 @@
         $row-odd-background: $content-background;
     }
 
-    @if $row-odd-background and type-of($row-odd-background) == 'color' and alpha($row-odd-background) != 1 {
-        $cbg: if($content-background, $content-background, map-get($theme, 'content-background'));
+    @if $row-odd-background and meta.type-of($row-odd-background) == 'color' and color.alpha($row-odd-background) != 1 {
+        $cbg: if($content-background, $content-background, map.get($theme, 'content-background'));
 
         $row-odd-background: to-opaque($row-odd-background, $cbg);
     }
@@ -300,8 +305,8 @@
         $row-even-background: $content-background;
     }
 
-    @if $row-even-background and type-of($row-even-background) == 'color' and alpha($row-even-background) != 1 {
-        $cbg: if($content-background, $content-background, map-get($theme, 'content-background'));
+    @if $row-even-background and meta.type-of($row-even-background) == 'color' and color.alpha($row-even-background) != 1 {
+        $cbg: if($content-background, $content-background, map.get($theme, 'content-background'));
 
         $row-even-background: to-opaque($row-even-background, $cbg);
     }
@@ -311,7 +316,7 @@
     }
 
     @if not($row-hover-background) and $content-background {
-        @if type-of($content-background) == 'color' {
+        @if meta.type-of($content-background) == 'color' {
             $row-hover-background: to-opaque(rgba(text-contrast($content-background), .08), $content-background)
         }
     }
@@ -333,13 +338,13 @@
     }
 
     @if not($row-border-color) and $content-background {
-        @if type-of($content-background) == 'color' {
+        @if meta.type-of($content-background) == 'color' {
             $row-border-color: rgba(text-contrast($content-background), .08)
         }
     }
 
     @if not($pinned-border-color) and $content-background {
-        @if type-of($content-background) == 'color' {
+        @if meta.type-of($content-background) == 'color' {
             $pinned-border-color: rgba(text-contrast($content-background), .08)
         }
     }
@@ -365,7 +370,7 @@
     }
 
     @if not($expand-all-icon-color) and $header-background {
-        @if type-of($header-background) == 'color' {
+        @if meta.type-of($header-background) == 'color' {
             $expand-all-icon-color: rgba(text-contrast($header-background), .87);
         }
     }
@@ -391,13 +396,13 @@
     }
 
     @if not($grouparea-color) and $grouparea-background {
-        @if type-of($grouparea-background) == 'color' {
+        @if meta.type-of($grouparea-background) == 'color' {
             $grouparea-color: rgba(text-contrast($grouparea-background), .8)
         }
     }
 
     @if not($grouparea-color) and $header-background {
-        @if type-of($header-background) == 'color' {
+        @if meta.type-of($header-background) == 'color' {
             $grouparea-color: rgba(text-contrast($header-background), .8)
         }
     }
@@ -419,7 +424,7 @@
     }
 
     @if not($filtering-header-background) and $header-background {
-        @if type-of($header-background) == 'color' and luminance($header-background) < .5 {
+        @if meta.type-of($header-background) == 'color' and luminance($header-background) < .5 {
             $filtering-header-background: to-opaque(lighten-color($header-background, 5%));
         } @else {
             $filtering-header-background: to-opaque(darken-color($header-background, 5%));
@@ -431,7 +436,7 @@
     }
 
     @if not($filtering-row-background) and $header-background {
-        @if type-of($header-background) == 'color' and luminance($header-background) < .5 {
+        @if meta.type-of($header-background) == 'color' and luminance($header-background) < .5 {
             $filtering-row-background: to-opaque(lighten-color($header-background, 5%));
         } @else {
             $filtering-row-background: to-opaque(darken-color($header-background, 5%));
@@ -451,12 +456,12 @@
     }
 
     @if not($grid-shadow) {
-        $grid-elevation: map-get($grid-schema, 'grid-elevation');
+        $grid-elevation: map.get($grid-schema, 'grid-elevation');
         $grid-shadow: igx-elevation($elevations, $grid-elevation);
     }
 
     @if not($drag-shadow) {
-        $drag-elevation: map-get($grid-schema, 'drag-elevation');
+        $drag-elevation: map.get($grid-schema, 'drag-elevation');
         $drag-shadow: igx-elevation($elevations, $drag-elevation);
     }
 
@@ -575,23 +580,23 @@
 /// @param {Map} $theme - The theme used to style the component.
 /// @requires {mixin} igx-css-vars
 /// @requires {mixin} ellipsis
-/// @requires {mixin} _excel-filtering
+/// @requires {mixin} excel-filtering
 /// @requires igx-color
 /// @requires igx-contrast-color
 /// @requires rem
-/// @requires --var
+/// @requires var-get
 @mixin igx-grid($theme) {
     @include igx-css-vars($theme);
 
     @include scale-in-ver-center();
 
-    $palette: map-get($theme, 'palette');
+    $palette: map.get($theme, 'palette');
 
-    $variant: map-get($theme, variant);
+    $variant: map.get($theme, variant);
     $bootstrap-theme: $variant == 'bootstrap';
     $not-bootstrap-theme: $variant != 'bootstrap';
 
-    $cbx-size: map-get((
+    $cbx-size: map.get((
         material: rem(20px),
         fluent: rem(20px),
         bootstrap: rem(14px),
@@ -599,7 +604,7 @@
     ), $variant);
     $cbx-bs-size: rem(14px);
 
-    $grid-shadow: --var($theme, 'grid-shadow');
+    $grid-shadow: var-get($theme, 'grid-shadow');
 
     $left: if-ltr(left, right);
     $right: if-ltr(right, left);
@@ -619,11 +624,11 @@
     $grid-cell-pinned-style: 1px solid;
     $grid-cell-pinned-border-color: igx-color($palette, 'grays', 300);
 
-    $grid-header-border: --var($theme, 'header-border-width') --var($theme, 'header-border-style') --var($theme, 'header-border-color');
+    $grid-header-border: var-get($theme, 'header-border-width') var-get($theme, 'header-border-style') var-get($theme, 'header-border-color');
 
     $cell-pin: (
-        style: --var($theme, 'pinned-border-width') --var($theme, 'pinned-border-style'),
-        color: --var($theme, 'pinned-border-color')
+        style: var-get($theme, 'pinned-border-width') var-get($theme, 'pinned-border-style'),
+        color: var-get($theme, 'pinned-border-color')
     );
 
     $grid-header-padding: (
@@ -638,9 +643,9 @@
         compact: rem(12px)
     );
 
-    $cbx-padding: map-get($grid-cbx-padding, 'comfortable');
-    $cbx-padding-cosy: map-get($grid-cbx-padding, 'cosy');
-    $cbx-padding-compact: map-get($grid-cbx-padding, 'compact');
+    $cbx-padding: map.get($grid-cbx-padding, 'comfortable');
+    $cbx-padding-cosy: map.get($grid-cbx-padding, 'cosy');
+    $cbx-padding-compact: map.get($grid-cbx-padding, 'compact');
 
     $grid-header-height: (
         comfortable: rem(50px),
@@ -694,7 +699,7 @@
     $drag-icon-size: rem(24px);
     $grouping-padding-right: rem(12px);
 
-    $grid-header-weight: map-get((
+    $grid-header-weight: map.get((
         material: 600,
         fluent: 800,
         bootstrap: 700,
@@ -714,7 +719,7 @@
         box-shadow: $grid-shadow;
 
         @if $variant == 'fluent' {
-            box-shadow: 0 0 0 1px --var($theme, 'grid-border-color');
+            box-shadow: 0 0 0 1px var-get($theme, 'grid-border-color');
         }
 
         outline-style: none;
@@ -738,8 +743,8 @@
     %grid-tfoot {
         position: relative;
         display: flex;
-        background: --var($theme, 'header-background');
-        color: --var($theme, 'header-text-color');
+        background: var-get($theme, 'header-background');
+        color: var-get($theme, 'header-text-color');
         overflow: hidden;
         outline-style: none;
 
@@ -769,10 +774,9 @@
 
         z-index: 2;
 
-
         %grid__cbx-selection--push {
             align-items: flex-start;
-            padding-top: math.div(map-get($grid-header-height, 'comfortable') - rem(20px), 2);
+            padding-top: math.div(map.get($grid-header-height, 'comfortable') - rem(20px), 2);
         }
 
         %grid-row {
@@ -794,7 +798,7 @@
             %igx-grid__header-indentation,
             %igx-grid__row-indentation,
             %grid__cbx-selection {
-                border-bottom: --var($theme, 'header-border-width') --var($theme, 'header-border-style') --var($theme, 'header-border-color');
+                border-bottom: var-get($theme, 'header-border-width') var-get($theme, 'header-border-style') var-get($theme, 'header-border-color');
             }
         }
     }
@@ -802,14 +806,14 @@
     %grid-thead--cosy {
         %grid__cbx-selection--push--cosy {
             align-items: flex-start;
-            padding-top: math.div(map-get($grid-header-height, 'cosy') - rem(20px), 2);
+            padding-top: math.div(map.get($grid-header-height, 'cosy') - rem(20px), 2);
         }
     }
 
     %grid-thead--compact {
         %grid__cbx-selection--push--compact {
             align-items: flex-start;
-            padding-top: math.div(map-get($grid-header-height, 'compact') - rem(20px), 2);
+            padding-top: math.div(map.get($grid-header-height, 'compact') - rem(20px), 2);
         }
     }
 
@@ -817,21 +821,21 @@
         flex-basis: auto !important;
         align-items: center !important;
         border-bottom: $grid-header-border;
-        height: map-get($grid-header-height, 'comfortable');
+        height: map.get($grid-header-height, 'comfortable');
     }
 
     %grid-thead-title--pinned {
-        border-#{$right}: map-get($cell-pin, 'style') map-get($cell-pin, 'color') !important;
+        border-#{$right}: map.get($cell-pin, 'style') map.get($cell-pin, 'color') !important;
     }
 
     %grid-thead-title--cosy {
-        height: map-get($grid-header-height, 'cosy');
-        padding: map-get($grid-cell-padding, 'cosy');
+        height: map.get($grid-header-height, 'cosy');
+        padding: map.get($grid-cell-padding, 'cosy');
     }
 
     %grid-thead-title--compact {
-        height: map-get($grid-header-height, 'compact');
-        padding: map-get($grid-cell-padding, 'compact');
+        height: map.get($grid-header-height, 'compact');
+        padding: map.get($grid-cell-padding, 'compact');
     }
 
     %grid-thead-group {
@@ -904,8 +908,8 @@
         }
 
         %grid-cell-display {
-            border-#{$right}: 1px solid --var($theme, 'row-border-color');
-            border-bottom: 1px solid --var($theme, 'row-border-color');
+            border-#{$right}: 1px solid var-get($theme, 'row-border-color');
+            border-bottom: 1px solid var-get($theme, 'row-border-color');
         }
     }
 
@@ -917,14 +921,14 @@
         %grid__cbx-selection,
         %igx-grid__row-indentation,
         %igx-grid__drag-indicator {
-            border-bottom: 1px solid --var($theme, 'row-border-color');
+            border-bottom: 1px solid var-get($theme, 'row-border-color');
         }
     }
 
     %grid-tbody {
         position: relative;
-        background: --var($theme, 'content-background');
-        color: --var($theme, 'content-text-color');
+        background: var-get($theme, 'content-background');
+        color: var-get($theme, 'content-text-color');
         overflow: hidden;
         z-index: 1;
         outline-style: none;
@@ -942,7 +946,7 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        color: --var($theme, 'content-text-color');
+        color: var-get($theme, 'content-text-color');
         flex-direction: column;
         padding: rem(24px);
     }
@@ -965,28 +969,28 @@
         display: flex;
         flex-flow: row nowrap;
         width: 100%;
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
         z-index: 10001;
     }
 
     %grid-thead-thumb {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
         border-#{$left}: 1px solid igx-color($palette, 'grays', 300);
     }
 
     %grid-tfoot-thumb {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
         border-#{$left}: 1px solid igx-color($palette, 'grays', 300);
     }
 
     %grid-tbody-scrollbar {
-        background: --var($theme, 'content-background');
+        background: var-get($theme, 'content-background');
         border-#{$left}: 1px solid igx-color($palette, 'grays', 300);
         position: relative;
     }
 
     %grid-tbody-scrollbar-start {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
     }
 
     %grid-tbody-scrollbar-main {
@@ -994,11 +998,11 @@
     }
 
     %grid-tbody-scrollbar-end {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
     }
 
     %grid-scroll-start {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
     }
 
     %grid-scroll-main {
@@ -1013,35 +1017,35 @@
 
     %grid-row {
         display: flex;
-        background: --var($theme, 'content-background');
-        border-bottom: 1px solid --var($theme, 'row-border-color');
+        background: var-get($theme, 'content-background');
+        border-bottom: 1px solid var-get($theme, 'row-border-color');
         outline-style: none;
         position: relative;
 
         &:hover {
-            background: --var($theme, 'row-hover-background');
-            color: --var($theme, 'row-hover-text-color');
+            background: var-get($theme, 'row-hover-background');
+            color: var-get($theme, 'row-hover-text-color');
 
             %grid-cell--column-selected {
-                color: --var($theme, 'row-selected-hover-text-color');
-                background: --var($theme, 'row-selected-hover-background');
+                color: var-get($theme, 'row-selected-hover-text-color');
+                background: var-get($theme, 'row-selected-hover-background');
             }
 
             %grid-cell--cross-selected {
-                color: --var($theme, 'cell-selected-within-text-color');
-                background: --var($theme, 'cell-selected-within-background');
+                color: var-get($theme, 'cell-selected-within-text-color');
+                background: var-get($theme, 'cell-selected-within-background');
             }
         }
 
         &%igx-grid__tr--ghost {
             @include igx-css-vars((
                 name: 'igx-grid-row',
-                row-ghost-background: map-get($theme, 'row-ghost-background'),
-                row-drag-color: map-get($theme, 'row-drago-color')
+                row-ghost-background: map.get($theme, 'row-ghost-background'),
+                row-drag-color: map.get($theme, 'row-drago-color')
             ));
 
-            background: --var($theme, 'row-ghost-background');
-            color: --var($theme, 'row-drag-color');
+            background: var-get($theme, 'row-ghost-background');
+            color: var-get($theme, 'row-drag-color');
             z-index: 1;
         }
     }
@@ -1050,7 +1054,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: map-get($grid-cell-padding, 'comfortable');
+        padding: map.get($grid-cell-padding, 'comfortable');
         flex: 1 0 auto;
         // Fix for IE 11
         min-width: calc(#{$drag-icon-size} + #{$cell-padding-comfortable});
@@ -1067,13 +1071,13 @@
     }
 
     %igx-grid__drag-indicator--cosy {
-        padding: map-get($grid-cell-padding, 'cosy');
+        padding: map.get($grid-cell-padding, 'cosy');
         // Fix for IE 11
         min-width: calc(#{$drag-icon-size} + #{$cell-padding-cosy});
     }
 
     %igx-grid__drag-indicator--compact {
-        padding: map-get($grid-cell-padding, 'compact');
+        padding: map.get($grid-cell-padding, 'compact');
         // Fix for IE 11
         min-width: calc(#{$drag-icon-size} + #{$cell-padding-compact});
     }
@@ -1083,7 +1087,7 @@
     }
 
     %igx-grid__drag-indicator--off {
-        color: --var($theme, 'row-drag-color');
+        color: var-get($theme, 'row-drag-color');
     }
 
     %igx-grid__tr--drag {
@@ -1091,40 +1095,40 @@
     }
 
     %grid-row--odd {
-        background: --var($theme, 'row-odd-background');
-        color: --var($theme, 'row-odd-text-color');
+        background: var-get($theme, 'row-odd-background');
+        color: var-get($theme, 'row-odd-text-color');
     }
 
     %grid-row--even {
-        background: --var($theme, 'row-even-background');
-        color: --var($theme, 'row-even-text-color');
+        background: var-get($theme, 'row-even-background');
+        color: var-get($theme, 'row-even-text-color');
     }
 
     %grid-row--selected {
-        color: --var($theme, 'row-selected-text-color');
-        background: --var($theme, 'row-selected-background');
+        color: var-get($theme, 'row-selected-text-color');
+        background: var-get($theme, 'row-selected-background');
 
         %grid-cell--selected,
         %grid-cell--pinned-selected {
-            color: --var($theme, 'cell-selected-within-text-color');
-            background: --var($theme, 'cell-selected-within-background');
+            color: var-get($theme, 'cell-selected-within-text-color');
+            background: var-get($theme, 'cell-selected-within-background');
         }
 
         &:hover {
-            background: --var($theme, 'row-selected-hover-background');
-            color: --var($theme, 'row-selected-hover-text-color');
+            background: var-get($theme, 'row-selected-hover-background');
+            color: var-get($theme, 'row-selected-hover-text-color');
 
             %grid-cell--column-selected {
-                color: --var($theme, 'row-selected-hover-text-color');
-                background: --var($theme, 'row-selected-hover-background');
+                color: var-get($theme, 'row-selected-hover-text-color');
+                background: var-get($theme, 'row-selected-hover-background');
             }
         }
 
         %igx-grid__tree-grouping-indicator {
-            color: --var($theme, 'row-selected-text-color');
+            color: var-get($theme, 'row-selected-text-color');
 
             &:hover {
-                color: --var($theme, 'row-selected-text-color');
+                color: var-get($theme, 'row-selected-text-color');
             }
         }
     }
@@ -1144,11 +1148,11 @@
     }
 
     %igx-grid__tr--pinned-top {
-        border-bottom: map-get($cell-pin, 'style') map-get($cell-pin, 'color') !important;
+        border-bottom: map.get($cell-pin, 'style') map.get($cell-pin, 'color') !important;
     }
 
     %igx-grid__tr--pinned-bottom {
-        border-top: map-get($cell-pin, 'style') map-get($cell-pin, 'color') !important;
+        border-top: map.get($cell-pin, 'style') map.get($cell-pin, 'color') !important;
         position: absolute;
         bottom: 0;
     }
@@ -1174,7 +1178,7 @@
     }
 
     %igx-grid__tr--edit {
-        border-bottom: 1px solid --var($theme, 'edit-mode-color');
+        border-bottom: 1px solid var-get($theme, 'edit-mode-color');
         position: relative;
 
         &::after {
@@ -1184,30 +1188,30 @@
             width: 100%;
             top: rem(-1);
             #{$left}: 0;
-            background: --var($theme, 'edit-mode-color');
+            background: var-get($theme, 'edit-mode-color');
         }
 
         &%grid-row {
-            border-bottom: 1px solid --var($theme, 'edit-mode-color');
+            border-bottom: 1px solid var-get($theme, 'edit-mode-color');
         }
 
         %igx-grid__td--editing {
             border: none;
 
             %form-group-bundle--focus {
-                caret-color: --var($theme, 'edit-mode-color') !important;
+                caret-color: var-get($theme, 'edit-mode-color') !important;
             }
 
             %form-group-border {
-                background: --var($theme, 'edit-mode-color') !important;
+                background: var-get($theme, 'edit-mode-color') !important;
             }
         }
 
         [aria-readonly='true'] {
-            color: --var($theme, 'cell-disabled-color');
+            color: var-get($theme, 'cell-disabled-color');
 
             igx-icon {
-                color: --var($theme, 'cell-disabled-color');
+                color: var-get($theme, 'cell-disabled-color');
             }
         }
     }
@@ -1235,38 +1239,38 @@
             width: if($variant == 'indigo-design', rem(4px), rem(2px));
             height: 100%;
             z-index: 10000;
-            background: --var($theme, 'edited-row-indicator');
+            background: var-get($theme, 'edited-row-indicator');
         }
     }
 
     %grid-row--group {
         position: relative;
-        background: --var($theme, 'header-background') !important;
+        background: var-get($theme, 'header-background') !important;
     }
 
     %igx-grid-row--filtered {
         %grid-cell-text {
-            color: --var($theme, 'tree-filtered-text-color');
+            color: var-get($theme, 'tree-filtered-text-color');
         }
 
         %igx-grid__tree-grouping-indicator {
-            color: --var($theme, 'tree-filtered-text-color');
+            color: var-get($theme, 'tree-filtered-text-color');
 
             &:hover {
-                color: --var($theme, 'tree-filtered-text-color');
+                color: var-get($theme, 'tree-filtered-text-color');
             }
         }
 
         %grid-cell--selected {
             %grid-cell-text {
-                color: --var($theme, 'tree-selected-filtered-cell-text-color');
+                color: var-get($theme, 'tree-selected-filtered-cell-text-color');
             }
 
             %igx-grid__tree-grouping-indicator {
-                color: --var($theme, 'tree-selected-filtered-cell-text-color');
+                color: var-get($theme, 'tree-selected-filtered-cell-text-color');
 
                 &:hover {
-                    color: --var($theme, 'tree-selected-filtered-cell-text-color');
+                    color: var-get($theme, 'tree-selected-filtered-cell-text-color');
                 }
             }
         }
@@ -1274,27 +1278,27 @@
 
     %grid-row--selected--filtered {
         %grid-cell-text {
-            color: --var($theme, 'tree-selected-filtered-row-text-color');
+            color: var-get($theme, 'tree-selected-filtered-row-text-color');
         }
 
         %igx-grid__tree-grouping-indicator {
-            color: --var($theme, 'tree-selected-filtered-row-text-color');
+            color: var-get($theme, 'tree-selected-filtered-row-text-color');
 
             &:hover {
-                color: --var($theme, 'tree-selected-filtered-row-text-color');
+                color: var-get($theme, 'tree-selected-filtered-row-text-color');
             }
         }
 
         %grid-cell--selected {
             %grid-cell-text {
-                color: --var($theme, 'tree-selected-filtered-cell-text-color');
+                color: var-get($theme, 'tree-selected-filtered-cell-text-color');
             }
 
             %igx-grid__tree-grouping-indicator {
-                color: --var($theme, 'tree-selected-filtered-cell-text-color');
+                color: var-get($theme, 'tree-selected-filtered-cell-text-color');
 
                 &:hover {
-                    color: --var($theme, 'tree-selected-filtered-cell-text-color');
+                    color: var-get($theme, 'tree-selected-filtered-cell-text-color');
                 }
             }
         }
@@ -1309,10 +1313,10 @@
         margin-#{$right}: rem(8);
         cursor: pointer;
 
-        color: --var($theme, 'expand-icon-color');
+        color: var-get($theme, 'expand-icon-color');
 
         &:hover {
-            color: --var($theme, 'expand-icon-hover-color')
+            color: var-get($theme, 'expand-icon-hover-color')
         }
 
         @include if-rtl() {
@@ -1326,7 +1330,7 @@
         margin-#{$right}: rem(8px, 16px);
 
         %circular-outer {
-            stroke: --var($theme, 'expand-icon-color');
+            stroke: var-get($theme, 'expand-icon-color');
         }
 
         > %circular-display {
@@ -1341,7 +1345,7 @@
         flex: 1 1 0%;
         align-items: center;
         outline-style: none;
-        padding: map-get($grid-cell-padding, 'comfortable');
+        padding: map.get($grid-cell-padding, 'comfortable');
         font-size: $grid-cell-fs;
         line-height: $grid-cell-lh;
         color: inherit;
@@ -1357,11 +1361,11 @@
     }
 
     %grid-cell-display--cosy {
-        padding: map-get($grid-cell-padding, 'cosy');
+        padding: map.get($grid-cell-padding, 'cosy');
     }
 
     %grid-cell-display--compact {
-        padding: map-get($grid-cell-padding, 'compact');
+        padding: map.get($grid-cell-padding, 'compact');
     }
 
     %grid-cell--fixed-width {
@@ -1370,40 +1374,40 @@
     }
 
     %grid-cell--active {
-        box-shadow: inset 0 0 0 1px --var($theme, 'cell-active-border-color');
+        box-shadow: inset 0 0 0 1px var-get($theme, 'cell-active-border-color');
     }
 
     %grid-cell--selected {
-        color: --var($theme, 'cell-selected-text-color');
-        background: --var($theme, 'cell-selected-background');
+        color: var-get($theme, 'cell-selected-text-color');
+        background: var-get($theme, 'cell-selected-background');
         // this is causing an issue https://github.com/IgniteUI/igniteui-angular/issues/4981
         // border-bottom: 0;
 
         %igx-grid__tree-grouping-indicator {
             &:hover {
-                color: --var($theme, 'cell-selected-text-color');
+                color: var-get($theme, 'cell-selected-text-color');
             }
         }
     }
 
     %grid-cell--column-selected {
-        color: --var($theme, 'row-selected-text-color');
-        background: --var($theme, 'row-selected-background');
+        color: var-get($theme, 'row-selected-text-color');
+        background: var-get($theme, 'row-selected-background');
     }
 
     %grid-cell--cross-selected {
-        color: --var($theme, 'cell-selected-within-text-color');
-        background: --var($theme, 'cell-selected-within-background');
+        color: var-get($theme, 'cell-selected-within-text-color');
+        background: var-get($theme, 'cell-selected-within-background');
     }
 
     %igx-grid__td--new {
-        color: --var($theme, 'cell-new-color');
+        color: var-get($theme, 'cell-new-color');
     }
 
     %igx-grid__td--edited {
         %grid-cell-text {
             font-style: italic;
-            color: --var($theme, 'cell-edited-value-color');
+            color: var-get($theme, 'cell-edited-value-color');
             padding: 0 1px;
         }
     }
@@ -1411,20 +1415,20 @@
     %igx-grid__tr--deleted {
         %grid-cell-text {
             font-style: italic;
-            color: igx-color(map-get($theme, 'palette'), 'error');
+            color: igx-color(map.get($theme, 'palette'), 'error');
             text-decoration: line-through;
         }
     }
 
     %igx-grid__tr--disabled {
         %grid-cell-text {
-            color: --var($theme, 'cell-disabled-color');
+            color: var-get($theme, 'cell-disabled-color');
         }
     }
 
     %igx-grid__td--editing {
-        background: --var($theme, 'cell-editing-background') !important;
-        box-shadow: inset 0 0 0 rem(2px) --var($theme, 'edit-mode-color');
+        background: var-get($theme, 'cell-editing-background') !important;
+        box-shadow: inset 0 0 0 rem(2px) var-get($theme, 'edit-mode-color');
         padding: 0 !important;
 
         // Have a more stable visual editing experience
@@ -1472,24 +1476,24 @@
     }
 
     %grid-cell--pinned-selected {
-        color: --var($theme, 'cell-selected-text-color');
-        background: --var($theme, 'cell-selected-background');
+        color: var-get($theme, 'cell-selected-text-color');
+        background: var-get($theme, 'cell-selected-background');
         // this is causing an issue https://github.com/IgniteUI/igniteui-angular/issues/4981
         // border-bottom: 0;
     }
 
     %grid-cell--pinned--column-selected {
-        color: --var($theme, 'row-selected-text-color');
-        background: --var($theme, 'row-selected-background');
+        color: var-get($theme, 'row-selected-text-color');
+        background: var-get($theme, 'row-selected-background');
 
         &:hover {
-            background: --var($theme, 'row-selected-hover-background');
-            color: --var($theme, 'row-selected-text-color');
+            background: var-get($theme, 'row-selected-hover-background');
+            color: var-get($theme, 'row-selected-text-color');
         }
     }
 
     %grid-cell--pinned-last {
-        border-#{$right}: map-get($cell-pin, 'style') map-get($cell-pin, 'color') !important;
+        border-#{$right}: map.get($cell-pin, 'style') map.get($cell-pin, 'color') !important;
 
         %igx-grid__filtering-cell,
         %grid-cell-header {
@@ -1497,15 +1501,15 @@
         }
 
         &%grid-cell--editing {
-            border-#{$right}: map-get($cell-pin, 'style') --var($theme, 'cell-selected-background') !important;
+            border-#{$right}: map.get($cell-pin, 'style') var-get($theme, 'cell-selected-background') !important;
         }
     }
 
     %grid-cell--pinned-first {
-        border-#{$left}: map-get($cell-pin, 'style') map-get($cell-pin, 'color') !important;
+        border-#{$left}: map.get($cell-pin, 'style') map.get($cell-pin, 'color') !important;
 
         &%grid-cell--editing {
-            border-#{$left}: map-get($cell-pin, 'style') --var($theme, 'cell-selected-background') !important;
+            border-#{$left}: map.get($cell-pin, 'style') var-get($theme, 'cell-selected-background') !important;
         }
     }
 
@@ -1532,7 +1536,7 @@
         font-size: $grid-head-fs;
         font-weight: $grid-head-fw;
         min-width: 0;
-        padding: map-get($grid-header-padding, 'comfortable');
+        padding: map.get($grid-header-padding, 'comfortable');
         border-#{$right}: $grid-header-border;
         outline-style: none;
         overflow: hidden;
@@ -1540,19 +1544,19 @@
     }
 
     %grid-cell-header--filtering {
-        background: --var($theme, 'filtering-header-background');
-        color: --var($theme, 'filtering-header-text-color');
+        background: var-get($theme, 'filtering-header-background');
+        color: var-get($theme, 'filtering-header-text-color');
         z-index: 3;
     }
 
     %grid-cell-header--cosy {
-        padding: map-get($grid-header-padding, 'cosy');
-        min-height: map-get($grid-header-height, 'cosy');
+        padding: map.get($grid-header-padding, 'cosy');
+        min-height: map.get($grid-header-height, 'cosy');
     }
 
     %grid-cell-header--compact {
-        padding: map-get($grid-header-padding, 'compact');
-        min-height: map-get($grid-header-height, 'compact');
+        padding: map.get($grid-header-padding, 'compact');
+        min-height: map.get($grid-header-height, 'compact');
     }
 
     %grid-cell-header-title {
@@ -1563,7 +1567,7 @@
         cursor: initial;
         flex-grow: 1; /* hey IE, the text should take most of the space */
         // align-self: flex-end; /* commenting out for now on external request */
-        line-height: math.div(map-get($grid-header-height, 'comfortable'), $grid-head-fs);
+        line-height: math.div(map.get($grid-header-height, 'comfortable'), $grid-head-fs);
         transition: opacity 250ms ease-in-out, color 250ms ease-in-out;
 
         @if $variant != 'indigo-design' {
@@ -1572,11 +1576,11 @@
     }
 
     %grid-cell-header-title--cosy {
-        line-height: math.div(map-get($grid-header-height, 'cosy'), $grid-head-fs);
+        line-height: math.div(map.get($grid-header-height, 'cosy'), $grid-head-fs);
     }
 
     %grid-cell-header-title--compact {
-        line-height: math.div(map-get($grid-header-height, 'compact'), $grid-head-fs);
+        line-height: math.div(map.get($grid-header-height, 'compact'), $grid-head-fs);
     }
 
     %grid-cell-header-icons {
@@ -1585,7 +1589,7 @@
         justify-content: flex-end;
         user-select: none;
         min-width: 30px; /* sort-icon + filter icon width */
-        height: map-get($grid-header-height, 'comfortable');
+        height: map.get($grid-header-height, 'comfortable');
         align-self: flex-end;
 
         &:empty {
@@ -1608,7 +1612,7 @@
                 text-align: $right;
                 font-family: sans-serif;
                 line-height: rem(10px);
-                background: --var($theme, 'header-background');
+                background: var-get($theme, 'header-background');
             }
         }
     }
@@ -1622,12 +1626,12 @@
         cursor: pointer;
 
         igx-icon {
-            color: --var($theme, 'expand-icon-color');
+            color: var-get($theme, 'expand-icon-color');
         }
 
         &:hover {
             igx-icon {
-                color: --var($theme, 'expand-icon-hover-color');
+                color: var-get($theme, 'expand-icon-hover-color');
             }
         }
     }
@@ -1641,21 +1645,21 @@
     }
 
     %igx-grid-th--selectable {
-        color: --var($theme, 'header-selected-text-color');
-        background: --var($theme, 'header-selected-background');
+        color: var-get($theme, 'header-selected-text-color');
+        background: var-get($theme, 'header-selected-background');
         opacity: if($variant != 'indigo-design', .7, 1);
 
         .sort-icon::after {
-            background: --var($theme, 'header-selected-background');
+            background: var-get($theme, 'header-selected-background');
         }
     }
 
     %igx-grid-th--selected {
-        color: --var($theme, 'header-selected-text-color');
-        background: --var($theme, 'header-selected-background');
+        color: var-get($theme, 'header-selected-text-color');
+        background: var-get($theme, 'header-selected-background');
 
         .sort-icon::after {
-            background: --var($theme, 'header-selected-background');
+            background: var-get($theme, 'header-selected-background');
         }
     }
 
@@ -1669,7 +1673,7 @@
     }
 
     %igx-grid-summary--active {
-        @extend %grid-cell--active;
+        @extend %grid-cell--active !optional;
     }
 
     %igx-grid-th--sortable {
@@ -1686,10 +1690,10 @@
     %igx-grid-th--sorted {
         .sort-icon {
             opacity: 1;
-            color: --var($theme, 'sorted-header-icon-color');
+            color: var-get($theme, 'sorted-header-icon-color');
 
             &:hover {
-                color: --var($theme, 'sortable-header-icon-hover-color');
+                color: var-get($theme, 'sortable-header-icon-hover-color');
             }
         }
     }
@@ -1714,11 +1718,11 @@
     }
 
     %grid-cell-header-icons--cosy {
-        height: map-get($grid-header-height, 'cosy');
+        height: map.get($grid-header-height, 'cosy');
     }
 
     %grid-cell-header-icons--compact {
-        height: map-get($grid-header-height, 'compact');
+        height: map.get($grid-header-height, 'compact');
     }
 
     %grid-cell-number {
@@ -1772,7 +1776,7 @@
         position: absolute;
         cursor: col-resize;
         width: 4px;
-        background: --var($theme, 'resize-line-color');
+        background: var-get($theme, 'resize-line-color');
         z-index: 2;
 
         &::before,
@@ -1795,17 +1799,17 @@
     %grid-summaries {
         display: flex;
         overflow: hidden;
-        background: --var($theme, 'root-summaries-background');
+        background: var-get($theme, 'root-summaries-background');
         outline-style: none;
 
         %igx-grid-summary__result {
-            color: --var($theme, 'root-summaries-text-color');
+            color: var-get($theme, 'root-summaries-text-color');
         }
     }
 
     %grid-summaries--body {
-        background: --var($theme, 'body-summaries-background');
-        border-bottom: 1px dashed --var($theme, 'row-border-color');
+        background: var-get($theme, 'body-summaries-background');
+        border-bottom: 1px dashed var-get($theme, 'row-border-color');
 
         &:last-of-type {
             border-bottom: none;
@@ -1813,7 +1817,7 @@
 
         // %igx-grid-summary__label,
         %igx-grid-summary__result {
-            color: --var($theme, 'body-summaries-text-color');
+            color: var-get($theme, 'body-summaries-text-color');
         }
     }
 
@@ -1821,7 +1825,7 @@
         background: inherit;
         position: relative;
         z-index: 1;
-        border-#{$right}: 1px solid --var($theme, 'header-border-color');
+        border-#{$right}: 1px solid var-get($theme, 'header-border-color');
     }
 
     // Column moving
@@ -1845,7 +1849,7 @@
     %igx-grid-th__drop-indicator--active {
         &%igx-grid-th__drop-indicator-left,
         &%igx-grid-th__drop-indicator-right {
-            border-#{$right}: 1px solid --var($theme, 'drop-indicator-color');
+            border-#{$right}: 1px solid var-get($theme, 'drop-indicator-color');
         }
 
         &::after,
@@ -1861,13 +1865,13 @@
         &::before {
             bottom: 0;
             border-width: 0 4px 4px;
-            border-color: transparent transparent --var($theme, 'drop-indicator-color');
+            border-color: transparent transparent var-get($theme, 'drop-indicator-color');
         }
 
         &::after {
             top: 0;
             border-width: 4px 4px 0;
-            border-color: --var($theme, 'drop-indicator-color') transparent transparent;
+            border-color: var-get($theme, 'drop-indicator-color') transparent transparent;
         }
     }
 
@@ -1900,16 +1904,16 @@
         position: absolute;
         display: flex;
         align-items: center;
-        background: --var($theme, 'ghost-header-background');
-        color: --var($theme, 'ghost-header-text-color');
+        background: var-get($theme, 'ghost-header-background');
+        color: var-get($theme, 'ghost-header-text-color');
         min-width: 168px;
         max-width: 320px;
-        height: map-get($grid-header-height, 'comfortable');
-        min-height: map-get($grid-header-height, 'comfortable');
+        height: map.get($grid-header-height, 'comfortable');
+        min-height: map.get($grid-header-height, 'comfortable');
         top: -99999px;
         #{$left}: -99999px;
         border: none;
-        box-shadow: --var($theme, 'drag-shadow');
+        box-shadow: var-get($theme, 'drag-shadow');
         overflow: hidden;
         z-index: 20;
 
@@ -1929,29 +1933,29 @@
     }
 
     %grid__drag-ghost-image--cosy {
-        height: map-get($grid-header-height, 'cosy');
-        min-height: map-get($grid-header-height, 'cosy');
+        height: map.get($grid-header-height, 'cosy');
+        min-height: map.get($grid-header-height, 'cosy');
     }
 
     %grid__drag-ghost-image--compact {
-        height: map-get($grid-header-height, 'compact');
-        min-height: map-get($grid-header-height, 'compact');
+        height: map.get($grid-header-height, 'compact');
+        min-height: map.get($grid-header-height, 'compact');
     }
 
     %grid__drag-ghost-image-icon {
-        color: --var($theme, 'ghost-header-icon-color');
+        color: var-get($theme, 'ghost-header-icon-color');
         margin-#{$right}: rem(12px);
     }
 
     %grid__drag-ghost-image-icon-group {
-        color: --var($theme, 'ghost-header-icon-color');
-        padding: --var($grid-header-padding, 'comfortable');
+        color: var-get($theme, 'ghost-header-icon-color');
+        padding: var-get($grid-header-padding, 'comfortable');
         padding-#{$right}: 0;
         margin-#{$right}: rem(8);
     }
 
     %igx-grid__drag-col-header {
-        background: --var($theme, 'header-background');
+        background: var-get($theme, 'header-background');
 
         %grid-cell-header {
             opacity: .4;
@@ -1960,11 +1964,11 @@
 
     // Group by section
     %igx-grid__group-row {
-        background: --var($theme, 'group-row-background');
+        background: var-get($theme, 'group-row-background');
         display: flex;
         outline-style: none;
-        border-bottom: 1px solid --var($theme, 'row-border-color');
-        min-height: map-get($grid-header-height, 'comfortable');
+        border-bottom: 1px solid var-get($theme, 'row-border-color');
+        min-height: map.get($grid-header-height, 'comfortable');
 
         %igx-grid__drag-indicator {
             cursor: default;
@@ -1973,31 +1977,31 @@
     }
 
     %igx-grid__group-row--active {
-        background: --var($theme, 'group-row-selected-background');
-        @extend %grid-cell--active;
+        background: var-get($theme, 'group-row-selected-background');
+        @extend %grid-cell--active !optional;
 
         %igx-grid__grouping-indicator {
-            color: --var($theme, 'expand-icon-color');
+            color: var-get($theme, 'expand-icon-color');
         }
 
         %igx-grid__drag-indicator {
-            border: 1px solid --var($theme, 'cell-active-border-color');
+            border: 1px solid var-get($theme, 'cell-active-border-color');
             border-left-width: 0;
             border-right-width: 0;
-            box-shadow: inset 1px 0 0 0 --var($theme, 'cell-active-border-color');
+            box-shadow: inset 1px 0 0 0 var-get($theme, 'cell-active-border-color');
         }
 
         &:hover {
-            background: --var($theme, 'group-row-selected-background');
+            background: var-get($theme, 'group-row-selected-background');
         }
     }
 
     %igx-grid__group-row--cosy {
-        min-height: map-get($grid-header-height, 'cosy');
+        min-height: map.get($grid-header-height, 'cosy');
     }
 
     %igx-grid__group-row--compact {
-        min-height: map-get($grid-header-height, 'compact');
+        min-height: map.get($grid-header-height, 'compact');
     }
 
     %igx-group-label {
@@ -2019,7 +2023,7 @@
         user-select: none;
 
         igx-icon {
-            color: --var($theme, 'group-label-icon');
+            color: var-get($theme, 'group-label-icon');
             width: rem(16px);
             height: rem(16px);
             font-size: rem(16px);
@@ -2027,35 +2031,35 @@
     }
 
     %igx-group-label__column-name {
-        color: --var($theme, 'group-label-column-name-text');
+        color: var-get($theme, 'group-label-column-name-text');
         font-weight: 600;
         font-size: 12px;
     }
 
     %igx-group-label__count-badge {
         > div {
-            background: --var($theme, 'group-count-background');
-            color: --var($theme, 'group-count-text-color');
+            background: var-get($theme, 'group-count-background');
+            color: var-get($theme, 'group-count-text-color');
             font-size: $grid-head-fs;
         }
     }
 
     %igx-group-label__text {
         font-size: rem(13px);
-        color: --var($theme, 'group-label-text')
+        color: var-get($theme, 'group-label-text')
     }
 
     [dir='rtl'] {
         %igx-grid__group-content {
-            padding-#{$left}: map-get($grid-grouping-indicator-padding, 'comfortable');
+            padding-#{$left}: map.get($grid-grouping-indicator-padding, 'comfortable');
         }
 
         %igx-grid__group-content--cosy {
-            padding-#{$left}: map-get($grid-grouping-indicator-padding, 'cosy');
+            padding-#{$left}: map.get($grid-grouping-indicator-padding, 'cosy');
         }
 
         %igx-grid__group-content--compact{
-            padding-#{$left}: map-get($grid-grouping-indicator-padding, 'compact');
+            padding-#{$left}: map.get($grid-grouping-indicator-padding, 'compact');
         }
 
         %igx-group-label {
@@ -2074,8 +2078,8 @@
         align-items: center;
         justify-content: flex-start;
         flex: 1 1 auto;
-        padding-#{$left}: map-get($grid-grouping-indicator-padding, 'comfortable');
-        min-height: map-get($grid-header-height, 'comfortable');
+        padding-#{$left}: map.get($grid-grouping-indicator-padding, 'comfortable');
+        min-height: map.get($grid-header-height, 'comfortable');
 
         &:focus {
             outline: transparent;
@@ -2083,13 +2087,13 @@
     }
 
     %igx-grid__group-content--cosy {
-        padding-#{$left}: map-get($grid-grouping-indicator-padding, 'cosy');
-        min-height: map-get($grid-header-height, 'cosy');
+        padding-#{$left}: map.get($grid-grouping-indicator-padding, 'cosy');
+        min-height: map.get($grid-header-height, 'cosy');
     }
 
     %igx-grid__group-content--compact{
-        padding-#{$left}: map-get($grid-grouping-indicator-padding, 'compact');
-        min-height: map-get($grid-header-height, 'compact');
+        padding-#{$left}: map.get($grid-grouping-indicator-padding, 'compact');
+        min-height: map.get($grid-header-height, 'compact');
     }
 
     %igx-grid__row-indentation {
@@ -2097,9 +2101,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-#{$left}: map-get($grid-grouping-indicator-padding, 'comfortable');
-        padding-#{$right}: map-get($grid-grouping-indicator-padding, 'comfortable');
-        border-#{$right}: 1px solid --var($theme, 'header-border-color');
+        padding-#{$left}: map.get($grid-grouping-indicator-padding, 'comfortable');
+        padding-#{$right}: map.get($grid-grouping-indicator-padding, 'comfortable');
+        border-#{$right}: 1px solid var-get($theme, 'header-border-color');
         background: inherit;
         z-index: 1;
 
@@ -2116,25 +2120,25 @@
         %igx-button--icon {
             width: rem(28px);
             height: rem(28px);
-            color: --var($theme, 'expand-all-icon-color');
+            color: var-get($theme, 'expand-all-icon-color');
         }
 
         &:focus,
         &:hover {
             %igx-button--icon {
-                color: --var($theme, 'expand-all-icon-hover-color');
+                color: var-get($theme, 'expand-all-icon-hover-color');
             }
         }
     }
 
     %igx-grid__row-indentation--cosy {
-        padding-#{$left}: map-get($grid-grouping-indicator-padding, 'cosy');
-        padding-#{$right}: map-get($grid-grouping-indicator-padding, 'cosy')
+        padding-#{$left}: map.get($grid-grouping-indicator-padding, 'cosy');
+        padding-#{$right}: map.get($grid-grouping-indicator-padding, 'cosy')
     }
 
     %igx-grid__row-indentation--compact {
-        padding-#{$left}: map-get($grid-grouping-indicator-padding, 'compact');
-        padding-#{$right}: map-get($grid-grouping-indicator-padding, 'compact')
+        padding-#{$left}: map.get($grid-grouping-indicator-padding, 'compact');
+        padding-#{$right}: map.get($grid-grouping-indicator-padding, 'compact')
     }
 
     %igx-grid-grouparea {
@@ -2144,10 +2148,10 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         border-bottom: $grid-header-border;
-        background: --var($theme, 'grouparea-background');
-        color: --var($theme, 'grouparea-color');
-        min-height: map-get($grouparea-min-height, 'comfortable');
-        padding: map-get($grouparea-padding, 'comfortable');
+        background: var-get($theme, 'grouparea-background');
+        color: var-get($theme, 'grouparea-color');
+        min-height: map.get($grouparea-min-height, 'comfortable');
+        padding: map.get($grouparea-padding, 'comfortable');
         z-index: 2;
         height: 100%;
         overflow: hidden;
@@ -2175,13 +2179,13 @@
     }
 
     %igx-grid-grouparea--cosy {
-        min-height: map-get($grouparea-min-height, 'cosy');
-        padding: map-get($grouparea-padding, 'cosy');
+        min-height: map.get($grouparea-min-height, 'cosy');
+        padding: map.get($grouparea-padding, 'cosy');
     }
 
     %igx-grid-grouparea--compact {
-        min-height: map-get($grouparea-min-height, 'compact');
-        padding: map-get($grouparea-padding, 'compact');
+        min-height: map.get($grouparea-min-height, 'compact');
+        padding: map.get($grouparea-padding, 'compact');
     }
 
     %igx-drop-area {
@@ -2189,14 +2193,14 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        height: map-get($drop-area-height, 'comfortable');
-        border-radius: --var($theme, 'drop-area-border-radius');
-        padding: map-get($grid-cell-padding, 'comfortable');
+        height: map.get($drop-area-height, 'comfortable');
+        border-radius: var-get($theme, 'drop-area-border-radius');
+        padding: map.get($grid-cell-padding, 'comfortable');
         flex: 1 0 0%;
-        background: --var($theme, 'drop-area-background');
+        background: var-get($theme, 'drop-area-background');
 
         %igx-drop-area__icon {
-            color: --var($theme, 'drop-area-icon-color');
+            color: var-get($theme, 'drop-area-icon-color');
             width: rem(16px);
             height: rem(16px);
             font-size: rem(16px);
@@ -2205,24 +2209,24 @@
     }
 
     %igx-drop-area--hover {
-        background: --var($theme, 'drop-area-on-drop-background');
+        background: var-get($theme, 'drop-area-on-drop-background');
     }
 
     %igx-drop-area--cosy {
-        height: map-get($drop-area-height, 'cosy');
-        border-radius: --var($theme, 'drop-area-border-radius');
-        padding: map-get($grid-cell-padding, 'cosy');
+        height: map.get($drop-area-height, 'cosy');
+        border-radius: var-get($theme, 'drop-area-border-radius');
+        padding: map.get($grid-cell-padding, 'cosy');
     }
 
     %igx-drop-area--compact {
-        height: map-get($drop-area-height, 'compact');
-        border-radius: --var($theme, 'drop-area-border-radius');
-        padding: map-get($grid-cell-padding, 'compact');
+        height: map.get($drop-area-height, 'compact');
+        border-radius: var-get($theme, 'drop-area-border-radius');
+        padding: map.get($grid-cell-padding, 'compact');
     }
 
     %igx-drop-area__text {
         @include ellipsis();
-        color: --var($theme, 'drop-area-text-color');
+        color: var-get($theme, 'drop-area-text-color');
         font-size: rem(13px);
     }
 
@@ -2235,11 +2239,11 @@
         z-index: 1;
         cursor: pointer;
         padding-#{$right}: $grouping-padding-right;
-        margin-#{$left}: #{map-get($grid-grouping-indicator-padding, 'comfortable')};
-        min-height: map-get($grid-header-height, 'comfortable');
+        margin-#{$left}: #{map.get($grid-grouping-indicator-padding, 'comfortable')};
+        min-height: map.get($grid-header-height, 'comfortable');
 
         igx-icon {
-            color: --var($theme, 'expand-icon-color');
+            color: var-get($theme, 'expand-icon-color');
             width: $indicator-icon-width;
         }
 
@@ -2248,7 +2252,7 @@
             outline-style: none;
 
             igx-icon {
-                color: --var($theme, 'expand-icon-hover-color');
+                color: var-get($theme, 'expand-icon-hover-color');
             }
         }
 
@@ -2258,29 +2262,29 @@
     }
 
     %igx-grid__grouping-indicator--cosy {
-        min-height: map-get($grid-header-height, 'cosy');
-        margin-#{$left}: #{map-get($grid-grouping-indicator-padding, 'cosy')};
+        min-height: map.get($grid-header-height, 'cosy');
+        margin-#{$left}: #{map.get($grid-grouping-indicator-padding, 'cosy')};
     }
 
     %igx-grid__grouping-indicator--compact {
-        min-height: map-get($grid-header-height, 'compact');
-        margin-#{$left}: #{map-get($grid-grouping-indicator-padding, 'compact')};
+        min-height: map.get($grid-header-height, 'compact');
+        margin-#{$left}: #{map.get($grid-grouping-indicator-padding, 'compact')};
     }
 
     %igx-grid__header-indentation {
         position: relative;
-        padding-#{$right}: map-get($grid-grouping-indicator-padding, 'comfortable');
-        border-#{$right}: 1px solid --var($theme, 'header-border-color');
-        background: --var($theme, 'header-background');
+        padding-#{$right}: map.get($grid-grouping-indicator-padding, 'comfortable');
+        border-#{$right}: 1px solid var-get($theme, 'header-border-color');
+        background: var-get($theme, 'header-background');
         z-index: 4;
     }
 
     %igx-grid__header-indentation--cosy {
-        padding-#{$right}: map-get($grid-grouping-indicator-padding, 'cosy');
+        padding-#{$right}: map.get($grid-grouping-indicator-padding, 'cosy');
     }
 
     %igx-grid__header-indentation--compact {
-        padding-#{$right}: map-get($grid-grouping-indicator-padding, 'compact');
+        padding-#{$right}: map.get($grid-grouping-indicator-padding, 'compact');
     }
 
     %igx-grid__group-expand-btn {
@@ -2288,76 +2292,76 @@
         cursor: pointer;
         user-select: none;
         top: calc(50% - 12px);
-        #{$left}: map-get($grid-grouping-indicator-padding, 'comfortable');
+        #{$left}: map.get($grid-grouping-indicator-padding, 'comfortable');
 
         &:hover {
-            color: --var($theme, 'expand-icon-hover-color');
+            color: var-get($theme, 'expand-icon-hover-color');
         }
 
         &%igx-grid__group-expand-btn--push {
-            top: math.div(map-get($grid-header-height, 'comfortable') - rem(24px), 2);
+            top: math.div(map.get($grid-header-height, 'comfortable') - rem(24px), 2);
         }
     }
 
     %igx-grid__group-expand-btn--cosy {
-        #{$left}: map-get($grid-grouping-indicator-padding, 'cosy');
+        #{$left}: map.get($grid-grouping-indicator-padding, 'cosy');
 
         &%igx-grid__group-expand-btn--push {
-            top: math.div(map-get($grid-header-height, 'cosy') - rem(24px), 2);
+            top: math.div(map.get($grid-header-height, 'cosy') - rem(24px), 2);
         }
     }
 
     %igx-grid__group-expand-btn--compact {
-        #{$left}: map-get($grid-grouping-indicator-padding, 'compact');
+        #{$left}: map.get($grid-grouping-indicator-padding, 'compact');
 
         &%igx-grid__group-expand-btn--push {
-            top: math.div(map-get($grid-header-height, 'compact') - rem(24px), 2);
+            top: math.div(map.get($grid-header-height, 'compact') - rem(24px), 2);
         }
     }
 
     @for $i from 1 through 10 {
         %igx-grid__row-indentation--level-#{$i} {
-            padding-#{$left}: calc(#{$i*map-get($grid-grouping-indicator-padding, 'comfortable')} + #{$indicator-icon-width});
+            padding-#{$left}: calc(#{$i*map.get($grid-grouping-indicator-padding, 'comfortable')} + #{$indicator-icon-width});
         }
 
         %igx-grid__group-row--padding-level-#{$i} {
             %igx-grid__grouping-indicator {
-                padding-#{$left}: #{$i*map-get($grid-grouping-indicator-padding, 'comfortable')};
+                padding-#{$left}: #{$i*map.get($grid-grouping-indicator-padding, 'comfortable')};
             }
         }
 
         %igx-grid__row-indentation-cosy--level-#{$i} {
-            padding-#{$left}: calc(#{$i*map-get($grid-grouping-indicator-padding, 'cosy')} + #{$indicator-icon-width});
+            padding-#{$left}: calc(#{$i*map.get($grid-grouping-indicator-padding, 'cosy')} + #{$indicator-icon-width});
         }
 
         %igx-grid__group-row-cosy--padding-level-#{$i} {
             %igx-grid__grouping-indicator {
-                padding-#{$left}: #{$i*map-get($grid-grouping-indicator-padding, 'cosy')};
+                padding-#{$left}: #{$i*map.get($grid-grouping-indicator-padding, 'cosy')};
             }
         }
 
         %igx-grid__row-indentation-compact--level-#{$i} {
-            padding-#{$left}: calc(#{$i*map-get($grid-grouping-indicator-padding, 'compact')} + #{$indicator-icon-width});
+            padding-#{$left}: calc(#{$i*map.get($grid-grouping-indicator-padding, 'compact')} + #{$indicator-icon-width});
         }
 
         %igx-grid__group-row-compact--padding-level-#{$i} {
             %igx-grid__grouping-indicator {
-                padding-#{$left}: #{$i*map-get($grid-grouping-indicator-padding, 'compact')};
+                padding-#{$left}: #{$i*map.get($grid-grouping-indicator-padding, 'compact')};
             }
         }
     }
 
     @for $i from 1 through 25 {
         %igx-grid__tree-cell--padding-level-#{$i} {
-            padding-#{$left}: #{$i*map-get($grid-grouping-indicator-padding, 'comfortable')};
+            padding-#{$left}: #{$i*map.get($grid-grouping-indicator-padding, 'comfortable')};
         }
 
         %igx-grid__tree-cell-cosy--padding-level-#{$i} {
-            padding-#{$left}: #{$i*map-get($grid-grouping-indicator-padding, 'cosy')};
+            padding-#{$left}: #{$i*map.get($grid-grouping-indicator-padding, 'cosy')};
         }
 
         %igx-grid__tree-cell-compact--padding-level-#{$i} {
-            padding-#{$left}: #{$i*map-get($grid-grouping-indicator-padding, 'compact')};
+            padding-#{$left}: #{$i*map.get($grid-grouping-indicator-padding, 'compact')};
         }
     }
 
@@ -2402,8 +2406,8 @@
         align-items: center;
         border-#{$right}: $grid-header-border;
         border-top: $grid-header-border;
-        height: map-get($grid-header-height, 'comfortable');
-        padding: map-get($grid-header-padding, 'comfortable');
+        height: map.get($grid-header-height, 'comfortable');
+        padding: map.get($grid-header-padding, 'comfortable');
         overflow: hidden;
 
         igx-chips-area {
@@ -2420,8 +2424,8 @@
     }
 
     %igx-grid__filtering-cell--selected {
-        color: --var($theme, 'header-selected-text-color');
-        background: --var($theme, 'header-selected-background');
+        color: var-get($theme, 'header-selected-text-color');
+        background: var-get($theme, 'header-selected-background');
     }
 
     %igx-grid__filtering-cell-indicator {
@@ -2460,25 +2464,25 @@
     }
 
     %igx-grid__filtering-cell--cosy {
-        height: map-get($grid-header-height, 'cosy');
-        padding: map-get($grid-header-padding, 'comfortable');
+        height: map.get($grid-header-height, 'cosy');
+        padding: map.get($grid-header-padding, 'comfortable');
     }
 
     %igx-grid__filtering-cell--compact {
-        height: map-get($grid-header-height, 'compact');
-        padding: map-get($grid-header-padding, 'comfortable');
+        height: map.get($grid-header-height, 'compact');
+        padding: map.get($grid-header-padding, 'comfortable');
     }
 
     %igx-grid__filtering-row {
         position: absolute;
         display: flex;
         width: 100%;
-        height: map-get($grid-header-height, 'comfortable');
-        padding: map-get($grid-cell-padding, 'cosy');
+        height: map.get($grid-header-height, 'comfortable');
+        padding: map.get($grid-cell-padding, 'cosy');
         align-items: center;
         justify-content: space-between;
-        background: --var($theme, 'filtering-row-background');
-        color: --var($theme, 'filtering-row-text-color');
+        background: var-get($theme, 'filtering-row-background');
+        color: var-get($theme, 'filtering-row-text-color');
         #{$left}: 0;
         bottom: 0;
         z-index: 3;
@@ -2492,7 +2496,7 @@
             #{$right}: 0;
             top: 0;
             bottom: 0;
-            box-shadow: 0 1px 0 --var($theme, 'filtering-row-background'),
+            box-shadow: 0 1px 0 var-get($theme, 'filtering-row-background'),
                 0 4px 10px rgba(0, 0, 0, .12);
             z-index: -1;
         }
@@ -2505,7 +2509,7 @@
         }
 
         igx-prefix:focus {
-            color: igx-color(map-get($theme, 'palette'), 'secondary');
+            color: igx-color(map.get($theme, 'palette'), 'secondary');
         }
 
         igx-suffix  {
@@ -2533,11 +2537,11 @@
     }
 
     %igx-grid__filtering-row--cosy {
-        height: map-get($grid-header-height, 'cosy');
+        height: map.get($grid-header-height, 'cosy');
     }
 
     %igx-grid__filtering-row--compact {
-        height: map-get($grid-header-height, 'compact');
+        height: map.get($grid-header-height, 'compact');
     }
 
     %igx-grid__filtering-row-main {
@@ -2592,7 +2596,7 @@
         &::after {
             @extend %filtering-scroll-mask;
             #{$left}: calc(100% + 6px);
-            background: linear-gradient(to #{$right}, --var($theme, 'filtering-row-background'), transparent);
+            background: linear-gradient(to #{$right}, var-get($theme, 'filtering-row-background'), transparent);
         }
 
         @include if-rtl() {
@@ -2611,7 +2615,7 @@
         &::before {
             @extend %filtering-scroll-mask;
             #{$right}: calc(100% + 6px);
-            background: linear-gradient(to left, --var($theme, 'filtering-row-background'), transparent);
+            background: linear-gradient(to left, var-get($theme, 'filtering-row-background'), transparent);
         }
 
         @include if-rtl() {
@@ -2629,7 +2633,7 @@
             #{$left}: 0;
             width: 4px;
             height: 100%;
-            background: --var($theme, 'row-highlight');
+            background: var-get($theme, 'row-highlight');
             z-index: 3;
         }
 
@@ -2645,41 +2649,41 @@
     }
 
     %igx-grid__tr-container {
-        border-bottom: 1px solid --var($theme, 'row-border-color');
+        border-bottom: 1px solid var-get($theme, 'row-border-color');
     }
 
     %igx-grid__tr-container--active {
-        @extend %grid-cell--active;
+        @extend %grid-cell--active !optional;
     }
 
     %igx-grid__hierarchical-expander {
         user-select: none;
         background: inherit;
-        padding-#{$left}: map-get($hierarchical-grid-indent, 'comfortable');
-        padding-#{$right}: map-get($hierarchical-grid-indent, 'comfortable');
+        padding-#{$left}: map.get($hierarchical-grid-indent, 'comfortable');
+        padding-#{$right}: map.get($hierarchical-grid-indent, 'comfortable');
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         z-index: 3;
-        color: --var($theme, 'expand-icon-color');
+        color: var-get($theme, 'expand-icon-color');
 
         &:focus {
             outline: none;
 
             igx-icon {
-                color: --var($theme, 'expand-icon-hover-color');
+                color: var-get($theme, 'expand-icon-hover-color');
             }
         }
 
         &:hover {
             igx-icon {
-                color: --var($theme, 'expand-icon-hover-color');
+                color: var-get($theme, 'expand-icon-hover-color');
             }
         }
 
         igx-icon {
-            color: --var($theme, 'expand-icon-color');
+            color: var-get($theme, 'expand-icon-color');
             max-width: $hierarchical-action-icon;
             min-width: $hierarchical-action-icon;
         }
@@ -2695,18 +2699,18 @@
     }
 
     %igx-grid__hierarchical-expander--cosy {
-        padding-#{$left}: map-get($hierarchical-grid-indent, 'cosy');
-        padding-#{$right}: map-get($hierarchical-grid-indent, 'cosy');
+        padding-#{$left}: map.get($hierarchical-grid-indent, 'cosy');
+        padding-#{$right}: map.get($hierarchical-grid-indent, 'cosy');
     }
 
     %igx-grid__hierarchical-expander--compact {
-        padding-#{$left}: map-get($hierarchical-grid-indent, 'compact');
-        padding-#{$right}: map-get($hierarchical-grid-indent, 'compact');
+        padding-#{$left}: map.get($hierarchical-grid-indent, 'compact');
+        padding-#{$right}: map.get($hierarchical-grid-indent, 'compact');
     }
 
     %igx-grid__hierarchical-expander--header {
         background: inherit;
-        border-#{$right}: 1px solid --var($theme, 'header-border-color');
+        border-#{$right}: 1px solid var-get($theme, 'header-border-color');
         z-index: 3;
 
         igx-icon {
@@ -2719,20 +2723,20 @@
         align-items: flex-start;
 
         igx-icon {
-            min-height: map-get($grid-header-height, 'comfortable');
-            max-height: map-get($grid-header-height, 'comfortable');
+            min-height: map.get($grid-header-height, 'comfortable');
+            max-height: map.get($grid-header-height, 'comfortable');
         }
     }
 
     %igx-grid__hierarchical-expander--push--cosy {
         igx-icon {
-            min-height: map-get($grid-header-height, 'cosy');
+            min-height: map.get($grid-header-height, 'cosy');
         }
     }
 
     %igx-grid__hierarchical-expander--push--compact {
         igx-icon {
-            min-height: map-get($grid-header-height, 'compact');
+            min-height: map.get($grid-header-height, 'compact');
         }
     }
 
@@ -2741,40 +2745,40 @@
     }
 
     %igx-grid__hierarchical-indent {
-        margin-#{$left}: calc(2 * #{map-get($hierarchical-grid-indent, 'comfortable')} + #{$hierarchical-action-icon});
-        margin-top: map-get($hierarchical-grid-indent, 'comfortable');
-        margin-#{$right}: map-get($hierarchical-grid-indent, 'comfortable');
-        margin-bottom: map-get($hierarchical-grid-indent, 'comfortable');
+        margin-#{$left}: calc(2 * #{map.get($hierarchical-grid-indent, 'comfortable')} + #{$hierarchical-action-icon});
+        margin-top: map.get($hierarchical-grid-indent, 'comfortable');
+        margin-#{$right}: map.get($hierarchical-grid-indent, 'comfortable');
+        margin-bottom: map.get($hierarchical-grid-indent, 'comfortable');
 
         &--scroll {
-            margin-#{$right}: calc(#{map-get($hierarchical-grid-indent, 'comfortable')} + 18px);
+            margin-#{$right}: calc(#{map.get($hierarchical-grid-indent, 'comfortable')} + 18px);
         }
     }
 
     %igx-grid__hierarchical-indent--cosy {
-        margin-#{$left}: calc(2 * #{map-get($hierarchical-grid-indent, 'cosy')} + #{$hierarchical-action-icon});
-        margin-top: map-get($hierarchical-grid-indent, 'cosy');
-        margin-#{$right}: map-get($hierarchical-grid-indent, 'cosy');
-        margin-bottom: map-get($hierarchical-grid-indent, 'cosy');
+        margin-#{$left}: calc(2 * #{map.get($hierarchical-grid-indent, 'cosy')} + #{$hierarchical-action-icon});
+        margin-top: map.get($hierarchical-grid-indent, 'cosy');
+        margin-#{$right}: map.get($hierarchical-grid-indent, 'cosy');
+        margin-bottom: map.get($hierarchical-grid-indent, 'cosy');
 
         &--scroll {
-            margin-#{$right}: calc(#{map-get($hierarchical-grid-indent, 'cosy')} + 18px);
+            margin-#{$right}: calc(#{map.get($hierarchical-grid-indent, 'cosy')} + 18px);
         }
     }
 
     %igx-grid__hierarchical-indent--compact {
-        margin-#{$left}: calc(2 * #{map-get($hierarchical-grid-indent, 'compact')} + #{$hierarchical-action-icon});
-        margin-top: map-get($hierarchical-grid-indent, 'compact');
-        margin-#{$right}: map-get($hierarchical-grid-indent, 'compact');
-        margin-bottom: map-get($hierarchical-grid-indent, 'compact');
+        margin-#{$left}: calc(2 * #{map.get($hierarchical-grid-indent, 'compact')} + #{$hierarchical-action-icon});
+        margin-top: map.get($hierarchical-grid-indent, 'compact');
+        margin-#{$right}: map.get($hierarchical-grid-indent, 'compact');
+        margin-bottom: map.get($hierarchical-grid-indent, 'compact');
 
         &--scroll {
-            margin-#{$right}: calc(#{map-get($hierarchical-grid-indent, 'compact')} + 18px);
+            margin-#{$right}: calc(#{map.get($hierarchical-grid-indent, 'compact')} + 18px);
         }
     }
 
-    @include _excel-filtering($theme, $palette);
-    @include _advanced-filtering($theme, $palette);
+    @include excel-filtering($theme, $palette);
+    @include advanced-filtering($theme, $palette);
 
     %igx-grid__filtering-row-editing-buttons--small,
     %igx-grid__filtering-row-editing-buttons {
@@ -2790,7 +2794,7 @@
         button {
             &:not([disabled]) {
                 igx-icon {
-                    color: --var($theme, 'sorted-header-icon-color');
+                    color: var-get($theme, 'sorted-header-icon-color');
                 }
             }
         }
@@ -2798,7 +2802,7 @@
 
     %igx-grid__tr-action {
         &:last-of-type {
-            border-#{$right}: --var($theme, 'header-border-width') --var($theme, 'header-border-style') --var($theme, 'header-border-color');
+            border-#{$right}: var-get($theme, 'header-border-width') var-get($theme, 'header-border-style') var-get($theme, 'header-border-color');
         }
     }
 }

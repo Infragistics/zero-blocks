@@ -1,3 +1,6 @@
+@use '../../base' as *;
+@use 'sass:string';
+
 //// Button Group
 /// @group components
 /// @author <a href="https://github.com/simeonoff" target="_blank">Simeon Simeonoff</a>
@@ -5,33 +8,41 @@
 /// @requires {mixin} bem-elem
 /// @requires {mixin} bem-mod
 ////
-@include b(igx-button-group) {
-    $this: bem--selector-to-string(&);
-    @include register-component(str-slice($this, 2, -1));
 
-    @extend %igx-group-display !optional;
+@mixin component {
+    @include b(igx-button-group) {
+        $this: bem--selector-to-string(&);
+        @include register-component(
+            $name: string.slice($this, 2, -1),
+            $deps: (
+                igx-button,
+            )
+        );
 
-    @include e(item) {
-        @extend %igx-group-item !optional;
-    }
-
-    @include e(item, $m: selected) {
-        @extend %igx-group-item-selected !optional;
-    }
-
-    @include e(item-content) {
-        @extend %igx-group-item-content !optional;
-    }
-
-    @include e(button-text) {
-        @extend %igx-button-group__button-text !optional;
-    }
-
-    @include m(vertical) {
-        @extend %igx-group-vertical !optional;
+        @extend %igx-group-display !optional;
 
         @include e(item) {
-            @extend %igx-group-item-vertical !optional;
+            @extend %igx-group-item !optional;
+        }
+
+        @include e(item, $m: selected) {
+            @extend %igx-group-item-selected !optional;
+        }
+
+        @include e(item-content) {
+            @extend %igx-group-item-content !optional;
+        }
+
+        @include e(button-text) {
+            @extend %igx-button-group__button-text !optional;
+        }
+
+        @include m(vertical) {
+            @extend %igx-group-vertical !optional;
+
+            @include e(item) {
+                @extend %igx-group-item-vertical !optional;
+            }
         }
     }
 }

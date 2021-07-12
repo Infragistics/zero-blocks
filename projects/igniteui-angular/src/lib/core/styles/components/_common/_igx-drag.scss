@@ -1,3 +1,5 @@
+@use '../../base' as *;
+
 %drag {
     touch-action: none;
 }
@@ -10,14 +12,16 @@
     user-select: none;
 }
 
-@include b(igx-drag) {
-    @extend %drag !optional;
+@mixin component {
+    @include b(igx-drag) {
+        @extend %drag !optional;
 
-    @include e(handle) {
-        @extend %drag-handle !optional;
-    }
+        @include e(handle) {
+            @extend %drag-handle !optional;
+        }
 
-    @include m(select-disabled) {
-        @extend %drag--select-disabled !optional;
+        @include m(select-disabled) {
+            @extend %drag--select-disabled !optional;
+        }
     }
 }
