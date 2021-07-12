@@ -27,7 +27,7 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { IgxHierarchicalGridComponent } from './hierarchical-grid.component';
-import { IgxGridTransaction, IgxGridBaseDirective } from '../grid-base.directive';
+import { IgxGridBaseDirective } from '../grid-base.directive';
 import { GridBaseAPIService } from '../api.service';
 import { IgxHierarchicalGridAPIService } from './hierarchical-grid-api.service';
 import { DOCUMENT } from '@angular/common';
@@ -46,6 +46,7 @@ import { IgxColumnResizingService } from '../resizing/resizing.service';
 import { GridType } from '../common/grid.interface';
 import { IgxGridToolbarDirective, IgxGridToolbarTemplateContext } from '../toolbar/common';
 import { IgxActionStripComponent } from '../../action-strip/action-strip.component';
+import { IgxFlatTransactionFactory } from '../../services/transaction/transaction-factory.service';
 
 export interface IGridCreatedEventArgs extends IBaseEventArgs {
     owner: IgxRowIslandComponent;
@@ -220,7 +221,7 @@ export class IgxRowIslandComponent extends IgxHierarchicalGridBaseDirective
         public selectionService: IgxGridSelectionService,
         public colResizingService: IgxColumnResizingService,
         gridAPI: GridBaseAPIService<IgxGridBaseDirective & GridType>,
-        @Inject(IgxGridTransaction) protected transactionFactory: any,
+        protected transactionFactory: IgxFlatTransactionFactory,
         elementRef: ElementRef,
         zone: NgZone,
         @Inject(DOCUMENT) public document,
@@ -240,7 +241,7 @@ export class IgxRowIslandComponent extends IgxHierarchicalGridBaseDirective
             selectionService,
             colResizingService,
             gridAPI,
-            typeof transactionFactory === 'function' ? transactionFactory() : transactionFactory,
+            transactionFactory,
             elementRef,
             zone,
             document,

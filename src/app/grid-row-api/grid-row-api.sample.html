@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="grid-wrapper">
-        <igx-grid #grid [rowDraggable]="true" (rowDragStart)="onRowDragStart($event)"
+        <igx-grid #grid [batchEditing]="true" [rowDraggable]="true" (rowDragStart)="onRowDragStart($event)"
         (onRowDragEnd)="onRowDragEnd($event)" [data]="data" [pinning]="pinningConfig" [rowEditable]="true" [allowFiltering]='true' [primaryKey]='"ID"' [paging]="true" [width]="'800px'" [height]="'600px'" [rowSelection]="'multiple'">
             <ng-template igxGridDetail let-dataItem>
                 <div>

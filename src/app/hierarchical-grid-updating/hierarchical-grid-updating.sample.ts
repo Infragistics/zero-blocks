@@ -3,7 +3,6 @@ import {
     IgxRowIslandComponent,
     IgxHierarchicalGridComponent,
     IGridCreatedEventArgs,
-    IgxHierarchicalTransactionServiceFactory,
     GridSelectionMode
 } from 'igniteui-angular';
 import { RemoteService } from '../shared/remote.service';
@@ -11,7 +10,7 @@ import { RemoteService } from '../shared/remote.service';
 @Component({
     selector: 'app-hierarchical-grid-updating-sample',
     templateUrl: 'hierarchical-grid-updating.sample.html',
-    providers: [ RemoteService, IgxHierarchicalTransactionServiceFactory ]
+    providers: [ RemoteService ]
 })
 export class HierarchicalGridUpdatingSampleComponent implements AfterViewInit {
     @ViewChild('rowIsland1', { static: true })

@@ -157,6 +157,9 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
             hierarchicalGrid.childLayoutList.first.gridCreated.pipe(take(2)).subscribe((args) => {
                 firstLayoutInstances.push(args.grid);
             });
+            hierarchicalGrid.batchEditing = true;
+            tick();
+            fixture.detectChanges();
             const dataRows = hierarchicalGrid.dataRowList.toArray();
             // expand 1st row
             hierarchicalGrid.expandRow(dataRows[0].rowID);
@@ -175,6 +178,8 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         }));
 
         it('should remove expand indicator for uncommitted added rows', fakeAsync(() => {
+            hierarchicalGrid.batchEditing = true;
+            fixture.detectChanges();
             hierarchicalGrid.data = hierarchicalGrid.data.slice(0, 3);
             fixture.detectChanges();
             hierarchicalGrid.addRow({ ID: -1, ProductName: 'Name1' });
@@ -189,6 +194,8 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
 
         it('should now allow expanding uncommitted added rows', fakeAsync(() => {
             /* using the API here assumes keyboard interactions to expand/collapse would also be blocked */
+            hierarchicalGrid.batchEditing = true;
+            fixture.detectChanges();
             hierarchicalGrid.data = hierarchicalGrid.data.slice(0, 3);
             fixture.detectChanges();
             hierarchicalGrid.addRow({ ID: -1, ProductName: 'Name1' });
@@ -210,6 +217,8 @@ describe('IgxHierarchicalGrid Integration #hGrid', () => {
         }));
 
         it('should revert changes when transactions are cleared for child grids', fakeAsync(() => {
+            hierarchicalGrid.batchEditing = true;
+            fixture.detectChanges();
             let childGrid;
             hierarchicalGrid.childLayoutList.first.gridCreated.pipe(take(1)).subscribe((args) => {
                 childGrid = args.grid;

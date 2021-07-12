@@ -4,7 +4,7 @@
 <button igxButton="raised" (click)="logTransactionsIsland1()">RI1 Transactions</button>
 <button igxButton="raised" (click)="commitTransactionsIsland1()">Commit R1 Transactions</button>
 <div class="wrapper">
-        <igx-hierarchical-grid #grid1 [data]="remoteData" [rowEditable]="true" [primaryKey]="'CustomerID'" [autoGenerate]="false"
+        <igx-hierarchical-grid #grid1 [batchEditing]="true" [data]="remoteData" [rowEditable]="true" [primaryKey]="'CustomerID'" [autoGenerate]="false"
                 [height]="'800px'" [width]="'100%'" #hGrid>
                 <igx-column field="CustomerID"></igx-column>
                 <igx-column field="CompanyName"></igx-column>

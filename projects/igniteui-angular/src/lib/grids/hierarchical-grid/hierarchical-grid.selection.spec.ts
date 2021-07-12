@@ -1151,6 +1151,8 @@ describe('IgxHierarchicalGrid selection #hGrid', () => {
         it('should not be able to select deleted row', fakeAsync(() => {
             // Expand first row
             const firstRow = hierarchicalGrid.hgridAPI.get_row_by_index(0) as IgxHierarchicalRowComponent;
+            fix.detectChanges();
+
             firstRow.toggle();
             fix.detectChanges();
 

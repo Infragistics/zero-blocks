@@ -1341,11 +1341,11 @@ export class GridRowPinningWithMDVComponent extends GridRowPinningComponent { }
             primaryKey='ID'
             [width]='"800px"'
             [height]='"500px"'
+            [batchEditing]="true"
             [data]="data"
             [autoGenerate]="true">
         </igx-grid>
-    `,
-    providers: [{ provide: IgxGridTransaction, useClass: IgxTransactionService }]
+    `
 })
 export class GridRowPinningWithTransactionsComponent extends GridRowPinningComponent { }
 

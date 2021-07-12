@@ -23,7 +23,6 @@ import { pinLeft, unpinLeft } from '@igniteui/material-icons-extended';
     styleUrls: ['grid-row-pinning.sample.css'],
     templateUrl: 'grid-row-pinning.sample.html',
     providers: [
-        { provide: IgxGridTransaction, useClass: IgxTransactionService },
         { provide: DisplayDensityToken, useValue: { displayDensity: DisplayDensity.comfortable} },
         IgxIconService
     ],

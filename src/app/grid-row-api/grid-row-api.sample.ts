@@ -17,10 +17,7 @@ import { HIERARCHICAL_SAMPLE_DATA } from '../shared/sample-data';
 @Component({
     selector: 'app-grid-row-api-sample',
     styleUrls: ['grid-row-api.sample.css'],
-    templateUrl: 'grid-row-api.sample.html',
-    providers: [
-        { provide: IgxGridTransaction, useClass: IgxTransactionService }
-    ],
+    templateUrl: 'grid-row-api.sample.html'
 })
 
 export class GridRowAPISampleComponent implements OnInit {

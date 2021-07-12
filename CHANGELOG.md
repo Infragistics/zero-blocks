@@ -30,6 +30,13 @@ All notable changes for each version of this project will be documented in this 
       </ng-template>
     </igx-column>
     ```
+- `IgxGrid`, `IgxTreeGrid`, `IgxHierarchicalGrid`
+    - Added `batchEditing` `Input` for controlling whether the grid should have transactions or not.
+    - **Breaking Change** - Providing a transaction service for the grid via `providers: [IgxTransactionService]` is no longer valid
+    Instead, use the new `batchEditing` property to control the grid's Transactions
+
+- `Transactions`
+    
 - `Toolbar Actions`
     - Exposed a new input property `overlaySettings` for all column actions (`hiding` | `pinning` | `advanced filtering` | `exporter`). Example below:
 

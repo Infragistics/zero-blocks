@@ -1,12 +1,10 @@
 import { HierarchicalTransaction, HierarchicalState, TransactionType } from './transaction';
-import { Injectable } from '@angular/core';
 import { IgxTransactionService } from './igx-transaction';
 import { DataUtil } from '../../data-operations/data-util';
 import { cloneValue } from '../../core/utils';
 import { HierarchicalTransactionService } from './hierarchical-transaction';
 
 /** @experimental @hidden */
-@Injectable()
 export class IgxHierarchicalTransactionService<T extends HierarchicalTransaction, S extends HierarchicalState>
     extends IgxTransactionService<T, S> implements HierarchicalTransactionService<T, S> {
 
