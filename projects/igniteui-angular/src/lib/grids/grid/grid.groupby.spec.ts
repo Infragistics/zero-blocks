@@ -958,6 +958,29 @@ describe('IgxGrid - GroupBy #grid', () => {
         expect(rect.top).toEqual(origRect.top);
     });
 
+    it('should obtain correct virtualization state after all groups are collapsed and column is resized.', () => {
+        const fix = TestBed.createComponent(DefaultGridComponent);
+        const grid = fix.componentInstance.instance;
+        grid.groupsExpanded = false;
+        grid.columnWidth = '200px';
+        fix.detectChanges();
+
+        let fDataRow = grid.dataRowList.toArray()[0];
+        expect(fDataRow.virtDirRow.sizesCache[1]).toBe(200);
+
+        grid.groupBy({ fieldName: 'Released', dir: SortingDirection.Desc, ignoreCase: false });
+        fix.detectChanges();
+
+        grid.columns[0].width = '500px';
+        fix.detectChanges();
+        const groupRows = grid.groupsRowList.toArray();
+        groupRows[0].toggle();
+        fix.detectChanges();
+
+        fDataRow = grid.dataRowList.toArray()[0];
+        expect(fDataRow.virtDirRow.sizesCache[1]).toBe(500);
+    });
+
     // GroupBy + Filtering
     it('should filters by the data records and renders their related groups.', fakeAsync(() => {
         const fix = TestBed.createComponent(DefaultGridComponent);

@@ -1489,6 +1489,10 @@ export class IgxGridForOfDirective<T> extends IgxForOfDirective<T> implements On
                      NgFor only supports binding to Iterables such as Arrays.`);
                 }
             }
+            if (this.igxForScrollOrientation === 'horizontal') {
+                // in case collection has changes, reset sync service
+                this.syncService.setMaster(this, true);
+            }
         }
         const defaultItemSize = 'igxForItemSize';
         if (defaultItemSize in changes && !changes[defaultItemSize].firstChange &&
