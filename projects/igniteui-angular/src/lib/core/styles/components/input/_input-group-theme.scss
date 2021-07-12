@@ -160,9 +160,13 @@
     $search-hover-elevation: map.get($input-group-schema, 'search-hover-elevation');
     $search-disabled-elevation: map.get($input-group-schema, 'search-disabled-elevation');
 
-    $focused-shadow-color: rgba(map.get($theme, 'focused-secondary-color'), .5);
-    $success-shadow-color: rgba(map.get($theme, 'success-secondary-color'), .5);
-    $error-shadow-color: rgba(map.get($theme, 'error-secondary-color'), .5);
+    // $focused-shadow-color: rgba(map.get($theme, 'focused-secondary-color'), .5);
+    // $success-shadow-color: rgba(map.get($theme, 'success-secondary-color'), .5);
+    // $error-shadow-color: rgba(map.get($theme, 'error-secondary-color'), .5);
+
+    $focused-shadow-color: map.get($theme, 'focused-secondary-color');
+    $success-shadow-color: map.get($theme, 'success-secondary-color');
+    $error-shadow-color: map.get($theme, 'error-secondary-color');
 
     @if $focused-secondary-color and meta.type-of($focused-secondary-color) == 'color' {
         $focused-shadow-color: rgba($focused-secondary-color, .5);

@@ -99,7 +99,7 @@
     $shadow-color: null;
 
     @if map.get($theme, 'variant') == 'bootstrap' {
-        $shadow-color: rgba(map.get($theme, 'item-background'), .5);
+        $shadow-color: map.get($theme, 'item-background');
 
         @if $item-background {
             $shadow-color: rgba($item-background, .5);
@@ -311,7 +311,7 @@
                 #{$right}: 0;
                 bottom: 0;
                 #{$left}: 0;
-                background: rgba(igx-color($palette, 'grays', 500), .06);
+                background: igx-color($palette, 'grays', 500, .12);
             }
         }
     }

@@ -248,8 +248,11 @@
         if($drop-area-border-radius, $drop-area-border-radius, map.get($grid-schema, 'drop-area-border-radius')), 0, 16px
     );
 
-    $tree-selected-filtered-row-text-color: rgba(text-contrast(map.get($theme, 'row-selected-background')), .5);
-    $tree-selected-filtered-cell-text-color: rgba(text-contrast(map.get($theme, 'cell-selected-background')), .5);
+    // $tree-selected-filtered-row-text-color: rgba(text-contrast(map.get($theme, 'row-selected-background')), .5);
+    // $tree-selected-filtered-cell-text-color: rgba(text-contrast(map.get($theme, 'cell-selected-background')), .5);
+
+    $tree-selected-filtered-row-text-color: red;
+    $tree-selected-filtered-cell-text-color: red;
 
     @if not($cell-selected-within-text-color) and $cell-selected-within-background {
         $cell-selected-within-text-color: text-contrast($cell-selected-within-background);

@@ -9,22 +9,10 @@
 
 /// Generates a dark action-strip schema.
 /// @type {Map}
-/// @property {Map} actions-background [igx-color: ('grays', 200), to-opaque: #000, rgba: .8]- actions container background.
 /// @requires {function} extend
 /// @requires $light-action-strip
 /// @see $default-palette
-$dark-action-strip: extend(
-    $light-action-strip,
-    (
-        variant: 'material',
-
-        actions-background: (
-            igx-color: ('grays', 200),
-            to-opaque: #222,
-            rgba: .8
-        ),
-    )
-);
+$dark-action-strip: $light-action-strip;
 
 /// Generates a dark fluent action strip schema.
 /// @type {Map}

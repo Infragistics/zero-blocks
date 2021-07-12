@@ -141,19 +141,19 @@ $theme-palette: $_palette;
         @include it('should return a value of type string as CSS var w/o arguments')  {
             $value: igx-color();
             @include assert-equal(type-of($value), string);
-            @include assert-equal($value, var(--igx-primary-500));
+            @include assert-equal($value, hsla(var(--igx-primary-500), var(--igx-primary-a)));
         }
 
         @include it('should return a value of type string as CSS var w/ color as only argument')  {
             $value: igx-color($color: secondary);
             @include assert-equal(type-of($value), string);
-            @include assert-equal($value, var(--igx-secondary-500));
+            @include assert-equal($value, hsla(var(--igx-secondary-500), var(--igx-secondary-a)));
         }
 
         @include it('should return a value of type string as CSS var w/ color and variant as only arguments')  {
             $value: igx-color($color: secondary, $variant: 'A400');
             @include assert-equal(type-of($value), string);
-            @include assert-equal($value, var(--igx-secondary-A400));
+            @include assert-equal($value, hsla(var(--igx-secondary-A400), var(--igx-secondary-a)));
         }
     }
 }
@@ -188,7 +188,7 @@ $theme-palette: $_palette;
 
     @include it('should resolve simple schema colors as CSS vars w/o palette') {
         $actual: resolve-value($value: $simple-color, $payload: null);
-        $expected: var(--igx-primary-500);
+        $expected: hsla(var(--igx-primary-500), var(--igx-primary-a));
 
         @include assert-equal($actual, $expected);
     }

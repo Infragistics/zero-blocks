@@ -202,6 +202,7 @@
     $scope: if(is-root(), ':root', '&');
     $_meta: map.get($palette, '_meta');
     $theme: if($_meta, map.get($_meta, 'variant'), null);
+    $gray: if($_meta, map.get($_meta, 'grays'), #fff);
 
     #{$scope} {
         @each $name, $color in $palette {
@@ -222,7 +223,7 @@
                 }
 
                 @if $_valid-base and $_valid-variant {
-                    --igx-#{$name}-#{$variant}: #{gen-hsla-color($name, $variant, $theme)};
+                    --igx-#{$name}-#{$variant}: #{gen-hsla-color($name, $variant, $theme, $gray)};
                 } @else if $name != '_meta' {
                     --igx-#{$name}-#{$variant}: #{$value};
                 }

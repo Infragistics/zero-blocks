@@ -120,7 +120,7 @@
                 --igx-primary-s: #{$s};
                 --igx-primary-l: #{$l};
                 --igx-primary-a: #{$a};
-                --igx-primary-500: #{hsla(var(--igx-primary-h), var(--igx-primary-s), var(--igx-primary-l), var(--igx-primary-a))};
+                --igx-primary-500: #{var(--igx-primary-h), var(--igx-primary-s), var(--igx-primary-l)};
             }
         }
     }

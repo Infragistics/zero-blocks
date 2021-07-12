@@ -11,55 +11,55 @@
 /// Generates a light grid schema.
 /// @type {Map}
 /// @prop {Color} grid-border-color [transparent] - The grid border color.
-/// @prop {Map} header-background [igx-color: ('grays', 100), to-opaque: #fff] - The table header background color.
-/// @prop {Map} header-text-color [igx-color: ('grays', 600)] - The table header text color.
-/// @prop {Map} header-selected-background [igx-color: ('secondary', 50), darken-color: 8%] - The table header background color when selected (ex. column selection).
-/// @prop {Map} header-selected-text-color [igx-contrast-color: ('secondary', 50)] - The table header text color when selected (ex. column selection).
+/// @prop {Map} header-background [igx-color: ('grays', 100)] - The table header background color.
+/// @prop {Map} header-text-color [igx-color: ('grays', 800)] - The table header text color.
+/// @prop {Map} header-selected-background [igx-color: ('secondary', 100)] - The table header background color when selected (ex. column selection).
+/// @prop {Map} header-selected-text-color [igx-contrast-color: ('secondary', 100)] - The table header text color when selected (ex. column selection).
 ///
 /// @prop {Map} sorted-header-icon-color [igx-color: ('secondary', 500)] - The sorted table header icon color.
 /// @prop {Map} sortable-header-icon-hover-color [igx-color: ('secondary', 500)] - The icon color on hover in grid header when the column is sortable.
 ///
 /// @prop {Number} header-border-width [1px] - The border width used for header borders.
 /// @prop {String} header-border-style [solid] - The border style used for header borders.
-/// @prop {Map} header-border-color [igx-color: ('grays', 200)] - The color used for header borders.
-/// @prop {Map} ghost-header-text-color [igx-color: ('grays', 600)] - The dragged header text color.
-/// @prop {Map} ghost-header-icon-color [igx-color: ('grays', 500)] - The dragged header icon color.
-/// @prop {Color} ghost-header-background [#fff] - The dragged header background color.
-/// @prop {Color} content-background [#fff] - The table body background color.
+/// @prop {Map} header-border-color [igx-color: ('grays', 400, .38)] - The color used for header borders.
+/// @prop {Map} ghost-header-text-color [igx-color: ('grays', 700)] - The dragged header text color.
+/// @prop {Map} ghost-header-icon-color [igx-color: ('grays', 600)] - The dragged header icon color.
+/// @prop {Color} ghost-header-background [igx-color: ('grays', 50)] - The dragged header background color.
+/// @prop {Color} content-background [igx-color: ('grays', 50)] - The table body background color.
 /// @prop {Map} content-text-color [igx-color: ('grays', 800)] - The table body text color.
-/// @prop {Color} row-odd-background [#fff] - The background color of odd rows.
-/// @prop {Color} row-even-background [#fff] - The background color of even rows.
+/// @prop {Color} row-odd-background [igx-color: ('grays', 50)] - The background color of odd rows.
+/// @prop {Color} row-even-background [igx-color: ('grays', 50)] - The background color of even rows.
 /// @prop {Color} row-odd-text-color [inherit] - The text color of odd rows.
 /// @prop {Color} row-even-text-color [inherit] - The text color of even rows.
 /// @prop {Map} row-selected-background [igx-color: ('secondary', 50)] - The selected row background color.
 /// @prop {Map} row-selected-text-color [igx-contrast-color: ('secondary', 50)] - The selected row text color.
-/// @prop {Map} row-selected-hover-background [igx-color: ('secondary', 50), darken-color: 2%] - The selected row hover background.
-/// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('secondary', 50)] - The selected row hover text color.
-/// @prop {Map} row-hover-background [igx-color: ('grays', 100), to-opaque: #fff] - The hover row background color.
+/// @prop {Map} row-selected-hover-background [igx-color: ('secondary', 100)] - The selected row hover background.
+/// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('secondary', 100)] - The selected row hover text color.
+/// @prop {Map} row-hover-background [igx-color: ('grays', 200)] - The hover row background color.
 /// @prop {Map} row-hover-text-color [igx-contrast-color: ('grays', 200)] - The hover row text color.
-/// @prop {Map} row-border-color [igx-color: ('grays', 300)] - The row bottom border color.
+/// @prop {Map} row-border-color [igx-color: ('grays', 300, .38)] - The row bottom border color.
 /// @prop {Map} row-highlight [igx-color: ('secondary', 500)] - The grid row highlight color.
 /// @prop {Number} pinned-border-width [2px] - The border width of the pinned border.
 /// @prop {String} pinned-border-style [solid] - The CSS border style of the pinned border.
 /// @prop {Map} pinned-border-color [igx-color: ('grays', 400)] - The color of the pinned border.
 /// @prop {Map} cell-active-border-color [igx-color: ('secondary', 500)] - The active(focused) cell border color.
-/// @prop {Map} cell-selected-background [igx-color: ('grays', 200), to-opaque: #fff] - The selected cell background color.
+/// @prop {Map} cell-selected-background [igx-color: ('grays', 200)] - The selected cell background color.
 /// @prop {Map} cell-selected-text-color [igx-contrast-color: ('grays', 200)] - The selected cell text color.
-/// @prop {Color} cell-editing-background [#fff] - The editing background color of a cell.
+/// @prop {Color} cell-editing-background [igx-color: ('grays', 50)] - The editing background color of a cell.
 /// @prop {Map} edit-mode-color [igx-color: ('secondary', 500)] - The text color in edit mode.
 /// @prop {Map} edited-row-indicator [igx-color: ('grays', 400)] - The indicator's color of edited row.
 /// @prop {String} cell-new-color [inherit] - The text color of a new, unedited cell. Used when adding new row in a grid.
 /// @prop {Map} cell-edited-value-color [igx-color: ('grays', 600)] - The color of cell edited value.
 /// @prop {Map} cell-disabled-color [igx-color: ('grays', 500)] - The text color of a disabled cell.
-/// @prop {Map} cell-selected-within-background [igx-color: ('secondary', 100), darken-color: 2%] - The background of the selected cell inside a selected row/column.
-/// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('secondary', 100)] - The color of the selected cell inside a selected row/column.
+/// @prop {Map} cell-selected-within-background [igx-color: ('secondary', 200)] - The background of the selected cell inside a selected row/column.
+/// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('secondary', 200)] - The color of the selected cell inside a selected row/column.
 ///
 /// @prop {Map} resize-line-color [igx-color: ('secondary', 500)] - The table header resize line color.
 /// @prop {Map} drop-indicator-color [igx-color: ('secondary', 500)] - The color of the drop indicator.
-/// @prop {Map} grouparea-background [igx-color: ('grays', 100), to-opaque: #fff] - The grid group area background color.
+/// @prop {Map} grouparea-background [igx-color: ('grays', 100)] - The grid group area background color.
 /// @prop {Map} grouparea-color [igx-color: ('grays', 500)] - The grid group area color.
-/// @prop {Map} group-row-background [igx-color: ('grays', 100), to-opaque: #fff] - The grid group row background color.
-/// @prop {Map} group-row-selected-background [igx-color: ('grays', 200), to-opaque: #fff] - The drop area background on drop color.
+/// @prop {Map} group-row-background [igx-color: ('grays', 100)] - The grid group row background color.
+/// @prop {Map} group-row-selected-background [igx-color: ('grays', 200)] - The drop area background on drop color.
 /// @prop {Map} active-expand-icon-color [igx-color: ('grays', 500)] - The drop area background on drop color.
 /// @prop {Map} active-expand-icon-hover-color [igx-color: ('primary', 500)] - The drop area background on drop color.
 /// @prop {Map} group-label-column-name-text [igx-color: ('primary', 500)] - The grid group row column name text color.
@@ -71,12 +71,12 @@
 /// @prop {Map} expand-icon-hover-color [igx-color: ('primary', 500)] - The grid row expand icon hover color.
 /// @prop {Map} group-count-background [igx-color: ('grays', 200)] - The grid group row cont badge background color.
 /// @prop {Map} group-count-text-color [igx-color: ('grays', 600)] - The grid group row cont badge text color.
-/// @prop {Map} drop-area-text-color [igx-color: ('grays', 600)] - The drop area text color.
+/// @prop {Map} drop-area-text-color [igx-color: ('grays', 700)] - The drop area text color.
 /// @prop {Map} drop-area-icon-color [igx-color: ('grays', 500), to-opaque: ()] - The drop area icon color.
-/// @prop {Map} drop-area-background [igx-color: ('grays', 100)] - The drop area background color.
+/// @prop {Map} drop-area-background [igx-color: ('grays', 200)] - The drop area background color.
 /// @prop {Map} drop-area-on-drop-background [igx-color: ('grays', 200)] - The drop area background on drop color.
 /// @prop {Map} tree-filtered-text-color [igx-color: ('grays', 500)] - grouping row background color on focus.
-/// @prop {Color} filtering-header-background [#fff] - The background color of the filtered column header.
+/// @prop {Color} filtering-header-background [igx-color: ('grays', 50)] - The background color of the filtered column header.
 /// @prop {Map} filtering-header-text-color [igx-color: ('grays', 800)] - The text color color of the filtered column header.
 ///
 /// @prop {Map} filtering-background-and [igx-color: ('primary', 300)] - The background color of advanced filtering "AND" condition.
@@ -84,12 +84,12 @@
 /// @prop {Map} filtering-background-or [igx-color: ('secondary', 300)] - The background color of advanced filtering "OR" condition.
 /// @prop {Map} filtering-background-or--focus [igx-color: ('secondary', 700)] - The background color on focus/selected of advanced filtering "OR" condition.
 ///
-/// @prop {Color} filtering-row-background [#fff] - The background color of the filtering row.
+/// @prop {Color} filtering-row-background [igx-color: 'grays', 50)] - The background color of the filtering row.
 /// @prop {Map} filtering-row-text-color [igx-color: ('grays', 800)] - The text-color color of the filtering row.
-/// @prop {Map} body-summaries-background [igx-color: ('grays', 100), to-opaque: #fff] - The background color of the summary groups located the body.
-/// @prop {Map} body-summaries-text-color [igx-color: ('grays', 100), to-opaque: #fff, text-contrast: ()] - The text color of the summary groups located the body.
-/// @prop {Map} root-summaries-background [igx-color: ('grays', 300), to-opaque: #fff] - The background color of the summary groups located the footer.
-/// @prop {Map} root-summaries-text-color [igx-color: ('grays', 300), to-opaque: #fff, text-contrast: ()] - The text color of the summary groups located the footer.
+/// @prop {Map} body-summaries-background [igx-color: ('grays', 100)] - The background color of the summary groups located the body.
+/// @prop {Map} body-summaries-text-color [igx-contrast-color: ('grays', 100)] - The text color of the summary groups located the body.
+/// @prop {Map} root-summaries-background [igx-color: ('grays', 300)] - The background color of the summary groups located the footer.
+/// @prop {Map} root-summaries-text-color [igx-contrast-color: ('grays', 300)] - The text color of the summary groups located the footer.
 /// @prop {Map} row-drag-color [igx-color: ('grays', 200))] - The color of the drag handle.
 /// @prop {Map} row-ghost-background [igx-color: ('primary', 50))] - The background color of the dragged row.
 /// @prop {number} grid-elevation [2] - The elevation level, between 0-24, to be used for the grid.
@@ -107,6 +107,70 @@ $light-grid: extend(
 
         grouparea-color: (
             igx-color: ('grays', 500)
+        ),
+
+        grouparea-background: (
+            igx-color: ('grays', 100)
+        ),
+
+        drop-area-text-color: (
+            igx-color: ('grays', 700)
+        ),
+
+        drop-area-icon-color: (
+            igx-color: ('grays', 500),
+        ),
+
+        drop-area-background: (
+            igx-color: ('grays', 200)
+        ),
+
+        drop-area-on-drop-background: (
+            igx-color: ('grays', 200)
+        ),
+
+        header-background: (
+            igx-color: ('grays', 100)
+        ),
+
+        header-text-color: (
+            igx-color: ('grays', 800)
+        ),
+
+        header-selected-background: (
+            igx-color: ('secondary', 100),
+        ),
+
+        header-selected-text-color: (
+            igx-contrast-color: ('secondary', 100)
+        ),
+
+        sortable-header-icon-hover-color: (
+            igx-color: ('secondary', 500)
+        ),
+
+        sorted-header-icon-color: (
+            igx-color: ('secondary', 500)
+        ),
+
+        header-border-width: 1px,
+
+        header-border-style: solid,
+
+        header-border-color: (
+            igx-color: ('grays', 400, .38)
+        ),
+
+        ghost-header-background: (
+            igx-color: ('grays', 50)
+        ),
+
+        ghost-header-text-color: (
+            igx-color: ('grays', 700)
+        ),
+
+        ghost-header-icon-color: (
+            igx-color: ('grays', 600)
         ),
 
         filtering-background-and: (
@@ -127,57 +191,24 @@ $light-grid: extend(
 
         grid-border-color: transparent,
 
-        header-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+        content-background: (
+            igx-color: ('grays', 50)
         ),
 
-        header-text-color: (
-            igx-color: ('grays', 600)
-        ),
-
-        header-selected-background: (
-            igx-color: ('secondary', 50),
-            darken-color: 8%
-        ),
-
-        header-selected-text-color: (
-            igx-contrast-color: ('secondary', 50)
-        ),
-
-        sortable-header-icon-hover-color: (
-            igx-color: ('secondary', 500)
-        ),
-
-        sorted-header-icon-color: (
-            igx-color: ('secondary', 500)
-        ),
-
-        header-border-width: 1px,
-        header-border-style: solid,
-
-        header-border-color: (
-            igx-color: ('grays', 200)
-        ),
-
-        content-background: #fff,
         content-text-color: (
             igx-color: ('grays', 800)
         ),
 
-        ghost-header-text-color: (
-            igx-color: ('grays', 600)
+        row-odd-background: (
+            igx-color: ('grays', 50)
         ),
 
-        ghost-header-icon-color: (
-            igx-color: ('grays', 500)
+        row-even-background: (
+            igx-color: ('grays', 50)
         ),
 
-        ghost-header-background: #fff,
-
-        row-odd-background: #fff,
-        row-even-background: #fff,
         row-odd-text-color: inherit,
+
         row-even-text-color: inherit,
 
         row-selected-background: (
@@ -189,26 +220,23 @@ $light-grid: extend(
         ),
 
         cell-selected-within-background: (
-            igx-color: ('secondary', 100),
-            darken-color: 2%
+            igx-color: ('secondary', 200)
         ),
 
         cell-selected-within-text-color: (
-            igx-contrast-color: ('secondary', 100)
+            igx-contrast-color: ('secondary', 200)
         ),
 
         row-selected-hover-background: (
-            igx-color: ('secondary', 50),
-            darken-color: 2%
+            igx-color: ('secondary', 100),
         ),
 
         row-selected-hover-text-color: (
-            igx-contrast-color: ('secondary', 50)
+            igx-contrast-color: ('secondary', 100)
         ),
 
         row-hover-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 200)
         ),
 
         row-hover-text-color: (
@@ -216,10 +244,11 @@ $light-grid: extend(
         ),
 
         row-border-color: (
-            igx-color: ('grays', 300)
+            igx-color: ('grays', 300, .38)
         ),
 
         pinned-border-width: 2px,
+
         pinned-border-style: solid,
 
         pinned-border-color: (
@@ -232,14 +261,15 @@ $light-grid: extend(
 
         cell-selected-background: (
             igx-color: ('grays', 200),
-            to-opaque: #fff
         ),
 
         cell-selected-text-color: (
             igx-contrast-color: ('grays', 200)
         ),
 
-        cell-editing-background: #fff,
+        cell-editing-background: (
+            igx-color: ('grays', 50)
+        ),
 
         edit-mode-color: (
             igx-color: ('secondary', 500)
@@ -265,11 +295,6 @@ $light-grid: extend(
 
         drop-indicator-color: (
             igx-color: ('secondary', 500)
-        ),
-
-        grouparea-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
         ),
 
         group-label-column-name-text: (
@@ -316,40 +341,25 @@ $light-grid: extend(
             igx-color: ('grays', 600)
         ),
 
-        drop-area-text-color: (
-            igx-color: ('grays', 600)
-        ),
-
-        drop-area-icon-color: (
-            igx-color: ('grays', 500),
-            to-opaque: ()
-        ),
-
-        drop-area-background: (
+        group-row-background: (
             igx-color: ('grays', 100)
         ),
 
-        drop-area-on-drop-background: (
+        group-row-selected-background: (
             igx-color: ('grays', 200)
         ),
 
-        group-row-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+        filtering-header-background: (
+            igx-color: ('grays', 50)
         ),
-
-        group-row-selected-background: (
-            igx-color: ('grays', 200),
-            to-opaque: #fff
-        ),
-
-        filtering-header-background: #fff,
 
         filtering-header-text-color: (
             igx-color: ('grays', 800)
         ),
 
-        filtering-row-background: #fff,
+        filtering-row-background: (
+            igx-color: ('grays', 50)
+        ),
 
         filtering-row-text-color: (
             igx-color: ('grays', 800)
@@ -360,25 +370,19 @@ $light-grid: extend(
         ),
 
         body-summaries-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 100)
         ),
 
         body-summaries-text-color: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff,
-            text-contrast: ()
+            igx-contrast-color: ('grays', 100),
         ),
 
         root-summaries-background: (
-            igx-color: ('grays', 300),
-            to-opaque: #fff
+            igx-color: ('grays', 300)
         ),
 
         root-summaries-text-color: (
-            igx-color: ('grays', 300),
-            to-opaque: #fff,
-            text-contrast: ()
+            igx-contrast-color: ('grays', 300),
         ),
 
         row-highlight: (
@@ -399,32 +403,31 @@ $light-grid: extend(
 /// @type {Map}
 /// @prop {Map} grid-border-color [igx-color: ('grays', 100)] - The grid border color only.
 /// @prop {Map} header-background [igx-color: 'surface'] - The table header background color.
-/// @prop {Map} header-text-color [igx-color: ('grays', 900)] - The table header text color.
-/// @prop {Map} header-selected-background [igx-color: ('grays', 100), to-opaque: #fff] - The table header background color when selected (ex. column selection).
-/// @prop {Map} header-selected-text-color [igx-color: ('grays', 100), to-opaque: #fff, text-contrast: ()] - The table header text color when selected (ex. column selection).
+/// @prop {Map} header-text-color [igx-color: ('grays', 800)] - The table header text color.
+/// @prop {Map} header-selected-background [igx-color: ('grays', 200)] - The table header background color when selected (ex. column selection).
+/// @prop {Map} header-selected-text-color [igx-contrast-color: ('grays', 200)] - The table header text color when selected (ex. column selection).
 /// @prop {Map} header-border-color [igx-color: ('grays', 100)] - The color used for header borders.
-/// @prop {Map} row-selected-background [igx-color: ('grays', 100)] - The selected row background color.
-/// @prop {Map} row-selected-hover-background [igx-color: ('grays', 200), to-opaque: #fff] - The selected row hover background.
+/// @prop {Map} row-selected-background [igx-color: ('grays', 200)] - The selected row background color.
+/// @prop {Map} row-selected-hover-background [igx-color: ('grays', 300)] - The selected row hover background.
 /// @prop {Map} row-border-color [igx-color: ('grays', 100)] - The row bottom border color.
 /// @prop {Map} pinned-border-color [igx-color: ('grays', 200)] - The color of the pinned border.
 /// @prop {Map} cell-active-border-color [igx-color: ('primary', 100)] - The active(focused) cell border color.
-/// @prop {Map} cell-selected-background [igx-color: ('grays', 300), to-opaque: #fff] - The selected cell background color.
 /// @prop {Map} grouparea-background [igx-color: 'surface'] - The grid group area background color.
-/// @prop {Map} group-row-background [igx-color: ('grays', 50), to-opaque: #fff] - The grid group row background color.
-/// @prop {Map} group-row-selected-background [igx-color: ('grays', 100), to-opaque: #fff] - The drop area background on drop color.
-/// @prop {Map} filtering-header-background [igx-color: ('grays', 100), to-opaque: #fff] - The background color of the filtered column header.
-/// @prop {Map} filtering-header-text-color [igx-color: ('grays', 900), to-opaque: #fff] - The text color color of the filtered column header.
-/// @prop {Map} filtering-row-background [igx-color: ('grays', 100), to-opaque: #fff] - The background color of the filtering row.
+/// @prop {Map} group-row-background [igx-color: ('grays', 50)] - The grid group row background color.
+/// @prop {Map} group-row-selected-background [igx-color: ('grays', 100)] - The drop area background on drop color.
+/// @prop {Map} filtering-header-background [igx-color: ('grays', 100)] - The background color of the filtered column header.
+/// @prop {Map} filtering-header-text-color [igx-color: ('grays', 900)] - The text color color of the filtered column header.
+/// @prop {Map} filtering-row-background [igx-color: ('grays', 200)] - The background color of the filtering row.
 /// @prop {Map} root-summaries-background [igx-color: 'surface'] - The background color of the summary groups located the footer.
 /// @prop {Map} row-ghost-background [igx-color: 'surface'] - The background color of the dragged row.
 /// @prop {number} grid-elevation [0] - The elevation level, between 0-24, to be used for the grid.
 /// @prop {number} drag-elevation [1] - The elevation level, between 0-24, to be used for movable elements (ex. column header).
 /// @prop {Number} drop-area-border-radius [2px] - The border radius used for drop-area. Can be a fraction between 0 and 1, pixels, or percent.
-/// @prop {Map} filtering-background-or [igx-color: ('error'), rgba: .5] - The background color of advanced filtering "OR" condition.
+/// @prop {Map} filtering-background-or [igx-color: ('error', .5)] - The background color of advanced filtering "OR" condition.
 /// @prop {Map} filtering-background-or--focus [igx-color: ('error')] - The background color on focus/selected of advanced filtering "OR" condition.
-/// @prop {Map} cell-selected-within-background [igx-color: ('grays', 300), to-opaque: #fff] - The background of the selected cell inside a selected row/column.
+/// @prop {Map} cell-selected-within-background [igx-color: ('grays', 300)] - The background of the selected cell inside a selected row/column.
 /// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('grays', 300)] - The color of the selected cell inside a selected row/column.
-/// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('grays', 200)] - The selected row hover text color.
+/// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('grays', 300)] - The selected row hover text color.
 ///
 /// @requires {function} extend
 /// @requires {Map} $light-grid
@@ -438,8 +441,7 @@ $fluent-grid: extend(
         variant: 'fluent',
 
         filtering-background-or: (
-            igx-color: ('error'),
-            rgba: .5
+            igx-color: ('error', 500, .5),
         ),
 
         filtering-background-or--focus: (
@@ -455,19 +457,15 @@ $fluent-grid: extend(
         ),
 
         header-text-color: (
-            igx-color: ('grays', 900),
-            to-opaque: #fff
+            igx-color: ('grays', 800)
         ),
 
         header-selected-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 200)
         ),
 
         header-selected-text-color: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff,
-            text-contrast: ()
+            igx-contrast-color: ('grays', 200)
         ),
 
         header-border-color: (
@@ -475,12 +473,11 @@ $fluent-grid: extend(
         ),
 
         row-selected-hover-background: (
-            igx-color: ('grays', 200),
-            to-opaque: #fff
+            igx-color: ('grays', 300),
         ),
 
         row-selected-hover-text-color: (
-            igx-contrast-color: ('grays', 200)
+            igx-contrast-color: ('grays', 300)
         ),
 
         row-border-color: (
@@ -492,12 +489,7 @@ $fluent-grid: extend(
         ),
 
         cell-active-border-color: (
-            igx-color: ('primary', 100),
-        ),
-
-        cell-selected-background: (
-            igx-color: ('grays', 300),
-            to-opaque: #fff
+            igx-color: ('primary', 100)
         ),
 
         grouparea-background: (
@@ -505,38 +497,31 @@ $fluent-grid: extend(
         ),
 
         group-row-background: (
-            igx-color: ('grays', 50),
-            to-opaque: #fff
+            igx-color: ('grays', 50)
         ),
 
         group-row-selected-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 100)
         ),
 
         filtering-header-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 100)
         ),
 
         filtering-header-text-color: (
-            igx-color: ('grays', 900),
-            to-opaque: #fff
+            igx-color: ('grays', 900)
         ),
 
         filtering-row-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 200)
         ),
 
         row-selected-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #fff
+            igx-color: ('grays', 200)
         ),
 
         cell-selected-within-background: (
             igx-color: ('grays', 300),
-            to-opaque: #fff,
         ),
 
         cell-selected-within-text-color: (
@@ -555,17 +540,17 @@ $fluent-grid: extend(
 
 /// Generates a bootstrap grid schema.
 /// @type {Map}
-/// @prop {Color} header-background [#fff] - The table header background color.
-/// @prop {Color} header-text-color [#000] - The table header text color.
+/// @prop {Color} header-background [igx-color: 'surface'] - The table header background color.
+/// @prop {Color} header-text-color [igx-contrast-color: 'surface'] - The table header text color.
 /// @prop {Map} header-selected-background [igx-color: ('primary', 50)] - The table header background color when selected (ex. column selection).
 /// @prop {Map} header-selected-text-color [igx-contrast-color: ('primary', 50)] - The table header text color when selected (ex. column selection).
 /// @prop {Map} cell-active-border-color [igx-color: ('primary', 500)] - The active(focused) cell border color.
 /// @prop {Map} row-highlight [igx-color: ('primary', 500)] - The grid row highlight color.
 ///
 /// @prop {Map} sorted-header-icon-color [igx-color: ('primary', 500)] - The sorted table header icon color.
-/// @prop {Map} row-selected-background [ igx-color: ('primary', 50), to-opaque: #fff] - The selected row background color.
-/// @prop {Map} row-selected-hover-background [igx-color: ('primary', 100), to-opaque: #fff] - The selected row hover background.
-/// @prop {Map} pinned-border-color [igx-color: ('primary', 200)] - The color of the pinned border.
+/// @prop {Map} row-selected-background [ igx-color: ('primary', 50)] - The selected row background color.
+/// @prop {Map} row-selected-hover-background [igx-color: ('primary', 100)] - The selected row hover background.
+/// @prop {Map} pinned-border-color [igx-color: ('grays', 400)] - The color of the pinned border.
 /// @prop {Map} resize-line-color [igx-color: ('primary', 500)] - The table header resize line color.
 /// @prop {Number} drop-area-border-radius [4px] - The border radius used for drop-area. Can be a fraction between 0 and 1, pixels, or percent.
 /// @prop {Map} cell-selected-within-background [igx-color: ('primary', 100)] - The background of the selected cell inside a selected row/column.
@@ -580,9 +565,17 @@ $bootstrap-grid: extend(
     (
         variant: 'bootstrap',
 
-        header-background: #fff,
+        grouparea-background: (
+            igx-color: 'surface'
+        ),
 
-        header-text-color: #000,
+        header-background: (
+            igx-color: 'surface'
+        ),
+
+        header-text-color: (
+            igx-contrast-color: 'surface'
+        ),
 
         header-selected-background: (
             igx-color: ('primary', 50),
@@ -652,19 +645,19 @@ $bootstrap-grid: extend(
 
 /// Generates an indigo grid schema.
 /// @type {Map}
-/// @prop {Color} header-background [igx-color: ('grays', 100), to-opaque()] - The table header background color.
+/// @prop {Color} header-background [igx-color: ('grays', 100)] - The table header background color.
 /// @prop {Color} header-text-color [igx-color: 'primary'] - The table header text color.
-/// @prop {Map} header-selected-background [igx-color: ('primary', 50)] - The table header background color when selected (ex. column selection).
+/// @prop {Map} header-selected-background [igx-color: ('primary', 100)] - The table header background color when selected (ex. column selection).
 /// @prop {Map} header-selected-text-color [igx-color: 'primary'] - The table header text color when selected (ex. column selection).
-/// @prop {Map} header-border-color [igx-color: ('primary', 500), rgba: .24] - The color used for header borders.
+/// @prop {Map} header-border-color [igx-color: ('primary', 500, .24)] - The color used for header borders.
 ///
 /// @prop {Map} filtering-header-text-color [igx-color: ('primary', 900)] - The text color color of the filtered column header.
-/// @prop {Map} filtering-background-or [igx-color: 'warn'] - The background color of advanced filtering "OR" condition.
-/// @prop {Map} filtering-background-or--focus [igx-color: 'warn', darken: 8%] - The background color on focus/selected of advanced filtering "OR" condition.
+/// @prop {Map} filtering-background-or [igx-color: ('warn', 500, .72)] - The background color of advanced filtering "OR" condition.
+/// @prop {Map} filtering-background-or--focus [igx-color: 'warn'] - The background color on focus/selected of advanced filtering "OR" condition.
 ///
 /// @prop {Map} edited-row-indicator [igx-color: 'primary'] - The indicator's color of edited row.
 ///
-/// @prop {Map} cell-selected-background [igx-color: ('primary', 50), rgba: .5] - The selected cell background color.
+/// @prop {Map} cell-selected-background [igx-color: ('primary', 100)] - The selected cell background color.
 /// @prop {Map} cell-active-border-color [igx-color: ('primary', 500)] - The active(focused) cell border color.
 ///
 /// @prop {Color} ghost-header-background [igx-color: 'primary'] - The dragged header background color.
@@ -674,13 +667,13 @@ $bootstrap-grid: extend(
 /// @prop {Map} row-border-color [igx-color: ('primary', 50)] - The row bottom border color.
 /// @prop {Map} row-highlight [igx-color: 'primary'] - The grid row highlight color.
 /// @prop {Map} row-ghost-background [igx-color: ('primary', 50)] - The background color of the dragged row.
-/// @prop {Map} row-hover-background [igx-color: ('primary', 50), rgba: .12, to-opaque: (igx-color: 'surface')] - The hover row background color.
+/// @prop {Map} row-hover-background [igx-color: ('primary', 50)] - The hover row background color.
 ///
 /// @prop {Map} sorted-header-icon-color [igx-color: 'primary'] - The sorted table header icon color.
 /// @prop {Map} sortable-header-icon-hover-color [igx-color: 'primary'] - The icon color on hover in grid header when the column is sortable.
 ///
-/// @prop {Map} row-selected-background [igx-color: ('primary', 50), rgba: .72, to-opaque: ()] - The selected row background color.
-/// @prop {Map} row-selected-hover-background [igx-color: ('primary', 50)] - The selected row hover background.
+/// @prop {Map} row-selected-background [igx-color: ('primary', 100)] - The selected row background color.
+/// @prop {Map} row-selected-hover-background [igx-color: ('primary', 100)] - The selected row hover background.
 ///
 /// @prop {Map} pinned-border-color [igx-color: ('primary', 200)] - The color of the pinned border.
 /// @prop {Map} resize-line-color [igx-color: 'primary'] - The table header resize line color.
@@ -690,17 +683,17 @@ $bootstrap-grid: extend(
 /// @prop {Map} grouparea-background [igx-color: ('grays', 100)] - The grid group area background color.
 /// @prop {Map} grouparea-color [igx-color: 'primary'] - The grid group area color.
 /// @prop {Map} drop-area-background [igx-color: ('grays', 200)] - The drop area background color.
-/// @prop {Map} drop-area-text-color [igx-contrast-color: ('grays', 200), rgba: .62] - The drop area text color.
-/// @prop {Map} drop-area-icon-color [igx-contrast-color: ('grays', 200), rgba: .62] - The drop area icon color.
-/// @prop {Map} root-summaries-background [igx-color: ('grays', 100), to-opaque: ()] - The background color of the summary groups located the footer.
-/// @prop {Map} body-summaries-background [igx-color: ('grays', 100), to-opaque: ()] - The background color of the summary groups located the body.
-/// @prop {Map} group-row-background [igx-color: ('grays', 100), to-opaque: ()] - The grid group row background color.
-/// @prop {Map} group-row-selected-background [igx-color: ('grays', 100), to-opaque: ()] - The drop area background on drop color.
+/// @prop {Map} drop-area-text-color [igx-contrast-color: ('grays', 200, .62)] - The drop area text color.
+/// @prop {Map} drop-area-icon-color [igx-contrast-color: ('grays', 200, .62)] - The drop area icon color.
+/// @prop {Map} root-summaries-background [igx-color: ('grays', 100)] - The background color of the summary groups located the footer.
+/// @prop {Map} body-summaries-background [igx-color: ('grays', 100)] - The background color of the summary groups located the body.
+/// @prop {Map} group-row-background [igx-color: ('grays', 100)] - The grid group row background color.
+/// @prop {Map} group-row-selected-background [igx-color: ('grays', 100)] - The drop area background on drop color.
 /// @prop {Map} group-count-background [igx-color: ('primary', 300)] - The grid group row cont badge background color.
 /// @prop {Map} group-count-text-color [igx-contrast-color: ('primary', 500)] - The grid group row cont badge text color.
 /// @prop {Map} expand-icon-color [igx-color: ('primary', 200)] - The grid row expand icon color.
-/// @prop {Map} cell-selected-within-background [igx-color: ('primary', 50)] - The background of the selected cell inside a selected row/column.
-/// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('primary', 50)] - The color of the selected cell inside a selected row/column.
+/// @prop {Map} cell-selected-within-background [igx-color: ('primary', 200)] - The background of the selected cell inside a selected row/column.
+/// @prop {Map} cell-selected-within-text-color [igx-contrast-color: ('primary', 200)] - The color of the selected cell inside a selected row/column.
 /// @prop {Map} row-selected-hover-text-color [igx-contrast-color: ('primary', 50)] - The selected row hover text color.
 ///
 /// @requires {function} extend
@@ -711,8 +704,7 @@ $indigo-grid: extend(
         variant: 'indigo-design',
 
         header-background: (
-            igx-color: ('grays', 100),
-            to-opaque: ()
+            igx-color: ('grays', 100)
         ),
 
         header-text-color: (
@@ -720,7 +712,7 @@ $indigo-grid: extend(
         ),
 
         header-selected-background: (
-            igx-color: ('primary', 50),
+            igx-color: ('primary', 100),
         ),
 
         header-selected-text-color: (
@@ -728,8 +720,7 @@ $indigo-grid: extend(
         ),
 
         header-border-color: (
-            igx-color: ('primary', 500),
-            rgba: .24
+            igx-color: ('primary', 500, .24),
         ),
 
         filtering-header-text-color: (
@@ -737,12 +728,11 @@ $indigo-grid: extend(
         ),
 
         filtering-background-or: (
-            igx-color: 'warn',
+            igx-color: ('warn', 500, .72),
         ),
 
         filtering-background-or--focus: (
             igx-color: 'warn',
-            darken: 8%
         ),
 
         edited-row-indicator: (
@@ -750,9 +740,11 @@ $indigo-grid: extend(
         ),
 
         cell-selected-background: (
-            igx-color: ('primary', 50),
-            rgba: .5,
-            to-opaque: #fff
+            igx-color: ('primary', 100),
+        ),
+
+        cell-selected-text-color: (
+            igx-contrast-color: ('primary', 100),
         ),
 
         cell-active-border-color: (
@@ -785,10 +777,6 @@ $indigo-grid: extend(
 
         row-hover-background: (
             igx-color: ('primary', 50),
-            rgba: .12,
-            to-opaque: (
-                igx-color: 'surface'
-            )
         ),
 
         sorted-header-icon-color: (
@@ -800,21 +788,19 @@ $indigo-grid: extend(
         ),
 
         row-selected-background: (
-            igx-color: ('primary', 50),
-            rgba: .72,
-            to-opaque: ()
+            igx-color: ('primary', 100),
         ),
 
         cell-selected-within-background: (
-            igx-color: ('primary', 50),
+            igx-color: ('primary', 200),
         ),
 
         cell-selected-within-text-color: (
-            igx-contrast-color: ('primary', 50)
+            igx-contrast-color: ('primary', 200)
         ),
 
         row-selected-hover-background: (
-            igx-color: ('primary', 50),
+            igx-color: ('primary', 100),
         ),
 
         row-selected-hover-text-color: (
@@ -850,33 +836,27 @@ $indigo-grid: extend(
         ),
 
         drop-area-text-color: (
-            igx-contrast-color: ('grays', 200),
-            rgba: .62
+            igx-contrast-color: ('grays', 200, .62),
         ),
 
         drop-area-icon-color: (
-            igx-contrast-color: ('grays', 200),
-            rgba: .62
+            igx-contrast-color: ('grays', 200, .62),
         ),
 
         root-summaries-background: (
-            igx-color: ('grays', 100),
-            to-opaque: ()
+            igx-color: ('grays', 100)
         ),
 
         body-summaries-background: (
-            igx-color: ('grays', 100),
-            to-opaque: ()
+            igx-color: ('grays', 100)
         ),
 
         group-row-background: (
-            igx-color: ('grays', 100),
-            to-opaque: ()
+            igx-color: ('grays', 100)
         ),
 
         group-row-selected-background: (
-            igx-color: ('grays', 100),
-            to-opaque: ()
+            igx-color: ('grays', 100)
         ),
 
         group-count-background: (

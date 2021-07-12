@@ -9,10 +9,7 @@
 
 /// Generates the base dark bottom-nav schema.
 /// @type {Map}
-/// @prop {Color} background [#222] - The background color used for the bottom-nav.
-$base-dark-bottom-nav: (
-    background: #222
-);
+$base-dark-bottom-nav: $light-bottom-nav;
 
 /// Generates a dark bottom-nav schema based on a mix of $light-bottom-nav and $base-dark-bottom-nav
 /// @type {Map}
@@ -39,8 +36,8 @@ $dark-bootstrap-bottom-nav: extend($bootstrap-bottom-nav, $base-dark-bottom-nav)
 /// Generates a dark indigo bottom-nav schema based on a mix of $indigo-bottom-nav and $base-dark-bottom-nav
 /// @type {Map}
 /// @prop {Map} background [igx-color: 'surface'] - The background color used for the bottom-nav.
-/// @prop {Color} active-item-color [igx-contrast-color: 'surface'] - The text-color used for the active color.
-/// @prop {Map} idle-item-color [igx-contrast-color: 'surface', rgba: .6] - The text-color used for the idle color.
+/// @prop {Color} active-item-color [igx-color: ('grays', 700)] - The text-color used for the active color.
+/// @prop {Map} idle-item-color [igx-color: ('grays', 400)] - The text-color used for the idle color.
 /// @requires {function} extend
 /// @requires $indigo-bottom-nav
 /// @requires $base-dark-bottom-nav
@@ -53,12 +50,11 @@ $dark-indigo-bottom-nav: extend(
         ),
 
         active-item-color:(
-            igx-contrast-color: 'surface',
+            igx-color: ('grays', 700)
         ),
 
         idle-item-color: (
-            igx-contrast-color: 'surface',
-            rgba: .6
+            igx-color: ('grays', 400)
         ),
     )
 );

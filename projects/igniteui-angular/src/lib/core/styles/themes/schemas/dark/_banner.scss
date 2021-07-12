@@ -20,15 +20,9 @@ $dark-fluent-banner: $fluent-banner;
 
 /// Generates a dark bootstrap banner schema.
 /// @type {Map}
-/// @property {Map} banner-background [#333]- The background color used banner background.
 /// @requires {function} extend
 /// @requires $bootstrap-banner
-$dark-bootstrap-banner: extend(
-    $bootstrap-banner,
-    (
-        banner-background: #333,
-    )
-);
+$dark-bootstrap-banner: $bootstrap-banner;
 
 /// Generates a dark indigo banner schema.
 /// @type {Map}

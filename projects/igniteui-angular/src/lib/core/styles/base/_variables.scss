@@ -21,7 +21,110 @@ $keyframes: () !default;
 $components: () !default;
 
 /// The palette as passed to the igx-theme mixin.
-$theme-palette: null !default;
+$theme-palette: (
+    primary: (
+        50: #c0c0ff,
+        '50-contrast': black,
+        100: #a7a7fa,
+        '100-contrast': black,
+        200: #6d6df1,
+        '200-contrast': black,
+        300: #3c3cf2,
+        '300-contrast': white,
+        400: #1d1df7,
+        '400-contrast': white,
+        500: blue,
+        '500-contrast': white,
+        600: #0000e5,
+        '600-contrast': white,
+        700: #0000d2,
+        '700-contrast': white,
+        800: #0000be,
+        '800-contrast': white,
+        900: #0000a8,
+        '900-contrast': white,
+        'A100': #55f,
+        'A100-contrast': white,
+        'A200': #2727ff,
+        'A200-contrast': white,
+        'A400': #0000eb,
+        'A400-contrast': white,
+        'A700': #00a,
+        'A700-contrast': white
+    ),
+    secondary: (
+        50: #ffc0c0,
+        '50-contrast': black,
+        100: #faa7a7,
+        '100-contrast': black,
+        200: #f16d6d,
+        '200-contrast': black,
+        300: #f23c3c,
+        '300-contrast': black,
+        400: #f71d1d,
+        '400-contrast': black,
+        500: var(--some-dynamic-color),
+        '500-contrast': black,
+        600: #e50000,
+        '600-contrast': white,
+        700: #d20000,
+        '700-contrast': white,
+        800: #be0000,
+        '800-contrast': white,
+        900: #a80000,
+        '900-contrast': white,
+        'A100': #f55,
+        'A100-contrast': black,
+        'A200': #ff2727,
+        'A200-contrast': black,
+        'A400': #eb0000,
+        'A400-contrast': white,
+        'A700': #a00,
+        'A700-contrast': white
+    ),
+    grays: (
+        50: hsl(0, 0%, 98%),
+        '50-contrast': black,
+        100: hsl(0, 0%, 96%),
+        '100-contrast': black,
+        200: hsl(0, 0%, 93%),
+        '200-contrast': black,
+        300: hsl(0, 0%, 88%),
+        '300-contrast': black,
+        400: hsl(0, 0%, 74%),
+        '400-contrast': black,
+        500: hsl(0, 0%, 62%),
+        '500-contrast': black,
+        600: hsl(0, 0%, 54%),
+        '600-contrast': black,
+        700: hsl(0, 0%, 38%),
+        '700-contrast': white,
+        800: hsl(0, 0%, 26%),
+        '800-contrast': white,
+        900: hsl(0, 0%, 13%),
+        '900-contrast': white,
+    ),
+    info: (
+        500: #1377d5,
+        '500-contrast': black
+    ),
+    success: (
+        500: #4eb862,
+        '500-contrast': black
+    ),
+    warn: (
+        500: #fbb13c,
+        '500-contrast': black
+    ),
+    error: (
+        500: #ff134a,
+        '500-contrast': black
+    ),
+    surface: (
+        500: #222,
+        '500-contrast': white
+    )
+) !default;
 
 /// Determines if IE11 is enabled.
 $igx-legacy-support: false !default;

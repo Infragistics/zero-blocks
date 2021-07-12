@@ -134,7 +134,7 @@
             }
 
             &%cal-value--selected %cal-value-content::after {
-                background: rgba($selected-hover-color, .18);
+                background: $selected-hover-color;
             }
         }
     }

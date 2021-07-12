@@ -355,7 +355,7 @@ $dark-bootstrap-palette: $bootstrap-dark-palette;
 $light-indigo-palette: igx-palette(
     $primary: #3f51b5,
     $secondary: #3f51b5,
-    $grays: #060716,
+    $grays: hsl(236, 8%, 5%),
     $surface: #fff,
     $info: #9208bc,
     $success: #689f38,
@@ -384,7 +384,7 @@ $dark-indigo-palette: igx-palette(
     $warn: igx-color($light-indigo-palette, 'warn'),
     $error: igx-color($light-indigo-palette, 'error'),
     $surface: #2a2b2f,
-    $grays: #f8f4ff,
+    $grays: hsl(262, 8%, 98%),
     $variant: 'indigo-design'
 ) !default;
 

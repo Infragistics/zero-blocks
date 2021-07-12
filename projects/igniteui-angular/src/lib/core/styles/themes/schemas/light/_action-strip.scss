@@ -24,12 +24,10 @@ $light-action-strip: extend(
 
         actions-background: (
             igx-color: ('grays', 200),
-            to-opaque: #fff,
-            rgba: .9
         ),
 
         background: (
-            igx-color: ('grays', 100)
+            igx-color: ('grays', 100, .38)
         ),
 
         icon-color: "'currentColor'",
@@ -87,7 +85,7 @@ $indigo-action-strip: extend(
         ),
 
         icon-color: (
-            igx-contrast-color: 'primary'
+            igx-contrast-color: 'primary',
         ),
     )
 );

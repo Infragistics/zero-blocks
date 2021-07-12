@@ -26,31 +26,37 @@ $dark-fluent-radio: $fluent-radio;
 /// @requires $bootstrap-radio
 $dark-bootstrap-radio: extend($bootstrap-radio, (
     fill-hover-border-color: (
-        igx-color: 'surface'
+        igx-color: ('grays', 900)
     ),
 
     fill-color-hover: (
-        igx-color: 'surface'
+        igx-color: ('grays', 900)
     ),
 ));
 
 /// Generates a dark indigo radio schema.
 /// @type {Map}
-/// @property {Map} fill-hover-border-color [#fff] - The text color used for the label text.
+/// @property {Map} fill-hover-border-color [igx-color: ('grays', 900)] - The text color used for the label text.
 /// @property {Map} empty-color [igx-color: ('grays', 700)] - The unchecked border color.
-/// @property {Map} fill-color [#fff] - The checked border and dot colors.
-/// @property {Map} fill-color-hover [#fff] - The checked border and dot colors on hover.
+/// @property {Map} fill-color [igx-color: ('grays', 900)] - The checked border and dot colors.
+/// @property {Map} fill-color-hover [igx-color: ('grays', 900)] - The checked border and dot colors on hover.
 /// @property {Map} disabled-color [igx-color: ('grays', 400)] - The disabled border and dot colors.
 /// @requires {function} extend
 /// @requires $indigo-radio
 $dark-indigo-radio: extend(
     $indigo-radio,
     (
-        fill-hover-border-color: #fff,
+        fill-hover-border-color: (
+            igx-color: ('grays', 900)
+        ),
 
-        fill-color: #fff,
+        fill-color: (
+            igx-color: ('grays', 900)
+        ),
 
-        fill-color-hover: #fff,
+        fill-color-hover: (
+            igx-color: ('grays', 900)
+        ),
 
         empty-color: (
             igx-color: ('grays', 700)

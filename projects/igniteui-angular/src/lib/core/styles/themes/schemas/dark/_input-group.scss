@@ -9,23 +9,19 @@
 
 /// Generates a base dark input-group schema.
 /// @type {Map}
-/// @prop {Color} search-background [#222] - The background color of an input group of type search.
-$base-dark-input-group: (
-    search-background: #222
-);
+$base-dark-input-group: $light-input-group;
 
 /// Generates a dark input-group schema based on a mix of $light-input-group and $base-dark-input-group..
 /// @type {Map}
-/// @requires {function} extend
 /// @requires $light-input-group
 /// @requires $base-dark-input-group
 /// @see $default-palette
-$dark-input-group: extend($light-input-group, $base-dark-input-group);
+$dark-input-group: $base-dark-input-group;
 
 /// Generates a dark fluent input-group schema based on a mix of $fluent-input-group and $base-dark-input-group.
 /// @type {Map}
-/// @prop {Map} input-prefix-background [igx-color: ('grays', 100), to-opaque: #222] - The background color of an input prefix of type line, box and border.
-/// @prop {Map} input-suffix-background [igx-color: ('grays', 100), to-opaque: #222] - The background color of an input sufix of type line, box and border.
+/// @prop {Map} input-prefix-background [igx-color: ('grays', 100)] - The background color of an input prefix of type line, box and border.
+/// @prop {Map} input-suffix-background [igx-color: ('grays', 100)] - The background color of an input sufix of type line, box and border.
 /// @requires {function} extend
 /// @requires $fluent-input-group
 /// @requires $base-dark-input-group
@@ -34,13 +30,11 @@ $dark-fluent-input-group: extend(
     $base-dark-input-group,
     (
         input-prefix-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #222
+            igx-color: ('grays', 100)
         ),
 
         input-suffix-background: (
-            igx-color: ('grays', 100),
-            to-opaque: #222
+            igx-color: ('grays', 100)
         ),
     )
 );
@@ -57,13 +51,13 @@ $dark-bootstrap-input-group: extend(
 
 /// Generates an dark indigo input-group schema
 /// @type {Map}
-/// @prop {Map} success-secondary-color [igx-color: ('success'), rgba: .7, to-opaque: #fff] - The success color used in the valid state.
-/// @prop {Map} warning-secondary-color [igx-color: ('warn'), rgba: .7, to-opaque: #fff] - The warning color used in the warning state.
-/// @prop {Map} error-secondary-color [igx-color: ('error'), rgba: .7, to-opaque: #fff] - The error color used in the error state.
+/// @prop {Map} success-secondary-color [igx-color: ('success', 500, .7)] - The success color used in the valid state.
+/// @prop {Map} warning-secondary-color [igx-color: ('warn', 500, .7)] - The warning color used in the warning state.
+/// @prop {Map} error-secondary-color [igx-color: ('error', 500, .7)] - The error color used in the error state.
 /// @prop {Map} $idle-secondary-color [igx-contrast-color: ('surface')] - The label color in the idle state.
 /// @prop {Map} $filled-secondary-color [igx-contrast-color: ('surface')] - The label color in the filled state.
 /// @prop {Map} $focused-secondary-color [igx-contrast-color: ('surface')] - The label color in the focused state.
-/// @prop {Map} focused-bottom-line-color [igx-contrast-color: ('surface'), rgba: .38] - The bottom line and border colors in the focused state.
+/// @prop {Map} focused-bottom-line-color [igx-contrast-color: ('surface')] - The bottom line and border colors in the focused state.
 /// @requires {function} extend
 /// @requires $indigo-input-group
 /// @see $default-palette
@@ -73,21 +67,15 @@ $dark-indigo-input-group: extend(
         search-background: transparent,
 
         success-secondary-color: (
-            igx-color: ('success'),
-            rgba: .7,
-            to-opaque: #fff
+            igx-color: ('success', 500, .7)
         ),
 
         warning-secondary-color: (
-            igx-color: ('warn'),
-            rgba: .7,
-            to-opaque: #fff
+            igx-color: ('warn', 500, .7)
         ),
 
         error-secondary-color: (
-            igx-color: ('error'),
-            rgba: .7,
-            to-opaque: #fff
+            igx-color: ('error', 500, .7),
         ),
 
         idle-secondary-color: (
@@ -103,8 +91,7 @@ $dark-indigo-input-group: extend(
         ),
 
         focused-bottom-line-color: (
-            igx-contrast-color: ('surface'),
-            rgba: .38
+            igx-contrast-color: ('surface')
         ),
 
     )

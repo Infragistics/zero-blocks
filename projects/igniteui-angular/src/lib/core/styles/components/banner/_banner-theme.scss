@@ -122,6 +122,10 @@
         color: var-get($theme, 'banner-message-color');
         flex: 1 0 0%;
         margin-#{$left}: rem(24);
+
+        > * {
+            margin-top: 0 !important;
+        }
     }
 
     %igx-banner--cosy {

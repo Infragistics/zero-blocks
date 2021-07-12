@@ -10,26 +10,25 @@
 
 /// Generates the base dark button-group schema.
 /// @type {Map}
-/// @prop {Color} item-background [#222] - The background color for button group items.
-/// @prop {Map} item-border-color [igx-color: ('grays', 400), to-opaque: #222] - The border color for button group items.
-/// @prop {Map} item-selected-border-color [igx-color: ('grays', 500), to-opaque: #222] - The border color for button group selected items.
-/// @prop {Map} item-disabled-border: [igx-color: ('grays', 400), to-opaque: #222] - The border color for button group disabled items.
+/// @prop {Map} item-hover-background [igx-color: ('grays', 100)] - The hover background color for button group items.
+/// @prop {Map} item-selected-background [igx-color: ('grays', 200)] - The background color for a selected item in the button group.
+/// @prop {Map} item-selected-hover-background [igx-color: ('grays', 300)] - The background color for a selected item in hover or focus state in the button group.
+/// @prop {Map} item-selected-border-color [igx-color: ('grays', 200)] - The border color for button group selected items.
 $base-dark-button-group: (
-    item-background: #222,
+    item-hover-background: (
+        igx-color: ('grays', 100)
+    ),
 
-    item-border-color: (
-        igx-color: ('grays', 400),
-        to-opaque: (#222)
+    item-selected-background: (
+        igx-color: ('grays', 200)
+    ),
+
+    item-selected-hover-background: (
+        igx-color: ('grays', 300)
     ),
 
     item-selected-border-color: (
-        igx-color: ('grays', 500),
-        to-opaque: (#222)
-    ),
-
-    item-disabled-border: (
-        igx-color: ('grays', 400),
-        to-opaque: (#222)
+        igx-color: ('grays', 200),
     ),
 );
 
@@ -44,16 +43,16 @@ $dark-button-group: extend($light-button-group, $base-dark-button-group);
 /// Generates a dark fluent button-group schema based on a mix of $fluent-button-group and $base-dark-button-group
 /// @type {Map}
 ///
-/// @prop {Map} item-border-color [igx-color: ('grays', 100), to-opaque: #000] - The border color for button group items.
-/// @prop {Map} item-selected-border-color [igx-color: ('grays', 100), to-opaque: #000] - The border color for button group selected items.
-/// @prop {Map} item-disabled-border: [igx-color: ('grays', 100), to-opaque: #000] - The border color for button group disabled items.
+/// @prop {Map} item-border-color [igx-color: ('grays', 100)] - The border color for button group items.
+/// @prop {Map} item-selected-border-color [igx-color: ('grays', 100)] - The border color for button group selected items.
+/// @prop {Map} item-disabled-border: [igx-color: ('grays', 100)] - The border color for button group disabled items.
 /// @prop {Map} item-text-color [igx-color: ('grays', 900)] - The text color for button group items.
 /// @prop {Map} item-hover-text-color [igx-color: ('primary', 200)] - The text color for button group items on hover.
-/// @prop {Color} item-hover-background [#222] - The background color for button group items on hover.
+/// @prop {Color} item-hover-background [igx-color: ('grays', 50)] - The background color for button group items on hover.
 /// @prop {Map} item-selected-background [igx-color: ('grays', 100)] - The background color for button group selected items.
-/// @prop {Map} item-selected-hover-background [igx-color: ('grays', 100)] - The background color for button group selected items on hover.
+/// @prop {Map} item-selected-hover-background [igx-color: ('grays', 200)] - The background color for button group selected items on hover.
 /// @prop {Map} item-selected-text-color [igx-color: ('primary', 200)] - The text color for button group selected items.
-/// @prop {Color} disabled-background-color [#222] - The background color for button group disabled items.
+/// @prop {Color} disabled-background-color [igx-color: ('grays', 50)] - The background color for button group disabled items.
 ///
 /// @requires {function} extend
 /// @requires $fluent-button-group
@@ -62,44 +61,45 @@ $dark-fluent-button-group: extend(
     $fluent-button-group,
     $base-dark-button-group,
     (
-        item-border-color: (
-            igx-color: ('grays', 100),
-            to-opaque: #000
-        ),
-
-        item-selected-border-color: (
-            igx-color: ('grays', 100),
-            to-opaque: #000
-        ),
-
-        item-disabled-border: (
-            igx-color: ('grays', 100),
-            to-opaque: #000
-        ),
-
         item-text-color: (
             igx-color: ('grays', 900)
-        ),
-
-        item-hover-text-color: (
-            igx-color: ('primary', 200)
-        ),
-
-        item-hover-background: #222,
-
-        item-selected-background: (
-            igx-color: ('grays', 100)
-        ),
-
-        item-selected-hover-background: (
-            igx-color: ('grays', 100)
         ),
 
         item-selected-text-color: (
             igx-color: ('primary', 200)
         ),
 
-        disabled-background-color: #222,
+        item-hover-text-color: (
+            igx-color: ('primary', 200)
+        ),
+
+        item-hover-background: (
+            igx-color: ('grays', 50)
+        ),
+
+        item-selected-background: (
+            igx-color: ('grays', 100)
+        ),
+
+        item-selected-hover-background: (
+            igx-color: ('grays', 200)
+        ),
+
+        item-border-color: (
+            igx-color: ('grays', 100),
+        ),
+
+        item-selected-border-color: (
+            igx-color: ('grays', 100),
+        ),
+
+        item-disabled-border: (
+            igx-color: ('grays', 100),
+        ),
+
+        disabled-background-color: (
+            igx-color: ('grays', 50)
+        ),
     )
 );
 

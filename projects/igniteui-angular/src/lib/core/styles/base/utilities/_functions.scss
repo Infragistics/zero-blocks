@@ -89,21 +89,6 @@
     @return math.div(math.max($backLum, $foreLum), math.min($backLum, $foreLum));
 }
 
-/// Returns an alpha channel map for a given palette variant.
-/// @param {string} $variant ['material'] - The palette variant.
-/// @returns {Map} - The alpha channel map for the specified palette.
-@function _alpha-map($variant: 'material') {
-    $material: (50: .02, 100: .04, 200: .08, 300: .12, 400: .26, 500: .38, 600: .54, 700: .62, 800: .74, 900: .87);
-    $indigo: (50: .02, 100: .03, 200: .06, 300: .15, 400: .21, 500: .4, 600: .52, 700: .64, 800: .77, 900: .9);
-
-    @return map.get((
-        'material': $material,
-        'fluent': $material,
-        'bootstrap': $material,
-        'indigo-design': $indigo,
-    ), $variant);
-}
-
 /// Generates a color shade from base color and saturation level.
 /// @access private
 /// @group Palettes
@@ -141,87 +126,117 @@
     }
 }
 
+/// Generates a color shade from base color and saturation level.
+/// @access private
+/// @group Palettes
+/// @param {Color} $color - The base color to be used to generate a color shade.
+/// @param {number|string} $shade - The shade.
+@function _gen-gray($color, $shade) {
+    $lumen: luminance($color);
+
+    @if ($shade == 50) {
+        @return change-color($color, $lightness: if($lumen < .5, 98%, 13%));
+    } @else if ($shade == 100) {
+        @return change-color($color, $lightness: if($lumen < .5, 96%, 26%));
+    } @else if ($shade == 200) {
+        @return change-color($color, $lightness: if($lumen < .5, 93%, 38%));
+    } @else if ($shade == 300) {
+        @return change-color($color, $lightness: if($lumen < .5, 88%, 54%));
+    } @else if ($shade == 400) {
+        @return change-color($color, $lightness: if($lumen < .5, 74%, 62%));
+    } @else if ($shade == 500) {
+        @return change-color($color, $lightness: if($lumen < .5, 62%, 74%));
+    } @else if ($shade == 600) {
+        @return change-color($color, $lightness: if($lumen < .5, 54%, 88%));
+    } @else if ($shade == 700) {
+        @return change-color($color, $lightness: if($lumen < .5, 38%, 93%));
+    } @else if ($shade == 800) {
+        @return change-color($color, $lightness: if($lumen < .5, 26%, 96%));
+    } @else if ($shade == 900) {
+        @return change-color($color, $lightness: if($lumen < .5, 13%, 98%));
+    }
+}
+
 /// Generates an hsla color variant from base(500) colors.
 /// @access private
 /// @group Palettes
 /// @param {Color} $name - The base color name (primary, secondary, etc.) to be used to generate a color variant.
 /// @param {number|string} $variant - The target shade variant.
 /// @param {number|string} $theme - The target theme variant.
-@function gen-hsla-color($name, $variant, $theme) {
+@function gen-hsla-color($name, $variant, $theme, $color) {
     $h: var(--igx-#{$name}-h);
     $s: var(--igx-#{$name}-s);
     $l: var(--igx-#{$name}-l);
-    $a: var(--igx-#{$name}-a);
-    $am: _alpha-map($theme);
+    $lumen: luminance($color);
 
     @if ($variant == 50) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 50)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 98%, 13%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * 1.23), calc(#{$l} * 1.78), #{$a})};
+            @return #{$h, calc(#{$s} * 1.23), calc(#{$l} * 1.78)};
         }
     } @else if ($variant == 100) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 100)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 96%, 26%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} / 1.25), calc(#{$l} * 1.66), #{$a})};
+            @return #{$h, calc(#{$s} / 1.25), calc(#{$l} * 1.66)};
         }
     } @else if ($variant == 200) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 200)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 93%, 38%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * .64), calc(#{$l} * 1.43), #{$a})};
+            @return #{$h, calc(#{$s} * .64), calc(#{$l} * 1.43)};
         }
     } @else if ($variant == 300) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 300)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 88%, 54%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * .73), calc(#{$l} * 1.19), #{$a})};
+            @return #{$h, calc(#{$s} * .73), calc(#{$l} * 1.19)};
         }
     } @else if ($variant == 400) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 400)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 74%, 62%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * .875), calc(#{$l} * 1.08), #{$a})};
+            @return #{$h, calc(#{$s} * .875), calc(#{$l} * 1.08)};
         }
     } @else if ($variant == 500) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 500)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 62%, 72%)};
         } @else {
-            @return #{hsla($h, $s, $l, $a)};
+            @return #{$h, $s, $l};
         }
     } @else if ($variant == 600) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 600)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 54%, 88%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * 1.26), calc(#{$l} * .89), #{$a})};
+            @return #{$h, calc(#{$s} * 1.26), calc(#{$l} * .89)};
         }
     } @else if ($variant == 700) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 700)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 38%, 93%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * 1.52), calc(#{$l} * .81), #{$a})};
+            @return #{$h, calc(#{$s} * 1.52), calc(#{$l} * .81)};
         }
     } @else if ($variant == 800) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 800)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 26%, 96%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * 1.5), calc(#{$l} * .73), #{$a})};
+            @return #{$h, calc(#{$s} * 1.5), calc(#{$l} * .73)};
         }
     } @else if ($variant == 900) {
         @if $name == 'grays' {
-            @return #{hsla($h, $s, $l, calc(#{map-get($am, 900)} * #{$a}))};
+            @return #{$h, $s, if($lumen < .5, 13%, 98%)};
         } @else {
-            @return #{hsla($h, calc(#{$s} * 1.34), calc(#{$l} * .64), #{$a})};
+            @return #{$h, calc(#{$s} * 1.34), calc(#{$l} * .64)};
         }
     } @else if ($variant == 'A100') {
-        @return #{hsla($h, calc(#{$s} * 1.23), calc(#{$l} * 1.34), #{$a})};
+        @return #{$h, calc(#{$s} * 1.23), calc(#{$l} * 1.34)};
     } @else if ($variant == 'A200') {
-        @return #{hsla($h, calc(#{$s} * 1.22), calc(#{$l} * 1.16), #{$a})};
+        @return #{$h, calc(#{$s} * 1.22), calc(#{$l} * 1.16)};
     } @else if ($variant == 'A400') {
-        @return #{hsla($h, calc(#{$s} * 1.23), calc(#{$l} * .91), #{$a})};
+        @return #{$h, calc(#{$s} * 1.23), calc(#{$l} * .91)};
     } @else if ($variant == 'A700') {
-        @return #{hsla($h, calc(#{$s} * 1.22), calc(#{$l} * .65), #{$a})};
+        @return #{$h, calc(#{$s} * 1.22), calc(#{$l} * .65)};
     }
 }
 
@@ -245,6 +260,7 @@
     @each $saturation in $saturations {
         $shade: gen-color($color, $saturation);
         $contrast: text-contrast(to-opaque($shade, $base, null));
+
         $result: map.merge($result, (
             $saturation: $shade,
             #{$saturation}-contrast: $contrast
@@ -265,12 +281,13 @@
 /// text contrast colors for each variation.
 @function grayscale-palette($color, $shades, $base: #fff) {
     $result: ();
-    @each $saturation, $opacity in $shades {
-        $shade: rgba($color, $opacity);
-        $contrast: text-contrast(to-opaque($shade, $base, null));
-        $result: map.merge($result, (
-            $saturation: $shade,
-            #{$saturation}-contrast: $contrast
+    @each $shade in $shades {
+        $gray-shade: _gen-gray($color, $shade);
+        $contrast: text-contrast(to-opaque($gray-shade, $base, null));
+
+        $result: map-merge($result, (
+            $shade: $gray-shade,
+            #{$shade}-contrast: $contrast
         ));
     }
     @return $result;
@@ -303,11 +320,11 @@
     $variant: 'material'
 ) {
     $saturations: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 'A100', 'A200', 'A400', 'A700');
-    $shades: _alpha-map($variant);
+    $gray-shades: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900);
 
     $primary-palette: generate-palette($primary, $saturations, $surface);
     $secondary-palette: generate-palette($secondary, $saturations, $surface);
-    $grayscale-palette: grayscale-palette($grays, $shades, $surface);
+    $grayscale-palette: grayscale-palette($grays, $gray-shades, $surface);
 
     // @debug 'Primary Colors Palette: #{$primary-palette}';
     // @debug 'secondary Colors Palette: #{$secondary-palette}';
@@ -348,7 +365,8 @@
             )
         ),
         _meta: (
-            variant: $variant
+            variant: $variant,
+            grays: $grays,
         )
     );
 }
@@ -365,9 +383,16 @@ $p-test: igx-palette(#fff, #000);
 /// @param {string} $color [primary]- The target color from the color palette.
 /// @param {number|string} $variant [500] - The target color shade from the color palette.
 /// @returns {Color} White if no palette, color, and variant matches found.
-@function igx-color($palette: null, $color: primary, $variant: 500) {
+@function igx-color($palette: null, $color: primary, $variant: 500, $opacity: null) {
     $c: map.get($palette or $p-test, $color);
     $v: if($c, map.get($c, $variant), null);
+    $a: var(--igx-#{$color}-a);
+    $var-string: #{var(--igx-#{$color}-#{$variant})};
+    $contrast: if(
+        type-of($variant) == string,
+        list.index(str-split($variant, '-'), 'contrast'),
+        null
+    );
 
     @if not($c) {
         @error 'The passed color #{$color} is not valid.';
@@ -381,11 +406,15 @@ $p-test: igx-palette(#fff, #000);
         @return if(
             legacy(),
             igx-color($theme-palette, $color, $variant),
-            #{var(--igx-#{$color}-#{$variant})}
+            if(
+                $contrast,
+                $var-string,
+                hsla($var-string, if($opacity, $opacity, $a)),
+            )
         );
     }
 
-    @return map.get($c, $variant);
+    @return rgba(map.get($c, $variant), $alpha: if($opacity, $opacity, 1));
 }
 
 /// Retrieves a contrast text color for a given color from a color palette.
@@ -396,8 +425,8 @@ $p-test: igx-palette(#fff, #000);
 /// @param {number|variant} $variant [500] - The target color shade from the color palette.
 /// @requires igx-color
 /// @returns {Color} [#fff] - Returns white if no palette, color and/or variant matches found.
-@function igx-contrast-color($palette: null, $color: primary, $variant: 500) {
-    @return igx-color($palette, $color, #{$variant}-contrast);
+@function igx-contrast-color($palette: null, $color: primary, $variant: 500, $opacity: null) {
+    @return igx-color($palette, $color, #{$variant}-contrast, $opacity);
 }
 
 /// Returns a CSS variable string reference as a list of words.

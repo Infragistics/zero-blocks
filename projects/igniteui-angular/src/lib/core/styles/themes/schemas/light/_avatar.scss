@@ -20,11 +20,11 @@ $light-avatar: extend(
     $square-shape-avatar,
     (
         background: (
-            igx-color: ('grays', 400)
+            igx-color: ('grays', 400, .54)
         ),
 
         color: (
-            igx-color: ('grays', 800)
+            igx-color: ('grays', 800, .96)
         ),
     )
 );

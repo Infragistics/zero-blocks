@@ -9,7 +9,7 @@
 
 /// Generates a light checkbox schema.
 /// @type {Map}
-/// @prop {Color} tick-color [#fff] - The checked mark color.
+/// @prop {Color} tick-color [igx-color: ('grays', 50)] - The checked mark color.
 /// @prop {Map} label-color [igx-color: ('grays', 900)]- The text color used for the label text.
 /// @prop {Map} empty-color [igx-color: ('grays', 600)] - The unchecked border color.
 /// @prop {Map} fill-color [igx-color: ('secondary', 500)] - The checked border and fill colors.
@@ -25,7 +25,10 @@ $light-checkbox: extend(
     $default-shape-checkbox,
     (
         variant: 'material',
-        tick-color: #fff,
+
+        tick-color: (
+            igx-color: ('grays', 50)
+        ),
 
         label-color: (
             igx-color: ('grays', 900)

@@ -387,10 +387,6 @@
 
     $cal-row-padding: rem(8px);
     $cal-row-margin: rem(2px) 0;
-    $selected-hover-color: text-contrast(
-        map.get($theme, 'date-selected-background'),
-        $palette: $palette
-    );
 
     $current-color-variant: map.get((
         material: var-get($theme, 'date-selected-background'),
@@ -718,14 +714,8 @@
     }
 
     %cal-value--selected--hover {
-        %cal-value-content {
-            ::after {
-                @if meta.type-of($selected-hover-color) == 'color' {
-                    background: rgba($selected-hover-color, .18);
-                } @else {
-                    background: $selected-hover-color;
-                }
-            }
+        %cal-value-content::after {
+            background: igx-color($palette, 'grays', 100, .54);
         }
     }
 

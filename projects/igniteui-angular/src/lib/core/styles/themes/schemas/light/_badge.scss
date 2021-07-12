@@ -12,7 +12,7 @@
 /// @type {Map}
 /// @prop {Map} icon-color [igx-contrast-color: ('primary', 500)] - The icon color used.
 /// @prop {Map} text-color [igx-contrast-color: ('primary', 500)] - The text color used.
-/// @prop {Color} border-color [#fff] - The border color used.
+/// @prop {Color} border-color [igx-color: ('grays', 50)] - The border color used.
 /// @prop {Number} border-width [0] - The border width of the badge component.
 /// @prop {Map} background-color [igx-color: ('primary', 500)] - The background color used.
 /// @prop {Number} elevation [1] - The elevation level, between 0-24, to be used for the badge shadow.
@@ -33,11 +33,14 @@ $light-badge: extend(
             igx-contrast-color: ('primary', 500)
         ),
 
-        border-color: #fff,
+        border-color: (
+            igx-color: ('grays', 50)
+        ),
 
         background-color: (
             igx-color: ('primary', 500)
         ),
+
         border-width: 0
     )
 );
